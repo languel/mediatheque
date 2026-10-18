@@ -67,8 +67,24 @@
     }, 2200);
   }
 
-  async function copyText(text, label) {
+  async function copyText(text, label, comfyClipboardData) {
     try {
+      if (comfyClipboardData && navigator.clipboard && window.ClipboardItem) {
+        const jsonBytes = new TextEncoder().encode(JSON.stringify(comfyClipboardData));
+        let binary = "";
+        for (let i = 0; i < jsonBytes.length; i++) {
+          binary += String.fromCharCode(jsonBytes[i]);
+        }
+        const b64 = btoa(binary);
+        const html = `<meta charset="utf-8"><div><span data-metadata="${b64}"></span></div><span style="white-space:pre-wrap;">Text</span>`;
+        const item = new ClipboardItem({
+          "text/html": new Blob([html], { type: "text/html" }),
+          "text/plain": new Blob([text], { type: "text/plain" }),
+        });
+        await navigator.clipboard.write([item]);
+        showToast(`Copied ${label || "to clipboard"} (press Cmd/Ctrl+V on ComfyUI canvas)`);
+        return;
+      }
       await navigator.clipboard.writeText(text);
       showToast(`Copied ${label || "to clipboard"}`);
     } catch (_err) {
@@ -491,17 +507,91 @@
       threeSnippet += `import * as THREE from "three";\n\nconst texture = new THREE.TextureLoader().load("${streamUrl}");`;
     }
 
-    const generetiSnippet = JSON.stringify(
-      {
-        node: "stream.2d",
-        mediatheque_id: activeClip ? `${item.id}/${String(activeClip.n).padStart(2, "0")}` : item.id,
-        stream_url: proxyUrl || streamUrl,
-        highres_url: streamUrl,
-        credit: credit,
+    const mediathequeId = activeClip
+      ? `${item.id}/${String(activeClip.n).padStart(2, "0")}`
+      : item.id;
+    const generetiMediaUrl =
+      item.kind === "video" || activeClip ? proxyUrl || videoStreamUrl : streamUrl;
+    const generetiMediaKind =
+      item.kind === "video" || activeClip
+        ? "video"
+        : item.kind === "image" || item.kind === "vector"
+        ? "image"
+        : "auto";
+    const generetiNode = {
+      id: 1,
+      type: "GeneretiMediaStream",
+      title: `ꘇ 2D stream · ${title}`,
+      pos: [80, 80],
+      size: [460, 480],
+      flags: {},
+      order: 0,
+      mode: 0,
+      inputs: [
+        {
+          localized_name: "image",
+          name: "image",
+          shape: 7,
+          type: "IMAGE",
+          link: null,
+        },
+        {
+          localized_name: "capture",
+          name: "capture",
+          shape: 7,
+          type: "STRING",
+          widget: {
+            name: "capture",
+          },
+          link: null,
+        },
+      ],
+      outputs: [
+        {
+          localized_name: "image",
+          name: "image",
+          type: "IMAGE",
+          links: [],
+        },
+      ],
+      properties: {
+        generetiPerformanceVersion: 1,
+        "Node name for S&R": "GeneretiMediaStream",
+        genereti_preview_fit: "contain",
+        genereti_media_url: generetiMediaUrl,
+        genereti_media_kind: generetiMediaKind,
+        genereti_media_fps: 30,
+        genereti_media_loop: true,
+        mediatheque_id: mediathequeId,
+        mediatheque_highres_url: streamUrl,
+        mediatheque_credit: credit,
       },
-      null,
-      2
-    );
+      widgets_values: ["GENERETI_OFF:2D stream"],
+    };
+
+    const generetiWorkflow = {
+      version: 0.4,
+      last_node_id: 1,
+      last_link_id: 0,
+      nodes: [generetiNode],
+      links: [],
+      groups: [],
+      config: {},
+      extra: {
+        mediatheque_id: mediathequeId,
+        mediatheque_credit: credit,
+      },
+    };
+
+    const generetiClipboard = {
+      nodes: [generetiNode],
+      groups: [],
+      reroutes: [],
+      links: [],
+      subgraphs: [],
+    };
+
+    const generetiSnippet = JSON.stringify(generetiWorkflow, null, 2);
 
     const creditsSnippet = `Plain text:\n${title} — ${credit} (${srcUrl})\n\nMarkdown:\n[${title}](${srcUrl}) — ${credit}`;
 
@@ -510,6 +600,7 @@
       p5: p5Snippet,
       three: threeSnippet,
       genereti: generetiSnippet,
+      generetiClipboard: generetiClipboard,
       credits: creditsSnippet,
     };
   }
@@ -950,8 +1041,9 @@
               <button type="button" class="chip chip--small is-active" data-snippet-tab="p5">p5.js</button>
               <button type="button" class="chip chip--small" data-snippet-tab="html">HTML</button>
               <button type="button" class="chip chip--small" data-snippet-tab="three">Three.js</button>
-              <button type="button" class="chip chip--small" data-snippet-tab="genereti">Genereti 2D</button>
+              <button type="button" class="chip chip--small" data-snippet-tab="genereti">ꘇ 2D stream</button>
               <button type="button" class="chip chip--small" data-snippet-tab="credits">Credits</button>
+              <button type="button" class="btn-small" id="btn-download-comfy-json" hidden style="margin-left:auto;">Download .json</button>
               <button type="button" class="btn-small" id="btn-copy-snippet" style="margin-left:auto;">Copy Snippet</button>
             </div>
             <pre class="snippet-pre" id="snippet-code">${escapeHtml(snippets.p5)}</pre>
@@ -1065,18 +1157,36 @@
     // Snippet tabs
     let currentSnippetKey = "p5";
     const snippetPre = document.getElementById("snippet-code");
+    const btnCopySnippet = document.getElementById("btn-copy-snippet");
+    const btnDownloadComfy = document.getElementById("btn-download-comfy-json");
     els.detailRoot.querySelectorAll("[data-snippet-tab]").forEach((tab) => {
       tab.addEventListener("click", () => {
         els.detailRoot.querySelectorAll("[data-snippet-tab]").forEach((t) => t.classList.remove("is-active"));
         tab.classList.add("is-active");
         currentSnippetKey = tab.getAttribute("data-snippet-tab");
         if (snippetPre) snippetPre.textContent = snippets[currentSnippetKey] || "";
+        if (btnDownloadComfy) {
+          btnDownloadComfy.hidden = currentSnippetKey !== "genereti";
+        }
+        if (btnCopySnippet) {
+          btnCopySnippet.textContent =
+            currentSnippetKey === "genereti" ? "Copy Node for ComfyUI" : "Copy Snippet";
+          btnCopySnippet.style.marginLeft = currentSnippetKey === "genereti" ? "0" : "auto";
+        }
       });
     });
-    const btnCopySnippet = document.getElementById("btn-copy-snippet");
     if (btnCopySnippet) {
       btnCopySnippet.addEventListener("click", () => {
-        copyText(snippets[currentSnippetKey] || "", `${currentSnippetKey} snippet`);
+        copyText(
+          snippets[currentSnippetKey] || "",
+          currentSnippetKey === "genereti" ? "ꘇ 2D stream node" : `${currentSnippetKey} snippet`,
+          currentSnippetKey === "genereti" ? snippets.generetiClipboard : null
+        );
+      });
+    }
+    if (btnDownloadComfy) {
+      btnDownloadComfy.addEventListener("click", () => {
+        downloadTextFile(`${item.id}.comfy.json`, (snippets.genereti || "") + "\n");
       });
     }
 
