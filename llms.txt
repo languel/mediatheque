@@ -1,0 +1,100 @@
+# Mediathèque — Agent & LLM Guide (`llms.txt`)
+
+> A personal, public archive of teaching media: film, images, animated GIFs, sound,
+> 3D models, Gaussian splats, SVG vectors, and text. Served statically with
+> `Access-Control-Allow-Origin: *` so any browser sketch, Genereti node, p5.js
+> canvas, Three.js scene, or student assignment can stream or download by stable URL.
+
+Published inventory: 26 items (12 animation, 4 image, 2 model, 1 splat, 1 vector, 6 video) and 7 clips.
+
+## 1. Machine-Readable Indexes (Never Scrape HTML)
+
+- **Compact Catalog (`catalog.json`)**: `https://languel.github.io/mediatheque/catalog.json`
+  JSON array of all published items (`type: "item"`) and clips (`type: "clip"`, `parent: "<id>"`).
+  Fields: `id`, `type`, `title`, `kind`, `summary`, `tags`, `keywords`, `collections`,
+  `demos`, `date`, `creators`, `rights` (`status`, `license`, `license_url`), `credit`,
+  `thumb`, `poster`, `media`, `proxy`, `original`, `width`, `height`, `duration`, `bytes`, `url`.
+- **Full Records (`catalog.jsonl`)**: `https://languel.github.io/mediatheque/catalog.jsonl`
+  One complete `item.json` object per line (ideal for `grep`, `jq -c`, and streaming parsers).
+- **Per-Item Authoritative Record**: `https://languel.github.io/mediatheque/items/<id>/item.json`
+  Includes full `files` hashes, frame timings, `clips`, and `provenance` derivation history.
+- **Controlled Vocabulary**: `https://languel.github.io/mediatheque/tools/tags.json`
+
+## 2. Stable URL Patterns & CORS
+
+All endpoints send `Access-Control-Allow-Origin: *`:
+
+1. **GitHub Pages (Primary, correct MIME types)**:
+   - Web derivative: `https://languel.github.io/mediatheque/items/<id>/media.<ext>`
+   - Perception proxy (768px, 15fps WebM): `https://languel.github.io/mediatheque/items/<id>/proxy.webm`
+   - Original GIF (when `kind == "animation"`): `https://languel.github.io/mediatheque/items/<id>/original.gif`
+   - Clip file: `https://languel.github.io/mediatheque/items/<id>/clips/<nn>.webm`
+   - Media fragment on full work: `https://languel.github.io/mediatheque/items/<id>/media.webm#t=<in>,<out>`
+   - Square thumbnail (480px WebP): `https://languel.github.io/mediatheque/items/<id>/thumb.webp`
+   - Detail page in gallery: `https://languel.github.io/mediatheque/site/index.html#/<id>` (or `#/<id>/<nn>` for clips)
+2. **jsDelivr CDN (Versioned, cached, up to 20 MB)**:
+   - `https://cdn.jsdelivr.net/gh/languel/mediatheque@main/items/<id>/media.<ext>`
+3. **GitHub Raw (Fallback)**:
+   - `https://raw.githubusercontent.com/languel/mediatheque/main/items/<id>/media.<ext>`
+
+## 3. Controlled Vocabulary (`tags` & `demos`)
+
+### Facets and Allowed Tags
+- **subject** (video/animation/image/model/splat/vector): `person`, `animal`, `object`, `vehicle`, `landscape`, `cityscape`, `interior`, `abstract`, `text-content`, `pattern`
+- **people** (video/animation/image): `single`, `pair`, `group`, `crowd`
+- **framing** (video/animation/image): `fullbody`, `upper-body`, `face`, `hands`, `feet`, `closeup`, `wide`, `arms-raised`
+- **view** (video/animation/image/model/splat): `front`, `side`, `back`, `top-down`, `three-quarter`
+- **action** (video/animation/image): `movement`, `dance`, `walk`, `run`, `jump`, `gesture`, `pose`, `fight`, `sport`, `work`, `talk`, `still`
+- **motion** (video/animation): `slow`, `fast`, `repetitive`, `cyclic`, `static-camera`, `moving-camera`, `cuts`
+- **look** (video/animation/image/vector): `bw`, `color`, `tinted`, `high-contrast`, `low-light`, `plain-bg`, `busy-bg`, `silhouette`, `grain`
+- **sound** (video/animation/audio): `silent`, `music`, `speech`, `percussion`, `ambient`, `noise`, `loop`
+- **format** (video/animation/image/audio/model/splat/vector/text): `short`, `loop-friendly`, `portrait`, `landscape-format`, `square`, `transparent`, `seamless`
+- **era** (video/animation/image/audio/model/splat/vector/text): `early-film`, `chronophotography`, `animation`, `archival`, `contemporary`, `generated`, `own-capture`
+- **gif** (animation): `seamless-loop`, `pingpong`, `one-shot-anim`, `cinemagraph`, `pixel-art`, `dithered`, `low-palette`, `transparent`, `frame-sequence`, `rotoscope`, `reaction`, `found-gif`
+- **still** (image): `photo`, `painting`, `drawing`, `print`, `diagram`, `scan`, `sequence`, `panorama`, `equirect`, `depth-map`, `alpha`
+- **sound-type** (audio): `music`, `speech`, `voice`, `field-recording`, `foley`, `sfx`, `drone`, `percussion`, `one-shot`, `loop`, `stem`, `impulse-response`
+- **music** (audio): `tempo-slow`, `tempo-mid`, `tempo-fast`, `steady-beat`, `free-time`, `tonal`, `atonal`, `mono`, `stereo`, `multichannel`
+- **3d** (model): `character`, `rigged`, `animated`, `prop`, `scene`, `architecture`, `scan`, `low-poly`, `textured`, `untextured`, `pbr`, `watertight`, `printable`
+- **splat** (splat): `object`, `room`, `outdoor`, `person`, `360`, `cropped`, `noisy`
+- **svg** (vector): `line-art`, `filled`, `single-path`, `plotter-ready`, `icon`, `map`, `font-glyph`
+- **text** (text): `poem`, `script`, `manifesto`, `transcript`, `score`, `code`, `data`
+
+### Teaching Demos (`demos`)
+`pose`, `hands`, `face-mesh`, `face-expression`, `segmentation`, `object-detection`, `optical-flow`, `motion-trails`, `background-subtraction`, `body-zones`, `tracking`, `depth`, `style-transfer`, `img2img`, `texture`, `color`, `glitch`, `datamosh`, `audio-reactive`, `beat`, `sonification`, `typography`, `3d-viewer`, `splat-viewer`, `projection`, `loop`, `granular`, `convolution`, `speech-to-text`, `tts`, `midi`, `plotter`, `generative-text`, `photogrammetry`, `rigging`
+
+## 4. Query Recipes
+
+### Recipe A: Find a public-domain clip or animation under 5s with a full figure walking
+```bash
+jq '[.[] | select(
+  .rights.status == "public-domain" and
+  (.duration != null and .duration <= 5.0) and
+  (.tags | index("person")) and
+  (.tags | index("fullbody")) and
+  (.tags | index("walk"))
+)]' catalog.json
+```
+
+### Recipe B: Find a clean single-person pose-estimation video with a static camera
+```bash
+jq '[.[] | select(
+  (.demos | index("pose")) and
+  (.tags | index("single")) and
+  (.tags | index("static-camera"))
+) | {id, title, url, proxy, credit}]' catalog.json
+```
+
+### Recipe C: Give me the credit lines for a list of item IDs or URLs
+```bash
+python3 tools/media.py credit sandow-1894 muybridge-human-male-walking-animated
+```
+Or with `jq` directly on `catalog.json`:
+```bash
+jq -r '.[] | select(.id == "sandow-1894") | "\(.title): \(.credit) (\(.source_url))"' catalog.json
+```
+
+## 5. Attribution & Credit Rule
+
+Every item and clip carries `credit`, `rights.status`, `rights.license`, and `source_url`.
+When generating code (HTML, p5.js, Three.js, shaders, notebooks) or embedding media from
+Mediathèque, **always include the item's `credit` line in a code comment or caption**.

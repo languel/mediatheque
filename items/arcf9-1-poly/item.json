@@ -1,0 +1,121 @@
+{
+  "id": "arcf9-1-poly",
+  "title": "Architectural Coffered Vault Fragment (3D Scan GLB)",
+  "kind": "model",
+  "status": "published",
+  "summary": "Dense photogrammetry mesh scan of a structural architectural ceiling bay (.glb).",
+  "description": "High-density photogrammetry capture of an architectural ceiling/structural bay with surface patina, exported as glTF binary (.glb) for lighting, normal-map, and 3D viewer studies.",
+  "tags": [
+    "object",
+    "three-quarter",
+    "architecture",
+    "scan",
+    "textured",
+    "contemporary",
+    "own-capture"
+  ],
+  "keywords": [
+    "photogrammetry",
+    "architecture",
+    "vault",
+    "ceiling",
+    "GLB",
+    "mesh"
+  ],
+  "collections": [
+    "spatial"
+  ],
+  "demos": [
+    "3d-viewer",
+    "photogrammetry",
+    "texture",
+    "depth"
+  ],
+  "creators": [
+    {
+      "name": "Mediathèque Spatial Lab",
+      "role": "scanner"
+    }
+  ],
+  "date": "2026-09-20",
+  "source": {
+    "url": "https://languel.github.io/mediatheque/items/arcf9-1-poly/media.glb",
+    "origin": null,
+    "archive": "Mediathèque Spatial Collection",
+    "retrieved": "2026-09-20",
+    "via": null
+  },
+  "rights": {
+    "status": "cc",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "credit": "Architectural Vault 3D Scan (arcf9-1-poly), Mediathèque Spatial Lab, 2026 (CC BY 4.0).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 6361228,
+      "sha256": "805ba30f8d821a548bcd01e8297578d0eb8aca5a5aaed49774ee13caa17c0d90"
+    },
+    "original": {
+      "path": "original.glb",
+      "type": "model/gltf-binary",
+      "bytes": 6361228,
+      "sha256": "805ba30f8d821a548bcd01e8297578d0eb8aca5a5aaed49774ee13caa17c0d90",
+      "kept": true
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 107884,
+      "sha256": "cdb92e978fa57ff315fc2c637e1ec49e81b1283cad94335b74b48dd2d268b899",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 40234,
+      "sha256": "9635b8cb98f8c553c72ec1eab984745ec7b5268bc3a7647777ae98e072ef22cf",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://drive.usercontent.google.com/download",
+      "date": "2026-10-18",
+      "sha256": "805ba30f8d821a548bcd01e8297578d0eb8aca5a5aaed49774ee13caa17c0d90"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "copy",
+      "args": "cp arcf9-1-poly.glb media.glb",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "render 1.0",
+      "model": "software-zbuffer+splat+svg",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "triangles": 161947,
+  "bbox": [
+    6.842,
+    3.044,
+    8.355
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "id": "metastaseis2",
+  "title": "Xenakis — Metastaseis Glissandi Graph (mm. 317–333, 1953–54)",
+  "kind": "animation",
+  "status": "draft",
+  "summary": "Iannis Xenakis's ruled-surface pitch vs. time graphic score for string glissandi in Metastaseis.",
+  "description": "Graphic pitch-time diagram by Iannis Xenakis for measures 317–333 of 'Metastaseis' (1953–54), published in 'Musique. Architecture' (Tournai: Casterman, 1976, p. 8), showing 46 string voices forming hyperbolic paraboloid ruled surfaces.",
+  "tags": [
+    "abstract",
+    "text-content",
+    "bw",
+    "plain-bg",
+    "portrait",
+    "archival",
+    "short",
+    "silent"
+  ],
+  "keywords": [
+    "Iannis Xenakis",
+    "Metastaseis",
+    "glissandi",
+    "ruled surface",
+    "graphic score",
+    "1954"
+  ],
+  "collections": [
+    "graphics-random"
+  ],
+  "demos": [
+    "sonification",
+    "plotter",
+    "midi"
+  ],
+  "creators": [
+    {
+      "name": "Iannis Xenakis",
+      "role": "composer"
+    }
+  ],
+  "date": "1954",
+  "source": {
+    "url": "https://medium.com/@risingskies2/project-3-sound-ambience-iannis-xenakis-65d62dc4b640",
+    "origin": "Iannis Xenakis, Musique. Architecture, Tournai: Casterman, 1976, p. 8",
+    "archive": "Archival scan (fair-use teaching)",
+    "retrieved": "2026-07-25",
+    "via": null
+  },
+  "rights": {
+    "status": "fair-use-teaching",
+    "license": "Fair-Use-Teaching",
+    "license_url": null,
+    "credit": "Iannis Xenakis, Metastaseis (1953–54), mm. 317–333 graphic score, in Musique. Architecture (Casterman, 1976, p. 8).",
+    "notes": "Kept in draft (classroom teaching reference only; under copyright of Estate of Iannis Xenakis)."
+  },
+  "files": {
+    "media": {
+      "path": "media.mp4",
+      "type": "video/mp4",
+      "bytes": 37825,
+      "sha256": "e081a73d101025a9f1d282a78c9c0d47fbfe09916a520ff743bddce66897f059",
+      "duration": 0.1,
+      "width": 703,
+      "height": 1300,
+      "fps": 10.0,
+      "frames": 1,
+      "frame_delays_ms": [
+        100
+      ],
+      "variable_delays": false,
+      "loop_count": 0,
+      "disposal": [
+        0
+      ],
+      "palette": 228,
+      "phash": "69313c0e27072d71"
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 113515,
+      "sha256": "7fa348066d2a637182e6a69a50a6a52f1de8a95093847867333f97b547a02f48"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 100570,
+      "sha256": "6a42f2bf38b7d16f856628c383c4f798ff9e5b829995b7fec1ef8a218c26a264",
+      "width": 703,
+      "height": 1300
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 35496,
+      "sha256": "cf18d521bf324f2aef2d3afb7e701d60538f02736fbcb620f1ec48b9c79c5036",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.gif",
+      "type": "image/gif",
+      "bytes": 188013,
+      "sha256": "52d32ffd7398964ba150f517cffad581c9e90dff49c34e2a231723240a46538a",
+      "width": 703,
+      "height": 1300,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*R7EKoNUwAPLOrvvGmnl6Sw.gif",
+      "date": "2026-10-18",
+      "sha256": "52d32ffd7398964ba150f517cffad581c9e90dff49c34e2a231723240a46538a"
+    },
+    {
+      "step": "derived",
+      "file": "media.mp4",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(iw/2)*2):max(2,trunc(ih/2)*2)' -c:v libx264 -pix_fmt yuv420p -crf 23 -movflags +faststart -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(min(768,iw)/2)*2):max(2,trunc(ih/2)*2)' -c:v libvpx-vp9 -pix_fmt yuva420p -crf 32 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "middle-frame webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "gif 1.0",
+      "model": "pillow-gif-walk+dhash",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "proposed": {
+    "gif": {
+      "analyzer": "gif",
+      "version": "1.0",
+      "confidence": 0.95,
+      "date": "2026-10-18",
+      "tags": []
+    }
+  }
+}

@@ -1,0 +1,211 @@
+{
+  "id": "anim-goeland-marey",
+  "title": "Vol du goéland — 3D Chronophotographic Sculpture (Marey, 1887)",
+  "kind": "animation",
+  "status": "published",
+  "summary": "Animated zoetrope view of Étienne-Jules Marey's 1887 bronze sculpture of a seagull in flight.",
+  "description": "Étienne-Jules Marey sculpted successive wingbeat phases of a flying gull in bronze (1887) to capture three-dimensional kinematics beyond flat photographic plates. This looping GIF animates the bronze phases at the Cinémathèque française.",
+  "tags": [
+    "animal",
+    "object",
+    "side",
+    "movement",
+    "cyclic",
+    "repetitive",
+    "short",
+    "loop-friendly",
+    "seamless-loop",
+    "chronophotography",
+    "archival",
+    "square",
+    "silent",
+    "tinted",
+    "dithered"
+  ],
+  "keywords": [
+    "Marey",
+    "gull",
+    "goéland",
+    "flight",
+    "wingbeat",
+    "zoetrope",
+    "sculpture"
+  ],
+  "collections": [
+    "earlyfilm"
+  ],
+  "demos": [
+    "loop",
+    "motion-trails",
+    "optical-flow",
+    "tracking"
+  ],
+  "creators": [
+    {
+      "name": "Étienne-Jules Marey",
+      "role": "sculptor"
+    },
+    {
+      "name": "uleli",
+      "role": "gif"
+    }
+  ],
+  "date": "1887",
+  "source": {
+    "url": "https://commons.wikimedia.org/wiki/File:Anim_go%C3%A9land_Marey.gif",
+    "origin": "https://www.cinematheque.fr/",
+    "archive": "Wikimedia Commons",
+    "retrieved": "2026-10-17",
+    "via": null
+  },
+  "rights": {
+    "status": "cc",
+    "license": "CC-BY-SA-3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "credit": "Sculpture: Étienne-Jules Marey (1887, PD). Photograph/animation: uleli via Wikimedia Commons, CC BY-SA 3.0.",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.mp4",
+      "type": "video/mp4",
+      "bytes": 1614214,
+      "sha256": "3e33fc7cdeb5928f51ee7b19b94b0ec6a82a2259b5a530f7739cc9a516c53c89",
+      "duration": 1.0,
+      "width": 951,
+      "height": 956,
+      "fps": 10.0,
+      "frames": 10,
+      "frame_delays_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "variable_delays": false,
+      "loop_count": 65535,
+      "disposal": [
+        1
+      ],
+      "palette": 11595,
+      "phash": "f0d48e868ecce8e8",
+      "motion_curve": [
+        9.85,
+        10.27,
+        10.22,
+        9.97
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 960720,
+      "sha256": "0aeb4a2304c431cc677292e1d45b4f8e1d4b9637736553a9f9558bbb935ec3dc"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 299168,
+      "sha256": "b9ded49f280ca6b542a19676b60db645bfb8ac73411ae50611c784a31005035a",
+      "width": 951,
+      "height": 956
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 50072,
+      "sha256": "2a00c0c4b5321ed920584e81a9d713969eb29673467c39d337ca6a148c202d9c",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.gif",
+      "type": "image/gif",
+      "bytes": 2490029,
+      "sha256": "f4da5b89128f291e97733bf360546a68ea19a2c261f1a9a6a8483d41735e197b",
+      "width": 951,
+      "height": 956,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://commons.wikimedia.org/wiki/File:Anim_go%C3%A9land_Marey.gif",
+      "date": "2026-10-18",
+      "sha256": "f4da5b89128f291e97733bf360546a68ea19a2c261f1a9a6a8483d41735e197b"
+    },
+    {
+      "step": "derived",
+      "file": "media.mp4",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(iw/2)*2):max(2,trunc(ih/2)*2)' -c:v libx264 -pix_fmt yuv420p -crf 23 -movflags +faststart -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(min(768,iw)/2)*2):max(2,trunc(ih/2)*2)' -c:v libvpx-vp9 -pix_fmt yuva420p -crf 32 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "middle-frame webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "gif 1.0",
+      "model": "pillow-gif-walk+dhash",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "proposed": {
+    "gif": {
+      "analyzer": "gif",
+      "version": "1.0",
+      "confidence": 0.95,
+      "date": "2026-10-18",
+      "tags": []
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-18",
+      "tags": [],
+      "mean_motion": 10.08,
+      "border_motion": 4.72
+    }
+  }
+}

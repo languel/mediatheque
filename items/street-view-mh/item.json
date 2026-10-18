@@ -1,0 +1,111 @@
+{
+  "id": "street-view-mh",
+  "title": "Street View — Memorial Hall Exterior",
+  "kind": "image",
+  "status": "draft",
+  "summary": "Panoramic street-level view outside Memorial Hall on Pratt Institute campus.",
+  "description": "",
+  "tags": [
+    "cityscape",
+    "color",
+    "panorama",
+    "landscape-format",
+    "contemporary",
+    "equirect"
+  ],
+  "keywords": [
+    "Street View",
+    "Memorial Hall",
+    "Pratt Institute",
+    "Brooklyn",
+    "panorama"
+  ],
+  "collections": [
+    "panorama"
+  ],
+  "demos": [
+    "projection",
+    "depth"
+  ],
+  "creators": [],
+  "date": "2026",
+  "source": {
+    "url": null,
+    "origin": null,
+    "archive": null,
+    "retrieved": "2026-10-18",
+    "via": null
+  },
+  "rights": {
+    "status": "unknown",
+    "license": null,
+    "license_url": null,
+    "credit": "",
+    "notes": "Google Street View screenshot; kept in draft pending own-capture replacement."
+  },
+  "files": {
+    "media": {
+      "path": "media.webp",
+      "type": "image/webp",
+      "bytes": 920288,
+      "sha256": "067be315de049344008a32dd3e48fe1c19511e092dad2f1cfdc3856f8d82f453",
+      "width": 4096,
+      "height": 2048
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 817044,
+      "sha256": "68d30014e42ed7a002c8e67f1bfd44d51f21eb35cc5cf21b7d42ef0160a08437",
+      "width": 3000,
+      "height": 1500
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 46022,
+      "sha256": "dc9630cf85ce7084af6cafc3ce0538c6ba45f4aa2d2e69d722da2b1527136cbb",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.jpg",
+      "type": "image/jpeg",
+      "bytes": 1145291,
+      "sha256": "c187df6e3a2500918c14a4040f620582033007daf5807d1380684fc663f7490b",
+      "width": 4096,
+      "height": 2048,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "Street View-MH.jpg",
+      "date": "2026-10-18",
+      "sha256": "c187df6e3a2500918c14a4040f620582033007daf5807d1380684fc663f7490b"
+    },
+    {
+      "step": "derived",
+      "file": "media.webp",
+      "tool": "Pillow",
+      "args": "resize 3000x1500 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18"
+}

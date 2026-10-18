@@ -1,0 +1,263 @@
+{
+  "id": "lancement-du-disque-par-l-athlete-americain-mccraken-1900",
+  "title": "Lancement du disque — McCracken (Marey, 1900)",
+  "kind": "video",
+  "status": "published",
+  "summary": "American athlete Josiah McCracken throwing the discus, filmed by Marey & Demenÿ at the 1900 Paris Olympics.",
+  "description": "Slow-motion chronophotographic study recorded by Étienne-Jules Marey and Georges Demenÿ during the 1900 Paris Exposition / Olympic Games showing American athlete Josiah McCracken executing the rotational discus throw.",
+  "tags": [
+    "person",
+    "single",
+    "fullbody",
+    "side",
+    "static-camera",
+    "movement",
+    "sport",
+    "slow",
+    "bw",
+    "silent",
+    "early-film",
+    "chronophotography",
+    "archival",
+    "landscape-format",
+    "cuts",
+    "fast"
+  ],
+  "keywords": [
+    "Marey",
+    "Demenÿ",
+    "McCracken",
+    "discus",
+    "1900 Olympics",
+    "biomechanics"
+  ],
+  "collections": [
+    "earlyfilm"
+  ],
+  "demos": [
+    "pose",
+    "motion-trails",
+    "optical-flow",
+    "tracking"
+  ],
+  "creators": [
+    {
+      "name": "Étienne-Jules Marey",
+      "role": "director"
+    },
+    {
+      "name": "Georges Demenÿ",
+      "role": "cinematographer"
+    },
+    {
+      "name": "Josiah McCracken",
+      "role": "performer"
+    }
+  ],
+  "date": "1900-07",
+  "source": {
+    "url": "https://commons.wikimedia.org/wiki/File:Lancement_du_disque_par_l%27athl%C3%A8te_americain_McCraken_(1900).webm",
+    "origin": "https://www.cinematheque.fr/",
+    "archive": "Cinémathèque française / Wikimedia Commons",
+    "retrieved": "2026-10-17",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-old-100",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-old-100",
+    "credit": "Étienne-Jules Marey & Georges Demenÿ, 1900. Cinémathèque française / Wikimedia Commons. Public domain.",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.webm",
+      "type": "video/webm",
+      "bytes": 1772564,
+      "sha256": "fa8db622a6e5a01b1e293fee911ae63b15cbb78bd88df7685bbf0ad517c525d9",
+      "duration": 15.205,
+      "width": 1280,
+      "height": 678,
+      "fps": 25.06,
+      "motion_curve": [
+        28.45,
+        20.77,
+        20.16,
+        31.39,
+        20.21,
+        24.1,
+        15.98,
+        23.3,
+        16.24,
+        16.06,
+        20.82,
+        24.06,
+        16.95,
+        14.66,
+        11.78,
+        15.68
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 596448,
+      "sha256": "0b1bb0bad53bf7dcf521f90eb913aade484b7809a1639cfdd710713b54ec9dbf"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 20000,
+      "sha256": "ed493899153ade0420e80d3eb7d447c11204ba5b6323f92f8f6cd0cebfbe11b7",
+      "width": 1280,
+      "height": 678
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 6358,
+      "sha256": "f4ad0e266b3de811c051e3e57602c6f6b6c8368c92af10f6fa657620c11733bb",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.webm",
+      "type": "video/webm",
+      "bytes": 10099217,
+      "sha256": "ded61e6992291353c21535cd5babd577d68f2244afb3e352ed698857e1355ee7",
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://commons.wikimedia.org/wiki/File:Lancement_du_disque_par_l%27athl%C3%A8te_americain_McCraken_%281900%29.webm",
+      "date": "2026-10-18",
+      "sha256": "ded61e6992291353c21535cd5babd577d68f2244afb3e352ed698857e1355ee7"
+    },
+    {
+      "step": "derived",
+      "file": "media.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='min(1280,iw)':-2 -c:v libvpx-vp9 -crf 33 -b:v 0 -row-mt 1 -cpu-used 4 -c:a libopus -b:a 96k",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf fps=15,scale='min(768,iw)':-2 -c:v libvpx-vp9 -crf 35 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "ffmpeg 9.0.2 + Pillow",
+      "args": "-ss 1.52 -frames:v 1 -> webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "scenes 1.0",
+      "model": "ffmpeg-scene+silence",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "audio 1.0",
+      "model": "ffmpeg-pcm+onset-bpm",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "proposed": {
+    "scenes": {
+      "analyzer": "scenes",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-18",
+      "clips": [
+        {
+          "n": 1,
+          "title": "Clip 01 (0.0s–5.5s)",
+          "summary": "Segment 1 from 0.0s to 5.5s.",
+          "tags": [],
+          "demos": [],
+          "in": 0.0,
+          "out": 5.55,
+          "file": "clips/01.webm",
+          "thumb": "clips/01.thumb.webp"
+        },
+        {
+          "n": 2,
+          "title": "Clip 02 (5.5s–7.6s)",
+          "summary": "Segment 2 from 5.5s to 7.6s.",
+          "tags": [],
+          "demos": [],
+          "in": 5.55,
+          "out": 7.62,
+          "file": "clips/02.webm",
+          "thumb": "clips/02.thumb.webp"
+        },
+        {
+          "n": 3,
+          "title": "Clip 03 (7.6s–11.0s)",
+          "summary": "Segment 3 from 7.6s to 11.0s.",
+          "tags": [],
+          "demos": [],
+          "in": 7.62,
+          "out": 11.02,
+          "file": "clips/03.webm",
+          "thumb": "clips/03.thumb.webp"
+        },
+        {
+          "n": 4,
+          "title": "Clip 04 (11.0s–15.2s)",
+          "summary": "Segment 4 from 11.0s to 15.2s.",
+          "tags": [],
+          "demos": [],
+          "in": 11.02,
+          "out": 15.21,
+          "file": "clips/04.webm",
+          "thumb": "clips/04.thumb.webp"
+        }
+      ],
+      "scene_cuts": [
+        5.55,
+        7.62,
+        11.02
+      ]
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-18",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 20.27,
+      "border_motion": 21.57
+    }
+  }
+}

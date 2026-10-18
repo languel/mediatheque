@@ -1,0 +1,228 @@
+{
+  "id": "animdemeny-je-vous-aime-planche",
+  "title": "« Je vous aime » — Phonoscope Lip-Reading Study (Demenÿ, 1891)",
+  "kind": "animation",
+  "status": "published",
+  "summary": "Georges Demenÿ speaking 'Je vous aime' across 24 chronophotographic frames (1891).",
+  "description": "Recorded with the Phonoscope in 1891 so deaf students could study lip and facial articulation. Georges Demenÿ pronounces the French phrase 'Je vous aime' in close-up. Ideal for face-mesh, lip-reading, and facial blendshape demos.",
+  "tags": [
+    "person",
+    "single",
+    "face",
+    "closeup",
+    "front",
+    "talk",
+    "gesture",
+    "static-camera",
+    "bw",
+    "silent",
+    "short",
+    "loop-friendly",
+    "frame-sequence",
+    "early-film",
+    "chronophotography",
+    "archival",
+    "portrait",
+    "one-shot-anim",
+    "movement",
+    "fast"
+  ],
+  "keywords": [
+    "Georges Demenÿ",
+    "Phonoscope",
+    "Je vous aime",
+    "lip reading",
+    "face",
+    "1891"
+  ],
+  "collections": [
+    "earlyfilm"
+  ],
+  "demos": [
+    "face-mesh",
+    "face-expression",
+    "tts",
+    "loop"
+  ],
+  "creators": [
+    {
+      "name": "Georges Demenÿ",
+      "role": "director"
+    }
+  ],
+  "date": "1891",
+  "source": {
+    "url": "https://commons.wikimedia.org/wiki/File:AnimDemen%C3%BF_Je_vous_aime_planche.gif",
+    "origin": null,
+    "archive": "Wikimedia Commons",
+    "retrieved": "2026-10-17",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-old-100",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-old-100",
+    "credit": "Georges Demenÿ, 1891. Phonoscope chronophotographic plate. Public domain.",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.mp4",
+      "type": "video/mp4",
+      "bytes": 986258,
+      "sha256": "416468d93394ac065e2d7f67f35d536b569181243a23e9791b32c7067df71cbf",
+      "duration": 2.0,
+      "width": 502,
+      "height": 814,
+      "fps": 10.0,
+      "frames": 20,
+      "frame_delays_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "variable_delays": false,
+      "loop_count": 0,
+      "disposal": [
+        1
+      ],
+      "palette": 224,
+      "phash": "1633330307237352",
+      "motion_curve": [
+        32.9,
+        34.65,
+        22.64,
+        16.54,
+        12.31,
+        17.45,
+        8.66,
+        11.69,
+        8.4
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 489402,
+      "sha256": "e9c3dd4096555c2b69a4f138bc4c77f1d2a674fe26c81258d67442953fe5c476"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 94260,
+      "sha256": "6124535e22026c8ee73f5f7e737aaaa20ff756631ebf8cb2c94ab426388618ef",
+      "width": 502,
+      "height": 814
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 42806,
+      "sha256": "59b31323893d31b349fd30315603dd6fd54858a7fa92bab432f7d9df00350655",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.gif",
+      "type": "image/gif",
+      "bytes": 1369033,
+      "sha256": "2dee7f165bdc7a8f37bf80684575597abdc746b1520553c3bfdeeeab1f2408a6",
+      "width": 502,
+      "height": 814,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://commons.wikimedia.org/wiki/File:AnimDemen%C3%BF_Je_vous_aime_planche.gif",
+      "date": "2026-10-18",
+      "sha256": "2dee7f165bdc7a8f37bf80684575597abdc746b1520553c3bfdeeeab1f2408a6"
+    },
+    {
+      "step": "derived",
+      "file": "media.mp4",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(iw/2)*2):max(2,trunc(ih/2)*2)' -c:v libx264 -pix_fmt yuv420p -crf 23 -movflags +faststart -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(min(768,iw)/2)*2):max(2,trunc(ih/2)*2)' -c:v libvpx-vp9 -pix_fmt yuva420p -crf 32 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "middle-frame webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "gif 1.0",
+      "model": "pillow-gif-walk+dhash",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "proposed": {
+    "gif": {
+      "analyzer": "gif",
+      "version": "1.0",
+      "confidence": 0.95,
+      "date": "2026-10-18",
+      "tags": []
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-18",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 18.36,
+      "border_motion": 21.21
+    }
+  }
+}

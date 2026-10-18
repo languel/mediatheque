@@ -1,0 +1,127 @@
+{
+  "id": "wayang-female-transparent",
+  "title": "Wayang Kulit Articulated Puppet Sheet (Transparent PNG)",
+  "kind": "image",
+  "status": "published",
+  "summary": "Javanese shadow-puppet figure with separated upper and lower arm segments on transparent alpha.",
+  "description": "High-contrast monochrome cutout of a traditional Javanese Wayang Kulit puppet with its torso and four articulated arm/hand pieces laid out with pivot holes on a transparent alpha background. Designed for 2D forward/inverse kinematics rigging and pose-driven puppetry in p5.js or Three.js.",
+  "tags": [
+    "person",
+    "object",
+    "single",
+    "fullbody",
+    "side",
+    "bw",
+    "high-contrast",
+    "plain-bg",
+    "silhouette",
+    "portrait",
+    "transparent",
+    "alpha",
+    "drawing"
+  ],
+  "keywords": [
+    "Wayang Kulit",
+    "puppet",
+    "rigging",
+    "cutout",
+    "joints",
+    "silhouette",
+    "alpha"
+  ],
+  "collections": [
+    "graphics-random"
+  ],
+  "demos": [
+    "rigging",
+    "pose",
+    "segmentation",
+    "body-zones"
+  ],
+  "creators": [
+    {
+      "name": "Mediathèque Teaching Lab",
+      "role": "preparer"
+    }
+  ],
+  "date": "2026",
+  "source": {
+    "url": "https://languel.github.io/mediatheque/items/wayang-female-transparent/media.webp",
+    "origin": "https://commons.wikimedia.org/wiki/Category:Wayang_kulit",
+    "archive": "Mediathèque Teaching Collection",
+    "retrieved": "2026-10-17",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "credit": "Traditional Wayang Kulit articulated puppet sheet, prepared for Mediathèque (CC0 1.0).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.webp",
+      "type": "image/webp",
+      "bytes": 147424,
+      "sha256": "e3754776932306ed7e81d98c3dcd426ab9ff8c4f4440e5f5aeb2c91cb369fd3d",
+      "width": 997,
+      "height": 1411
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 137356,
+      "sha256": "42b2487c1340bb4014091d4da13c2fd9fa38d372f49e6cb1b9af7ad63f815841",
+      "width": 997,
+      "height": 1411
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 44182,
+      "sha256": "bb5e461b8439f61b68d7370058d4abb2f2eebbcdcc6c085cdcb71d757741a261",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.png",
+      "type": "image/png",
+      "bytes": 870268,
+      "sha256": "bf2b164044fd68018c7cdcfcad6529fb4cae1a5fc6f0a6465cb1b51c77e67965",
+      "width": 997,
+      "height": 1411,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "wayang_female_transparent.png",
+      "date": "2026-10-18",
+      "sha256": "bf2b164044fd68018c7cdcfcad6529fb4cae1a5fc6f0a6465cb1b51c77e67965"
+    },
+    {
+      "step": "derived",
+      "file": "media.webp",
+      "tool": "Pillow",
+      "args": "webp quality=90",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18"
+}

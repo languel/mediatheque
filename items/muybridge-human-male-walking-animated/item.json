@@ -1,0 +1,261 @@
+{
+  "id": "muybridge-human-male-walking-animated",
+  "title": "Human Male Walking — Animal Locomotion Plate 1 (Muybridge, 1887)",
+  "kind": "animation",
+  "status": "published",
+  "summary": "Dual-angle (lateral and rear) walking gait cycle from Eadweard Muybridge's Animal Locomotion, 1887.",
+  "description": "Synchronized lateral and rear-view chronophotographic walk cycle from Eadweard Muybridge's 'Animal Locomotion' (1887). Includes generated sprite sheet (sheet.png) and numbered frame archive (frames.zip) for p5.js sprite animation and pose-estimation exercises.",
+  "tags": [
+    "person",
+    "single",
+    "fullbody",
+    "side",
+    "back",
+    "walk",
+    "movement",
+    "cyclic",
+    "repetitive",
+    "static-camera",
+    "plain-bg",
+    "bw",
+    "silent",
+    "short",
+    "loop-friendly",
+    "seamless-loop",
+    "frame-sequence",
+    "chronophotography",
+    "archival",
+    "portrait",
+    "tinted",
+    "transparent",
+    "dithered",
+    "fast"
+  ],
+  "keywords": [
+    "Eadweard Muybridge",
+    "walking",
+    "gait cycle",
+    "sprite sheet",
+    "locomotion"
+  ],
+  "collections": [
+    "muybridge"
+  ],
+  "demos": [
+    "pose",
+    "loop",
+    "tracking",
+    "rigging",
+    "motion-trails"
+  ],
+  "creators": [
+    {
+      "name": "Eadweard Muybridge",
+      "role": "photographer"
+    }
+  ],
+  "date": "1887",
+  "source": {
+    "url": "https://commons.wikimedia.org/wiki/File:Muybridge_human_male_walking_animated.gif",
+    "origin": "https://commons.wikimedia.org/wiki/Category:Animal_Locomotion_(1887)",
+    "archive": "Wikimedia Commons",
+    "retrieved": "2026-10-17",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-old-100",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-old-100",
+    "credit": "Eadweard Muybridge, Animal Locomotion, 1887. Public domain.",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.mp4",
+      "type": "video/mp4",
+      "bytes": 572770,
+      "sha256": "da3859fcfa39d99b5d1e00d027c860e6d5c38f64a03ea87d2eac976a1345b9bb",
+      "duration": 4.0,
+      "width": 404,
+      "height": 725,
+      "fps": 3.0,
+      "frames": 12,
+      "frame_delays_ms": [
+        370,
+        300,
+        370,
+        300,
+        330,
+        370,
+        300,
+        330,
+        330,
+        330,
+        370,
+        300
+      ],
+      "variable_delays": true,
+      "loop_count": 0,
+      "disposal": [
+        1,
+        2
+      ],
+      "palette": 34038,
+      "phash": "c8f0e0e0e0e8880c",
+      "motion_curve": [
+        14.15,
+        14.26,
+        9.94,
+        28.56,
+        26.18,
+        0.0,
+        35.59,
+        0.0,
+        21.84,
+        23.24,
+        0.0,
+        27.6,
+        0.0,
+        34.17,
+        23.97,
+        0.0
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 210209,
+      "sha256": "a868dc51ad88de4eaf9d1e5d5aea3b0d078c7ae8ad8c5a96ba1244e737964111"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 63598,
+      "sha256": "ec73237c26b7cc77d1f78700edd7843b8a26b78e19fab5cf42063c73bb2820a9",
+      "width": 404,
+      "height": 725
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 30360,
+      "sha256": "950cc767595eb4c02d13a16b944632d4ffca87e3eacf5fb1c0af09951146319c",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.gif",
+      "type": "image/gif",
+      "bytes": 2799913,
+      "sha256": "803628a42d85e4883fea60b2b8d300954b28f14d7a5f5c445cdb77ecf3b7ab78",
+      "width": 404,
+      "height": 725,
+      "kept": true
+    },
+    "frames": {
+      "path": "frames.zip",
+      "type": "application/zip",
+      "bytes": 4709301,
+      "sha256": "1cdd9d5b8fdaa6f5c16c7622f5dcb332995cc3d672f37892dc8307c5f63e7821",
+      "count": 12
+    },
+    "sheet": {
+      "path": "sheet.png",
+      "type": "image/png",
+      "bytes": 4950685,
+      "sha256": "e79a477a32dc221f8f84d46ffcf2a9bba1886186b4bed4cdcaa807d7bebdb209",
+      "width": 3232,
+      "height": 1450,
+      "cols": 8,
+      "rows": 2,
+      "frame_width": 404,
+      "frame_height": 725,
+      "count": 12
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://commons.wikimedia.org/wiki/File:Muybridge_human_male_walking_animated.gif",
+      "date": "2026-10-18",
+      "sha256": "803628a42d85e4883fea60b2b8d300954b28f14d7a5f5c445cdb77ecf3b7ab78"
+    },
+    {
+      "step": "derived",
+      "file": "media.mp4",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(iw/2)*2):max(2,trunc(ih/2)*2)' -c:v libx264 -pix_fmt yuv420p -crf 23 -movflags +faststart -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(min(768,iw)/2)*2):max(2,trunc(ih/2)*2)' -c:v libvpx-vp9 -pix_fmt yuva420p -crf 32 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "middle-frame webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "gif 1.0",
+      "model": "pillow-gif-walk+dhash",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "sheet.png, frames.zip",
+      "tool": "Pillow",
+      "args": "sprite sheet 8x2 (12 frames)",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "proposed": {
+    "gif": {
+      "analyzer": "gif",
+      "version": "1.0",
+      "confidence": 0.95,
+      "date": "2026-10-18",
+      "tags": []
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-18",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 15.68,
+      "border_motion": 13.34
+    }
+  },
+  "plate": "1",
+  "sequence": "Animal Locomotion (1887)"
+}

@@ -1,0 +1,128 @@
+{
+  "id": "andre-breton",
+  "title": "André Breton in Tinted Spectacles (Photomaton, c. 1929)",
+  "kind": "image",
+  "status": "published",
+  "summary": "Close-up Photomaton portrait of Surrealist poet André Breton adjusting round spectacles.",
+  "description": "Photobooth (Photomaton) portrait of Surrealist writer André Breton holding the frames of his round tinted glasses with both hands. Symmetrical frontal framing of face and hands makes it ideal for simultaneous MediaPipe face-mesh and hand-landmark detection.",
+  "tags": [
+    "person",
+    "single",
+    "face",
+    "hands",
+    "closeup",
+    "front",
+    "gesture",
+    "still",
+    "tinted",
+    "plain-bg",
+    "photo",
+    "square",
+    "archival",
+    "color"
+  ],
+  "keywords": [
+    "André Breton",
+    "Surrealism",
+    "Photomaton",
+    "glasses",
+    "hands",
+    "portrait"
+  ],
+  "collections": [
+    "photo"
+  ],
+  "demos": [
+    "face-mesh",
+    "hands",
+    "face-expression",
+    "depth",
+    "img2img"
+  ],
+  "creators": [
+    {
+      "name": "André Breton",
+      "role": "subject"
+    }
+  ],
+  "date": "1929",
+  "source": {
+    "url": "https://www.andrebreton.fr/work/56600100235000",
+    "origin": "https://www.centrepompidou.fr/",
+    "archive": "Atelier André Breton",
+    "retrieved": "2026-10-17",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-Anon-1929",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US",
+    "credit": "Anonymous Photomaton portrait of André Breton, c. 1929. Atelier André Breton. Public domain.",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.webp",
+      "type": "image/webp",
+      "bytes": 265032,
+      "sha256": "45c7648bbdfbeb0961ea22aef8a7721febaff866eaa76085184ca2d6b55d7042",
+      "width": 2000,
+      "height": 2000
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 238450,
+      "sha256": "d28f5e62f72737ea562513590a118c0d3d2bfd1642c694f978d4d9c27e229f87",
+      "width": 2000,
+      "height": 2000
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 17494,
+      "sha256": "bf3b3be5d9557f73d1e4cf437cb4996cef34069eb5c5cb14d929f093d0065113",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.jpg",
+      "type": "image/jpeg",
+      "bytes": 500647,
+      "sha256": "dfabf43be3cb651dd16d572775c75b428922bdeb81510f845f53e8914d8a9d58",
+      "width": 2000,
+      "height": 2000,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "andre_breton.jpg",
+      "date": "2026-10-18",
+      "sha256": "dfabf43be3cb651dd16d572775c75b428922bdeb81510f845f53e8914d8a9d58"
+    },
+    {
+      "step": "derived",
+      "file": "media.webp",
+      "tool": "Pillow",
+      "args": "webp quality=90",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18"
+}

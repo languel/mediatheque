@@ -1,0 +1,249 @@
+{
+  "id": "muybridge-race-horse-animated",
+  "title": "The Horse in Motion — Annie G. Galloping (Muybridge, 1887)",
+  "kind": "animation",
+  "status": "published",
+  "summary": "Twelve-frame galloping stride of racehorse Annie G., Eadweard Muybridge, Plate 626, 1887.",
+  "description": "Iconic chronophotographic sequence from Eadweard Muybridge's 'Animal Locomotion' (Plate 626, 1887) demonstrating the airborne suspension phase of a galloping horse. Includes generated sprite sheet (sheet.png) and frames.zip.",
+  "tags": [
+    "animal",
+    "person",
+    "side",
+    "run",
+    "movement",
+    "cyclic",
+    "repetitive",
+    "fast",
+    "static-camera",
+    "plain-bg",
+    "bw",
+    "silent",
+    "short",
+    "loop-friendly",
+    "seamless-loop",
+    "frame-sequence",
+    "chronophotography",
+    "archival",
+    "landscape-format"
+  ],
+  "keywords": [
+    "Eadweard Muybridge",
+    "horse",
+    "gallop",
+    "Annie G",
+    "Plate 626",
+    "sprite"
+  ],
+  "collections": [
+    "muybridge"
+  ],
+  "demos": [
+    "loop",
+    "object-detection",
+    "tracking",
+    "motion-trails"
+  ],
+  "creators": [
+    {
+      "name": "Eadweard Muybridge",
+      "role": "photographer"
+    }
+  ],
+  "date": "1887",
+  "source": {
+    "url": "https://commons.wikimedia.org/wiki/File:Muybridge_race_horse_animated.gif",
+    "origin": "https://www.loc.gov/pictures/item/97502309/",
+    "archive": "Library of Congress / Wikimedia Commons",
+    "retrieved": "2026-10-17",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-old-100",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-old-100",
+    "credit": "Eadweard Muybridge, Animal Locomotion, Plate 626, 1887. Library of Congress. Public domain.",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.mp4",
+      "type": "video/mp4",
+      "bytes": 74282,
+      "sha256": "91e1711808add847279b30c89f826e3a4ca0cc0fb087f29437a99e30651b68bc",
+      "duration": 1.5,
+      "width": 300,
+      "height": 200,
+      "fps": 10.0,
+      "frames": 15,
+      "frame_delays_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "variable_delays": false,
+      "loop_count": 0,
+      "disposal": [
+        1
+      ],
+      "palette": 242,
+      "phash": "e665611b17337bb9",
+      "motion_curve": [
+        17.39,
+        27.14,
+        22.78,
+        22.05,
+        19.46,
+        24.37,
+        22.15
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 67352,
+      "sha256": "7251fdac81fea7ac77906c95f0ee09d32d929926b0699f476a9499bb67b6d9bb"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 9438,
+      "sha256": "38dda3d5deb96a68491300b2a96db776442355586f526f32537b62c3ea730ac8",
+      "width": 300,
+      "height": 200
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 15252,
+      "sha256": "272981e508f0dd7ce8efc931be4311aac52b5e392f52eb6faf9618e076efcc44",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.gif",
+      "type": "image/gif",
+      "bytes": 568203,
+      "sha256": "eb40bebc1f039e7c2a121673c3b55d4aa73582f858053dbbcca9ebce9e2b479d",
+      "width": 300,
+      "height": 200,
+      "kept": true
+    },
+    "frames": {
+      "path": "frames.zip",
+      "type": "application/zip",
+      "bytes": 779864,
+      "sha256": "5422d5bed385c7cc2231be418d7873e58cea39d12ebac3e28ec10362844e7315",
+      "count": 15
+    },
+    "sheet": {
+      "path": "sheet.png",
+      "type": "image/png",
+      "bytes": 774141,
+      "sha256": "911c0283c209c08ad876813856fff9e3dc7a795186516c8de694bbd30716b063",
+      "width": 2400,
+      "height": 400,
+      "cols": 8,
+      "rows": 2,
+      "frame_width": 300,
+      "frame_height": 200,
+      "count": 15
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://commons.wikimedia.org/wiki/File:Muybridge_race_horse_animated.gif",
+      "date": "2026-10-18",
+      "sha256": "eb40bebc1f039e7c2a121673c3b55d4aa73582f858053dbbcca9ebce9e2b479d"
+    },
+    {
+      "step": "derived",
+      "file": "media.mp4",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(iw/2)*2):max(2,trunc(ih/2)*2)' -c:v libx264 -pix_fmt yuv420p -crf 23 -movflags +faststart -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(min(768,iw)/2)*2):max(2,trunc(ih/2)*2)' -c:v libvpx-vp9 -pix_fmt yuva420p -crf 32 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "middle-frame webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "gif 1.0",
+      "model": "pillow-gif-walk+dhash",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "sheet.png, frames.zip",
+      "tool": "Pillow",
+      "args": "sprite sheet 8x2 (15 frames)",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "proposed": {
+    "gif": {
+      "analyzer": "gif",
+      "version": "1.0",
+      "confidence": 0.95,
+      "date": "2026-10-18",
+      "tags": []
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-18",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 22.19,
+      "border_motion": 16.6
+    }
+  },
+  "plate": "626",
+  "sequence": "Animal Locomotion (1887)"
+}

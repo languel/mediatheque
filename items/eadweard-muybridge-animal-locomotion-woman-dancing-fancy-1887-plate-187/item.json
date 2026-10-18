@@ -1,0 +1,191 @@
+{
+  "id": "eadweard-muybridge-animal-locomotion-woman-dancing-fancy-1887-plate-187",
+  "title": "Woman Dancing (Fancy) — Plate 187 (Muybridge, 1887)",
+  "kind": "animation",
+  "status": "published",
+  "summary": "Twelve-frame chronophotographic loop of a woman twirling in a sheer dress, Eadweard Muybridge, 1887.",
+  "description": "Animated from Eadweard Muybridge's 'Animal Locomotion' (1887), Plate 187 ('Woman dancing, fancy'). Shows a complete rotational pirouette in front of a gridded backdrop.",
+  "tags": [
+    "person",
+    "single",
+    "fullbody",
+    "front",
+    "dance",
+    "movement",
+    "cyclic",
+    "static-camera",
+    "plain-bg",
+    "bw",
+    "silent",
+    "short",
+    "loop-friendly",
+    "seamless-loop",
+    "frame-sequence",
+    "chronophotography",
+    "archival",
+    "square"
+  ],
+  "keywords": [
+    "Eadweard Muybridge",
+    "Plate 187",
+    "woman dancing",
+    "pirouette",
+    "locomotion"
+  ],
+  "collections": [
+    "muybridge"
+  ],
+  "demos": [
+    "pose",
+    "loop",
+    "motion-trails",
+    "segmentation"
+  ],
+  "creators": [
+    {
+      "name": "Eadweard Muybridge",
+      "role": "photographer"
+    }
+  ],
+  "date": "1887",
+  "source": {
+    "url": "https://commons.wikimedia.org/wiki/File:Eadweard_Muybridge,_Animal_Locomotion,_Woman_Dancing_(fancy),_1887,_plate_187.gif",
+    "origin": "https://commons.wikimedia.org/wiki/Category:Animal_Locomotion_(1887)",
+    "archive": "Wikimedia Commons",
+    "retrieved": "2026-10-17",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-old-100",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-old-100",
+    "credit": "Eadweard Muybridge, Animal Locomotion, Plate 187, 1887. Public domain.",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.mp4",
+      "type": "video/mp4",
+      "bytes": 34761,
+      "sha256": "5d99876306f05dba5c26962b76b5b78f787939208888c77d28ed1df1d4871e38",
+      "duration": 0.12,
+      "width": 408,
+      "height": 408,
+      "fps": 100.0,
+      "frames": 12,
+      "frame_delays_ms": [
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10
+      ],
+      "variable_delays": false,
+      "loop_count": 1000,
+      "disposal": [
+        0
+      ],
+      "palette": 256,
+      "phash": "c0c0c0c0e0a0a080"
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 110960,
+      "sha256": "9028db349ed8d645c8e3d7dc38a90ff44c7ba4b59514a60b75ffd1ef7cee41c1"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 17124,
+      "sha256": "69f9b79d02515fece16a2a1dc9db94c426fc60f28220420cd689bdb93f8d7a46",
+      "width": 408,
+      "height": 408
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 16470,
+      "sha256": "c02bfda2a93915c2219c30b50e7a1fb1b47e01a504fd6537434e9d77a6d6579a",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.gif",
+      "type": "image/gif",
+      "bytes": 364158,
+      "sha256": "2c75f1e6d0a188cf50ceb2dc0607976600254f299bcb15b60aeb85216b847d12",
+      "width": 408,
+      "height": 408,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://commons.wikimedia.org/wiki/File:Eadweard_Muybridge%2C_Animal_Locomotion%2C_Woman_Dancing_%28fancy%29%2C_1887%2C_plate_187.gif",
+      "date": "2026-10-18",
+      "sha256": "2c75f1e6d0a188cf50ceb2dc0607976600254f299bcb15b60aeb85216b847d12"
+    },
+    {
+      "step": "derived",
+      "file": "media.mp4",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(iw/2)*2):max(2,trunc(ih/2)*2)' -c:v libx264 -pix_fmt yuv420p -crf 23 -movflags +faststart -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(min(768,iw)/2)*2):max(2,trunc(ih/2)*2)' -c:v libvpx-vp9 -pix_fmt yuva420p -crf 32 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "middle-frame webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "gif 1.0",
+      "model": "pillow-gif-walk+dhash",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "proposed": {
+    "gif": {
+      "analyzer": "gif",
+      "version": "1.0",
+      "confidence": 0.95,
+      "date": "2026-10-18",
+      "tags": []
+    }
+  },
+  "plate": "187",
+  "sequence": "Animal Locomotion (1887)"
+}

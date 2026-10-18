@@ -1,0 +1,115 @@
+{
+  "id": "snowy-dystopian-eastern-european-city",
+  "title": "Snowy Concrete Courtyard Pavilion (Gaussian Splat .spz)",
+  "kind": "splat",
+  "status": "published",
+  "summary": "500,000-point compressed 3D Gaussian Splat (.spz v2) of a snow-covered brutalist courtyard.",
+  "description": "Compressed Niantic SPZ v2 3D Gaussian Splat scene (500,000 splats, SH degree 0, 10-bit fixed-point coordinates) depicting a snow-covered brutalist structure and surrounding trees at dusk.",
+  "tags": [
+    "cityscape",
+    "landscape",
+    "three-quarter",
+    "outdoor",
+    "360",
+    "generated",
+    "contemporary"
+  ],
+  "keywords": [
+    "Gaussian splat",
+    "SPZ",
+    "snow",
+    "brutalist",
+    "3DGS",
+    "radiance field"
+  ],
+  "collections": [
+    "spatial"
+  ],
+  "demos": [
+    "splat-viewer",
+    "depth",
+    "3d-viewer"
+  ],
+  "creators": [
+    {
+      "name": "Mediathèque Spatial Lab",
+      "role": "generated-with"
+    }
+  ],
+  "date": "2026-03-19",
+  "source": {
+    "url": "https://languel.github.io/mediatheque/items/snowy-dystopian-eastern-european-city/media.spz",
+    "origin": null,
+    "archive": "Mediathèque Spatial Collection",
+    "retrieved": "2026-03-19",
+    "via": null
+  },
+  "rights": {
+    "status": "cc",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "credit": "Snowy Concrete Courtyard Gaussian Splat (.spz), Mediathèque Spatial Collection, 2026 (CC BY 4.0).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.spz",
+      "type": "application/x-gaussian-splat-spz",
+      "bytes": 7717114,
+      "sha256": "763945d8b618d79a3d5a508b713d4bf74271b91da6aedca40a5c162cc0f2cda0"
+    },
+    "original": {
+      "path": "original.spz",
+      "type": "application/x-gaussian-splat-spz",
+      "bytes": 7717114,
+      "sha256": "763945d8b618d79a3d5a508b713d4bf74271b91da6aedca40a5c162cc0f2cda0",
+      "kept": true
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 122350,
+      "sha256": "4e3fa92d1c9d5f768c1c86625f5ebebd691619c9b18bd9f020bc76540d21a618",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 45348,
+      "sha256": "9e059e222bb3c51f63d906ba9d40f5339db31a4e3a0b85a4613d460357199cd7",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "snowy-dystopian-eastern-european-city.spz",
+      "date": "2026-10-18",
+      "sha256": "763945d8b618d79a3d5a508b713d4bf74271b91da6aedca40a5c162cc0f2cda0"
+    },
+    {
+      "step": "derived",
+      "file": "media.spz",
+      "tool": "copy",
+      "args": "cp snowy-dystopian-eastern-european-city.spz media.spz",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "render 1.0",
+      "model": "software-zbuffer+splat+svg",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "splats": 500000
+}

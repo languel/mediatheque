@@ -1,0 +1,206 @@
+{
+  "id": "saute-d-un-athlete-sweeney-par-dessus-une-barre-1900",
+  "title": "Saut en hauteur — Sweeney (Marey, 1900)",
+  "kind": "video",
+  "status": "published",
+  "summary": "High jumper Michael Sweeney clearing the bar, filmed by Étienne-Jules Marey in 1900.",
+  "description": "Chronophotographic high-speed film by Étienne-Jules Marey and Georges Demenÿ showing high jumper Michael Sweeney's approach, takeoff, bar clearance, and landing (Paris, 1900).",
+  "tags": [
+    "person",
+    "single",
+    "fullbody",
+    "side",
+    "static-camera",
+    "movement",
+    "jump",
+    "sport",
+    "slow",
+    "bw",
+    "silent",
+    "early-film",
+    "chronophotography",
+    "archival",
+    "landscape-format",
+    "fast"
+  ],
+  "keywords": [
+    "Marey",
+    "Sweeney",
+    "high jump",
+    "athletics",
+    "1900",
+    "biomechanics"
+  ],
+  "collections": [
+    "earlyfilm"
+  ],
+  "demos": [
+    "pose",
+    "motion-trails",
+    "optical-flow",
+    "tracking"
+  ],
+  "creators": [
+    {
+      "name": "Étienne-Jules Marey",
+      "role": "director"
+    },
+    {
+      "name": "Georges Demenÿ",
+      "role": "cinematographer"
+    },
+    {
+      "name": "Michael Sweeney",
+      "role": "performer"
+    }
+  ],
+  "date": "1900",
+  "source": {
+    "url": "https://commons.wikimedia.org/wiki/File:Saute_d%27un_athl%C3%A8te_(Sweeney)_par_dessus_une_barre_(1900).webm",
+    "origin": "https://www.cinematheque.fr/",
+    "archive": "Cinémathèque française / Wikimedia Commons",
+    "retrieved": "2026-10-17",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-old-100",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-old-100",
+    "credit": "Étienne-Jules Marey & Georges Demenÿ, 1900. Cinémathèque française / Wikimedia Commons. Public domain.",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.webm",
+      "type": "video/webm",
+      "bytes": 3721685,
+      "sha256": "3e880dd3f5569383ca7b01ee36733f81e968cda191a32ae1d0aabc97881fc1ba",
+      "duration": 12.006,
+      "width": 1280,
+      "height": 674,
+      "fps": 25.07,
+      "motion_curve": [
+        21.61,
+        27.23,
+        23.1,
+        20.79,
+        21.31,
+        15.23,
+        15.68,
+        22.56,
+        18.75,
+        18.37,
+        13.16,
+        17.59,
+        22.9,
+        15.45,
+        13.36,
+        24.32
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 1100783,
+      "sha256": "bed84a8f76011f82b752268a5b8e717fb83fadf30b15388acb997f7a4c5ecbfa"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 66960,
+      "sha256": "b251c1b4aa48449f2a5a89d033e32a5317600698b7a70071db1747927ecdaf69",
+      "width": 1280,
+      "height": 674
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 24530,
+      "sha256": "9c92a9074d0062d40759c44814c4031f7649b672dac36ea3544c152ea41c43d3",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.webm",
+      "type": "video/webm",
+      "bytes": 13787228,
+      "sha256": "d5fe0d840db5048a0915c8a2e800ff8aebcfbd6932f183ef5f779e24dd4c247f",
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://commons.wikimedia.org/wiki/File:Saute_d%27un_athl%C3%A8te_%28Sweeney%29_par_dessus_une_barre_%281900%29.webm",
+      "date": "2026-10-18",
+      "sha256": "d5fe0d840db5048a0915c8a2e800ff8aebcfbd6932f183ef5f779e24dd4c247f"
+    },
+    {
+      "step": "derived",
+      "file": "media.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='min(1280,iw)':-2 -c:v libvpx-vp9 -crf 33 -b:v 0 -row-mt 1 -cpu-used 4 -c:a libopus -b:a 96k",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf fps=15,scale='min(768,iw)':-2 -c:v libvpx-vp9 -crf 35 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "ffmpeg 9.0.2 + Pillow",
+      "args": "-ss 1.2 -frames:v 1 -> webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "scenes 1.0",
+      "model": "ffmpeg-scene+silence",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "audio 1.0",
+      "model": "ffmpeg-pcm+onset-bpm",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "proposed": {
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-18",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 19.52,
+      "border_motion": 21.32
+    }
+  }
+}

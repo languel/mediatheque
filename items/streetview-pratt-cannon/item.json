@@ -1,0 +1,111 @@
+{
+  "id": "streetview-pratt-cannon",
+  "title": "Street View — Pratt Campus Cannon Lawn",
+  "kind": "image",
+  "status": "draft",
+  "summary": "Panoramic capture of the Pratt Institute main lawn and historic cannon.",
+  "description": "",
+  "tags": [
+    "landscape",
+    "cityscape",
+    "color",
+    "panorama",
+    "landscape-format",
+    "contemporary",
+    "equirect"
+  ],
+  "keywords": [
+    "Pratt Institute",
+    "cannon",
+    "campus",
+    "panorama"
+  ],
+  "collections": [
+    "panorama"
+  ],
+  "demos": [
+    "projection",
+    "depth"
+  ],
+  "creators": [],
+  "date": "2026",
+  "source": {
+    "url": null,
+    "origin": null,
+    "archive": null,
+    "retrieved": "2026-10-18",
+    "via": null
+  },
+  "rights": {
+    "status": "unknown",
+    "license": null,
+    "license_url": null,
+    "credit": "",
+    "notes": "Google Street View screenshot; kept in draft pending own-capture replacement."
+  },
+  "files": {
+    "media": {
+      "path": "media.webp",
+      "type": "image/webp",
+      "bytes": 611186,
+      "sha256": "ff6adc00ccc8f77552061e996c575e62f4b6765c3f1727b3238372d6e8ed3a55",
+      "width": 1664,
+      "height": 832
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 577376,
+      "sha256": "dc2d2bd7f0548867991c03db1d5199d4bb7ff3a878efeb335c6dd15db77a45fe",
+      "width": 1664,
+      "height": 832
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 83668,
+      "sha256": "510ce98fde938e8af1595b8774c9a6f9dd118c379eeb5dbec7c651e4071c4759",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.png",
+      "type": "image/png",
+      "bytes": 3751052,
+      "sha256": "2d9f4cdc66c6cc8f003e9765b53a64a329cdc478ec8ca0944c649c336d3466ab",
+      "width": 1664,
+      "height": 832,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "Streetview-Pratt_Cannon.png",
+      "date": "2026-10-18",
+      "sha256": "2d9f4cdc66c6cc8f003e9765b53a64a329cdc478ec8ca0944c649c336d3466ab"
+    },
+    {
+      "step": "derived",
+      "file": "media.webp",
+      "tool": "Pillow",
+      "args": "webp quality=90",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18"
+}

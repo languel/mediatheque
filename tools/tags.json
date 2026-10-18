@@ -1,0 +1,304 @@
+{
+  "facets": {
+    "subject": {
+      "label": "Subject",
+      "kinds": ["video", "animation", "image", "model", "splat", "vector"],
+      "tags": {
+        "person": "Human figure or portrait",
+        "animal": "Animal, bird, horse, or creature",
+        "object": "Discrete physical object or artifact",
+        "vehicle": "Car, train, aircraft, boat, or machine in motion",
+        "landscape": "Natural outdoor scenery or terrain",
+        "cityscape": "Urban street, buildings, or exterior architecture",
+        "interior": "Indoor room, gallery, studio, or stage",
+        "abstract": "Non-figurative geometry, signal, or visual study",
+        "text-content": "Prominent typography, signage, or score notation",
+        "pattern": "Repeating ornament, grid, or algorithmic motif"
+      }
+    },
+    "people": {
+      "label": "People count",
+      "kinds": ["video", "animation", "image"],
+      "tags": {
+        "single": "One person in frame",
+        "pair": "Two people interacting or side by side",
+        "group": "Small group of 3–10 people",
+        "crowd": "Large crowd or ensemble"
+      }
+    },
+    "framing": {
+      "label": "Framing",
+      "kinds": ["video", "animation", "image"],
+      "tags": {
+        "fullbody": "Head-to-toe full figure visible",
+        "upper-body": "Waist or chest up medium/portrait shot",
+        "face": "Face prominent (>20% of frame)",
+        "hands": "Hands or manual gesture prominent",
+        "feet": "Feet or footwork prominent",
+        "closeup": "Tight close-up on detail or body part",
+        "wide": "Wide establishing or full-stage framing",
+        "arms-raised": "Arms lifted or extended away from torso"
+      }
+    },
+    "view": {
+      "label": "Camera view",
+      "kinds": ["video", "animation", "image", "model", "splat"],
+      "tags": {
+        "front": "Frontal view facing camera",
+        "side": "Lateral / profile view",
+        "back": "Rear view facing away from camera",
+        "top-down": "Overhead / bird's-eye view",
+        "three-quarter": "Oblique / three-quarter angle"
+      }
+    },
+    "action": {
+      "label": "Action",
+      "kinds": ["video", "animation", "image"],
+      "tags": {
+        "movement": "Clear bodily or mechanical motion",
+        "dance": "Choreographed or expressive dance movement",
+        "walk": "Walking gait or stride",
+        "run": "Running, galloping, or trotting gait",
+        "jump": "Jumping, vaulting, or leaping",
+        "gesture": "Expressive facial, hand, or upper-body gesture",
+        "pose": "Held or deliberate body posture / flexing",
+        "fight": "Wrestling, boxing, fencing, or martial arts",
+        "sport": "Athletic event, throwing, gymnastics, or track & field",
+        "work": "Labor, craft, or industrial activity",
+        "talk": "Speaking, mouthing words, or vocalizing",
+        "still": "Stationary subject or posed portrait"
+      }
+    },
+    "motion": {
+      "label": "Motion & camera",
+      "kinds": ["video", "animation"],
+      "tags": {
+        "slow": "Slow, measured pace",
+        "fast": "Rapid, high-velocity motion",
+        "repetitive": "Repeated gesture or action",
+        "cyclic": "Periodic cycle (gait, wingbeat, oscillation)",
+        "static-camera": "Locked-off tripod camera with minimal global flow",
+        "moving-camera": "Panning, tracking, handheld, or moving camera",
+        "cuts": "Contains multiple shots or scene cuts"
+      }
+    },
+    "look": {
+      "label": "Visual look",
+      "kinds": ["video", "animation", "image", "vector"],
+      "tags": {
+        "bw": "Monochrome / black-and-white",
+        "color": "Full color or polychrome",
+        "tinted": "Hand-colored, stencil-tinted, or monotone-tinted",
+        "high-contrast": "Strong tonal separation between subject and background",
+        "low-light": "Dark or low-key illumination",
+        "plain-bg": "Clean, uniform, or gridded studio backdrop",
+        "busy-bg": "Textured, crowded, or complex background",
+        "silhouette": "High-contrast contour / shadow puppet / silhouette",
+        "grain": "Visible film grain, halftone, or analog surface texture"
+      }
+    },
+    "sound": {
+      "label": "Sound",
+      "kinds": ["video", "animation", "audio"],
+      "tags": {
+        "silent": "No audio track or silent-era film",
+        "music": "Musical performance or composition",
+        "speech": "Spoken voice or dialogue",
+        "percussion": "Rhythmic or percussive transients",
+        "ambient": "Environmental or atmospheric soundscape",
+        "noise": "Broadband noise, glitch, or industrial sound",
+        "loop": "Rhythmic or seamless audio loop"
+      }
+    },
+    "format": {
+      "label": "Format & geometry",
+      "kinds": ["video", "animation", "image", "audio", "model", "splat", "vector", "text"],
+      "tags": {
+        "short": "Duration 10 seconds or under",
+        "loop-friendly": "Works cleanly when played in a continuous loop",
+        "portrait": "Vertical aspect ratio (height > width)",
+        "landscape-format": "Horizontal aspect ratio (width > height)",
+        "square": "Approximately 1:1 aspect ratio",
+        "transparent": "Has alpha channel / transparent background",
+        "seamless": "Seamless wraparound in time or space"
+      }
+    },
+    "era": {
+      "label": "Era & source",
+      "kinds": ["video", "animation", "image", "audio", "model", "splat", "vector", "text"],
+      "tags": {
+        "early-film": "Early cinema (c. 1888–1915, Edison, Lumière, Marey, Demenÿ)",
+        "chronophotography": "Sequential motion-capture plates or strips (Muybridge, Marey)",
+        "animation": "Drawn, stop-motion, or procedural animation",
+        "archival": "Historical or museum archive material",
+        "contemporary": "Modern or recent work",
+        "generated": "Synthesized or AI/procedurally generated media",
+        "own-capture": "Captured, scanned, or recorded by the author/course"
+      }
+    },
+    "gif": {
+      "label": "Animation / GIF",
+      "kinds": ["animation"],
+      "tags": {
+        "seamless-loop": "First and last frames connect without a visible jump",
+        "pingpong": "Plays forward then backward (A→B→A)",
+        "one-shot-anim": "Single action that resets at the loop boundary",
+        "cinemagraph": "Mostly still image with isolated looping motion",
+        "pixel-art": "Low-resolution crisp pixel art",
+        "dithered": "Visible ordered or error-diffusion dithering",
+        "low-palette": "Small color palette (≤32 colors)",
+        "transparent": "Transparent GIF background index",
+        "frame-sequence": "Discrete multi-frame study or flipbook",
+        "rotoscope": "Traced or rotoscoped from live-action footage",
+        "reaction": "Short expressive gesture clip",
+        "found-gif": "Curated found GIF from web or film excerpt"
+      }
+    },
+    "still": {
+      "label": "Still image",
+      "kinds": ["image"],
+      "tags": {
+        "photo": "Photographic still",
+        "painting": "Painting, gouache, watercolor, or oil",
+        "drawing": "Ink, pencil, charcoal, or graphic drawing",
+        "print": "Lithograph, woodcut, etching, or printed poster",
+        "diagram": "Technical, musical, or analytical diagram / score",
+        "scan": "Flatbed or archival document scan",
+        "sequence": "Multi-frame contact sheet or chronophotographic plate",
+        "panorama": "Wide panoramic or Street View capture",
+        "equirect": "2:1 equirectangular 360° projection",
+        "depth-map": "Grayscale or encoded depth map",
+        "alpha": "Contains alpha transparency channel"
+      }
+    },
+    "sound-type": {
+      "label": "Audio type",
+      "kinds": ["audio"],
+      "tags": {
+        "music": "Musical track or excerpt",
+        "speech": "Spoken word or reading",
+        "voice": "Vocalization or singing",
+        "field-recording": "Location or environmental recording",
+        "foley": "Recorded physical sound effect",
+        "sfx": "Designed or synthesized sound effect",
+        "drone": "Sustained tonal or textured drone",
+        "percussion": "Drums or percussive hits",
+        "one-shot": "Single transient hit or sample",
+        "loop": "Loopable bar or phrase",
+        "stem": "Isolated instrument or vocal stem",
+        "impulse-response": "Acoustic impulse response for convolution"
+      }
+    },
+    "music": {
+      "label": "Music traits",
+      "kinds": ["audio"],
+      "tags": {
+        "tempo-slow": "Slow tempo (<90 BPM)",
+        "tempo-mid": "Moderate tempo (90–130 BPM)",
+        "tempo-fast": "Fast tempo (>130 BPM)",
+        "steady-beat": "Consistent metrical pulse",
+        "free-time": "Rubato, non-metrical, or spoken cadence",
+        "tonal": "Pitched / harmonic center",
+        "atonal": "Non-tonal, noise-based, or microtonal",
+        "mono": "Single-channel audio",
+        "stereo": "Two-channel stereo audio",
+        "multichannel": "Surround or multi-track spatial audio"
+      }
+    },
+    "3d": {
+      "label": "3D model",
+      "kinds": ["model"],
+      "tags": {
+        "character": "Humanoid or creature character mesh",
+        "rigged": "Includes skeleton / skinning weights",
+        "animated": "Contains keyframe or skeletal animation clips",
+        "prop": "Single object, furniture, or artifact mesh",
+        "scene": "Multi-object environment or interior room",
+        "architecture": "Building, gallery, or structural space",
+        "scan": "Photogrammetry or LiDAR 3D scan",
+        "low-poly": "Low polygon count (<10k triangles)",
+        "textured": "Has UV-mapped image textures or vertex colors",
+        "untextured": "Geometry-only without textures",
+        "pbr": "Physically based rendering materials",
+        "watertight": "Closed manifold mesh",
+        "printable": "Suitable for 3D printing"
+      }
+    },
+    "splat": {
+      "label": "Gaussian splat",
+      "kinds": ["splat"],
+      "tags": {
+        "object": "Isolated object capture",
+        "room": "Interior room capture",
+        "outdoor": "Exterior street, landscape, or architectural scene",
+        "person": "Human subject capture",
+        "360": "Full wrap-around capture",
+        "cropped": "Bounded / cropped splat volume",
+        "noisy": "Contains floaters or unpruned peripheral splats"
+      }
+    },
+    "svg": {
+      "label": "Vector / SVG",
+      "kinds": ["vector"],
+      "tags": {
+        "line-art": "Stroke-based vector line drawing",
+        "filled": "Filled shapes and regions",
+        "single-path": "Continuous single-path geometry",
+        "plotter-ready": "Clean paths suitable for pen plotters / CNC",
+        "icon": "Logo, symbol, emblem, or icon",
+        "map": "Cartographic vector map",
+        "font-glyph": "Letterform or typographic glyph"
+      }
+    },
+    "text": {
+      "label": "Text",
+      "kinds": ["text"],
+      "tags": {
+        "poem": "Poetic or sound-poetry text",
+        "script": "Performance script or dialogue",
+        "manifesto": "Artistic or historical manifesto",
+        "transcript": "Spoken-word or lyrics transcript",
+        "score": "Text-based event score or instructions",
+        "code": "Source code or shader study",
+        "data": "Structured table or dataset"
+      }
+    }
+  },
+  "demos": {
+    "pose": "Body pose estimation (MediaPipe Pose, MoveNet, skeleton tracking)",
+    "hands": "Hand landmark and gesture tracking",
+    "face-mesh": "Dense facial landmark mesh and head pose",
+    "face-expression": "Facial blendshapes, emotion, and mouth movement",
+    "segmentation": "Person or foreground/background mask segmentation",
+    "object-detection": "Bounding-box detection (YOLO, OWL-ViT, Florence)",
+    "optical-flow": "Dense or sparse optical flow fields",
+    "motion-trails": "Frame differencing, slit-scan, and temporal accumulation",
+    "background-subtraction": "Static-camera foreground extraction",
+    "body-zones": "Body-part zone mapping and interactive triggers (mediamime)",
+    "tracking": "Centroid, blob, or point tracking across frames",
+    "depth": "Monocular depth estimation or 3D parallax",
+    "style-transfer": "Neural style transfer or appearance filtering",
+    "img2img": "Diffusion image-to-image or ControlNet conditioning",
+    "texture": "Surface, brush, halftone, or shader texture study",
+    "color": "Palette extraction, quantization, and color grading",
+    "glitch": "Signal distortion, pixel sorting, or compression artifacts",
+    "datamosh": "Motion-vector / P-frame manipulation",
+    "audio-reactive": "Driving visuals from amplitude, FFT, or onsets",
+    "beat": "Tempo, beat tracking, and rhythmic synchronization",
+    "sonification": "Mapping image, motion, or geometry to sound",
+    "typography": "Kinetic type, layout, or glyph manipulation",
+    "3d-viewer": "Three.js / WebGL / model-viewer 3D inspection and lighting",
+    "splat-viewer": "3D Gaussian Splat rendering and camera paths",
+    "projection": "Equirectangular / panoramic projection and environment mapping",
+    "loop": "Seamless temporal looping, phase, and polyrhythm",
+    "granular": "Granular audio or frame-scrubbing synthesis",
+    "convolution": "Spatial audio or image kernel convolution",
+    "speech-to-text": "Whisper transcription and word-level alignment",
+    "tts": "Voice synthesis and lip-sync",
+    "midi": "Note/event extraction and musical control",
+    "plotter": "Vector path manipulation and pen-plotter output",
+    "generative-text": "Markov chains, cut-up poetry, and LLM text prompts",
+    "photogrammetry": "3D reconstruction and spatial capture inspection",
+    "rigging": "Skeletal animation and procedural character motion"
+  }
+}

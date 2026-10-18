@@ -1,0 +1,262 @@
+{
+  "id": "danse-serpentine-lumiere-1897",
+  "title": "Danse serpentine (Lumière, 1897)",
+  "kind": "video",
+  "status": "published",
+  "summary": "Stencil-tinted serpentine dance filmed by the Lumière studio, 1897.",
+  "description": "A performer executes Loïe Fuller's serpentine dance in flowing silk drapery illuminated by frame-by-frame hand/stencil tinting (Catalogue Lumière no. 765, 1897). Excellent for optical flow, motion trails, color tracking, and fluid cloth dynamics.",
+  "tags": [
+    "person",
+    "single",
+    "fullbody",
+    "front",
+    "static-camera",
+    "plain-bg",
+    "movement",
+    "dance",
+    "cyclic",
+    "tinted",
+    "color",
+    "silent",
+    "early-film",
+    "archival",
+    "landscape-format"
+  ],
+  "keywords": [
+    "Loïe Fuller",
+    "serpentine dance",
+    "Lumière",
+    "hand-colored",
+    "silk",
+    "drapery"
+  ],
+  "collections": [
+    "earlyfilm"
+  ],
+  "demos": [
+    "optical-flow",
+    "motion-trails",
+    "color",
+    "segmentation",
+    "style-transfer"
+  ],
+  "creators": [
+    {
+      "name": "Auguste and Louis Lumière",
+      "role": "producer"
+    }
+  ],
+  "date": "1897",
+  "source": {
+    "url": "https://en.wikipedia.org/wiki/File:Danse_serpentine_(Lumi%C3%A8re,_1897).webm",
+    "origin": "https://catalogue-lumiere.com/danse-serpentine/",
+    "archive": "Catalogue Lumière / Wikipedia",
+    "retrieved": "2026-10-17",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US",
+    "credit": "Auguste and Louis Lumière, 1897 (Catalogue Lumière no. 765). Public domain.",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.webm",
+      "type": "video/webm",
+      "bytes": 43761740,
+      "sha256": "9edc624f74e7469946f2b031570c6ba14aee8c038ff774db60a2024a444de0fe",
+      "duration": 52.792,
+      "width": 1280,
+      "height": 960,
+      "fps": 24.0,
+      "motion_curve": [
+        17.23,
+        15.51,
+        10.98,
+        12.67,
+        13.71,
+        14.76,
+        14.92,
+        12.94,
+        14.95,
+        9.37,
+        7.68,
+        9.81,
+        11.82,
+        11.48,
+        15.72,
+        16.45
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 7808333,
+      "sha256": "d77db051aa1091d91fa70692fe372c133f742a5ba32307d40dec346ca208a45b"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 108136,
+      "sha256": "7278e0b450b169128a3c98c29c7c164994001b64232d78c943e520b0a68bc851",
+      "width": 1280,
+      "height": 960
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 27930,
+      "sha256": "878b2ee63a92ef4db19f9ff77f2cb5aa03b7b6558ca786413bc8f5ee2e34cd50",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.webm",
+      "type": "video/webm",
+      "bytes": 158536940,
+      "sha256": "1a8b167bcf1cf9ed50c3974c46728883c4e1716f8ab5de4ed69adb0a8524e5ae",
+      "kept": false,
+      "url": "https://en.wikipedia.org/wiki/File:Danse_serpentine_%28Lumi%C3%A8re%2C_1897%29.webm"
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://en.wikipedia.org/wiki/File:Danse_serpentine_%28Lumi%C3%A8re%2C_1897%29.webm",
+      "date": "2026-10-18",
+      "sha256": "1a8b167bcf1cf9ed50c3974c46728883c4e1716f8ab5de4ed69adb0a8524e5ae"
+    },
+    {
+      "step": "derived",
+      "file": "media.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='min(1280,iw)':-2 -c:v libvpx-vp9 -crf 33 -b:v 0 -row-mt 1 -cpu-used 4 -c:a libopus -b:a 96k",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf fps=15,scale='min(768,iw)':-2 -c:v libvpx-vp9 -crf 35 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "ffmpeg 9.0.2 + Pillow",
+      "args": "-ss 5.28 -frames:v 1 -> webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "scenes 1.0",
+      "model": "ffmpeg-scene+silence",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "audio 1.0",
+      "model": "ffmpeg-pcm+onset-bpm",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "clips/01.webm",
+      "tool": "ffmpeg",
+      "args": "-ss 3.0 -t 6.0 (clip 01)",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "clips/02.webm",
+      "tool": "ffmpeg",
+      "args": "-ss 18.0 -t 6.5 (clip 02)",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "proposed": {
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-18",
+      "tags": [],
+      "mean_motion": 13.17,
+      "border_motion": 5.48
+    }
+  },
+  "clips": [
+    {
+      "n": 1,
+      "title": "Butterfly wing figure-eights",
+      "summary": "Wide alternating figure-eight sweeps of silk wands in rose and amber tint.",
+      "tags": [
+        "person",
+        "single",
+        "fullbody",
+        "front",
+        "dance",
+        "cyclic",
+        "tinted",
+        "plain-bg"
+      ],
+      "demos": [
+        "optical-flow",
+        "motion-trails",
+        "color",
+        "loop"
+      ],
+      "in": 3.0,
+      "out": 9.0,
+      "file": "clips/01.webm",
+      "thumb": "clips/01.thumb.webp"
+    },
+    {
+      "n": 2,
+      "title": "Spinning vortex canopy",
+      "summary": "Rapid full-body spin lifting the fabric into a billowy overhead dome.",
+      "tags": [
+        "person",
+        "single",
+        "fullbody",
+        "dance",
+        "fast",
+        "cyclic",
+        "tinted",
+        "plain-bg"
+      ],
+      "demos": [
+        "optical-flow",
+        "motion-trails",
+        "segmentation"
+      ],
+      "in": 18.0,
+      "out": 24.5,
+      "file": "clips/02.webm",
+      "thumb": "clips/02.thumb.webp"
+    }
+  ]
+}

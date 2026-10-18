@@ -1,0 +1,201 @@
+{
+  "id": "countconstantdelay0",
+  "title": "Zero-Delay Frame Counter Test GIF",
+  "kind": "animation",
+  "status": "published",
+  "summary": "Synthetic 10-frame GIF with 0ms frame delay headers for browser/decoder timing tests.",
+  "description": "Diagnostic animated GIF counting frames with constant 0ms header delay to test how browsers, ffmpeg, and creative-coding runtimes clamp sub-10ms GIF frame durations.",
+  "tags": [
+    "text-content",
+    "abstract",
+    "bw",
+    "plain-bg",
+    "short",
+    "square",
+    "loop-friendly",
+    "low-palette",
+    "pixel-art",
+    "frame-sequence",
+    "contemporary",
+    "portrait",
+    "silent",
+    "pingpong",
+    "movement",
+    "fast",
+    "static-camera"
+  ],
+  "keywords": [
+    "test pattern",
+    "GIF timing",
+    "0ms delay",
+    "frame counter",
+    "decoder"
+  ],
+  "collections": [
+    "graphics-random"
+  ],
+  "demos": [
+    "loop",
+    "typography"
+  ],
+  "creators": [
+    {
+      "name": "Mediathèque Teaching Lab",
+      "role": "author"
+    }
+  ],
+  "date": "2026",
+  "source": {
+    "url": "https://languel.github.io/mediatheque/items/countconstantdelay0/original.gif",
+    "origin": null,
+    "archive": "Mediathèque Test Suite",
+    "retrieved": "2026-03-26",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "credit": "GIF timing diagnostic test asset, Mediathèque (CC0 1.0).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.mp4",
+      "type": "video/mp4",
+      "bytes": 1740,
+      "sha256": "c4101efdf5a3fb980eda8da6fa3407e5810de80bb6963fd8b8342ca02057b85f",
+      "duration": 1.32,
+      "width": 80,
+      "height": 112,
+      "fps": 3.03,
+      "frames": 4,
+      "frame_delays_ms": [
+        330,
+        330,
+        330,
+        330
+      ],
+      "variable_delays": false,
+      "loop_count": 0,
+      "disposal": [
+        2
+      ],
+      "palette": 2,
+      "phash": "0707030303030707",
+      "motion_curve": [
+        0.0,
+        63.57,
+        14.58,
+        0.0,
+        29.13,
+        0.0
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 863,
+      "sha256": "fd69baf18f65d08e71fd5b51da64f442e3349d661c3d8072002836a59090be19"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 94,
+      "sha256": "c90e24f1979f143d34b0e101030908bf868920252ad0d76d339299616f1ebaef",
+      "width": 80,
+      "height": 112
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 1110,
+      "sha256": "7d697e75469e23887d784569e5f583a6afe6ee605f822d5f7f7e70800990bd6c",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.gif",
+      "type": "image/gif",
+      "bytes": 7476,
+      "sha256": "7ace4b9fdba80f3077cbc0c691e883bd4f0f69b46da3c7db8f4ddf09d23cbbaf",
+      "width": 80,
+      "height": 112,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "countConstantDelay0.gif",
+      "date": "2026-10-18",
+      "sha256": "7ace4b9fdba80f3077cbc0c691e883bd4f0f69b46da3c7db8f4ddf09d23cbbaf"
+    },
+    {
+      "step": "derived",
+      "file": "media.mp4",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(iw/2)*2):max(2,trunc(ih/2)*2)' -c:v libx264 -pix_fmt yuv420p -crf 23 -movflags +faststart -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(min(768,iw)/2)*2):max(2,trunc(ih/2)*2)' -c:v libvpx-vp9 -pix_fmt yuva420p -crf 32 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "middle-frame webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "gif 1.0",
+      "model": "pillow-gif-walk+dhash",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "proposed": {
+    "gif": {
+      "analyzer": "gif",
+      "version": "1.0",
+      "confidence": 0.95,
+      "date": "2026-10-18",
+      "tags": []
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-18",
+      "tags": [],
+      "mean_motion": 17.88,
+      "border_motion": 0.0
+    }
+  }
+}

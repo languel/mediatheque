@@ -1,0 +1,176 @@
+{
+  "id": "muted-b",
+  "title": "Short Motion Study (muted_b)",
+  "kind": "video",
+  "status": "draft",
+  "summary": "Short unattributed motion test clip.",
+  "description": "",
+  "tags": [
+    "movement",
+    "short",
+    "silent",
+    "contemporary",
+    "landscape-format",
+    "tinted",
+    "static-camera"
+  ],
+  "keywords": [
+    "test clip"
+  ],
+  "collections": [
+    "graphics-random"
+  ],
+  "demos": [
+    "optical-flow"
+  ],
+  "creators": [],
+  "date": "2026",
+  "source": {
+    "url": null,
+    "origin": null,
+    "archive": null,
+    "retrieved": "2026-10-18",
+    "via": null
+  },
+  "rights": {
+    "status": "unknown",
+    "license": null,
+    "license_url": null,
+    "credit": "",
+    "notes": "Source URL and license unverified; kept in draft."
+  },
+  "files": {
+    "media": {
+      "path": "media.mp4",
+      "type": "video/mp4",
+      "bytes": 50813,
+      "sha256": "e3262008d47122ee296a969f02f666e0cde987d335fe4a0ce492b822f989d0e7",
+      "duration": 5.0,
+      "width": 480,
+      "height": 270,
+      "fps": 30.0,
+      "motion_curve": [
+        0.67,
+        0.68,
+        0.68,
+        0.68,
+        0.7,
+        0.7,
+        0.69,
+        0.72,
+        0.71,
+        0.72,
+        0.7,
+        0.72,
+        0.69,
+        0.72,
+        0.69,
+        0.7
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 20819,
+      "sha256": "2c04af425dde850224a0dd7a3aa4ed55b098f012a6ea9fbd2a64e5c13dbf9ce2"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 4984,
+      "sha256": "9372b0c8afd88d42a47c7d409452e543bf6fc7ebe1664cc8ae6460a4646fa98b",
+      "width": 480,
+      "height": 270
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 8228,
+      "sha256": "55834661e8248757bc54b0012181eed47bb251a56829216565ee34d909a2aca8",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.mp4",
+      "type": "video/mp4",
+      "bytes": 50813,
+      "sha256": "e3262008d47122ee296a969f02f666e0cde987d335fe4a0ce492b822f989d0e7",
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "muted_b.mp4",
+      "date": "2026-10-18",
+      "sha256": "e3262008d47122ee296a969f02f666e0cde987d335fe4a0ce492b822f989d0e7"
+    },
+    {
+      "step": "derived",
+      "file": "media.mp4",
+      "tool": "copy (web-ready source)",
+      "args": "cp muted_b.mp4 media.mp4",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf fps=15,scale='min(768,iw)':-2 -c:v libvpx-vp9 -crf 35 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "ffmpeg 9.0.2 + Pillow",
+      "args": "-ss 0.5 -frames:v 1 -> webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "scenes 1.0",
+      "model": "ffmpeg-scene+silence",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "audio 1.0",
+      "model": "ffmpeg-pcm+onset-bpm",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "proposed": {
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-18",
+      "tags": [
+        "still"
+      ],
+      "mean_motion": 0.7,
+      "border_motion": 0.02
+    }
+  }
+}

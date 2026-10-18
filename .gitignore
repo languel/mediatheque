@@ -1,0 +1,22 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Inbox (ignore everything except .gitkeep)
+inbox/*
+!inbox/.gitkeep
+inbox/.done/
+
+# Cache for analyzers
+.cache/
+tools/analyzers/.cache/
+
+# Local build artifacts
+_site/

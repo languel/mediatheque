@@ -1,0 +1,120 @@
+{
+  "id": "pileus-logo",
+  "title": "Pileus Cloud Emblem (SVG Vector)",
+  "kind": "vector",
+  "status": "published",
+  "summary": "Spiral cloud and pileus cap vector emblem in clean SVG paths.",
+  "description": "Clean geometric vector emblem depicting a spiraling cumulus cloud beneath a lenticular pileus cap. Sanitized SVG suitable for path resampling, pen-plotter toolpaths, and signed-distance field demos.",
+  "tags": [
+    "abstract",
+    "pattern",
+    "square",
+    "transparent",
+    "filled",
+    "line-art",
+    "plotter-ready",
+    "icon",
+    "contemporary",
+    "own-capture"
+  ],
+  "keywords": [
+    "pileus",
+    "cloud",
+    "spiral",
+    "vector",
+    "SVG",
+    "logo",
+    "plotter"
+  ],
+  "collections": [
+    "svg"
+  ],
+  "demos": [
+    "plotter",
+    "typography",
+    "texture"
+  ],
+  "creators": [
+    {
+      "name": "Mediathèque Teaching Lab",
+      "role": "designer"
+    }
+  ],
+  "date": "2026",
+  "source": {
+    "url": "https://languel.github.io/mediatheque/items/pileus-logo/media.svg",
+    "origin": null,
+    "archive": "Mediathèque Teaching Collection",
+    "retrieved": "2026-10-18",
+    "via": null
+  },
+  "rights": {
+    "status": "cc",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "credit": "Pileus emblem SVG, Mediathèque Teaching Collection (CC0 1.0).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.svg",
+      "type": "image/svg+xml",
+      "bytes": 2056,
+      "sha256": "0525c32eefbc33466f17057b087811fd1117827be8c84c7791f6fca4ff937cce",
+      "width": 1024,
+      "height": 1024
+    },
+    "original": {
+      "path": "original.svg",
+      "type": "image/svg+xml",
+      "bytes": 2056,
+      "sha256": "0525c32eefbc33466f17057b087811fd1117827be8c84c7791f6fca4ff937cce",
+      "kept": true
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 27216,
+      "sha256": "3d6eb61ea782044eed74def5a7d28f5e6217602cec85dc8231105e0b486feff3",
+      "width": 960,
+      "height": 960
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 11540,
+      "sha256": "b33357827ce947a7417b4e48bc810a3bc2a5e6e638413a0e77f7ce68f4817e57",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "pileus-logo.svg",
+      "date": "2026-10-18",
+      "sha256": "0525c32eefbc33466f17057b087811fd1117827be8c84c7791f6fca4ff937cce"
+    },
+    {
+      "step": "derived",
+      "file": "media.svg",
+      "tool": "svg-sanitizer",
+      "args": "strip scripts, event handlers, external refs",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "render 1.0",
+      "model": "software-zbuffer+splat+svg",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18"
+}

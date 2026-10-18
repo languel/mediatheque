@@ -1,0 +1,252 @@
+{
+  "id": "hapci-fr",
+  "title": "Fred Ott's Sneeze (Edison Kinetoscope, 1894)",
+  "kind": "animation",
+  "status": "published",
+  "summary": "Fred Ott taking a pinch of snuff and sneezing for the Edison Kinetograph, January 1894.",
+  "description": "Officially titled 'Edison Kinetoscopic Record of a Sneeze', filmed by William K. L. Dickson in January 1894 starring Edison mechanic Fred Ott. The earliest surviving motion picture registered for U.S. copyright.",
+  "tags": [
+    "person",
+    "single",
+    "upper-body",
+    "face",
+    "front",
+    "gesture",
+    "movement",
+    "static-camera",
+    "plain-bg",
+    "bw",
+    "silent",
+    "short",
+    "loop-friendly",
+    "reaction",
+    "early-film",
+    "archival",
+    "landscape-format",
+    "dithered",
+    "one-shot-anim",
+    "fast"
+  ],
+  "keywords": [
+    "Fred Ott",
+    "sneeze",
+    "Edison",
+    "Dickson",
+    "1894",
+    "Kinetoscope"
+  ],
+  "collections": [
+    "earlyfilm"
+  ],
+  "demos": [
+    "face-mesh",
+    "face-expression",
+    "pose",
+    "loop"
+  ],
+  "creators": [
+    {
+      "name": "William K. L. Dickson",
+      "role": "director"
+    },
+    {
+      "name": "Fred Ott",
+      "role": "performer"
+    }
+  ],
+  "date": "1894-01-09",
+  "source": {
+    "url": "https://commons.wikimedia.org/wiki/File:Hapci-fr.gif",
+    "origin": "https://www.loc.gov/item/00694192/",
+    "archive": "Library of Congress / Wikimedia Commons",
+    "retrieved": "2026-10-17",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US",
+    "credit": "William K. L. Dickson / Edison Manufacturing Co., 1894. Library of Congress. Public domain.",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.mp4",
+      "type": "video/mp4",
+      "bytes": 89411,
+      "sha256": "6fca29b17016e581ec67411659faa1759e6b5764af2f1eaada723a7b667c702c",
+      "duration": 4.2,
+      "width": 184,
+      "height": 142,
+      "fps": 7.86,
+      "frames": 33,
+      "frame_delays_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        1000
+      ],
+      "variable_delays": true,
+      "loop_count": 0,
+      "disposal": [
+        1
+      ],
+      "palette": 244,
+      "phash": "33b273b1b0b49c4d",
+      "motion_curve": [
+        16.12,
+        11.55,
+        17.76,
+        31.16,
+        19.18,
+        23.45,
+        23.06,
+        26.98,
+        17.46,
+        13.82,
+        19.48,
+        38.78,
+        15.65,
+        17.68,
+        17.59,
+        57.9
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 82667,
+      "sha256": "acd3ab8c5acf42e00912e98e085b3948c52816dfb24116526125d96a0db5c616"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 6668,
+      "sha256": "047be6958085e27a4b7f418d56f03d927eb758ccd5348fe5fd19a949d186369c",
+      "width": 184,
+      "height": 142
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 16052,
+      "sha256": "dd69dc332e4970e94d58fd58ef284687b9236a0330694add03a5b6717d6ae272",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.gif",
+      "type": "image/gif",
+      "bytes": 779764,
+      "sha256": "154dea61f78e547d1131871ee8ab40fe5a80aae0bdeafff4bb254622b02d2960",
+      "width": 184,
+      "height": 142,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://commons.wikimedia.org/wiki/File:Hapci-fr.gif",
+      "date": "2026-10-18",
+      "sha256": "154dea61f78e547d1131871ee8ab40fe5a80aae0bdeafff4bb254622b02d2960"
+    },
+    {
+      "step": "derived",
+      "file": "media.mp4",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(iw/2)*2):max(2,trunc(ih/2)*2)' -c:v libx264 -pix_fmt yuv420p -crf 23 -movflags +faststart -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(min(768,iw)/2)*2):max(2,trunc(ih/2)*2)' -c:v libvpx-vp9 -pix_fmt yuva420p -crf 32 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "middle-frame webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "gif 1.0",
+      "model": "pillow-gif-walk+dhash",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "proposed": {
+    "gif": {
+      "analyzer": "gif",
+      "version": "1.0",
+      "confidence": 0.95,
+      "date": "2026-10-18",
+      "tags": []
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-18",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 22.98,
+      "border_motion": 17.19
+    }
+  }
+}

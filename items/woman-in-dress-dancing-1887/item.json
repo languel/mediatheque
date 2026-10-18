@@ -1,0 +1,225 @@
+{
+  "id": "woman-in-dress-dancing-1887",
+  "title": "Woman in Dress Dancing — High-Res Plate 187 (Muybridge, 1887)",
+  "kind": "animation",
+  "status": "published",
+  "summary": "High-resolution crop of Eadweard Muybridge's Plate 187 dancing sequence (1887).",
+  "description": "Higher-resolution transfer of Eadweard Muybridge's Plate 187 ('Woman dancing, fancy', 1887), preserving fine drapery folds and halftone grain across the rotation cycle.",
+  "tags": [
+    "person",
+    "single",
+    "fullbody",
+    "front",
+    "dance",
+    "movement",
+    "cyclic",
+    "static-camera",
+    "plain-bg",
+    "bw",
+    "grain",
+    "silent",
+    "short",
+    "loop-friendly",
+    "frame-sequence",
+    "chronophotography",
+    "archival",
+    "portrait",
+    "color",
+    "dithered",
+    "seamless-loop",
+    "fast"
+  ],
+  "keywords": [
+    "Eadweard Muybridge",
+    "Plate 187",
+    "dance",
+    "drapery",
+    "chronophotography"
+  ],
+  "collections": [
+    "muybridge"
+  ],
+  "demos": [
+    "pose",
+    "loop",
+    "optical-flow",
+    "motion-trails"
+  ],
+  "creators": [
+    {
+      "name": "Eadweard Muybridge",
+      "role": "photographer"
+    }
+  ],
+  "date": "1887",
+  "source": {
+    "url": "https://commons.wikimedia.org/wiki/File:Woman_in_dress_dancing_(1887).gif",
+    "origin": "https://commons.wikimedia.org/wiki/Category:Animal_Locomotion_(1887)",
+    "archive": "Wikimedia Commons",
+    "retrieved": "2026-10-17",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-old-100",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-old-100",
+    "credit": "Eadweard Muybridge, Animal Locomotion, Plate 187, 1887. Public domain.",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.mp4",
+      "type": "video/mp4",
+      "bytes": 781665,
+      "sha256": "d74998b7d20d849a664cfa4063e56a0e446ee8abdc34d0e622b90eed4022d548",
+      "duration": 2.4,
+      "width": 679,
+      "height": 986,
+      "fps": 5.0,
+      "frames": 12,
+      "frame_delays_ms": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "variable_delays": false,
+      "loop_count": 0,
+      "disposal": [
+        1
+      ],
+      "palette": 7591,
+      "phash": "9391c1c1e17038e0",
+      "motion_curve": [
+        24.05,
+        23.96,
+        26.61,
+        33.04,
+        32.99,
+        39.43,
+        33.9,
+        36.22,
+        30.48,
+        31.83,
+        33.7
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 424280,
+      "sha256": "a3f465c2e312af4ed70f5905c91ac36c3783c767be909c8ece0e95ed96594dbd"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 113374,
+      "sha256": "3f2878383d66fe42fa847f0d083a245366db1b4ac01a5bf89687278ec6e1cf64",
+      "width": 679,
+      "height": 986
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 32692,
+      "sha256": "af098603539bb60d9dd20643fa92a427258bf63f562147d920be19f44f0407a9",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.gif",
+      "type": "image/gif",
+      "bytes": 5082726,
+      "sha256": "59054c5f7be9b9265317f226acfe5fa76e5e3963e799f996d280f1d4d4ee2863",
+      "width": 679,
+      "height": 986,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://commons.wikimedia.org/wiki/File:Woman_in_dress_dancing_%281887%29.gif",
+      "date": "2026-10-18",
+      "sha256": "59054c5f7be9b9265317f226acfe5fa76e5e3963e799f996d280f1d4d4ee2863"
+    },
+    {
+      "step": "derived",
+      "file": "media.mp4",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(iw/2)*2):max(2,trunc(ih/2)*2)' -c:v libx264 -pix_fmt yuv420p -crf 23 -movflags +faststart -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(min(768,iw)/2)*2):max(2,trunc(ih/2)*2)' -c:v libvpx-vp9 -pix_fmt yuva420p -crf 32 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "middle-frame webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "gif 1.0",
+      "model": "pillow-gif-walk+dhash",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "proposed": {
+    "gif": {
+      "analyzer": "gif",
+      "version": "1.0",
+      "confidence": 0.95,
+      "date": "2026-10-18",
+      "tags": []
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-18",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 31.47,
+      "border_motion": 23.16
+    }
+  },
+  "plate": "187",
+  "sequence": "Animal Locomotion (1887)"
+}

@@ -1,0 +1,254 @@
+{
+  "id": "louie-fuller",
+  "title": "Serpentine Dance — Rose Swirl Loop (1897)",
+  "kind": "animation",
+  "status": "published",
+  "summary": "Short animated GIF loop extracted from the 1897 Lumière hand-tinted serpentine dance film.",
+  "description": "A compact GIF excerpt from Auguste and Louis Lumière's 1897 stencil-tinted 'Danse serpentine', isolating the billowing rose-tinted silk rotation.",
+  "tags": [
+    "person",
+    "single",
+    "fullbody",
+    "front",
+    "dance",
+    "movement",
+    "cyclic",
+    "static-camera",
+    "plain-bg",
+    "tinted",
+    "silent",
+    "short",
+    "loop-friendly",
+    "found-gif",
+    "early-film",
+    "archival",
+    "landscape-format",
+    "one-shot-anim",
+    "fast"
+  ],
+  "keywords": [
+    "Loïe Fuller",
+    "serpentine dance",
+    "Lumière",
+    "loop",
+    "silk"
+  ],
+  "collections": [
+    "earlyfilm"
+  ],
+  "demos": [
+    "optical-flow",
+    "motion-trails",
+    "color",
+    "loop"
+  ],
+  "creators": [
+    {
+      "name": "Auguste and Louis Lumière",
+      "role": "producer"
+    }
+  ],
+  "date": "1897",
+  "source": {
+    "url": "https://en.wikipedia.org/wiki/File:Danse_serpentine_(Lumi%C3%A8re,_1897).webm",
+    "origin": "https://catalogue-lumiere.com/danse-serpentine/",
+    "archive": "Catalogue Lumière / Wikimedia",
+    "retrieved": "2026-10-17",
+    "via": "danse-serpentine-lumiere-1897"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US",
+    "credit": "Auguste and Louis Lumière, 1897 (Catalogue Lumière no. 765). Public domain.",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.mp4",
+      "type": "video/mp4",
+      "bytes": 274714,
+      "sha256": "64b4119b29758a7c0260e0b3d0593160c2e19f25f0e8b8c418f1bd020103d106",
+      "duration": 2.94,
+      "width": 480,
+      "height": 360,
+      "fps": 14.97,
+      "frames": 44,
+      "frame_delays_ms": [
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        60,
+        70,
+        70,
+        70
+      ],
+      "variable_delays": true,
+      "loop_count": 0,
+      "disposal": [
+        1
+      ],
+      "palette": 14897,
+      "phash": "e3b0b8f0b898de84",
+      "motion_curve": [
+        19.23,
+        21.24,
+        25.34,
+        19.18,
+        22.25,
+        24.64,
+        17.04,
+        19.77,
+        23.21,
+        22.04,
+        24.61,
+        22.69,
+        25.76,
+        21.47
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 238474,
+      "sha256": "fdfced76fe69343d3a155eedba4eba9e8b6234e4b9a7159420750383440b31f2"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 26306,
+      "sha256": "5b6f458030f424a01542252398d8cf4f0a7916ca2be925f5e8cd643b3e286fd4",
+      "width": 480,
+      "height": 360
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 22438,
+      "sha256": "c0aa40e254d56431c7d166be5f7578a3d6037ccc680bf7beb1e1969efffc63b5",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.gif",
+      "type": "image/gif",
+      "bytes": 1741245,
+      "sha256": "6dbfb03e1623f98bc21f0f6a2394fd5291a6b0192cc6c0f3de78a2ec6602291b",
+      "width": 480,
+      "height": 360,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "louie-fuller.gif",
+      "date": "2026-10-18",
+      "sha256": "6dbfb03e1623f98bc21f0f6a2394fd5291a6b0192cc6c0f3de78a2ec6602291b"
+    },
+    {
+      "step": "derived",
+      "file": "media.mp4",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(iw/2)*2):max(2,trunc(ih/2)*2)' -c:v libx264 -pix_fmt yuv420p -crf 23 -movflags +faststart -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(min(768,iw)/2)*2):max(2,trunc(ih/2)*2)' -c:v libvpx-vp9 -pix_fmt yuva420p -crf 32 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "middle-frame webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "gif 1.0",
+      "model": "pillow-gif-walk+dhash",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "proposed": {
+    "gif": {
+      "analyzer": "gif",
+      "version": "1.0",
+      "confidence": 0.95,
+      "date": "2026-10-18",
+      "tags": []
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-18",
+      "tags": [],
+      "mean_motion": 22.03,
+      "border_motion": 7.6
+    }
+  },
+  "derived_from": "danse-serpentine-lumiere-1897"
+}

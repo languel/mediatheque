@@ -1,0 +1,123 @@
+{
+  "id": "mh-4-gallery",
+  "title": "Memorial Hall 4th Floor Gallery (3D Scan GLB)",
+  "kind": "model",
+  "status": "published",
+  "summary": "Textured 3D LiDAR/photogrammetry room scan of the Memorial Hall 4th floor gallery space.",
+  "description": "3D architectural room scan of a 4th-floor exhibition gallery in Memorial Hall, exported as a binary glTF (.glb) mesh with vertex/texture colors. Useful for Three.js exhibition layout, camera path, and spatial projection mapping exercises.",
+  "tags": [
+    "interior",
+    "three-quarter",
+    "scene",
+    "architecture",
+    "scan",
+    "textured",
+    "contemporary",
+    "own-capture"
+  ],
+  "keywords": [
+    "Memorial Hall",
+    "gallery",
+    "3D scan",
+    "GLB",
+    "architecture",
+    "interior",
+    "LiDAR"
+  ],
+  "collections": [
+    "spatial"
+  ],
+  "demos": [
+    "3d-viewer",
+    "photogrammetry",
+    "projection",
+    "depth"
+  ],
+  "creators": [
+    {
+      "name": "Mediathèque Spatial Lab",
+      "role": "scanner"
+    }
+  ],
+  "date": "2026-09-20",
+  "source": {
+    "url": "https://languel.github.io/mediatheque/items/mh-4-gallery/media.glb",
+    "origin": null,
+    "archive": "Mediathèque Spatial Collection",
+    "retrieved": "2026-09-20",
+    "via": null
+  },
+  "rights": {
+    "status": "cc",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "credit": "Memorial Hall 4th Floor Gallery 3D Scan, Mediathèque Spatial Lab, 2026 (CC BY 4.0).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 4400396,
+      "sha256": "ee36fb982e29e10d199944025da0b7e3bde44953a4d1eae22b5bbc650e5f297d"
+    },
+    "original": {
+      "path": "original.glb",
+      "type": "model/gltf-binary",
+      "bytes": 4400396,
+      "sha256": "ee36fb982e29e10d199944025da0b7e3bde44953a4d1eae22b5bbc650e5f297d",
+      "kept": true
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 32238,
+      "sha256": "680350c828115c963fb09215c0d5fdee61bc8cf59860108854c77c278249cb3d",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 14186,
+      "sha256": "e87b51d822e736a881104ea18f502212ebf08476de42a2e29480ddce65c25e61",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://drive.usercontent.google.com/download",
+      "date": "2026-10-18",
+      "sha256": "ee36fb982e29e10d199944025da0b7e3bde44953a4d1eae22b5bbc650e5f297d"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "copy",
+      "args": "cp MH-4-gallery.glb media.glb",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "render 1.0",
+      "model": "software-zbuffer+splat+svg",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "triangles": 57175,
+  "bbox": [
+    12.121,
+    3.744,
+    10.733
+  ]
+}

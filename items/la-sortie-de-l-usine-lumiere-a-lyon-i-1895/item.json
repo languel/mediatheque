@@ -1,0 +1,308 @@
+{
+  "id": "la-sortie-de-l-usine-lumiere-a-lyon-i-1895",
+  "title": "La Sortie de l'Usine Lumière à Lyon (1895)",
+  "kind": "video",
+  "status": "published",
+  "summary": "Workers exiting the Lumière factory in Lyon, filmed by Louis Lumière, March 1895.",
+  "description": "First version ('un cheval') of Louis Lumière's landmark Cinématographe film showing workers, bicycles, a dog, and a horse-drawn carriage streaming through the gates of the Lumière factory at 25 rue Saint-Victor, Lyon. Ideal for multi-person tracking, crowd optical flow, and object detection.",
+  "tags": [
+    "person",
+    "animal",
+    "vehicle",
+    "crowd",
+    "wide",
+    "front",
+    "static-camera",
+    "movement",
+    "walk",
+    "work",
+    "bw",
+    "silent",
+    "early-film",
+    "archival",
+    "landscape-format",
+    "cuts",
+    "fast"
+  ],
+  "keywords": [
+    "Lumière",
+    "Lyon",
+    "factory",
+    "workers",
+    "crowd",
+    "Cinématographe",
+    "1895"
+  ],
+  "collections": [
+    "earlyfilm"
+  ],
+  "demos": [
+    "object-detection",
+    "tracking",
+    "optical-flow",
+    "background-subtraction"
+  ],
+  "creators": [
+    {
+      "name": "Louis Lumière",
+      "role": "director"
+    }
+  ],
+  "date": "1895-03-19",
+  "source": {
+    "url": "https://commons.wikimedia.org/wiki/File:La_Sortie_de_l%27Usine_Lumi%C3%A8re_%C3%A0_Lyon_I_1895.webm",
+    "origin": "https://www.institut-lumiere.org/",
+    "archive": "Institut Lumière / Wikimedia Commons",
+    "retrieved": "2026-10-17",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-old-100",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-old-100",
+    "credit": "Louis Lumière, 1895. Institut Lumière / Wikimedia Commons. Public domain.",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.webm",
+      "type": "video/webm",
+      "bytes": 17490281,
+      "sha256": "ee7551a24a7711c12bac9fd2ecf79b396bb1898481f21f92abeeaa2160680483",
+      "duration": 38.417,
+      "width": 1280,
+      "height": 960,
+      "fps": 24.0,
+      "motion_curve": [
+        27.47,
+        25.83,
+        25.29,
+        25.67,
+        23.09,
+        26.65,
+        25.43,
+        25.98,
+        18.27,
+        21.36,
+        18.0,
+        15.85,
+        19.62,
+        23.71,
+        26.7,
+        26.23
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 5922150,
+      "sha256": "ef6abecda08a878f7ac69702cf471f81a6b4e03e74003f29c30c61a61e43ca2d"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 79142,
+      "sha256": "85ed3e5bb1587cd20ea3c9fd91252a9a2e0952570666f66e1e4fd2de233b1a2c",
+      "width": 1280,
+      "height": 960
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 27290,
+      "sha256": "9f91836518a2e65b254f75722145d53a8781563b8a2167cc60b717d5486cb279",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.webm",
+      "type": "video/webm",
+      "bytes": 43936500,
+      "sha256": "f16b67f78d7e69bd15aa8511264572c711acf5c0c10361d5d632e6038f6fdd23",
+      "kept": false,
+      "url": "https://commons.wikimedia.org/wiki/File:La_Sortie_de_l%27Usine_Lumi%C3%A8re_%C3%A0_Lyon_I_1895.webm"
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://commons.wikimedia.org/wiki/File:La_Sortie_de_l%27Usine_Lumi%C3%A8re_%C3%A0_Lyon_I_1895.webm",
+      "date": "2026-10-18",
+      "sha256": "f16b67f78d7e69bd15aa8511264572c711acf5c0c10361d5d632e6038f6fdd23"
+    },
+    {
+      "step": "derived",
+      "file": "media.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='min(1280,iw)':-2 -c:v libvpx-vp9 -crf 33 -b:v 0 -row-mt 1 -cpu-used 4 -c:a libopus -b:a 96k",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf fps=15,scale='min(768,iw)':-2 -c:v libvpx-vp9 -crf 35 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "ffmpeg 9.0.2 + Pillow",
+      "args": "-ss 3.84 -frames:v 1 -> webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "scenes 1.0",
+      "model": "ffmpeg-scene+silence",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "audio 1.0",
+      "model": "ffmpeg-pcm+onset-bpm",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "clips/01.webm",
+      "tool": "ffmpeg",
+      "args": "-ss 0.5 -t 7.0 (clip 01)",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "clips/02.webm",
+      "tool": "ffmpeg",
+      "args": "-ss 25.0 -t 8.0 (clip 02)",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "proposed": {
+    "scenes": {
+      "analyzer": "scenes",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-18",
+      "clips": [
+        {
+          "n": 1,
+          "title": "Clip 01 (0.0s–9.3s)",
+          "summary": "Segment 1 from 0.0s to 9.3s.",
+          "tags": [],
+          "demos": [],
+          "in": 0.0,
+          "out": 9.33,
+          "file": "clips/01.webm",
+          "thumb": "clips/01.thumb.webp"
+        },
+        {
+          "n": 2,
+          "title": "Clip 02 (9.3s–37.0s)",
+          "summary": "Segment 2 from 9.3s to 37.0s.",
+          "tags": [],
+          "demos": [],
+          "in": 9.33,
+          "out": 37.0,
+          "file": "clips/02.webm",
+          "thumb": "clips/02.thumb.webp"
+        },
+        {
+          "n": 3,
+          "title": "Clip 03 (37.0s–38.4s)",
+          "summary": "Segment 3 from 37.0s to 38.4s.",
+          "tags": [],
+          "demos": [],
+          "in": 37.0,
+          "out": 38.42,
+          "file": "clips/03.webm",
+          "thumb": "clips/03.thumb.webp"
+        }
+      ],
+      "scene_cuts": [
+        0.42,
+        9.33,
+        37.0
+      ]
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-18",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 23.53,
+      "border_motion": 17.8
+    }
+  },
+  "clips": [
+    {
+      "n": 1,
+      "title": "Factory doors open and crowd emerges",
+      "summary": "Workers pour out of the main portal and disperse left and right across the street.",
+      "tags": [
+        "person",
+        "crowd",
+        "wide",
+        "walk",
+        "static-camera",
+        "bw",
+        "early-film"
+      ],
+      "demos": [
+        "object-detection",
+        "tracking",
+        "optical-flow"
+      ],
+      "in": 0.5,
+      "out": 7.5,
+      "file": "clips/01.webm",
+      "thumb": "clips/01.thumb.webp"
+    },
+    {
+      "n": 2,
+      "title": "Horse-drawn carriage exits courtyard",
+      "summary": "A two-horse carriage pulls out through the main gate as workers clear the doorway.",
+      "tags": [
+        "person",
+        "animal",
+        "vehicle",
+        "crowd",
+        "wide",
+        "static-camera",
+        "bw"
+      ],
+      "demos": [
+        "object-detection",
+        "tracking"
+      ],
+      "in": 25.0,
+      "out": 33.0,
+      "file": "clips/02.webm",
+      "thumb": "clips/02.thumb.webp"
+    }
+  ]
+}

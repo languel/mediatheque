@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#151515" />
+    <meta
+      name="description"
+      content="Mediathèque — personal public archive of teaching media: early film, chronophotography, GIFs, stills, audio, 3D, Gaussian splats, SVG and text."
+    />
+    <title>Mediathèque — Teaching Media Archive</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
+    ></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to archive</a>
+
+    <header class="site-header">
+      <div class="site-header__left">
+        <a class="wordmark" href="#/" data-nav-home aria-label="Mediathèque home">
+          <span class="wordmark__icon" aria-hidden="true">▦</span>
+          <span class="wordmark__title">Mediathèque</span>
+        </a>
+        <span class="site-header__count" id="header-count" aria-live="polite"></span>
+      </div>
+
+      <div class="site-header__center">
+        <div class="search-box">
+          <label for="search-input" class="sr-only">Search media, clips, tags, creators</label>
+          <input
+            id="search-input"
+            type="search"
+            placeholder="Search title, tags, demos, creators… (press /)"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <kbd class="search-kbd" aria-hidden="true">/</kbd>
+        </div>
+      </div>
+
+      <nav class="site-header__right" aria-label="Archive navigation">
+        <button type="button" class="nav-pill" id="btn-toggle-facets" aria-expanded="false">
+          Tags &amp; Demos
+        </button>
+        <a class="nav-pill" href="#/review" id="nav-review-link" title="Draft &amp; review queue">
+          Review <span id="review-badge" class="badge-count" hidden>0</span>
+        </a>
+        <a class="nav-pill" href="../llms.txt" data-llms-link target="_blank" rel="noopener">
+          llms.txt
+        </a>
+        <a class="nav-pill" href="../catalog.json" data-catalog-link target="_blank" rel="noopener">
+          JSON
+        </a>
+        <button
+          class="theme-toggle"
+          type="button"
+          id="theme-toggle"
+          aria-label="Toggle color theme"
+          title="Toggle dark/light theme"
+        >
+          ◐
+        </button>
+      </nav>
+    </header>
+
+    <main id="main-content" class="main-container">
+      <!-- GALLERY GRID VIEW -->
+      <section id="view-gallery" class="gallery-section">
+        <div class="filter-bar" role="region" aria-label="Filters and sorting">
+          <div class="filter-group" role="group" aria-label="Entry type">
+            <span class="filter-label">Show</span>
+            <button type="button" class="chip is-active" data-type-filter="both">Both</button>
+            <button type="button" class="chip" data-type-filter="item">Items</button>
+            <button type="button" class="chip" data-type-filter="clip">Clips</button>
+          </div>
+
+          <div class="filter-group" role="group" aria-label="Media kind" id="kind-chips">
+            <span class="filter-label">Kind</span>
+            <button type="button" class="chip is-active" data-kind-filter="all">All</button>
+            <button type="button" class="chip" data-kind-filter="video">Video</button>
+            <button type="button" class="chip" data-kind-filter="animation">GIF / Anim</button>
+            <button type="button" class="chip" data-kind-filter="image">Image</button>
+            <button type="button" class="chip" data-kind-filter="audio">Audio</button>
+            <button type="button" class="chip" data-kind-filter="model">3D</button>
+            <button type="button" class="chip" data-kind-filter="splat">Splat</button>
+            <button type="button" class="chip" data-kind-filter="vector">SVG</button>
+            <button type="button" class="chip" data-kind-filter="text">Text</button>
+          </div>
+
+          <div class="filter-group" role="group" aria-label="Rights filter">
+            <span class="filter-label">Rights</span>
+            <button type="button" class="chip is-active" data-rights-filter="all">All</button>
+            <button type="button" class="chip" data-rights-filter="public-domain">PD</button>
+            <button type="button" class="chip" data-rights-filter="cc">CC</button>
+            <button type="button" class="chip" data-rights-filter="other">Other</button>
+          </div>
+
+          <div class="filter-group filter-group--right">
+            <label for="sort-select" class="filter-label">Sort</label>
+            <select id="sort-select" class="sort-select">
+              <option value="title">Title (A–Z)</option>
+              <option value="date">Date of Work</option>
+              <option value="added">Recently Added</option>
+              <option value="duration">Duration</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Expandable Controlled Vocabulary Facet Drawer -->
+        <div id="facet-drawer" class="facet-drawer" hidden>
+          <div class="facet-drawer__inner" id="facet-drawer-content"></div>
+        </div>
+
+        <!-- Active Tag / Demo Filter Pills + Batch Selection Toolbar -->
+        <div class="sub-toolbar">
+          <div id="active-filters" class="active-filters"></div>
+          <div class="selection-bar">
+            <span id="selection-status" class="selection-status">0 selected</span>
+            <button type="button" class="btn-small" id="btn-select-filtered">Select visible</button>
+            <button type="button" class="btn-small" id="btn-clear-selection" hidden>Clear</button>
+            <button type="button" class="btn-small btn-small--primary" id="btn-download-zip">
+              Download ZIP + CREDITS.md
+            </button>
+          </div>
+        </div>
+
+        <div id="media-grid" class="media-grid" aria-live="polite"></div>
+      </section>
+
+      <!-- ITEM / CLIP DETAIL VIEW -->
+      <section id="view-detail" class="detail-section" hidden>
+        <div id="detail-root"></div>
+      </section>
+
+      <!-- REVIEW QUEUE VIEW (draft & review items) -->
+      <section id="view-review" class="review-section" hidden>
+        <div class="review-header">
+          <div>
+            <p class="eyebrow">Curation &amp; Provenance Gate</p>
+            <h1>Review Queue (`draft` &amp; `review`)</h1>
+            <p class="muted-copy">
+              Items stay in <code>draft</code> or <code>review</code> until their source URL, license status,
+              credit line, and analyzer proposals are verified. Only <code>published</code> items enter
+              <code>catalog.json</code>.
+            </p>
+          </div>
+          <a href="#/" class="btn-small">← Back to Published Gallery</a>
+        </div>
+        <div id="review-list" class="review-list"></div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="js/zip.js" defer></script>
+    <script src="js/main.js" defer></script>
+  </body>
+</html>

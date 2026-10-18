@@ -1,0 +1,128 @@
+{
+  "id": "tristan-tzara",
+  "title": "Portrait of Tristan Tzara (Robert Delaunay, 1923)",
+  "kind": "image",
+  "status": "published",
+  "summary": "Oil portrait of Dada poet Tristan Tzara wearing a concentric scarf, painted by Robert Delaunay, 1923.",
+  "description": "Robert Delaunay's 1923 Orphist portrait of Dada co-founder Tristan Tzara (oil on cardboard, Museo Nacional Centro de Arte Reina Sofía, Madrid). Strong chromatic contrast and geometric planes make it well suited for color palette extraction and neural style transfer demos.",
+  "tags": [
+    "person",
+    "single",
+    "upper-body",
+    "face",
+    "three-quarter",
+    "still",
+    "color",
+    "painting",
+    "portrait",
+    "archival"
+  ],
+  "keywords": [
+    "Tristan Tzara",
+    "Robert Delaunay",
+    "Dada",
+    "Orphism",
+    "1923",
+    "portrait"
+  ],
+  "collections": [
+    "painting"
+  ],
+  "demos": [
+    "color",
+    "style-transfer",
+    "img2img",
+    "face-mesh",
+    "texture"
+  ],
+  "creators": [
+    {
+      "name": "Robert Delaunay",
+      "role": "painter"
+    },
+    {
+      "name": "Tristan Tzara",
+      "role": "subject"
+    }
+  ],
+  "date": "1923",
+  "source": {
+    "url": "https://commons.wikimedia.org/wiki/File:Retrato_de_Tristan_Tzara_(Robert_Delaunay).jpg",
+    "origin": "https://www.museoreinasofia.es/en/collection/artwork/portrait-tristan-tzara",
+    "archive": "Museo Nacional Centro de Arte Reina Sofía / Wikimedia Commons",
+    "retrieved": "2026-10-17",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-old-70",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-old-70",
+    "credit": "Robert Delaunay, Portrait of Tristan Tzara, 1923. Museo Reina Sofía / Wikimedia Commons. Public domain.",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.webp",
+      "type": "image/webp",
+      "bytes": 447530,
+      "sha256": "cc40db42b7aa681475866305ca3b1fa9a61e590ebc21db77a907c2a2f8436bde",
+      "width": 1572,
+      "height": 2173
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 395098,
+      "sha256": "3368aa34b84079790eadc3049abf21663de724a3a4c0a88265d0057e95ce063e",
+      "width": 1572,
+      "height": 2173
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 37542,
+      "sha256": "3868d82c5ae6686db1635e96c66cbbe53a26bbf74e76582a3c9ad1f87bf36386",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.jpg",
+      "type": "image/jpeg",
+      "bytes": 388422,
+      "sha256": "f5993f7d36ebaf94354c19ace4a09d7768f153f95b8d6af6a1f76928954fc3eb",
+      "width": 1572,
+      "height": 2173,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://commons.wikimedia.org/wiki/File:Retrato_de_Tristan_Tzara_%28Robert_Delaunay%29.jpg",
+      "date": "2026-10-18",
+      "sha256": "f5993f7d36ebaf94354c19ace4a09d7768f153f95b8d6af6a1f76928954fc3eb"
+    },
+    {
+      "step": "derived",
+      "file": "media.webp",
+      "tool": "Pillow",
+      "args": "webp quality=90",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18"
+}

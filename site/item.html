@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#151515" />
+    <title>Item Detail — Mediathèque</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
+    ></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__left">
+        <a class="wordmark" href="index.html" aria-label="Mediathèque home">
+          <span class="wordmark__icon" aria-hidden="true">▦</span>
+          <span class="wordmark__title">Mediathèque</span>
+        </a>
+        <span class="site-header__count" id="header-count"></span>
+      </div>
+      <div class="site-header__center">
+        <div class="search-box">
+          <input
+            id="search-input"
+            type="search"
+            placeholder="Search archive… (press /)"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+      <nav class="site-header__right" aria-label="Archive navigation">
+        <a class="nav-pill" href="index.html">All Items</a>
+        <a class="nav-pill" href="../llms.txt" data-llms-link target="_blank" rel="noopener">llms.txt</a>
+        <a class="nav-pill" href="../catalog.json" data-catalog-link target="_blank" rel="noopener">JSON</a>
+        <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Toggle color theme">◐</button>
+      </nav>
+    </header>
+
+    <main id="main-content" class="main-container">
+      <section id="view-gallery" class="gallery-section" hidden>
+        <div id="media-grid" class="media-grid"></div>
+      </section>
+      <section id="view-detail" class="detail-section">
+        <div id="detail-root"></div>
+      </section>
+      <section id="view-review" class="review-section" hidden>
+        <div id="review-list" class="review-list"></div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="js/zip.js" defer></script>
+    <script src="js/main.js" defer></script>
+  </body>
+</html>

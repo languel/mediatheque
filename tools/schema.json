@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Mediathèque Item",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "kind",
+    "status",
+    "summary",
+    "tags",
+    "keywords",
+    "collections",
+    "demos",
+    "creators",
+    "source",
+    "rights",
+    "files",
+    "provenance",
+    "added",
+    "updated"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "title": { "type": "string", "minLength": 1 },
+    "kind": {
+      "type": "string",
+      "enum": ["video", "image", "animation", "audio", "model", "splat", "vector", "text", "dataset"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "review", "published", "withdrawn"]
+    },
+    "summary": { "type": "string" },
+    "description": { "type": "string" },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "proposed_tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "keywords": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "collections": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "demos": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "creators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "role": { "type": "string" }
+        }
+      }
+    },
+    "date": { "type": ["string", "null"] },
+    "derived_from": { "type": ["string", "null"] },
+    "plate": { "type": ["string", "null"] },
+    "sequence": { "type": ["string", "null"] },
+    "source": {
+      "type": "object",
+      "required": ["url", "origin", "archive", "retrieved", "via"],
+      "properties": {
+        "url": { "type": ["string", "null"] },
+        "origin": { "type": ["string", "null"] },
+        "archive": { "type": ["string", "null"] },
+        "retrieved": { "type": ["string", "null"] },
+        "via": { "type": ["string", "null"] }
+      }
+    },
+    "rights": {
+      "type": "object",
+      "required": ["status", "license", "license_url", "credit", "notes"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["public-domain", "cc", "licensed", "fair-use-teaching", "unknown"]
+        },
+        "license": { "type": ["string", "null"] },
+        "license_url": { "type": ["string", "null"] },
+        "credit": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    },
+    "files": {
+      "type": "object",
+      "properties": {
+        "media": { "type": "object" },
+        "proxy": { "type": "object" },
+        "thumb": { "type": "object" },
+        "poster": { "type": "object" },
+        "original": { "type": "object" },
+        "sheet": { "type": "object" },
+        "frames": { "type": "object" }
+      }
+    },
+    "clips": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["n", "title", "in", "out"],
+        "properties": {
+          "n": { "type": "integer", "minimum": 1 },
+          "title": { "type": "string" },
+          "summary": { "type": "string" },
+          "tags": { "type": "array", "items": { "type": "string" } },
+          "demos": { "type": "array", "items": { "type": "string" } },
+          "in": { "type": "number", "minimum": 0 },
+          "out": { "type": "number", "minimum": 0 },
+          "file": { "type": ["string", "null"] },
+          "thumb": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "proposed": { "type": "object" },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step", "date"],
+        "properties": {
+          "step": { "type": "string" },
+          "date": { "type": "string" }
+        }
+      }
+    },
+    "added": { "type": "string" },
+    "updated": { "type": "string" }
+  }
+}

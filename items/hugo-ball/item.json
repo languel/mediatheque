@@ -1,0 +1,126 @@
+{
+  "id": "hugo-ball",
+  "title": "Hugo Ball at Cabaret Voltaire (Zurich, 1916)",
+  "kind": "image",
+  "status": "published",
+  "summary": "Hugo Ball in cylindrical cardboard shaman costume reciting the sound poem 'Karawane', Zurich, 1916.",
+  "description": "Iconic Dada photograph of Hugo Ball performing his phonetic sound poem 'Karawane' in a rigid cylindrical cardboard costume and Marcel Janco backdrop at Cabaret Voltaire, Zurich, June 1916.",
+  "tags": [
+    "person",
+    "single",
+    "fullbody",
+    "front",
+    "pose",
+    "still",
+    "bw",
+    "high-contrast",
+    "photo",
+    "archival",
+    "landscape-format"
+  ],
+  "keywords": [
+    "Hugo Ball",
+    "Cabaret Voltaire",
+    "Dada",
+    "Karawane",
+    "Zurich",
+    "1916",
+    "sound poetry"
+  ],
+  "collections": [
+    "photo"
+  ],
+  "demos": [
+    "pose",
+    "segmentation",
+    "img2img",
+    "typography",
+    "generative-text"
+  ],
+  "creators": [
+    {
+      "name": "Hugo Ball",
+      "role": "performer"
+    }
+  ],
+  "date": "1916-06-23",
+  "source": {
+    "url": "https://commons.wikimedia.org/wiki/File:Hugo_Ball_at_Cabaret_Voltaire_(1916).jpg",
+    "origin": "https://en.wikipedia.org/wiki/Cabaret_Voltaire_(Zurich)",
+    "archive": "Wikimedia Commons",
+    "retrieved": "2026-10-17",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-old-100",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-old-100",
+    "credit": "Hugo Ball at Cabaret Voltaire, Zurich, 1916. Public domain.",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.webp",
+      "type": "image/webp",
+      "bytes": 18694,
+      "sha256": "f5c52dabefb206ca9d668433d3b4748ab7b6bfeff682b125a3045e6e54b699c9",
+      "width": 686,
+      "height": 386
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 16616,
+      "sha256": "628df3d601a677dfef1f473ec980cf8b2e3b378968be58d61e573f5acd7675d1",
+      "width": 686,
+      "height": 386
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 14878,
+      "sha256": "9061acd2bde98b553e20bc487eca44b4d7d67a030d53d5674e51b55be50d979d",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.jpg",
+      "type": "image/jpeg",
+      "bytes": 19949,
+      "sha256": "3572f7398c276719487c750679330860f1c3d45cce39b262a7cb6029e99162b9",
+      "width": 686,
+      "height": 386,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.30808-6/641284856_10242184098485535_3371146088587358429_n.jpg",
+      "date": "2026-10-18",
+      "sha256": "3572f7398c276719487c750679330860f1c3d45cce39b262a7cb6029e99162b9"
+    },
+    {
+      "step": "derived",
+      "file": "media.webp",
+      "tool": "Pillow",
+      "args": "webp quality=90",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18"
+}

@@ -1,0 +1,22 @@
+site_title: "Mediathèque"
+site_subtitle: "Teaching media archive — film, animation, stills, sound, 3D, splats, vector & text"
+base_url: "https://languel.github.io/mediatheque"
+raw_base_url: "https://raw.githubusercontent.com/languel/mediatheque/main"
+jsdelivr_base_url: "https://cdn.jsdelivr.net/gh/languel/mediatheque@main"
+repo: "languel/mediatheque"
+keep_original_max_bytes: 26214400  # 25 MB threshold for keeping original.* alongside web derivative
+hard_max_bytes: 52428800           # 50 MB GitHub warning limit enforced by check.py
+default_analyzers:
+  - probe
+  - gif
+  - scenes
+  - flow
+  - audio
+  - render
+  - text
+proxy:
+  width: 768
+  fps: 15
+  crf: 34
+thumb:
+  size: 480

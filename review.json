@@ -1,0 +1,441 @@
+[
+  {
+    "id": "birds",
+    "type": "item",
+    "title": "Seagulls Over Sunset Horizon (Video Sample)",
+    "kind": "video",
+    "status": "draft",
+    "summary": "Flock of gulls flying across a low sun over water.",
+    "tags": [
+      "animal",
+      "landscape",
+      "wide",
+      "movement",
+      "color",
+      "silhouette",
+      "short",
+      "contemporary",
+      "landscape-format",
+      "static-camera",
+      "silent"
+    ],
+    "keywords": [
+      "birds",
+      "seagulls",
+      "sunset",
+      "flock",
+      "water"
+    ],
+    "collections": [
+      "video-random"
+    ],
+    "demos": [
+      "object-detection",
+      "optical-flow",
+      "tracking"
+    ],
+    "date": "2026",
+    "creators": [],
+    "creator_roles": [],
+    "rights": {
+      "status": "unknown",
+      "license": null,
+      "license_url": null
+    },
+    "credit": "",
+    "source_url": null,
+    "archive": null,
+    "thumb": "items/birds/thumb.webp",
+    "poster": "items/birds/poster.webp",
+    "media": "items/birds/media.mp4",
+    "video_media": "items/birds/media.mp4",
+    "proxy": "items/birds/proxy.webm",
+    "original": "items/birds/original.mp4",
+    "width": 432,
+    "height": 240,
+    "duration": 20.085,
+    "fps": 25.05,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "bytes": 1358537,
+    "url": "https://languel.github.io/mediatheque/items/birds/media.mp4",
+    "added": "2026-10-18",
+    "proposed": {
+      "flow": {
+        "analyzer": "flow",
+        "version": "1.0",
+        "confidence": 0.85,
+        "date": "2026-10-18",
+        "tags": [],
+        "mean_motion": 7.55,
+        "border_motion": 4.61
+      }
+    },
+    "proposed_tags": [],
+    "notes": "Source URL and license unverified; kept in draft."
+  },
+  {
+    "id": "giphy-1",
+    "type": "item",
+    "title": "Oskar Schlemmer — Triadisches Ballett (Disc Costumes Loop)",
+    "kind": "animation",
+    "status": "draft",
+    "summary": "Two dancers in metallic disc costumes from Oskar Schlemmer's Bauhaus Triadic Ballet (1970 reconstruction).",
+    "tags": [
+      "person",
+      "pair",
+      "fullbody",
+      "side",
+      "dance",
+      "movement",
+      "plain-bg",
+      "color",
+      "short",
+      "loop-friendly",
+      "found-gif",
+      "square",
+      "silent",
+      "tinted",
+      "seamless-loop",
+      "slow",
+      "static-camera"
+    ],
+    "keywords": [
+      "Oskar Schlemmer",
+      "Triadic Ballet",
+      "Bauhaus",
+      "costume",
+      "geometry"
+    ],
+    "collections": [
+      "earlyfilm"
+    ],
+    "demos": [
+      "pose",
+      "body-zones",
+      "segmentation"
+    ],
+    "date": "1922",
+    "creators": [
+      "Oskar Schlemmer"
+    ],
+    "creator_roles": [
+      {
+        "name": "Oskar Schlemmer",
+        "role": "choreographer"
+      }
+    ],
+    "rights": {
+      "status": "fair-use-teaching",
+      "license": "Fair-Use-Teaching",
+      "license_url": null
+    },
+    "credit": "Oskar Schlemmer, Das Triadische Ballett (1922; 1970 Bavaria Atelier reconstruction).",
+    "source_url": "https://en.wikipedia.org/wiki/Triadic_Ballet",
+    "archive": "Bavaria Atelier (1970 reconstruction)",
+    "thumb": "items/giphy-1/thumb.webp",
+    "poster": "items/giphy-1/poster.webp",
+    "media": "items/giphy-1/original.gif",
+    "video_media": "items/giphy-1/media.mp4",
+    "proxy": "items/giphy-1/proxy.webm",
+    "original": "items/giphy-1/original.gif",
+    "width": 400,
+    "height": 400,
+    "duration": 3.49,
+    "fps": 9.74,
+    "frames": 34,
+    "triangles": null,
+    "splats": null,
+    "bytes": 897460,
+    "url": "https://languel.github.io/mediatheque/items/giphy-1/original.gif",
+    "added": "2026-10-18",
+    "proposed": {
+      "gif": {
+        "analyzer": "gif",
+        "version": "1.0",
+        "confidence": 0.95,
+        "date": "2026-10-18",
+        "tags": []
+      },
+      "flow": {
+        "analyzer": "flow",
+        "version": "1.0",
+        "confidence": 0.85,
+        "date": "2026-10-18",
+        "tags": [],
+        "mean_motion": 3.44,
+        "border_motion": 2.34
+      }
+    },
+    "proposed_tags": [],
+    "notes": "1970 film reconstruction remains under broadcast copyright; kept in draft."
+  },
+  {
+    "id": "metastaseis2",
+    "type": "item",
+    "title": "Xenakis — Metastaseis Glissandi Graph (mm. 317–333, 1953–54)",
+    "kind": "animation",
+    "status": "draft",
+    "summary": "Iannis Xenakis's ruled-surface pitch vs. time graphic score for string glissandi in Metastaseis.",
+    "tags": [
+      "abstract",
+      "text-content",
+      "bw",
+      "plain-bg",
+      "portrait",
+      "archival",
+      "short",
+      "silent"
+    ],
+    "keywords": [
+      "Iannis Xenakis",
+      "Metastaseis",
+      "glissandi",
+      "ruled surface",
+      "graphic score",
+      "1954"
+    ],
+    "collections": [
+      "graphics-random"
+    ],
+    "demos": [
+      "sonification",
+      "plotter",
+      "midi"
+    ],
+    "date": "1954",
+    "creators": [
+      "Iannis Xenakis"
+    ],
+    "creator_roles": [
+      {
+        "name": "Iannis Xenakis",
+        "role": "composer"
+      }
+    ],
+    "rights": {
+      "status": "fair-use-teaching",
+      "license": "Fair-Use-Teaching",
+      "license_url": null
+    },
+    "credit": "Iannis Xenakis, Metastaseis (1953–54), mm. 317–333 graphic score, in Musique. Architecture (Casterman, 1976, p. 8).",
+    "source_url": "https://medium.com/@risingskies2/project-3-sound-ambience-iannis-xenakis-65d62dc4b640",
+    "archive": "Archival scan (fair-use teaching)",
+    "thumb": "items/metastaseis2/thumb.webp",
+    "poster": "items/metastaseis2/poster.webp",
+    "media": "items/metastaseis2/original.gif",
+    "video_media": "items/metastaseis2/media.mp4",
+    "proxy": "items/metastaseis2/proxy.webm",
+    "original": "items/metastaseis2/original.gif",
+    "width": 703,
+    "height": 1300,
+    "duration": 0.1,
+    "fps": 10.0,
+    "frames": 1,
+    "triangles": null,
+    "splats": null,
+    "bytes": 188013,
+    "url": "https://languel.github.io/mediatheque/items/metastaseis2/original.gif",
+    "added": "2026-10-18",
+    "proposed": {
+      "gif": {
+        "analyzer": "gif",
+        "version": "1.0",
+        "confidence": 0.95,
+        "date": "2026-10-18",
+        "tags": []
+      }
+    },
+    "proposed_tags": [],
+    "notes": "Kept in draft (classroom teaching reference only; under copyright of Estate of Iannis Xenakis)."
+  },
+  {
+    "id": "muted-b",
+    "type": "item",
+    "title": "Short Motion Study (muted_b)",
+    "kind": "video",
+    "status": "draft",
+    "summary": "Short unattributed motion test clip.",
+    "tags": [
+      "movement",
+      "short",
+      "silent",
+      "contemporary",
+      "landscape-format",
+      "tinted",
+      "static-camera"
+    ],
+    "keywords": [
+      "test clip"
+    ],
+    "collections": [
+      "graphics-random"
+    ],
+    "demos": [
+      "optical-flow"
+    ],
+    "date": "2026",
+    "creators": [],
+    "creator_roles": [],
+    "rights": {
+      "status": "unknown",
+      "license": null,
+      "license_url": null
+    },
+    "credit": "",
+    "source_url": null,
+    "archive": null,
+    "thumb": "items/muted-b/thumb.webp",
+    "poster": "items/muted-b/poster.webp",
+    "media": "items/muted-b/media.mp4",
+    "video_media": "items/muted-b/media.mp4",
+    "proxy": "items/muted-b/proxy.webm",
+    "original": "items/muted-b/original.mp4",
+    "width": 480,
+    "height": 270,
+    "duration": 5.0,
+    "fps": 30.0,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "bytes": 50813,
+    "url": "https://languel.github.io/mediatheque/items/muted-b/media.mp4",
+    "added": "2026-10-18",
+    "proposed": {
+      "flow": {
+        "analyzer": "flow",
+        "version": "1.0",
+        "confidence": 0.85,
+        "date": "2026-10-18",
+        "tags": [
+          "still"
+        ],
+        "mean_motion": 0.7,
+        "border_motion": 0.02
+      }
+    },
+    "proposed_tags": [],
+    "notes": "Source URL and license unverified; kept in draft."
+  },
+  {
+    "id": "street-view-mh",
+    "type": "item",
+    "title": "Street View — Memorial Hall Exterior",
+    "kind": "image",
+    "status": "draft",
+    "summary": "Panoramic street-level view outside Memorial Hall on Pratt Institute campus.",
+    "tags": [
+      "cityscape",
+      "color",
+      "panorama",
+      "landscape-format",
+      "contemporary",
+      "equirect"
+    ],
+    "keywords": [
+      "Street View",
+      "Memorial Hall",
+      "Pratt Institute",
+      "Brooklyn",
+      "panorama"
+    ],
+    "collections": [
+      "panorama"
+    ],
+    "demos": [
+      "projection",
+      "depth"
+    ],
+    "date": "2026",
+    "creators": [],
+    "creator_roles": [],
+    "rights": {
+      "status": "unknown",
+      "license": null,
+      "license_url": null
+    },
+    "credit": "",
+    "source_url": null,
+    "archive": null,
+    "thumb": "items/street-view-mh/thumb.webp",
+    "poster": "items/street-view-mh/poster.webp",
+    "media": "items/street-view-mh/media.webp",
+    "video_media": "items/street-view-mh/media.webp",
+    "proxy": null,
+    "original": "items/street-view-mh/original.jpg",
+    "width": 4096,
+    "height": 2048,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "bytes": 920288,
+    "url": "https://languel.github.io/mediatheque/items/street-view-mh/media.webp",
+    "added": "2026-10-18",
+    "proposed": {},
+    "proposed_tags": [],
+    "notes": "Google Street View screenshot; kept in draft pending own-capture replacement."
+  },
+  {
+    "id": "streetview-pratt-cannon",
+    "type": "item",
+    "title": "Street View — Pratt Campus Cannon Lawn",
+    "kind": "image",
+    "status": "draft",
+    "summary": "Panoramic capture of the Pratt Institute main lawn and historic cannon.",
+    "tags": [
+      "landscape",
+      "cityscape",
+      "color",
+      "panorama",
+      "landscape-format",
+      "contemporary",
+      "equirect"
+    ],
+    "keywords": [
+      "Pratt Institute",
+      "cannon",
+      "campus",
+      "panorama"
+    ],
+    "collections": [
+      "panorama"
+    ],
+    "demos": [
+      "projection",
+      "depth"
+    ],
+    "date": "2026",
+    "creators": [],
+    "creator_roles": [],
+    "rights": {
+      "status": "unknown",
+      "license": null,
+      "license_url": null
+    },
+    "credit": "",
+    "source_url": null,
+    "archive": null,
+    "thumb": "items/streetview-pratt-cannon/thumb.webp",
+    "poster": "items/streetview-pratt-cannon/poster.webp",
+    "media": "items/streetview-pratt-cannon/media.webp",
+    "video_media": "items/streetview-pratt-cannon/media.webp",
+    "proxy": null,
+    "original": "items/streetview-pratt-cannon/original.png",
+    "width": 1664,
+    "height": 832,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "bytes": 611186,
+    "url": "https://languel.github.io/mediatheque/items/streetview-pratt-cannon/media.webp",
+    "added": "2026-10-18",
+    "proposed": {},
+    "proposed_tags": [],
+    "notes": "Google Street View screenshot; kept in draft pending own-capture replacement."
+  }
+]

@@ -1,0 +1,412 @@
+{
+  "id": "sandow-1894",
+  "title": "Sandow (Edison Kinetoscope, 1894)",
+  "kind": "video",
+  "status": "published",
+  "summary": "Eugen Sandow flexing in the Black Maria studio, directed by William K. L. Dickson, 1894.",
+  "description": "Prussian strongman Eugen Sandow performs a sequence of bodybuilding poses in Thomas Edison's Black Maria studio in West Orange, New Jersey, filmed by William K. L. Dickson in May 1894. High-contrast full-figure framing against a plain dark backdrop makes this a canonical test clip for pose estimation, foreground segmentation, and body-zone mapping.",
+  "tags": [
+    "person",
+    "single",
+    "fullbody",
+    "front",
+    "static-camera",
+    "plain-bg",
+    "movement",
+    "pose",
+    "slow",
+    "bw",
+    "silent",
+    "loop-friendly",
+    "early-film",
+    "archival",
+    "landscape-format",
+    "cuts",
+    "fast"
+  ],
+  "keywords": [
+    "Eugen Sandow",
+    "strongman",
+    "muscle",
+    "Edison",
+    "Black Maria",
+    "Kinetoscope",
+    "Dickson"
+  ],
+  "collections": [
+    "earlyfilm"
+  ],
+  "demos": [
+    "pose",
+    "segmentation",
+    "body-zones",
+    "background-subtraction"
+  ],
+  "creators": [
+    {
+      "name": "William K. L. Dickson",
+      "role": "director"
+    },
+    {
+      "name": "Eugen Sandow",
+      "role": "performer"
+    }
+  ],
+  "date": "1894-05-18",
+  "source": {
+    "url": "https://commons.wikimedia.org/wiki/File:Sandow_(1894).webm",
+    "origin": "https://www.loc.gov/item/00694118/",
+    "archive": "Library of Congress / Wikimedia Commons",
+    "retrieved": "2026-10-17",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US",
+    "credit": "William K. L. Dickson / Edison Manufacturing Co., 1894. Library of Congress. Public domain.",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.webm",
+      "type": "video/webm",
+      "bytes": 14532918,
+      "sha256": "3d8f80d6d0dbab213d5d0f6c8196536f244f2f02f5ea749dabc32e1f1abc60a0",
+      "duration": 40.417,
+      "width": 1280,
+      "height": 960,
+      "fps": 24.0,
+      "motion_curve": [
+        6.8,
+        7.2,
+        12.21,
+        8.42,
+        11.79,
+        10.18,
+        9.32,
+        23.73,
+        16.82,
+        18.72,
+        34.25,
+        34.23,
+        32.42,
+        20.43,
+        38.86,
+        36.69
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 5491012,
+      "sha256": "2ef9a2a029cae3a02c0338ef333f2850d5557c242a554d3253b57ccdad4c02e6"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 20258,
+      "sha256": "28bc9fd6fdd0b9f78afb2390a66688278da02b38f432dea7c72ac5657e45d1b1",
+      "width": 1280,
+      "height": 960
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 8186,
+      "sha256": "953cc90fe2eb828c2821f4c1616556a4f350d40a91de793dac0aa2b116478ab2",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.webm",
+      "type": "video/webm",
+      "bytes": 75718833,
+      "sha256": "0d54854d3a116eca84315c7439ef9f9485ea4f1c1992f55047df2f199d963fb6",
+      "kept": false,
+      "url": "https://commons.wikimedia.org/wiki/File:Sandow_%281894%29.webm"
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://commons.wikimedia.org/wiki/File:Sandow_%281894%29.webm",
+      "date": "2026-10-18",
+      "sha256": "0d54854d3a116eca84315c7439ef9f9485ea4f1c1992f55047df2f199d963fb6"
+    },
+    {
+      "step": "derived",
+      "file": "media.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='min(1280,iw)':-2 -c:v libvpx-vp9 -crf 33 -b:v 0 -row-mt 1 -cpu-used 4 -c:a libopus -b:a 96k",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf fps=15,scale='min(768,iw)':-2 -c:v libvpx-vp9 -crf 35 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "ffmpeg 9.0.2 + Pillow",
+      "args": "-ss 4.04 -frames:v 1 -> webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "scenes 1.0",
+      "model": "ffmpeg-scene+silence",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "audio 1.0",
+      "model": "ffmpeg-pcm+onset-bpm",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "clips/01.webm",
+      "tool": "ffmpeg",
+      "args": "-ss 2.0 -t 5.5 (clip 01)",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "clips/02.webm",
+      "tool": "ffmpeg",
+      "args": "-ss 12.0 -t 6.5 (clip 02)",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "clips/03.webm",
+      "tool": "ffmpeg",
+      "args": "-ss 24.0 -t 7.0 (clip 03)",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "proposed": {
+    "scenes": {
+      "analyzer": "scenes",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-18",
+      "clips": [
+        {
+          "n": 1,
+          "title": "Clip 01 (0.0s–13.8s)",
+          "summary": "Segment 1 from 0.0s to 13.8s.",
+          "tags": [],
+          "demos": [],
+          "in": 0.0,
+          "out": 13.75,
+          "file": "clips/01.webm",
+          "thumb": "clips/01.thumb.webp"
+        },
+        {
+          "n": 2,
+          "title": "Clip 02 (13.8s–18.9s)",
+          "summary": "Segment 2 from 13.8s to 18.9s.",
+          "tags": [],
+          "demos": [],
+          "in": 13.75,
+          "out": 18.92,
+          "file": "clips/02.webm",
+          "thumb": "clips/02.thumb.webp"
+        },
+        {
+          "n": 3,
+          "title": "Clip 03 (18.9s–22.0s)",
+          "summary": "Segment 3 from 18.9s to 22.0s.",
+          "tags": [],
+          "demos": [],
+          "in": 18.92,
+          "out": 22.0,
+          "file": "clips/03.webm",
+          "thumb": "clips/03.thumb.webp"
+        },
+        {
+          "n": 4,
+          "title": "Clip 04 (22.0s–24.6s)",
+          "summary": "Segment 4 from 22.0s to 24.6s.",
+          "tags": [],
+          "demos": [],
+          "in": 22.0,
+          "out": 24.62,
+          "file": "clips/04.webm",
+          "thumb": "clips/04.thumb.webp"
+        },
+        {
+          "n": 5,
+          "title": "Clip 05 (24.6s–27.2s)",
+          "summary": "Segment 5 from 24.6s to 27.2s.",
+          "tags": [],
+          "demos": [],
+          "in": 24.62,
+          "out": 27.25,
+          "file": "clips/05.webm",
+          "thumb": "clips/05.thumb.webp"
+        },
+        {
+          "n": 6,
+          "title": "Clip 06 (27.2s–31.0s)",
+          "summary": "Segment 6 from 27.2s to 31.0s.",
+          "tags": [],
+          "demos": [],
+          "in": 27.25,
+          "out": 30.96,
+          "file": "clips/06.webm",
+          "thumb": "clips/06.thumb.webp"
+        },
+        {
+          "n": 7,
+          "title": "Clip 07 (31.0s–34.8s)",
+          "summary": "Segment 7 from 31.0s to 34.8s.",
+          "tags": [],
+          "demos": [],
+          "in": 30.96,
+          "out": 34.75,
+          "file": "clips/07.webm",
+          "thumb": "clips/07.thumb.webp"
+        },
+        {
+          "n": 8,
+          "title": "Clip 08 (34.8s–40.4s)",
+          "summary": "Segment 8 from 34.8s to 40.4s.",
+          "tags": [],
+          "demos": [],
+          "in": 34.75,
+          "out": 40.42,
+          "file": "clips/08.webm",
+          "thumb": "clips/08.thumb.webp"
+        }
+      ],
+      "scene_cuts": [
+        13.75,
+        14.88,
+        18.92,
+        19.96,
+        22.0,
+        23.08,
+        24.62,
+        25.71,
+        27.25,
+        28.29,
+        30.96,
+        34.75
+      ]
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-18",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 19.78,
+      "border_motion": 22.12
+    }
+  },
+  "clips": [
+    {
+      "n": 1,
+      "title": "Front double biceps",
+      "summary": "Sandow faces the camera and raises both arms into a double-biceps pose.",
+      "tags": [
+        "person",
+        "single",
+        "fullbody",
+        "front",
+        "arms-raised",
+        "pose",
+        "slow",
+        "plain-bg",
+        "bw"
+      ],
+      "demos": [
+        "pose",
+        "segmentation",
+        "body-zones",
+        "loop"
+      ],
+      "in": 2.0,
+      "out": 7.5,
+      "file": "clips/01.webm",
+      "thumb": "clips/01.thumb.webp"
+    },
+    {
+      "n": 2,
+      "title": "Chest expansion and side triceps",
+      "summary": "Sandow turns three-quarter to demonstrate chest expansion and arm musculature.",
+      "tags": [
+        "person",
+        "single",
+        "fullbody",
+        "three-quarter",
+        "pose",
+        "gesture",
+        "plain-bg",
+        "bw"
+      ],
+      "demos": [
+        "pose",
+        "segmentation",
+        "body-zones"
+      ],
+      "in": 12.0,
+      "out": 18.5,
+      "file": "clips/02.webm",
+      "thumb": "clips/02.thumb.webp"
+    },
+    {
+      "n": 3,
+      "title": "Rear lat spread and bow",
+      "summary": "Sandow turns his back to flex his dorsal muscles before turning to bow.",
+      "tags": [
+        "person",
+        "single",
+        "fullbody",
+        "back",
+        "pose",
+        "movement",
+        "plain-bg",
+        "bw"
+      ],
+      "demos": [
+        "pose",
+        "segmentation",
+        "tracking"
+      ],
+      "in": 24.0,
+      "out": 31.0,
+      "file": "clips/03.webm",
+      "thumb": "clips/03.thumb.webp"
+    }
+  ]
+}

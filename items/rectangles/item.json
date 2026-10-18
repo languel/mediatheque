@@ -1,0 +1,198 @@
+{
+  "id": "rectangles",
+  "title": "Primary Rectangles Palette Study (GIF)",
+  "kind": "animation",
+  "status": "published",
+  "summary": "Minimal multi-frame geometric color rectangle study for palette quantization demos.",
+  "description": "Minimalist geometric GIF composed of flat color rectangles for testing palette extraction, indexed color tables, and crisp pixel-art scaling.",
+  "tags": [
+    "abstract",
+    "pattern",
+    "color",
+    "plain-bg",
+    "short",
+    "loop-friendly",
+    "low-palette",
+    "pixel-art",
+    "contemporary",
+    "landscape-format",
+    "silent",
+    "movement",
+    "fast"
+  ],
+  "keywords": [
+    "rectangles",
+    "geometry",
+    "palette",
+    "indexed color",
+    "test pattern"
+  ],
+  "collections": [
+    "graphics-random"
+  ],
+  "demos": [
+    "color",
+    "loop",
+    "texture"
+  ],
+  "creators": [
+    {
+      "name": "Mediathèque Teaching Lab",
+      "role": "author"
+    }
+  ],
+  "date": "2026",
+  "source": {
+    "url": "https://languel.github.io/mediatheque/items/rectangles/original.gif",
+    "origin": null,
+    "archive": "Mediathèque Test Suite",
+    "retrieved": "2026-09-17",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "credit": "Primary Rectangles study, Mediathèque (CC0 1.0).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.mp4",
+      "type": "video/mp4",
+      "bytes": 2008,
+      "sha256": "53ce504878c6667cb1a1462002275121ea29e5b686682144cf40df551bda5ee4",
+      "duration": 1.2,
+      "width": 400,
+      "height": 300,
+      "fps": 2.5,
+      "frames": 3,
+      "frame_delays_ms": [
+        400,
+        400,
+        400
+      ],
+      "variable_delays": false,
+      "loop_count": 0,
+      "disposal": [
+        2
+      ],
+      "palette": 1,
+      "phash": "0000000000000000",
+      "motion_curve": [
+        0.0,
+        121.0,
+        0.0,
+        74.0,
+        0.0
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 1285,
+      "sha256": "be115406c869fcdcc720905e3b0d9ee182988ccfcb3fd07c5c7c20b6b17b88a6"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 302,
+      "sha256": "d09b3cc49d9c7cf4adf805941537a947b9c5d5c8fa4ee0b9438434c81b8f30ec",
+      "width": 400,
+      "height": 300
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 502,
+      "sha256": "a83a857ed3ccd4d9cf0c10d9c5f7dc9d4dc7861594218a832b070f087381fd2c",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.gif",
+      "type": "image/gif",
+      "bytes": 1699,
+      "sha256": "f84bd8e811ce8b0211c712178e815dc9f9d089bcf2b6b58410cf1ae12ccbc090",
+      "width": 400,
+      "height": 300,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "rectangles.gif",
+      "date": "2026-10-18",
+      "sha256": "f84bd8e811ce8b0211c712178e815dc9f9d089bcf2b6b58410cf1ae12ccbc090"
+    },
+    {
+      "step": "derived",
+      "file": "media.mp4",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(iw/2)*2):max(2,trunc(ih/2)*2)' -c:v libx264 -pix_fmt yuv420p -crf 23 -movflags +faststart -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(min(768,iw)/2)*2):max(2,trunc(ih/2)*2)' -c:v libvpx-vp9 -pix_fmt yuva420p -crf 32 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "middle-frame webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "gif 1.0",
+      "model": "pillow-gif-walk+dhash",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "proposed": {
+    "gif": {
+      "analyzer": "gif",
+      "version": "1.0",
+      "confidence": 0.95,
+      "date": "2026-10-18",
+      "tags": []
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-18",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 39.0,
+      "border_motion": 39.0
+    }
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "id": "giphy-1",
+  "title": "Oskar Schlemmer — Triadisches Ballett (Disc Costumes Loop)",
+  "kind": "animation",
+  "status": "draft",
+  "summary": "Two dancers in metallic disc costumes from Oskar Schlemmer's Bauhaus Triadic Ballet (1970 reconstruction).",
+  "description": "Short loop from the 1970 Bavaria Atelier film reconstruction of Oskar Schlemmer's 1922 Bauhaus 'Triadisches Ballett' showing two performers in circular metallic torso discs against black.",
+  "tags": [
+    "person",
+    "pair",
+    "fullbody",
+    "side",
+    "dance",
+    "movement",
+    "plain-bg",
+    "color",
+    "short",
+    "loop-friendly",
+    "found-gif",
+    "square",
+    "silent",
+    "tinted",
+    "seamless-loop",
+    "slow",
+    "static-camera"
+  ],
+  "keywords": [
+    "Oskar Schlemmer",
+    "Triadic Ballet",
+    "Bauhaus",
+    "costume",
+    "geometry"
+  ],
+  "collections": [
+    "earlyfilm"
+  ],
+  "demos": [
+    "pose",
+    "body-zones",
+    "segmentation"
+  ],
+  "creators": [
+    {
+      "name": "Oskar Schlemmer",
+      "role": "choreographer"
+    }
+  ],
+  "date": "1922",
+  "source": {
+    "url": null,
+    "origin": "https://en.wikipedia.org/wiki/Triadic_Ballet",
+    "archive": "Bavaria Atelier (1970 reconstruction)",
+    "retrieved": "2026-06-12",
+    "via": null
+  },
+  "rights": {
+    "status": "fair-use-teaching",
+    "license": "Fair-Use-Teaching",
+    "license_url": null,
+    "credit": "Oskar Schlemmer, Das Triadische Ballett (1922; 1970 Bavaria Atelier reconstruction).",
+    "notes": "1970 film reconstruction remains under broadcast copyright; kept in draft."
+  },
+  "files": {
+    "media": {
+      "path": "media.mp4",
+      "type": "video/mp4",
+      "bytes": 155082,
+      "sha256": "409f0fe77eb1b9821155649b94f4cf995075d509286dea283fc98aafdae20766",
+      "duration": 3.49,
+      "width": 400,
+      "height": 400,
+      "fps": 9.74,
+      "frames": 34,
+      "frame_delays_ms": [
+        150,
+        120,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        120
+      ],
+      "variable_delays": true,
+      "loop_count": 0,
+      "disposal": [
+        1
+      ],
+      "palette": 9625,
+      "phash": "0000868dcd86e0e0",
+      "motion_curve": [
+        1.86,
+        3.26,
+        3.66,
+        4.85,
+        5.1,
+        5.28,
+        3.77,
+        0.09,
+        0.09,
+        3.86,
+        5.2,
+        5.12,
+        4.79,
+        3.62,
+        3.18,
+        2.89
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 107210,
+      "sha256": "1a2fb8cf4e82c6f3e985ea81f34c4c840dc171a78141fa9a946e05b462480fdc"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 20008,
+      "sha256": "d189b86e62793d6eb3a50b73cc55020d3505ae0eb35eae4791cc8be18abdba88",
+      "width": 400,
+      "height": 400
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 15528,
+      "sha256": "a2fc1954e1a1c5bc23dc64314099d881dcf1b14bc0832e689d70938d34f9954f",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.gif",
+      "type": "image/gif",
+      "bytes": 897460,
+      "sha256": "897de9fec8f2db43133efbde41863e3a05cf61524d4e4ede9521ff3a1dec5569",
+      "width": 400,
+      "height": 400,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "giphy-1.gif",
+      "date": "2026-10-18",
+      "sha256": "897de9fec8f2db43133efbde41863e3a05cf61524d4e4ede9521ff3a1dec5569"
+    },
+    {
+      "step": "derived",
+      "file": "media.mp4",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(iw/2)*2):max(2,trunc(ih/2)*2)' -c:v libx264 -pix_fmt yuv420p -crf 23 -movflags +faststart -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(min(768,iw)/2)*2):max(2,trunc(ih/2)*2)' -c:v libvpx-vp9 -pix_fmt yuva420p -crf 32 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "middle-frame webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "gif 1.0",
+      "model": "pillow-gif-walk+dhash",
+      "date": "2026-10-18"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-18"
+    }
+  ],
+  "added": "2026-10-18",
+  "updated": "2026-10-18",
+  "proposed": {
+    "gif": {
+      "analyzer": "gif",
+      "version": "1.0",
+      "confidence": 0.95,
+      "date": "2026-10-18",
+      "tags": []
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-18",
+      "tags": [],
+      "mean_motion": 3.44,
+      "border_motion": 2.34
+    }
+  }
+}
