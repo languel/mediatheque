@@ -391,6 +391,7 @@
               <div class="badge-group">
                 ${isClip ? `<span class="card-badge card-badge--clip">Clip ${String(entry.n).padStart(2, "0")}</span>` : ""}
                 <span class="card-badge">${escapeHtml(entry.kind)}</span>
+                ${entry.aspect_ratio ? `<span class="card-badge">${escapeHtml(entry.aspect_ratio)}</span>` : ""}
                 ${dur ? `<span class="card-badge">${escapeHtml(dur)}</span>` : ""}
                 ${
                   rightsLabel
@@ -627,6 +628,68 @@
     return data;
   }
 
+  // Aspect ratio helper
+  function computeAspectRatio(w, h) {
+    if (!w || !h || isNaN(w) || isNaN(h)) return null;
+    const width = Number(w);
+    const height = Number(h);
+    if (width <= 0 || height <= 0) return null;
+
+    const ratio = width / height;
+
+    function gcd(a, b) {
+      return b === 0 ? a : gcd(b, a % b);
+    }
+    const g = gcd(Math.round(width), Math.round(height));
+    const simpW = Math.round(width / g);
+    const simpH = Math.round(height / g);
+
+    const standards = [
+      { r: 1.0, label: "1:1", name: "Square" },
+      { r: 4 / 3, label: "4:3", name: "Classic 4:3" },
+      { r: 3 / 4, label: "3:4", name: "Portrait 3:4" },
+      { r: 16 / 9, label: "16:9", name: "Widescreen 16:9" },
+      { r: 9 / 16, label: "9:16", name: "Vertical 9:16" },
+      { r: 3 / 2, label: "3:2", name: "35mm Photo 3:2" },
+      { r: 2 / 3, label: "2:3", name: "Portrait 2:3" },
+      { r: 5 / 4, label: "5:4", name: "Standard 5:4" },
+      { r: 4 / 5, label: "4:5", name: "Social 4:5" },
+      { r: 21 / 9, label: "21:9", name: "Ultrawide 21:9" },
+      { r: 1.85, label: "1.85:1", name: "Cinema Flat" },
+      { r: 2.39, label: "2.39:1", name: "Anamorphic Scope" },
+    ];
+
+    let matched = null;
+    for (const std of standards) {
+      if (Math.abs(ratio - std.r) / std.r <= 0.02) {
+        matched = std;
+        break;
+      }
+    }
+
+    const orientation = ratio > 1.05 ? "Landscape" : ratio < 0.95 ? "Portrait" : "Square";
+    let ratioStr = "";
+    if (matched) {
+      ratioStr = matched.label;
+    } else if (simpW <= 24 && simpH <= 24) {
+      ratioStr = `${simpW}:${simpH}`;
+    } else if (ratio >= 1.0) {
+      ratioStr = `${+ratio.toFixed(2)}:1`;
+    } else {
+      ratioStr = `1:${+(1 / ratio).toFixed(2)}`;
+    }
+
+    return {
+      width,
+      height,
+      ratio: +ratio.toFixed(4),
+      ratioStr,
+      orientation,
+      display: `${ratioStr} · ${orientation} (${width}×${height})`,
+      cssRatio: `${width} / ${height}`,
+    };
+  }
+
   function buildStudentSnippets(item, entry, activeClip, customLoop) {
     const title = activeClip ? `${item.title} — ${activeClip.title}` : item.title;
     const credit = (item.rights && item.rights.credit) || "";
@@ -640,6 +703,31 @@
     const loopFrag = hasCustomLoop
       ? `#t=${customLoop.inSec.toFixed(2)},${customLoop.outSec.toFixed(2)}`
       : "";
+
+    const fMeta =
+      (item.files && (item.files.media || item.files.original || item.files.poster)) || {};
+    const origMeta = (item.files && item.files.original) || {};
+    const rawW = Number(
+      fMeta.width || origMeta.width || (entry && entry.width) || (activeClip && activeClip.width) || 0
+    );
+    const rawH = Number(
+      fMeta.height || origMeta.height || (entry && entry.height) || (activeClip && activeClip.height) || 0
+    );
+    const ar = computeAspectRatio(rawW, rawH);
+
+    let canvasW = 640;
+    let canvasH = 480;
+    if (ar) {
+      const maxDim = 960;
+      if (ar.width <= maxDim && ar.height <= maxDim) {
+        canvasW = ar.width;
+        canvasH = ar.height;
+      } else {
+        const scale = maxDim / Math.max(ar.width, ar.height);
+        canvasW = Math.round(ar.width * scale);
+        canvasH = Math.round(ar.height * scale);
+      }
+    }
 
     const streamRel = activeClip
       ? activeClip.file
@@ -663,9 +751,11 @@
 
     let htmlSnippet = `<!--\n  Source: ${title}\n  Credit: ${credit}\n  URL: ${srcUrl}\n-->\n`;
     if (item.kind === "video" || activeClip || hasCustomLoop) {
-      htmlSnippet += `<video src="${videoStreamUrl}" crossorigin="anonymous" controls loop muted playsinline></video>`;
+      const arStyle = ar ? ` style="max-width: 100%; height: auto; aspect-ratio: ${ar.cssRatio};"` : ` style="max-width: 100%; height: auto;"`;
+      htmlSnippet += `<video src="${videoStreamUrl}" width="${canvasW}" height="${canvasH}"${arStyle} crossorigin="anonymous" controls loop muted playsinline></video>`;
     } else if (item.kind === "animation" || item.kind === "image" || item.kind === "vector") {
-      htmlSnippet += `<img src="${streamUrl}" crossorigin="anonymous" alt="${title}" />`;
+      const arStyle = ar ? ` style="max-width: 100%; height: auto; aspect-ratio: ${ar.cssRatio};"` : ` style="max-width: 100%; height: auto;"`;
+      htmlSnippet += `<img src="${streamUrl}" width="${canvasW}" height="${canvasH}"${arStyle} crossorigin="anonymous" alt="${title}" />`;
     } else if (item.kind === "audio") {
       htmlSnippet += `<audio src="${streamUrl}" crossorigin="anonymous" controls></audio>`;
     } else if (item.kind === "model") {
@@ -676,12 +766,15 @@
 
     let p5Snippet = commentHeader;
     if (item.kind === "video" || item.kind === "animation" || activeClip) {
+      const arComment = ar
+        ? `// Canvas sized to media aspect ratio: ${ar.ratioStr} (${canvasW}×${canvasH} from ${ar.width}×${ar.height})\n  `
+        : "";
       if (hasCustomLoop) {
         const inS = customLoop.inSec.toFixed(2);
         const outS = customLoop.outSec.toFixed(2);
-        p5Snippet += `let vid;\nconst LOOP_IN = ${inS}, LOOP_OUT = ${outS};\nfunction setup() {\n  createCanvas(768, 576);\n  vid = createVideo("${videoStreamUrl}");\n  vid.elt.crossOrigin = "anonymous";\n  vid.volume(0);\n  vid.play();\n  vid.hide();\n}\nfunction draw() {\n  if (vid.time() < LOOP_IN || vid.time() >= LOOP_OUT) vid.time(LOOP_IN);\n  image(vid, 0, 0, width, height);\n}`;
+        p5Snippet += `let vid;\nconst LOOP_IN = ${inS}, LOOP_OUT = ${outS};\nfunction setup() {\n  ${arComment}createCanvas(${canvasW}, ${canvasH});\n  vid = createVideo("${videoStreamUrl}");\n  vid.elt.crossOrigin = "anonymous";\n  vid.volume(0);\n  vid.play();\n  vid.hide();\n}\nfunction draw() {\n  if (vid.time() < LOOP_IN || vid.time() >= LOOP_OUT) vid.time(LOOP_IN);\n  image(vid, 0, 0, width, height);\n}`;
       } else {
-        p5Snippet += `let vid;\nfunction setup() {\n  createCanvas(768, 576);\n  vid = createVideo("${videoStreamUrl}");\n  vid.elt.crossOrigin = "anonymous";\n  vid.loop();\n  vid.hide();\n}\nfunction draw() {\n  image(vid, 0, 0, width, height);\n}`;
+        p5Snippet += `let vid;\nfunction setup() {\n  ${arComment}createCanvas(${canvasW}, ${canvasH});\n  vid = createVideo("${videoStreamUrl}");\n  vid.elt.crossOrigin = "anonymous";\n  vid.loop();\n  vid.hide();\n}\nfunction draw() {\n  image(vid, 0, 0, width, height);\n}`;
       }
     } else if (item.kind === "image" || item.kind === "vector") {
       p5Snippet += `let img;\nfunction preload() {\n  img = loadImage("${streamUrl}");\n}\nfunction setup() {\n  createCanvas(img.width, img.height);\n  image(img, 0, 0);\n}`;
@@ -697,7 +790,10 @@
     } else if (item.kind === "splat") {
       threeSnippet += `import { SplatMesh } from "@sparkjsdev/spark";\n\nconst splat = new SplatMesh({ url: "${streamUrl}" });\nscene.add(splat);`;
     } else if (item.kind === "video" || item.kind === "animation") {
-      threeSnippet += `import * as THREE from "three";\n\nconst video = document.createElement("video");\nvideo.crossOrigin = "anonymous";\nvideo.src = "${videoStreamUrl}";\nvideo.loop = true;\nvideo.muted = true;\nvideo.play();\nconst texture = new THREE.VideoTexture(video);`;
+      const aspectVal = ar ? ar.ratio : 1.333;
+      const planeW = aspectVal >= 1.0 ? 4.0 : +(4.0 * aspectVal).toFixed(3);
+      const planeH = aspectVal >= 1.0 ? +(4.0 / aspectVal).toFixed(3) : 4.0;
+      threeSnippet += `import * as THREE from "three";\n\nconst video = document.createElement("video");\nvideo.crossOrigin = "anonymous";\nvideo.src = "${videoStreamUrl}";\nvideo.loop = true;\nvideo.muted = true;\nvideo.play();\nconst texture = new THREE.VideoTexture(video);\n\n// Plane geometry matching media aspect ratio (${ar ? ar.display : "4:3"})\nconst geometry = new THREE.PlaneGeometry(${planeW}, ${planeH});\nconst material = new THREE.MeshBasicMaterial({ map: texture });\nconst mesh = new THREE.Mesh(geometry, material);\nscene.add(mesh);`;
     } else {
       threeSnippet += `import * as THREE from "three";\n\nconst texture = new THREE.TextureLoader().load("${streamUrl}");`;
     }
@@ -1263,6 +1359,16 @@
         .join(", ")}</p>`;
     }
 
+    const fMeta = files.media || {};
+    const origMeta = files.original || {};
+    const itemW = Number(
+      fMeta.width || origMeta.width || (catEntry && catEntry.width) || (activeClip && activeClip.width) || 0
+    );
+    const itemH = Number(
+      fMeta.height || origMeta.height || (catEntry && catEntry.height) || (activeClip && activeClip.height) || 0
+    );
+    const itemAr = computeAspectRatio(itemW, itemH);
+
     const snippets = buildStudentSnippets(item, catEntry, activeClip);
     const creatorsStr =
       (item.creators || []).map((c) => (c.role ? `${c.name} (${c.role})` : c.name)).join(", ") || "—";
@@ -1310,36 +1416,17 @@
           ${item.description ? `<div class="detail-description">${escapeHtml(item.description)}</div>` : ""}
           ${lineageHtml}
 
-          <!-- Credit & Quick Copy Box -->
-          <div class="credit-box">
-            <div class="credit-box__header">
-              <span class="eyebrow">Required Credit &amp; Stream URLs</span>
-              <div class="viewer-controls__group">
-                <span
-                  class="info-pill"
-                  tabindex="0"
-                  data-tooltip="Why is Stream URL highlighted? Stream URL is the primary full-fidelity asset (${escapeHtml(
-                    streamFileLabel
-                  )}) recommended for display, p5.js/Three.js rendering, and Genereti 2D stream. Proxy URL (${escapeHtml(
-      proxyFileLabel
-    )}) is a downscaled 768px / 15fps WebM built specifically for fast computer-vision & ML inference (MediaPipe, optical flow)."
-                >Stream vs Proxy? ⓘ</span>
-                <span class="card-badge card-badge--pd">${escapeHtml(
-                  (item.rights && item.rights.license) || (item.rights && item.rights.status) || "unknown"
-                )}</span>
-              </div>
+          <!-- Stream & Proxy URLs Box -->
+          <div class="panel-box">
+            <div class="panel-box__title" style="display:flex; justify-content:space-between; align-items:center;">
+              <span>Stream &amp; Proxy URLs</span>
+              <span
+                class="info-pill"
+                tabindex="0"
+                data-tooltip="Proxy URL is a downscaled 768px / 15fps WebM built specifically for fast computer-vision &amp; ML inference (MediaPipe, optical flow). Stream URL is the full-resolution asset for visual rendering."
+              >Stream vs Proxy? ⓘ</span>
             </div>
-            <p class="credit-box__text">${escapeHtml((item.rights && item.rights.credit) || "Credit pending")}</p>
-            <div class="copy-grid" style="margin-top: 0.65rem;">
-              <button
-                type="button"
-                class="btn-small btn-small--primary"
-                data-copy-text="${escapeHtml(streamUrl)}"
-                data-copy-label="Stream URL"
-                data-tooltip="Primary Stream URL (Highlighted Default — ${escapeHtml(
-                  streamFileLabel
-                )}): Full-resolution, native-framerate delivery file. Highlighted because you should use this URL for visual playback, HTML embeds, p5.js / Three.js textures, and Genereti ꘇ 2D stream."
-              >Copy Stream URL</button>
+            <div class="copy-grid">
               ${
                 proxyUrl
                   ? `<button
@@ -1350,22 +1437,44 @@
                       data-tooltip="CV / Perception Proxy URL (${escapeHtml(
                         proxyFileLabel
                       )} — 768px max edge, 15 fps VP9 WebM, no audio): Lightweight derivative normalized for real-time computer vision (MediaPipe pose/hand tracking, optical flow, frame differencing) where fast decoding and small bandwidth beat full visual resolution."
-                    >Copy Proxy URL</button>`
+                    >Proxy URL</button>`
                   : ""
               }
               <button
                 type="button"
                 class="btn-small"
-                data-copy-text="${escapeHtml((item.rights && item.rights.credit) || "")}"
-                data-copy-label="Credit line"
-                data-tooltip="Copy the required attribution credit line for your code comments or caption."
-              >Copy Credit</button>
+                data-copy-text="${escapeHtml(streamUrl)}"
+                data-copy-label="Stream URL"
+                data-tooltip="Stream URL (${escapeHtml(
+                  streamFileLabel
+                )}): Full-resolution, native-framerate delivery file. Use this URL for visual playback, HTML embeds, p5.js / Three.js textures, and Genereti ꘇ 2D stream."
+              >Stream URL</button>
               <a
                 class="btn-small"
                 href="${escapeHtml(resolveAssetUrl(activeMediaRel))}"
                 download="${escapeHtml(downloadFilename)}"
                 data-tooltip="Download the media file (${escapeHtml(downloadFilename)}) to your machine."
               >Download Media</a>
+            </div>
+          </div>
+
+          <!-- Required Credit Box -->
+          <div class="credit-box">
+            <div class="credit-box__header">
+              <span class="eyebrow">Required Credit &amp; Rights</span>
+              <span class="card-badge card-badge--pd">${escapeHtml(
+                (item.rights && item.rights.license) || (item.rights && item.rights.status) || "unknown"
+              )}</span>
+            </div>
+            <p class="credit-box__text">${escapeHtml((item.rights && item.rights.credit) || "Credit pending")}</p>
+            <div class="copy-grid" style="margin-top: 0.65rem;">
+              <button
+                type="button"
+                class="btn-small"
+                data-copy-text="${escapeHtml((item.rights && item.rights.credit) || "")}"
+                data-copy-label="Credit line"
+                data-tooltip="Copy the required attribution credit line for your code comments or caption."
+              >Credit</button>
               <button
                 type="button"
                 class="btn-small"
@@ -1375,7 +1484,22 @@
             </div>
           </div>
 
-          <!-- Metadata Facts -->
+          <!-- Student "Use This" Panel -->
+          <div class="panel-box">
+            <div class="panel-box__title">Use This in Class (CORS-Ready Snippets with Attribution)</div>
+            <div class="snippet-tabs">
+              <button type="button" class="chip chip--small is-active" data-snippet-tab="p5">p5.js</button>
+              <button type="button" class="chip chip--small" data-snippet-tab="html">HTML</button>
+              <button type="button" class="chip chip--small" data-snippet-tab="three">Three.js</button>
+              <button type="button" class="chip chip--small" data-snippet-tab="genereti">ꘇ 2D stream</button>
+              <button type="button" class="chip chip--small" data-snippet-tab="credits">Credits</button>
+              <button type="button" class="btn-small" id="btn-download-comfy-json" hidden style="margin-left:auto;">Download .json</button>
+              <button type="button" class="btn-small" id="btn-copy-snippet" style="margin-left:auto;">Copy Snippet</button>
+            </div>
+            <pre class="snippet-pre" id="snippet-code">${escapeHtml(snippets.p5)}</pre>
+          </div>
+
+          <!-- Metadata Facts (Creators & Tags) -->
           <dl class="facts-dl">
             <div>
               <dt>Creators</dt>
@@ -1384,8 +1508,12 @@
             <div>
               <dt>Date</dt>
               <dd>${escapeHtml(item.date || "—")}${
-      item.plate ? ` · Plate ${escapeHtml(item.plate)}` : ""
-    }</dd>
+                item.plate ? ` · Plate ${escapeHtml(item.plate)}` : ""
+              }</dd>
+            </div>
+            <div>
+              <dt>Aspect Ratio</dt>
+              <dd>${itemAr ? escapeHtml(itemAr.display) : "—"}</dd>
             </div>
             <div>
               <dt>Source</dt>
@@ -1436,26 +1564,23 @@
               </dd>
             </div>
           </dl>
+        </div>
+      </div>
 
-          <!-- Student "Use This" Panel -->
-          <div class="panel-box">
-            <div class="panel-box__title">Use This in Class (CORS-Ready Snippets with Attribution)</div>
-            <div class="snippet-tabs">
-              <button type="button" class="chip chip--small is-active" data-snippet-tab="p5">p5.js</button>
-              <button type="button" class="chip chip--small" data-snippet-tab="html">HTML</button>
-              <button type="button" class="chip chip--small" data-snippet-tab="three">Three.js</button>
-              <button type="button" class="chip chip--small" data-snippet-tab="genereti">ꘇ 2D stream</button>
-              <button type="button" class="chip chip--small" data-snippet-tab="credits">Credits</button>
-              <button type="button" class="btn-small" id="btn-download-comfy-json" hidden style="margin-left:auto;">Download .json</button>
-              <button type="button" class="btn-small" id="btn-copy-snippet" style="margin-left:auto;">Copy Snippet</button>
-            </div>
-            <pre class="snippet-pre" id="snippet-code">${escapeHtml(snippets.p5)}</pre>
-          </div>
-
-          <!-- Files Table -->
-          <div class="panel-box">
-            <div class="panel-box__title">Files &amp; Derivatives</div>
+      <!-- Detail Bottom Section (Full-width across bottom) -->
+      <div class="detail-bottom">
+        <!-- Files & Derivatives Table -->
+        <div class="panel-box">
+          <div class="panel-box__title">Files &amp; Derivatives</div>
+          <div class="data-table-wrap">
             <table class="data-table">
+              <colgroup>
+                <col style="width: 14%;">
+                <col style="width: 26%;">
+                <col style="width: 24%;">
+                <col style="width: 14%;">
+                <col style="width: 22%;">
+              </colgroup>
               <thead>
                 <tr>
                   <th>Role</th>
@@ -1473,20 +1598,24 @@
                     const href = isKept
                       ? resolveAssetUrl(`items/${item.id}/${fobj.path}`)
                       : fobj.url || "";
+                    const fAr = computeAspectRatio(fobj.width, fobj.height);
                     const dims =
-                      fobj.width && fobj.height ? `${fobj.width}×${fobj.height}` : "";
+                      fobj.width && fobj.height
+                        ? `${fobj.width}×${fobj.height}${fAr ? ` (${fAr.ratioStr})` : ""}`
+                        : "";
                     const dur = fobj.duration ? ` ${fobj.duration}s` : "";
+                    const detailsStr = (dims + dur).trim() || fobj.type || "—";
                     return `
                     <tr>
                       <td>${escapeHtml(role)}</td>
                       <td>${
                         href
-                          ? `<a href="${escapeHtml(href)}" download style="text-decoration:underline;">${escapeHtml(
+                          ? `<a href="${escapeHtml(href)}" download class="link-truncate">${escapeHtml(
                               fobj.path || "external"
                             )}</a>`
                           : `${escapeHtml(fobj.path || "—")} (source-only)`
                       }</td>
-                      <td>${escapeHtml((dims + dur).trim() || fobj.type || "—")}</td>
+                      <td>${escapeHtml(detailsStr)}</td>
                       <td>${formatBytes(fobj.bytes)}</td>
                       <td><code>${escapeHtml((fobj.sha256 || "").slice(0, 10))}…</code></td>
                     </tr>
@@ -1496,11 +1625,19 @@
               </tbody>
             </table>
           </div>
+        </div>
 
-          <!-- Provenance Table -->
-          <div class="panel-box">
-            <div class="panel-box__title">Provenance &amp; Derivation Chain</div>
+        <!-- Provenance Table -->
+        <div class="panel-box">
+          <div class="panel-box__title">Provenance &amp; Derivation Chain</div>
+          <div class="data-table-wrap">
             <table class="data-table">
+              <colgroup>
+                <col style="width: 14%;">
+                <col style="width: 28%;">
+                <col style="width: 44%;">
+                <col style="width: 14%;">
+              </colgroup>
               <thead>
                 <tr>
                   <th>Step</th>
@@ -1511,16 +1648,23 @@
               </thead>
               <tbody>
                 ${(item.provenance || [])
-                  .map(
-                    (p) => `
-                  <tr>
-                    <td>${escapeHtml(p.step)}</td>
-                    <td>${escapeHtml(p.tool || p.from || "—")}</td>
-                    <td><code>${escapeHtml(p.args || p.model || (p.sha256 ? p.sha256.slice(0, 12) : ""))}</code></td>
-                    <td>${escapeHtml(p.date || "—")}</td>
-                  </tr>
-                `
-                  )
+                  .map((p) => {
+                    const srcVal = p.tool || p.from || "—";
+                    const isUrl = typeof srcVal === "string" && (srcVal.startsWith("http://") || srcVal.startsWith("https://"));
+                    const paramVal = p.args || p.model || (p.sha256 ? p.sha256.slice(0, 12) : "") || "—";
+                    return `
+                    <tr>
+                      <td>${escapeHtml(p.step)}</td>
+                      <td>${
+                        isUrl
+                          ? `<a href="${escapeHtml(srcVal)}" target="_blank" rel="noopener" class="link-truncate">${escapeHtml(srcVal)} ↗</a>`
+                          : escapeHtml(srcVal)
+                      }</td>
+                      <td><code class="code-wrap">${escapeHtml(paramVal)}</code></td>
+                      <td>${escapeHtml(p.date || "—")}</td>
+                    </tr>
+                  `;
+                  })
                   .join("")}
               </tbody>
             </table>

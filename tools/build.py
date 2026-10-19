@@ -162,6 +162,46 @@ def ensure_clip_files(item_dir: Path, item: dict[str, Any]) -> bool:
     return changed
 
 
+def format_aspect_ratio_str(w: Any, h: Any) -> str | None:
+    if not w or not h:
+        return None
+    try:
+        wf = float(w)
+        hf = float(h)
+        if wf <= 0 or hf <= 0:
+            return None
+    except Exception:
+        return None
+
+    import math
+
+    val = wf / hf
+    standards = [
+        (1.0, "1:1"),
+        (4 / 3, "4:3"),
+        (3 / 4, "3:4"),
+        (16 / 9, "16:9"),
+        (9 / 16, "9:16"),
+        (3 / 2, "3:2"),
+        (2 / 3, "2:3"),
+        (5 / 4, "5:4"),
+        (4 / 5, "4:5"),
+        (21 / 9, "21:9"),
+        (1.85, "1.85:1"),
+        (2.39, "2.39:1"),
+    ]
+    for r_val, r_label in standards:
+        if abs(val - r_val) / r_val <= 0.02:
+            return r_label
+    g = math.gcd(int(round(wf)), int(round(hf)))
+    simp_w, simp_h = int(round(wf)) // g, int(round(hf)) // g
+    if simp_w <= 24 and simp_h <= 24:
+        return f"{simp_w}:{simp_h}"
+    if val >= 1.0:
+        return f"{round(val, 2)}:1"
+    return f"1:{round(1 / val, 2)}"
+
+
 def compact_item_entry(item: dict[str, Any], base_url: str) -> dict[str, Any]:
     item_id = item["id"]
     files = item.get("files", {})
@@ -181,6 +221,9 @@ def compact_item_entry(item: dict[str, Any], base_url: str) -> dict[str, Any]:
         if (item.get("kind") == "animation" and orig_rel and orig_rel.endswith(".gif"))
         else media_rel
     )
+
+    entry_w = media_info.get("width") or orig_info.get("width")
+    entry_h = media_info.get("height") or orig_info.get("height")
 
     entry: dict[str, Any] = {
         "id": item_id,
@@ -214,8 +257,9 @@ def compact_item_entry(item: dict[str, Any], base_url: str) -> dict[str, Any]:
             if orig_rel
             else orig_info.get("url")
         ),
-        "width": media_info.get("width"),
-        "height": media_info.get("height"),
+        "width": entry_w,
+        "height": entry_h,
+        "aspect_ratio": format_aspect_ratio_str(entry_w, entry_h),
         "duration": media_info.get("duration"),
         "fps": media_info.get("fps"),
         "frames": media_info.get("frames"),
@@ -298,6 +342,10 @@ def compact_clip_entry(item: dict[str, Any], clip: dict[str, Any], base_url: str
         "duration": duration,
         "width": parent_files.get("media", {}).get("width"),
         "height": parent_files.get("media", {}).get("height"),
+        "aspect_ratio": format_aspect_ratio_str(
+            parent_files.get("media", {}).get("width"),
+            parent_files.get("media", {}).get("height"),
+        ),
         "bytes": clip_bytes,
         "thumb": thumb_path_str,
         "media": media_path_str,
