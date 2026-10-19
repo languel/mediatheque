@@ -426,7 +426,8 @@
                 type="button"
                 class="card-copy-btn"
                 data-copy-url="${escapeHtml(streamUrl)}"
-                title="Copy stream URL"
+                data-tooltip="Copy Primary Stream URL: Full-fidelity, CORS-enabled web delivery file for HTML, p5.js, Three.js, or Genereti."
+                title="Copy Primary Stream URL"
               >
                 Copy URL
               </button>
@@ -436,6 +437,184 @@
       `;
       })
       .join("");
+  }
+
+  // =========================================================================
+  // Seamless Loop Finder & A/B Seam Comparison (ported from ~/dev/slopscore)
+  // =========================================================================
+  function frameDifference(a, b, channels = 4, step = 1) {
+    const n = Math.min(a.length, b.length);
+    let sq = 0;
+    let abs = 0;
+    let count = 0;
+    const stride = channels * step;
+    for (let i = 0; i + 2 < n; i += stride) {
+      const dr = a[i] - b[i];
+      const dg = a[i + 1] - b[i + 1];
+      const db = a[i + 2] - b[i + 2];
+      sq += dr * dr + dg * dg + db * db;
+      abs += Math.abs(dr) + Math.abs(dg) + Math.abs(db);
+      count += 3;
+    }
+    const mse = count ? sq / (count * 255 * 255) : 1;
+    const mad = count ? abs / (count * 255) : 1;
+    const match = Math.max(0, Math.min(100, (1 - mad) * 100));
+    return { mse, mad, match };
+  }
+
+  async function autoMatchLoop(
+    grab,
+    {
+      inSec,
+      outSec,
+      duration = Infinity,
+      window: scanWin = 1.0,
+      step = 1 / 15,
+      minLength = 0.25,
+      channels = 4,
+      refineIn = true,
+      onProgress,
+    } = {}
+  ) {
+    const candidates = [];
+    const cache = new Map();
+    const get = async (t) => {
+      const k = t.toFixed(3);
+      if (!cache.has(k)) cache.set(k, await grab(t));
+      return cache.get(k);
+    };
+    const score = async (i, o) => {
+      const r = frameDifference(await get(i), await get(o), channels, 1);
+      const c = { inSec: +i.toFixed(3), outSec: +o.toFixed(3), ...r };
+      candidates.push(c);
+      return c;
+    };
+
+    let best = await score(inSec, outSec);
+    const outLo = Math.max(inSec + minLength, outSec - scanWin);
+    const outHi = Math.min(duration, outSec + scanWin);
+    const totalSteps =
+      Math.max(1, Math.ceil((outHi - outLo) / step)) +
+      (refineIn ? Math.max(1, Math.ceil((2 * scanWin) / step)) : 0);
+    let done = 0;
+    for (let o = outLo; o <= outHi + 1e-9; o += step) {
+      const c = await score(inSec, o);
+      if (c.mse < best.mse) best = c;
+      if (onProgress) onProgress(++done / totalSteps, best);
+    }
+    if (refineIn) {
+      const inLo = Math.max(0, best.inSec - scanWin * 0.5);
+      const inHi = Math.min(best.outSec - minLength, best.inSec + scanWin * 0.5);
+      for (let i = inLo; i <= inHi + 1e-9; i += step) {
+        const c = await score(i, best.outSec);
+        if (c.mse < best.mse) best = c;
+        if (onProgress) onProgress(++done / totalSteps, best);
+      }
+    }
+    candidates.sort((x, y) => x.mse - y.mse);
+    return {
+      inSec: best.inSec,
+      outSec: best.outSec,
+      match: best.match,
+      mse: best.mse,
+      candidates: candidates.slice(0, 8),
+    };
+  }
+
+  const probeVideoCache = new Map();
+  async function getProbeVideo(src) {
+    if (probeVideoCache.has(src)) return probeVideoCache.get(src);
+    const v = document.createElement("video");
+    v.crossOrigin = "anonymous";
+    v.muted = true;
+    v.playsInline = true;
+    v.preload = "auto";
+    v.src = src;
+    await new Promise((resolve) => {
+      let settled = false;
+      const done = () => {
+        if (!settled) {
+          settled = true;
+          resolve();
+        }
+      };
+      v.onloadeddata = done;
+      v.onerror = done;
+      setTimeout(done, 800);
+    });
+    probeVideoCache.set(src, v);
+    return v;
+  }
+
+  async function grabVideoFrame(videoSrc, timeSec, targetCanvas, { width = 96, height = 54 } = {}) {
+    if (!videoSrc) {
+      return { width, height, data: new Uint8ClampedArray(width * height * 4) };
+    }
+    const probe = await getProbeVideo(videoSrc);
+    const targetTime = Math.max(0, Math.min(probe.duration || timeSec, timeSec));
+    if (Math.abs((probe.currentTime || 0) - targetTime) > 0.005) {
+      await new Promise((resolve) => {
+        let settled = false;
+        const done = () => {
+          if (!settled) {
+            settled = true;
+            resolve();
+          }
+        };
+        probe.onseeked = done;
+        probe.onerror = done;
+        try {
+          probe.currentTime = targetTime;
+        } catch (_e) {
+          done();
+        }
+        setTimeout(done, 250);
+      });
+    }
+
+    if (targetCanvas) {
+      const cw = probe.videoWidth || 480;
+      const ch = probe.videoHeight || 360;
+      if (targetCanvas.width !== cw) targetCanvas.width = cw;
+      if (targetCanvas.height !== ch) targetCanvas.height = ch;
+      const tCtx = targetCanvas.getContext("2d");
+      try {
+        tCtx.drawImage(probe, 0, 0, cw, ch);
+      } catch (_e) {
+        // ignore CORS/seek transient
+      }
+    }
+
+    const sampleCanvas = document.createElement("canvas");
+    sampleCanvas.width = width;
+    sampleCanvas.height = height;
+    const sCtx = sampleCanvas.getContext("2d");
+    try {
+      sCtx.drawImage(probe, 0, 0, width, height);
+      const img = sCtx.getImageData(0, 0, width, height);
+      return { width, height, data: img.data };
+    } catch (_e) {
+      return { width, height, data: new Uint8ClampedArray(width * height * 4) };
+    }
+  }
+
+  function compareCanvases(canvasA, canvasB, { width = 96, height = 54 } = {}) {
+    if (!canvasA || !canvasB || !canvasA.width || !canvasB.width) {
+      return { mse: 0, mad: 0, match: 100 };
+    }
+    const cA = document.createElement("canvas");
+    cA.width = width;
+    cA.height = height;
+    const cB = document.createElement("canvas");
+    cB.width = width;
+    cB.height = height;
+    const ctxA = cA.getContext("2d");
+    const ctxB = cB.getContext("2d");
+    ctxA.drawImage(canvasA, 0, 0, width, height);
+    ctxB.drawImage(canvasB, 0, 0, width, height);
+    const dataA = ctxA.getImageData(0, 0, width, height).data;
+    const dataB = ctxB.getImageData(0, 0, width, height).data;
+    return frameDifference(dataA, dataB, 4, 1);
   }
 
   // Fetch full item.json for detail view
@@ -448,33 +627,43 @@
     return data;
   }
 
-  function buildStudentSnippets(item, entry, activeClip) {
+  function buildStudentSnippets(item, entry, activeClip, customLoop) {
     const title = activeClip ? `${item.title} — ${activeClip.title}` : item.title;
     const credit = (item.rights && item.rights.credit) || "";
     const srcUrl = (item.source && (item.source.url || item.source.origin)) || "";
+    const hasCustomLoop =
+      customLoop &&
+      typeof customLoop.inSec === "number" &&
+      typeof customLoop.outSec === "number" &&
+      (customLoop.inSec > 0.01 ||
+        (customLoop.duration && customLoop.outSec < customLoop.duration - 0.02));
+    const loopFrag = hasCustomLoop
+      ? `#t=${customLoop.inSec.toFixed(2)},${customLoop.outSec.toFixed(2)}`
+      : "";
+
     const streamRel = activeClip
       ? activeClip.file
-        ? `items/${item.id}/${activeClip.file}`
+        ? `items/${item.id}/${activeClip.file}${loopFrag}`
         : `items/${item.id}/${item.files.media.path}#t=${activeClip.in},${activeClip.out}`
-      : item.kind === "animation" && item.files.original && item.files.original.kept
+      : item.kind === "animation" && item.files.original && item.files.original.kept && !hasCustomLoop
       ? `items/${item.id}/${item.files.original.path}`
-      : `items/${item.id}/${item.files.media.path}`;
+      : `items/${item.id}/${item.files.media.path}${loopFrag}`;
     const streamUrl = resolveAbsoluteUrl(streamRel);
     const videoStreamUrl = resolveAbsoluteUrl(
-      activeClip && activeClip.file
+      (activeClip && activeClip.file
         ? `items/${item.id}/${activeClip.file}`
-        : `items/${item.id}/${item.files.media.path}`
+        : `items/${item.id}/${item.files.media.path}`) + loopFrag
     );
     const proxyUrl =
       item.files && item.files.proxy
-        ? resolveAbsoluteUrl(`items/${item.id}/${item.files.proxy.path}`)
+        ? resolveAbsoluteUrl(`items/${item.id}/${item.files.proxy.path}${loopFrag}`)
         : videoStreamUrl;
 
     const commentHeader = `// Source: ${title}\n// Credit: ${credit}\n// Archive: ${srcUrl}\n`;
 
     let htmlSnippet = `<!--\n  Source: ${title}\n  Credit: ${credit}\n  URL: ${srcUrl}\n-->\n`;
-    if (item.kind === "video" || activeClip) {
-      htmlSnippet += `<video src="${streamUrl}" crossorigin="anonymous" controls loop muted playsinline></video>`;
+    if (item.kind === "video" || activeClip || hasCustomLoop) {
+      htmlSnippet += `<video src="${videoStreamUrl}" crossorigin="anonymous" controls loop muted playsinline></video>`;
     } else if (item.kind === "animation" || item.kind === "image" || item.kind === "vector") {
       htmlSnippet += `<img src="${streamUrl}" crossorigin="anonymous" alt="${title}" />`;
     } else if (item.kind === "audio") {
@@ -487,7 +676,13 @@
 
     let p5Snippet = commentHeader;
     if (item.kind === "video" || item.kind === "animation" || activeClip) {
-      p5Snippet += `let vid;\nfunction setup() {\n  createCanvas(768, 576);\n  vid = createVideo("${videoStreamUrl}");\n  vid.elt.crossOrigin = "anonymous";\n  vid.loop();\n  vid.hide();\n}\nfunction draw() {\n  image(vid, 0, 0, width, height);\n}`;
+      if (hasCustomLoop) {
+        const inS = customLoop.inSec.toFixed(2);
+        const outS = customLoop.outSec.toFixed(2);
+        p5Snippet += `let vid;\nconst LOOP_IN = ${inS}, LOOP_OUT = ${outS};\nfunction setup() {\n  createCanvas(768, 576);\n  vid = createVideo("${videoStreamUrl}");\n  vid.elt.crossOrigin = "anonymous";\n  vid.volume(0);\n  vid.play();\n  vid.hide();\n}\nfunction draw() {\n  if (vid.time() < LOOP_IN || vid.time() >= LOOP_OUT) vid.time(LOOP_IN);\n  image(vid, 0, 0, width, height);\n}`;
+      } else {
+        p5Snippet += `let vid;\nfunction setup() {\n  createCanvas(768, 576);\n  vid = createVideo("${videoStreamUrl}");\n  vid.elt.crossOrigin = "anonymous";\n  vid.loop();\n  vid.hide();\n}\nfunction draw() {\n  image(vid, 0, 0, width, height);\n}`;
+      }
     } else if (item.kind === "image" || item.kind === "vector") {
       p5Snippet += `let img;\nfunction preload() {\n  img = loadImage("${streamUrl}");\n}\nfunction setup() {\n  createCanvas(img.width, img.height);\n  image(img, 0, 0);\n}`;
     } else if (item.kind === "model") {
@@ -511,9 +706,9 @@
       ? `${item.id}/${String(activeClip.n).padStart(2, "0")}`
       : item.id;
     const generetiMediaUrl =
-      item.kind === "video" || activeClip ? proxyUrl || videoStreamUrl : streamUrl;
+      item.kind === "video" || activeClip || hasCustomLoop ? proxyUrl || videoStreamUrl : streamUrl;
     const generetiMediaKind =
-      item.kind === "video" || activeClip
+      item.kind === "video" || activeClip || hasCustomLoop
         ? "video"
         : item.kind === "image" || item.kind === "vector"
         ? "image"
@@ -565,6 +760,12 @@
         mediatheque_id: mediathequeId,
         mediatheque_highres_url: streamUrl,
         mediatheque_credit: credit,
+        ...(hasCustomLoop
+          ? {
+              mediatheque_loop_in: +customLoop.inSec.toFixed(3),
+              mediatheque_loop_out: +customLoop.outSec.toFixed(3),
+            }
+          : {}),
       },
       widgets_values: ["GENERETI_OFF:2D stream"],
     };
@@ -660,89 +861,250 @@
     let viewerHtml = "";
     let controlsHtml = "";
 
-    if (item.kind === "video" || activeClip) {
-      const vSrc = resolveAssetUrl(activeMediaRel);
+    if (item.kind === "video" || item.kind === "animation" || activeClip) {
+      const isAnim = item.kind === "animation" && !activeClip;
+      const vSrc = resolveAssetUrl(
+        activeClip && activeClip.file ? `items/${item.id}/${activeClip.file}` : mediaRel
+      );
+      const gifSrc = isAnim ? resolveAssetUrl(origRel || mediaRel) : "";
+      const fMeta = files.media || {};
+      const dur = Number(
+        (activeClip ? activeClip.out - activeClip.in : fMeta.duration) || 4
+      );
+      const fps = Number(fMeta.fps || (isAnim ? 10 : 24));
+      const nFrames = Number(fMeta.frames || Math.max(1, Math.round(dur * fps)));
+      const delays = fMeta.frame_delays_ms || [];
+      const initIn = activeClip && !activeClip.file ? Number(activeClip.in || 0) : 0;
+      const initOut =
+        activeClip && !activeClip.file
+          ? Number(activeClip.out || dur)
+          : Math.max(0.1, dur);
+      const stepSec = +(1 / Math.max(1, fps)).toFixed(4);
+
       viewerHtml = `
-        <div class="viewer-stage">
-          <video id="detail-video" src="${escapeHtml(vSrc)}" poster="${escapeHtml(
-        resolveAssetUrl(posterRel)
-      )}" controls loop playsinline crossorigin="anonymous"></video>
+        <div class="viewer-stage ${isAnim ? "viewer-stage--checker" : ""}" id="single-player-wrapper">
+          <video
+            id="detail-video"
+            src="${escapeHtml(vSrc)}"
+            ${posterRel ? `poster="${escapeHtml(resolveAssetUrl(posterRel))}"` : ""}
+            autoplay
+            loop
+            muted
+            playsinline
+            crossorigin="anonymous"
+          ></video>
+          ${
+            isAnim
+              ? `<img id="anim-gif-img" src="${escapeHtml(gifSrc)}" alt="${escapeHtml(
+                  item.title
+                )}" hidden />`
+              : ""
+          }
+        </div>
+        <div id="ab-compare-wrapper" class="ab-compare-container" hidden>
+          <div class="ab-pane" id="ab-pane-in">
+            <div class="ab-pane-header">
+              <span class="ab-label">FRAME A (LOOP IN)</span>
+              <span id="ab-time-in" class="ab-time">${initIn.toFixed(2)}s · f1</span>
+            </div>
+            <div class="ab-viewport">
+              <canvas id="ab-canvas-in"></canvas>
+            </div>
+          </div>
+          <div class="ab-pane" id="ab-pane-out">
+            <div class="ab-pane-header">
+              <span class="ab-label ab-label--out" id="ab-label-out">FRAME B (LOOP OUT)</span>
+              <span id="ab-time-out" class="ab-time">${initOut.toFixed(2)}s · f${nFrames}</span>
+            </div>
+            <div class="ab-viewport">
+              <canvas id="ab-canvas-out"></canvas>
+            </div>
+          </div>
         </div>
       `;
+
       controlsHtml = `
-        <div class="viewer-controls">
-          <div class="viewer-controls__group">
-            <button type="button" class="btn-small" data-video-step="-1">-1 frame</button>
-            <button type="button" class="btn-small" data-video-step="1">+1 frame</button>
-            <label>Speed
-              <select id="video-speed-select" class="sort-select">
+        <div class="transport-bar"
+          data-fps="${fps}"
+          data-duration="${dur}"
+          data-frames="${nFrames}"
+          data-init-in="${initIn}"
+          data-init-out="${initOut}"
+        >
+          <div class="transport-scrubber-wrap">
+            <div class="transport-loop-highlight" id="transport-loop-highlight" style="left:0%; width:100%;"></div>
+            <input
+              type="range"
+              class="transport-scrubber"
+              id="transport-scrubber"
+              min="0"
+              max="${dur}"
+              step="${stepSec}"
+              value="${initIn}"
+              aria-label="Playhead scrubber"
+            />
+          </div>
+          <div class="transport-row">
+            <div class="viewer-controls__group">
+              <button type="button" class="btn-small btn-small--primary" id="btn-transport-play" data-tooltip="Play / Pause transport (Space)">⏸ Pause</button>
+              <button type="button" class="btn-small" id="btn-jump-in" data-tooltip="Jump playhead to Loop IN point">⏮ IN</button>
+              <button type="button" class="btn-small" data-video-step="-1" data-tooltip="Step backward 1 frame (${stepSec}s)">-1f</button>
+              <button type="button" class="btn-small" data-video-step="1" data-tooltip="Step forward 1 frame (${stepSec}s)">+1f</button>
+              <button type="button" class="btn-small" id="btn-set-in-playhead" data-tooltip="Set Loop IN point to current playhead frame">[ Set IN</button>
+              <button type="button" class="btn-small" id="btn-set-out-playhead" data-tooltip="Set Loop OUT point to current playhead frame">Set OUT ]</button>
+              <span class="transport-readout" id="transport-readout">
+                0.00s / ${dur.toFixed(2)}s · f1/${nFrames} · ${fps}fps${
+        isAnim && fMeta.palette ? ` · ${fMeta.palette} colors` : ""
+      }${isAnim && delays.length ? ` · ${delays[0]}ms` : ""}
+              </span>
+            </div>
+            <div class="viewer-controls__group">
+              <select id="sel-loop-mode" class="sort-select" data-tooltip="Choose how the player loops between IN and OUT">
+                <option value="loop" selected>Mode: Loop [IN→OUT]</option>
+                <option value="pingpong">Mode: Ping-Pong [IN↔OUT]</option>
+                <option value="full">Mode: Full Media</option>
+              </select>
+              <select id="video-speed-select" class="sort-select" data-tooltip="Playback speed">
                 <option value="0.25">0.25×</option>
                 <option value="0.5">0.5×</option>
                 <option value="1" selected>1×</option>
                 <option value="1.5">1.5×</option>
                 <option value="2">2×</option>
               </select>
-            </label>
-          </div>
-          <div class="viewer-controls__group">
-            ${
-              proxyRel && !activeClip
-                ? `<button type="button" class="btn-small" id="btn-toggle-proxy" data-media-src="${escapeHtml(
-                    resolveAssetUrl(mediaRel)
-                  )}" data-proxy-src="${escapeHtml(resolveAssetUrl(proxyRel))}">Switch to Proxy (768p/15fps)</button>`
-                : ""
-            }
-            ${
-              activeClip
-                ? `<a class="btn-small" href="#/${escapeHtml(
-                    item.id
-                  )}">View Full Work (${formatDuration(files.media && files.media.duration)})</a>`
-                : ""
-            }
+              ${
+                proxyRel && !activeClip && !isAnim
+                  ? `<button type="button" class="btn-small" id="btn-toggle-proxy" data-media-src="${escapeHtml(
+                      resolveAssetUrl(mediaRel)
+                    )}" data-proxy-src="${escapeHtml(
+                      resolveAssetUrl(proxyRel)
+                    )}" data-tooltip="Preview the 768px / 15fps CV perception proxy instead of full-resolution media">Proxy (768p/15fps)</button>`
+                  : ""
+              }
+              ${
+                isAnim && origRel
+                  ? `<button type="button" class="btn-small" id="btn-toggle-native-gif" data-tooltip="Toggle raw <img> GIF rendering vs frame-accurate video transport">Raw GIF</button>`
+                  : ""
+              }
+              ${
+                isAnim && files.sheet
+                  ? `<a class="btn-small" href="${escapeHtml(
+                      resolveAssetUrl(`items/${item.id}/${files.sheet.path}`)
+                    )}" target="_blank" data-tooltip="Open full contact sheet of all GIF frames">Sheet (${files.sheet.cols}×${files.sheet.rows})</a>`
+                  : ""
+              }
+              ${
+                isAnim && files.frames
+                  ? `<a class="btn-small" href="${escapeHtml(
+                      resolveAssetUrl(`items/${item.id}/${files.frames.path}`)
+                    )}" download="${escapeHtml(item.id)}_frames.zip" data-tooltip="Download individual PNG frames + timing manifest">frames.zip</a>`
+                  : ""
+              }
+              ${
+                activeClip
+                  ? `<a class="btn-small" href="#/${escapeHtml(
+                      item.id
+                    )}">Full Work (${formatDuration(files.media && files.media.duration)})</a>`
+                  : ""
+              }
+            </div>
           </div>
         </div>
-      `;
-    } else if (item.kind === "animation") {
-      const gifSrc = resolveAssetUrl(origRel || mediaRel);
-      const mp4Src = resolveAssetUrl(mediaRel);
-      const fMeta = files.media || {};
-      const delays = fMeta.frame_delays_ms || [];
-      viewerHtml = `
-        <div class="viewer-stage viewer-stage--checker" id="anim-stage">
-          <img id="anim-gif-img" src="${escapeHtml(gifSrc)}" alt="${escapeHtml(item.title)}" />
-          <video id="anim-scrubber-video" src="${escapeHtml(mp4Src)}" loop muted playsinline hidden></video>
-        </div>
-      `;
-      controlsHtml = `
-        <div class="viewer-controls">
-          <div class="viewer-controls__group">
-            <button type="button" class="btn-small is-active" id="btn-mode-gif">Original GIF</button>
-            <button type="button" class="btn-small" id="btn-mode-scrub">Video / Frame Scrubber</button>
-            <input type="range" id="anim-frame-slider" min="0" max="${Math.max(
-              0,
-              (fMeta.frames || 1) - 1
-            )}" value="0" hidden style="width:140px;" />
-            <span id="anim-frame-readout">
-              ${fMeta.frames || "—"} frames · ${fMeta.fps || "—"} fps · palette ${
-        fMeta.palette || "—"
-      } colors${delays.length ? ` · delay ${delays[0]}ms` : ""}
-            </span>
+
+        <!-- Built-in Seamless Loop & Clip Creator (ported from ~/dev/slopscore) -->
+        <div class="loop-creator-panel">
+          <div class="loop-panel-top">
+            <div class="viewer-controls__group">
+              <span class="loop-panel-title">Seamless Loop &amp; Clip Creator</span>
+              <span
+                id="loop-diff-badge"
+                class="badge-seamless"
+                data-tooltip="Visual similarity between Loop IN frame and Loop OUT frame (100% = identical, >95% = seamless cut, >90% = good match)."
+              >Match: —</span>
+            </div>
+            <div class="transport-readout" id="loop-time-readout">
+              IN: ${initIn.toFixed(2)}s (f1) | OUT: ${initOut.toFixed(2)}s (f${nFrames}) | DUR: ${(
+        initOut - initIn
+      ).toFixed(2)}s
+            </div>
           </div>
-          <div class="viewer-controls__group">
-            ${
-              files.sheet
-                ? `<a class="btn-small" href="${escapeHtml(
-                    resolveAssetUrl(`items/${item.id}/${files.sheet.path}`)
-                  )}" target="_blank">Sprite Sheet (${files.sheet.cols}×${files.sheet.rows})</a>`
-                : ""
-            }
-            ${
-              files.frames
-                ? `<a class="btn-small" href="${escapeHtml(
-                    resolveAssetUrl(`items/${item.id}/${files.frames.path}`)
-                  )}" download="${escapeHtml(item.id)}_frames.zip">frames.zip</a>`
-                : ""
-            }
+
+          <div class="loop-sliders-row">
+            <div class="slider-group">
+              <label for="rng-loop-in">
+                <span>LOOP START (IN)</span>
+                <span id="lbl-loop-in">${initIn.toFixed(2)}s · Frame 1</span>
+              </label>
+              <input
+                type="range"
+                id="rng-loop-in"
+                min="0"
+                max="${dur}"
+                step="${stepSec}"
+                value="${initIn}"
+              />
+            </div>
+            <div class="slider-group slider-group--out">
+              <label for="rng-loop-out">
+                <span>LOOP END (OUT)</span>
+                <span id="lbl-loop-out">${initOut.toFixed(2)}s · Frame ${nFrames}</span>
+              </label>
+              <input
+                type="range"
+                id="rng-loop-out"
+                min="0"
+                max="${dur}"
+                step="${stepSec}"
+                value="${initOut}"
+              />
+            </div>
+          </div>
+
+          <div class="loop-actions-row">
+            <button
+              type="button"
+              class="btn-small btn-gold"
+              id="btn-automatch-loop"
+              data-tooltip="Scan candidate frames around IN and OUT to automatically snap to the lowest-MSE seamless loop point."
+            >⚡ Automatch Loop</button>
+            <button
+              type="button"
+              class="btn-small"
+              id="btn-view-mode-toggle"
+              data-tooltip="Show Loop IN frame and matching Loop OUT frame side-by-side to inspect the loop seam."
+            >Compare IN / OUT Frames</button>
+            <button
+              type="button"
+              class="btn-small"
+              id="btn-ab-flip"
+              hidden
+              data-tooltip="Rapidly alternate between Frame A (IN) and Frame B (OUT) every 350ms to spot jump cuts."
+            >⇄ A/B Flip</button>
+            <button
+              type="button"
+              class="btn-small"
+              id="btn-ab-onion"
+              hidden
+              data-tooltip="Superimpose Frame A (IN) and Frame B (OUT) at 50% opacity on Frame B to align subject posture."
+            >◐ Onion-Skin Blend</button>
+            <div style="flex:1;"></div>
+            <button
+              type="button"
+              class="btn-small btn-small--primary"
+              id="btn-copy-loop-url"
+              data-tooltip="Copy the direct CORS-enabled source URL with #t=IN,OUT loop timestamps (and update class code snippets below)."
+            >Copy Loop URL (#t=in,out)</button>
+            <button
+              type="button"
+              class="btn-small"
+              id="btn-export-loop-clip"
+              data-tooltip="Record and download the selected [IN → OUT] loop segment as a standalone .webm video clip in your browser."
+            >Export Clip (.webm)</button>
+            <button
+              type="button"
+              class="btn-small"
+              id="btn-copy-ffmpeg-clip"
+              data-tooltip="Copy an exact ffmpeg command to cut this [IN → OUT] segment losslessly from the local repository file."
+            >Copy ffmpeg Cut</button>
           </div>
         </div>
       `;
@@ -911,6 +1273,12 @@
           .replace(/[^a-z0-9]+/g, "-")}.webm`
       : `${item.id}_${(files.media && files.media.path) || "media"}`;
 
+    const streamFileLabel =
+      item.kind === "animation" && origRel && !activeClip
+        ? files.original.path
+        : (files.media && files.media.path) || "media";
+    const proxyFileLabel = (files.proxy && files.proxy.path) || "proxy.webm";
+
     els.detailRoot.innerHTML = `
       <div class="detail-topbar">
         <a href="#/" class="btn-small">← Back to Gallery</a>
@@ -946,29 +1314,64 @@
           <div class="credit-box">
             <div class="credit-box__header">
               <span class="eyebrow">Required Credit &amp; Stream URLs</span>
-              <span class="card-badge card-badge--pd">${escapeHtml(
-                (item.rights && item.rights.license) || (item.rights && item.rights.status) || "unknown"
-              )}</span>
+              <div class="viewer-controls__group">
+                <span
+                  class="info-pill"
+                  tabindex="0"
+                  data-tooltip="Why is Stream URL highlighted? Stream URL is the primary full-fidelity asset (${escapeHtml(
+                    streamFileLabel
+                  )}) recommended for display, p5.js/Three.js rendering, and Genereti 2D stream. Proxy URL (${escapeHtml(
+      proxyFileLabel
+    )}) is a downscaled 768px / 15fps WebM built specifically for fast computer-vision & ML inference (MediaPipe, optical flow)."
+                >Stream vs Proxy? ⓘ</span>
+                <span class="card-badge card-badge--pd">${escapeHtml(
+                  (item.rights && item.rights.license) || (item.rights && item.rights.status) || "unknown"
+                )}</span>
+              </div>
             </div>
             <p class="credit-box__text">${escapeHtml((item.rights && item.rights.credit) || "Credit pending")}</p>
             <div class="copy-grid" style="margin-top: 0.65rem;">
-              <button type="button" class="btn-small btn-small--primary" data-copy-text="${escapeHtml(
-                streamUrl
-              )}" data-copy-label="Stream URL">Copy Stream URL</button>
+              <button
+                type="button"
+                class="btn-small btn-small--primary"
+                data-copy-text="${escapeHtml(streamUrl)}"
+                data-copy-label="Stream URL"
+                data-tooltip="Primary Stream URL (Highlighted Default — ${escapeHtml(
+                  streamFileLabel
+                )}): Full-resolution, native-framerate delivery file. Highlighted because you should use this URL for visual playback, HTML embeds, p5.js / Three.js textures, and Genereti ꘇ 2D stream."
+              >Copy Stream URL</button>
               ${
                 proxyUrl
-                  ? `<button type="button" class="btn-small" data-copy-text="${escapeHtml(
-                      proxyUrl
-                    )}" data-copy-label="Proxy URL">Copy Proxy URL</button>`
+                  ? `<button
+                      type="button"
+                      class="btn-small"
+                      data-copy-text="${escapeHtml(proxyUrl)}"
+                      data-copy-label="Proxy URL"
+                      data-tooltip="CV / Perception Proxy URL (${escapeHtml(
+                        proxyFileLabel
+                      )} — 768px max edge, 15 fps VP9 WebM, no audio): Lightweight derivative normalized for real-time computer vision (MediaPipe pose/hand tracking, optical flow, frame differencing) where fast decoding and small bandwidth beat full visual resolution."
+                    >Copy Proxy URL</button>`
                   : ""
               }
-              <button type="button" class="btn-small" data-copy-text="${escapeHtml(
-                (item.rights && item.rights.credit) || ""
-              )}" data-copy-label="Credit line">Copy Credit</button>
-              <a class="btn-small" href="${escapeHtml(
-                resolveAssetUrl(activeMediaRel)
-              )}" download="${escapeHtml(downloadFilename)}">Download Media</a>
-              <button type="button" class="btn-small" id="btn-download-credit-txt">credit.txt</button>
+              <button
+                type="button"
+                class="btn-small"
+                data-copy-text="${escapeHtml((item.rights && item.rights.credit) || "")}"
+                data-copy-label="Credit line"
+                data-tooltip="Copy the required attribution credit line for your code comments or caption."
+              >Copy Credit</button>
+              <a
+                class="btn-small"
+                href="${escapeHtml(resolveAssetUrl(activeMediaRel))}"
+                download="${escapeHtml(downloadFilename)}"
+                data-tooltip="Download the media file (${escapeHtml(downloadFilename)}) to your machine."
+              >Download Media</a>
+              <button
+                type="button"
+                class="btn-small"
+                id="btn-download-credit-txt"
+                data-tooltip="Download a standalone .credit.txt file with title, license, credit, and archive URL."
+              >credit.txt</button>
             </div>
           </div>
 
@@ -1126,10 +1529,12 @@
       </div>
     `;
 
-    bindDetailInteractions(item, snippets, activeClip);
+    bindDetailInteractions(item, snippets, activeClip, catEntry);
   }
 
-  function bindDetailInteractions(item, snippets, activeClip) {
+  function bindDetailInteractions(item, initialSnippets, activeClip, catEntry) {
+    let snippets = initialSnippets;
+
     // Copy buttons
     els.detailRoot.querySelectorAll("[data-copy-text]").forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -1190,24 +1595,304 @@
       });
     }
 
-    // Video controls
+    // Unified Transport + Seamless Loop & Clip Creator (for video and animation items)
     const videoEl = document.getElementById("detail-video");
-    if (videoEl) {
-      const fps = Number((item.files && item.files.media && item.files.media.fps) || 15);
+    const transportBar = els.detailRoot.querySelector(".transport-bar");
+    if (videoEl && transportBar) {
+      const fMeta = (item.files && item.files.media) || {};
+      const fps = Number(transportBar.getAttribute("data-fps") || fMeta.fps || 15);
+      let totalDur = Number(transportBar.getAttribute("data-duration") || fMeta.duration || 4);
+      let nFrames = Number(
+        transportBar.getAttribute("data-frames") || Math.max(1, Math.round(totalDur * fps))
+      );
+      const delays = fMeta.frame_delays_ms || [];
+      let loopIn = Number(transportBar.getAttribute("data-init-in") || 0);
+      let loopOut = Number(transportBar.getAttribute("data-init-out") || totalDur);
+      let loopMode = "loop"; // "loop" | "pingpong" | "full"
+      let pingPongDir = 1;
+      let compareMode = false;
+      let onionSkinMode = false;
+      let abFlipTimer = null;
+      let abFlipState = false;
+
+      const scrubber = document.getElementById("transport-scrubber");
+      const loopHighlight = document.getElementById("transport-loop-highlight");
+      const btnPlay = document.getElementById("btn-transport-play");
+      const btnJumpIn = document.getElementById("btn-jump-in");
+      const btnSetIn = document.getElementById("btn-set-in-playhead");
+      const btnSetOut = document.getElementById("btn-set-out-playhead");
+      const transportReadout = document.getElementById("transport-readout");
+      const selLoopMode = document.getElementById("sel-loop-mode");
+      const speedSel = document.getElementById("video-speed-select");
+      const btnProxy = document.getElementById("btn-toggle-proxy");
+      const btnNativeGif = document.getElementById("btn-toggle-native-gif");
+      const gifImg = document.getElementById("anim-gif-img");
+
+      const rngIn = document.getElementById("rng-loop-in");
+      const rngOut = document.getElementById("rng-loop-out");
+      const lblIn = document.getElementById("lbl-loop-in");
+      const lblOut = document.getElementById("lbl-loop-out");
+      const loopTimeReadout = document.getElementById("loop-time-readout");
+      const loopDiffBadge = document.getElementById("loop-diff-badge");
+      const btnAutomatch = document.getElementById("btn-automatch-loop");
+      const btnViewMode = document.getElementById("btn-view-mode-toggle");
+      const btnAbFlip = document.getElementById("btn-ab-flip");
+      const btnAbOnion = document.getElementById("btn-ab-onion");
+      const btnCopyLoopUrl = document.getElementById("btn-copy-loop-url");
+      const btnExportClip = document.getElementById("btn-export-loop-clip");
+      const btnCopyFfmpeg = document.getElementById("btn-copy-ffmpeg-clip");
+
+      const singleWrapper = document.getElementById("single-player-wrapper");
+      const abWrapper = document.getElementById("ab-compare-wrapper");
+      const canvasIn = document.getElementById("ab-canvas-in");
+      const canvasOut = document.getElementById("ab-canvas-out");
+      const abTimeIn = document.getElementById("ab-time-in");
+      const abTimeOut = document.getElementById("ab-time-out");
+      const abLabelOut = document.getElementById("ab-label-out");
+      const offscreenOut = document.createElement("canvas");
+
+      const timeToFrame = (t) =>
+        Math.min(nFrames, Math.max(1, Math.round(t * fps) + 1));
+
+      function updatePlayButton() {
+        if (!btnPlay) return;
+        btnPlay.textContent = videoEl.paused ? "▶ Play" : "⏸ Pause";
+      }
+
+      function updateTransportReadout() {
+        const cur = videoEl.currentTime || 0;
+        const fIdx = timeToFrame(cur);
+        if (scrubber && document.activeElement !== scrubber) {
+          scrubber.value = String(cur);
+        }
+        if (transportReadout) {
+          const delayMs = delays[fIdx - 1] || delays[0];
+          transportReadout.textContent = `${cur.toFixed(2)}s / ${totalDur.toFixed(
+            2
+          )}s · f${fIdx}/${nFrames} · ${fps}fps${
+            fMeta.palette ? ` · ${fMeta.palette} colors` : ""
+          }${delayMs ? ` · ${delayMs}ms` : ""}`;
+        }
+      }
+
+      function updateLoopHighlightAndLabels() {
+        const d = Math.max(0.01, totalDur);
+        const leftPct = Math.max(0, Math.min(100, (loopIn / d) * 100));
+        const widthPct = Math.max(1, Math.min(100 - leftPct, ((loopOut - loopIn) / d) * 100));
+        if (loopHighlight) {
+          loopHighlight.style.left = `${leftPct.toFixed(2)}%`;
+          loopHighlight.style.width = `${widthPct.toFixed(2)}%`;
+        }
+        const fIn = timeToFrame(loopIn);
+        const fOut = timeToFrame(loopOut);
+        const durLoop = Math.max(0.01, loopOut - loopIn);
+        const fCount = Math.max(1, fOut - fIn + 1);
+        if (lblIn) lblIn.textContent = `${loopIn.toFixed(2)}s · Frame ${fIn}`;
+        if (lblOut) lblOut.textContent = `${loopOut.toFixed(2)}s · Frame ${fOut}`;
+        if (loopTimeReadout) {
+          loopTimeReadout.textContent = `IN: ${loopIn.toFixed(2)}s (f${fIn}) | OUT: ${loopOut.toFixed(
+            2
+          )}s (f${fOut}) | DUR: ${durLoop.toFixed(2)}s (${fCount}f)`;
+        }
+        if (abTimeIn) abTimeIn.textContent = `${loopIn.toFixed(2)}s · Frame ${fIn}`;
+        if (abTimeOut) abTimeOut.textContent = `${loopOut.toFixed(2)}s · Frame ${fOut}`;
+
+        // Keep "Use This in Class" code snippets synchronized with current [IN, OUT] loop
+        snippets = buildStudentSnippets(item, catEntry || {}, activeClip, {
+          inSec: loopIn,
+          outSec: loopOut,
+          duration: totalDur,
+          mode: loopMode,
+        });
+        if (snippetPre) {
+          snippetPre.textContent = snippets[currentSnippetKey] || "";
+        }
+      }
+
+      function styleMatchBadge(metric, prefix = "Match") {
+        if (!loopDiffBadge || !metric) return;
+        const matchPct = Number.isFinite(metric.match) ? metric.match : 0;
+        const mse = Number.isFinite(metric.mse) ? metric.mse : 0;
+        loopDiffBadge.textContent = `${prefix}: ${matchPct.toFixed(1)}% (MSE ${mse.toFixed(4)})`;
+        loopDiffBadge.classList.remove("badge-seamless--gold", "badge-seamless--coral");
+        if (matchPct <= 90) {
+          loopDiffBadge.classList.add("badge-seamless--coral");
+        } else if (matchPct <= 95) {
+          loopDiffBadge.classList.add("badge-seamless--gold");
+        }
+      }
+
+      function renderOutOrOnionCanvas() {
+        if (!canvasOut || !offscreenOut.width) return;
+        canvasOut.width = offscreenOut.width;
+        canvasOut.height = offscreenOut.height;
+        const ctx = canvasOut.getContext("2d");
+        ctx.clearRect(0, 0, canvasOut.width, canvasOut.height);
+        if (onionSkinMode && canvasIn && canvasIn.width) {
+          ctx.globalAlpha = 1.0;
+          ctx.drawImage(canvasIn, 0, 0, canvasOut.width, canvasOut.height);
+          ctx.globalAlpha = 0.5;
+          ctx.drawImage(offscreenOut, 0, 0, canvasOut.width, canvasOut.height);
+          ctx.globalAlpha = 1.0;
+          if (abLabelOut) abLabelOut.textContent = "ONION-SKIN (50% IN + 50% OUT)";
+        } else {
+          ctx.drawImage(offscreenOut, 0, 0, canvasOut.width, canvasOut.height);
+          if (abLabelOut) abLabelOut.textContent = "FRAME B (LOOP OUT)";
+        }
+      }
+
+      let seamUpdateToken = 0;
+      async function refreshSeamComparison() {
+        const token = ++seamUpdateToken;
+        const src = videoEl.currentSrc || videoEl.src;
+        if (!src) return;
+        await grabVideoFrame(src, loopIn, canvasIn);
+        if (token !== seamUpdateToken) return;
+        await grabVideoFrame(src, loopOut, offscreenOut);
+        if (token !== seamUpdateToken) return;
+        renderOutOrOnionCanvas();
+        const metric = compareCanvases(canvasIn, offscreenOut);
+        styleMatchBadge(metric);
+      }
+
+      videoEl.addEventListener("loadedmetadata", () => {
+        if (Number.isFinite(videoEl.duration) && videoEl.duration > 0) {
+          totalDur = videoEl.duration;
+          nFrames = Number(fMeta.frames || Math.max(1, Math.round(totalDur * fps)));
+          if (scrubber) scrubber.max = String(totalDur);
+          if (rngIn) rngIn.max = String(totalDur);
+          if (rngOut) {
+            rngOut.max = String(totalDur);
+            if (loopOut > totalDur || loopOut <= 0) {
+              loopOut = totalDur;
+              rngOut.value = String(loopOut);
+            }
+          }
+          updateLoopHighlightAndLabels();
+          refreshSeamComparison();
+        }
+      });
+
+      videoEl.addEventListener("play", updatePlayButton);
+      videoEl.addEventListener("pause", updatePlayButton);
+      videoEl.addEventListener("timeupdate", () => {
+        if (loopMode !== "full" && !videoEl.paused) {
+          if (loopMode === "loop") {
+            if (videoEl.currentTime >= loopOut - 0.015 || videoEl.currentTime < loopIn - 0.05) {
+              videoEl.currentTime = loopIn;
+            }
+          } else if (loopMode === "pingpong") {
+            if (videoEl.currentTime >= loopOut - 0.02) {
+              pingPongDir = -1;
+            } else if (videoEl.currentTime <= loopIn + 0.02) {
+              pingPongDir = 1;
+            }
+          }
+        }
+        updateTransportReadout();
+      });
+
+      // Ping-pong reverse stepping timer when pingpong dir === -1
+      const pingPongInterval = setInterval(() => {
+        if (!document.body.contains(videoEl)) {
+          clearInterval(pingPongInterval);
+          return;
+        }
+        if (loopMode === "pingpong" && !videoEl.paused && pingPongDir === -1) {
+          const dt = (1 / Math.max(10, fps)) * (videoEl.playbackRate || 1);
+          const nextT = videoEl.currentTime - dt * 2;
+          if (nextT <= loopIn) {
+            pingPongDir = 1;
+            videoEl.currentTime = loopIn;
+          } else {
+            videoEl.currentTime = nextT;
+          }
+        }
+      }, Math.round(1000 / Math.min(30, Math.max(10, fps))));
+
+      if (btnPlay) {
+        btnPlay.addEventListener("click", () => {
+          if (gifImg && !gifImg.hidden) {
+            gifImg.hidden = true;
+            videoEl.hidden = false;
+            if (btnNativeGif) btnNativeGif.classList.remove("is-active");
+          }
+          if (videoEl.paused) {
+            if (videoEl.currentTime < loopIn || videoEl.currentTime >= loopOut) {
+              videoEl.currentTime = loopIn;
+            }
+            videoEl.play();
+          } else {
+            videoEl.pause();
+          }
+          updatePlayButton();
+        });
+      }
+
+      if (btnJumpIn) {
+        btnJumpIn.addEventListener("click", () => {
+          videoEl.currentTime = loopIn;
+          updateTransportReadout();
+        });
+      }
+
+      if (scrubber) {
+        scrubber.addEventListener("input", () => {
+          videoEl.pause();
+          videoEl.currentTime = Number(scrubber.value);
+          updateTransportReadout();
+        });
+      }
+
       els.detailRoot.querySelectorAll("[data-video-step]").forEach((btn) => {
         btn.addEventListener("click", () => {
+          if (gifImg && !gifImg.hidden) {
+            gifImg.hidden = true;
+            videoEl.hidden = false;
+            if (btnNativeGif) btnNativeGif.classList.remove("is-active");
+          }
           videoEl.pause();
           const dir = Number(btn.getAttribute("data-video-step"));
-          videoEl.currentTime = Math.max(0, videoEl.currentTime + dir * (1 / fps));
+          const next = Math.max(0, Math.min(totalDur, videoEl.currentTime + dir * (1 / fps)));
+          videoEl.currentTime = next;
+          updateTransportReadout();
         });
       });
-      const speedSel = document.getElementById("video-speed-select");
+
+      if (btnSetIn) {
+        btnSetIn.addEventListener("click", () => {
+          const step = 1 / Math.max(1, fps);
+          loopIn = Math.max(0, Math.min(loopOut - step, videoEl.currentTime));
+          if (rngIn) rngIn.value = String(loopIn);
+          updateLoopHighlightAndLabels();
+          refreshSeamComparison();
+        });
+      }
+
+      if (btnSetOut) {
+        btnSetOut.addEventListener("click", () => {
+          const step = 1 / Math.max(1, fps);
+          loopOut = Math.min(totalDur, Math.max(loopIn + step, videoEl.currentTime));
+          if (rngOut) rngOut.value = String(loopOut);
+          updateLoopHighlightAndLabels();
+          refreshSeamComparison();
+        });
+      }
+
+      if (selLoopMode) {
+        selLoopMode.addEventListener("change", () => {
+          loopMode = selLoopMode.value;
+          pingPongDir = 1;
+          updateLoopHighlightAndLabels();
+        });
+      }
+
       if (speedSel) {
         speedSel.addEventListener("change", () => {
           videoEl.playbackRate = Number(speedSel.value);
         });
       }
-      const btnProxy = document.getElementById("btn-toggle-proxy");
+
       if (btnProxy) {
         let usingProxy = false;
         btnProxy.addEventListener("click", () => {
@@ -1218,52 +1903,292 @@
             : btnProxy.getAttribute("data-media-src");
           videoEl.currentTime = t;
           videoEl.play();
-          btnProxy.textContent = usingProxy ? "Switch to Full Media" : "Switch to Proxy (768p/15fps)";
+          btnProxy.classList.toggle("is-active", usingProxy);
+          btnProxy.textContent = usingProxy ? "Showing Proxy (768p/15fps)" : "Proxy (768p/15fps)";
         });
       }
-    }
 
-    // Animation GIF / Frame Scrubber toggle
-    const gifImg = document.getElementById("anim-gif-img");
-    const scrubVid = document.getElementById("anim-scrubber-video");
-    const slider = document.getElementById("anim-frame-slider");
-    const btnGif = document.getElementById("btn-mode-gif");
-    const btnScrub = document.getElementById("btn-mode-scrub");
-    const readout = document.getElementById("anim-frame-readout");
-    if (gifImg && scrubVid && btnGif && btnScrub) {
-      const fMeta = (item.files && item.files.media) || {};
-      const nFrames = Number(fMeta.frames || 10);
-      const delays = fMeta.frame_delays_ms || [];
-
-      btnGif.addEventListener("click", () => {
-        btnGif.classList.add("is-active");
-        btnScrub.classList.remove("is-active");
-        gifImg.hidden = false;
-        scrubVid.hidden = true;
-        if (slider) slider.hidden = true;
-      });
-      btnScrub.addEventListener("click", () => {
-        btnScrub.classList.add("is-active");
-        btnGif.classList.remove("is-active");
-        gifImg.hidden = true;
-        scrubVid.hidden = false;
-        scrubVid.pause();
-        if (slider) slider.hidden = false;
-      });
-      if (slider) {
-        slider.addEventListener("input", () => {
-          const idx = Number(slider.value);
-          const dur = scrubVid.duration || fMeta.duration || 1;
-          scrubVid.pause();
-          scrubVid.currentTime = (idx / Math.max(1, nFrames - 1)) * Math.max(0.01, dur - 0.02);
-          const delayMs = delays[idx] || delays[0] || Math.round(1000 / (fMeta.fps || 10));
-          if (readout) {
-            readout.textContent = `Frame ${idx + 1} / ${nFrames} · delay ${delayMs}ms · palette ${
-              fMeta.palette || "—"
-            }`;
+      if (btnNativeGif && gifImg) {
+        btnNativeGif.addEventListener("click", () => {
+          const showGif = gifImg.hidden;
+          if (showGif) {
+            videoEl.pause();
+            videoEl.hidden = true;
+            gifImg.hidden = false;
+            btnNativeGif.classList.add("is-active");
+          } else {
+            gifImg.hidden = true;
+            videoEl.hidden = false;
+            btnNativeGif.classList.remove("is-active");
+            videoEl.play();
           }
         });
       }
+
+      // Loop IN / OUT range sliders
+      const minStep = 1 / Math.max(1, fps);
+      if (rngIn) {
+        rngIn.addEventListener("input", () => {
+          loopIn = parseFloat(rngIn.value) || 0;
+          if (loopOut <= loopIn + minStep) {
+            loopOut = Math.min(totalDur, loopIn + minStep);
+            if (rngOut) rngOut.value = String(loopOut);
+          }
+          videoEl.currentTime = loopIn;
+          updateLoopHighlightAndLabels();
+          refreshSeamComparison();
+        });
+      }
+      if (rngOut) {
+        rngOut.addEventListener("input", () => {
+          loopOut = parseFloat(rngOut.value) || totalDur;
+          if (loopIn >= loopOut - minStep) {
+            loopIn = Math.max(0, loopOut - minStep);
+            if (rngIn) rngIn.value = String(loopIn);
+          }
+          videoEl.currentTime = loopOut;
+          updateLoopHighlightAndLabels();
+          refreshSeamComparison();
+        });
+      }
+
+      function stopAbFlip() {
+        if (abFlipTimer) {
+          clearInterval(abFlipTimer);
+          abFlipTimer = null;
+        }
+        const pIn = document.getElementById("ab-pane-in");
+        const pOut = document.getElementById("ab-pane-out");
+        if (pIn) pIn.style.opacity = "1";
+        if (pOut) pOut.style.opacity = "1";
+        if (btnAbFlip) btnAbFlip.classList.remove("is-active");
+      }
+
+      if (btnViewMode && singleWrapper && abWrapper) {
+        btnViewMode.addEventListener("click", () => {
+          compareMode = !compareMode;
+          singleWrapper.hidden = compareMode;
+          abWrapper.hidden = !compareMode;
+          btnViewMode.classList.toggle("is-active", compareMode);
+          btnViewMode.textContent = compareMode
+            ? "← Back to Single Player"
+            : "Compare IN / OUT Frames";
+          if (btnAbFlip) btnAbFlip.hidden = !compareMode;
+          if (btnAbOnion) btnAbOnion.hidden = !compareMode;
+          if (compareMode) {
+            refreshSeamComparison();
+          } else {
+            stopAbFlip();
+          }
+        });
+      }
+
+      if (btnAbFlip) {
+        btnAbFlip.addEventListener("click", () => {
+          if (abFlipTimer) {
+            stopAbFlip();
+          } else {
+            btnAbFlip.classList.add("is-active");
+            const pIn = document.getElementById("ab-pane-in");
+            const pOut = document.getElementById("ab-pane-out");
+            abFlipTimer = setInterval(() => {
+              if (!document.body.contains(btnAbFlip)) {
+                stopAbFlip();
+                return;
+              }
+              abFlipState = !abFlipState;
+              if (pIn) pIn.style.opacity = abFlipState ? "1.0" : "0.22";
+              if (pOut) pOut.style.opacity = abFlipState ? "0.22" : "1.0";
+            }, 350);
+          }
+        });
+      }
+
+      if (btnAbOnion) {
+        btnAbOnion.addEventListener("click", () => {
+          onionSkinMode = !onionSkinMode;
+          btnAbOnion.classList.toggle("is-active", onionSkinMode);
+          renderOutOrOnionCanvas();
+        });
+      }
+
+      // ⚡ Automatch Loop (ported from ~/dev/slopscore/kit/loop-finder.mjs)
+      if (btnAutomatch) {
+        btnAutomatch.addEventListener("click", async () => {
+          const src = videoEl.currentSrc || videoEl.src;
+          if (!src) return;
+          btnAutomatch.disabled = true;
+          const origText = btnAutomatch.textContent;
+          btnAutomatch.textContent = "Scanning frames…";
+          if (loopDiffBadge) loopDiffBadge.textContent = "Scanning…";
+          try {
+            const scanWin = Math.min(Math.max(0.4, totalDur * 0.35), 2.0);
+            const step = Math.max(1 / Math.min(30, Math.max(8, fps)), 0.04);
+            const minLen = Math.min(0.4, totalDur * 0.25);
+            const grab = async (t) => {
+              const res = await grabVideoFrame(src, t, null, { width: 64, height: 36 });
+              return res.data;
+            };
+            const best = await autoMatchLoop(grab, {
+              inSec: loopIn,
+              outSec: loopOut,
+              duration: totalDur,
+              window: scanWin,
+              step,
+              minLength: minLen,
+              refineIn: true,
+              onProgress: (pct, curBest) => {
+                if (loopDiffBadge && curBest) {
+                  loopDiffBadge.textContent = `Scanning ${Math.round(
+                    pct * 100
+                  )}% · Best ${curBest.match.toFixed(1)}%`;
+                }
+              },
+            });
+            loopIn = best.inSec;
+            loopOut = best.outSec;
+            if (rngIn) rngIn.value = String(loopIn);
+            if (rngOut) rngOut.value = String(loopOut);
+            updateLoopHighlightAndLabels();
+            await refreshSeamComparison();
+            styleMatchBadge(best, "Matched");
+            videoEl.currentTime = loopIn;
+            showToast(
+              `Automatched loop: ${loopIn.toFixed(2)}s → ${loopOut.toFixed(
+                2
+              )}s (${best.match.toFixed(1)}% match)`
+            );
+          } finally {
+            btnAutomatch.disabled = false;
+            btnAutomatch.textContent = origText;
+          }
+        });
+      }
+
+      // Copy Source URL with #t=in,out loop fragment
+      if (btnCopyLoopUrl) {
+        btnCopyLoopUrl.addEventListener("click", () => {
+          const itemFiles = item.files || {};
+          const mPath = (itemFiles.media && itemFiles.media.path) || "media.webm";
+          const baseRel =
+            activeClip && activeClip.file
+              ? `items/${item.id}/${activeClip.file}`
+              : `items/${item.id}/${mPath}`;
+          const loopUrl = `${resolveAbsoluteUrl(baseRel)}#t=${loopIn.toFixed(2)},${loopOut.toFixed(
+            2
+          )}`;
+          copyText(loopUrl, `Loop URL (#t=${loopIn.toFixed(2)},${loopOut.toFixed(2)})`);
+        });
+      }
+
+      // Copy exact ffmpeg cut command
+      if (btnCopyFfmpeg) {
+        btnCopyFfmpeg.addEventListener("click", () => {
+          const itemFiles = item.files || {};
+          const mPath = (itemFiles.media && itemFiles.media.path) || "media.webm";
+          const srcFile =
+            activeClip && activeClip.file
+              ? `items/${item.id}/${activeClip.file}`
+              : `items/${item.id}/${mPath}`;
+          const outName = `items/${item.id}/clips/loop-${loopIn.toFixed(2)}-${loopOut.toFixed(
+            2
+          )}.webm`;
+          const cmd = `ffmpeg -ss ${loopIn.toFixed(3)} -to ${loopOut.toFixed(
+            3
+          )} -i ${srcFile} -c:v libvpx-vp9 -crf 30 -b:v 0 -an ${outName}`;
+          copyText(cmd, "ffmpeg clip cut command");
+        });
+      }
+
+      // Export Loop Clip (.webm) directly in the browser via Canvas + MediaRecorder
+      if (btnExportClip) {
+        btnExportClip.addEventListener("click", async () => {
+          if (typeof MediaRecorder === "undefined") {
+            showToast("MediaRecorder not supported in this browser; use Copy ffmpeg Cut.");
+            return;
+          }
+          const origLabel = btnExportClip.textContent;
+          btnExportClip.disabled = true;
+          btnExportClip.textContent = "Recording clip…";
+          const wasPaused = videoEl.paused;
+          try {
+            const recCanvas = document.createElement("canvas");
+            recCanvas.width = videoEl.videoWidth || fMeta.width || 640;
+            recCanvas.height = videoEl.videoHeight || fMeta.height || 480;
+            const recCtx = recCanvas.getContext("2d");
+            const stream = recCanvas.captureStream(Math.min(60, Math.max(10, fps)));
+            const mime = MediaRecorder.isTypeSupported("video/webm;codecs=vp9")
+              ? "video/webm;codecs=vp9"
+              : "video/webm";
+            const recorder = new MediaRecorder(stream, {
+              mimeType: mime,
+              videoBitsPerSecond: 4_000_000,
+            });
+            const chunks = [];
+            recorder.ondataavailable = (e) => {
+              if (e.data && e.data.size > 0) chunks.push(e.data);
+            };
+
+            const prevMode = loopMode;
+            loopMode = "full";
+            videoEl.pause();
+            videoEl.currentTime = loopIn;
+            await new Promise((r) => {
+              const done = () => {
+                videoEl.removeEventListener("seeked", done);
+                r();
+              };
+              videoEl.addEventListener("seeked", done);
+              setTimeout(done, 250);
+            });
+
+            recorder.start();
+            await videoEl.play();
+
+            await new Promise((resolve) => {
+              function drawTick() {
+                if (videoEl.currentTime >= loopOut || videoEl.paused || videoEl.ended) {
+                  resolve();
+                  return;
+                }
+                recCtx.drawImage(videoEl, 0, 0, recCanvas.width, recCanvas.height);
+                requestAnimationFrame(drawTick);
+              }
+              requestAnimationFrame(drawTick);
+            });
+
+            videoEl.pause();
+            loopMode = prevMode;
+
+            await new Promise((resolve) => {
+              recorder.onstop = resolve;
+              recorder.stop();
+            });
+
+            const blob = new Blob(chunks, { type: "video/webm" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `${item.id}_loop_${loopIn.toFixed(2)}s-${loopOut.toFixed(2)}s.webm`;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+            showToast(`Exported loop clip (${(loopOut - loopIn).toFixed(2)}s .webm)`);
+          } catch (err) {
+            showToast(`Clip export failed: ${err.message || err}`);
+          } finally {
+            btnExportClip.disabled = false;
+            btnExportClip.textContent = origLabel;
+            videoEl.currentTime = loopIn;
+            if (!wasPaused) videoEl.play();
+          }
+        });
+      }
+
+      updatePlayButton();
+      updateLoopHighlightAndLabels();
+      refreshSeamComparison();
     }
 
     // Image zoom controls
@@ -1628,7 +2553,10 @@
     }
 
     if (hash.startsWith("#/") && hash.length > 2) {
-      const targetId = decodeURIComponent(hash.slice(2));
+      let targetId = decodeURIComponent(hash.slice(2));
+      if (targetId.startsWith("item/")) {
+        targetId = targetId.slice(5);
+      }
       showSection("detail");
       renderDetailView(targetId);
       return;

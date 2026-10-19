@@ -89,7 +89,10 @@ def run_analyzers(
         cache_file = cache_dir / cache_key
 
         result: dict[str, Any] | None = None
-        if cache_file.exists() and name != "render":
+        skip_cache = (name == "render") or (
+            name == "audio" and kind == "audio" and not (item_dir / "poster.webp").exists()
+        )
+        if cache_file.exists() and not skip_cache:
             try:
                 result = json.loads(cache_file.read_text(encoding="utf-8"))
             except Exception:
