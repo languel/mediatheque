@@ -1,0 +1,181 @@
+{
+  "id": "marey-homme-marchant-1883",
+  "title": "Chronophotographie géométrique — Homme marchant en combinaison noire",
+  "kind": "animation",
+  "status": "published",
+  "summary": "Étienne-Jules Marey's landmark geometrical chronophotography of a man walking in a black suit with white line markers — the historic foundation of optical motion capture.",
+  "description": "Recorded in 1883 at the Station Physiologique in Paris. Marey dressed his subject in a black velvet bodysuit with bright white reflective stripes along the limbs and joints, exposing the plate intermittently with a rotating slotted disc. This breakthrough reduced human gait to pure kinetic geometry and directly inspired 20th-century motion capture and pose estimation.",
+  "tags": [
+    "short",
+    "portrait",
+    "silent",
+    "bw",
+    "dithered",
+    "seamless-loop",
+    "loop-friendly",
+    "movement",
+    "fast"
+  ],
+  "keywords": [],
+  "collections": [],
+  "demos": [],
+  "creators": [],
+  "date": "1883",
+  "source": {
+    "url": "https://www.college-de-france.fr/chaire/etienne-jules-marey",
+    "origin": "https://www.college-de-france.fr/chaire/etienne-jules-marey",
+    "archive": "Collège de France / Cinémathèque française / Société française de photographie",
+    "retrieved": "2026-10-20",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-old-100",
+    "license_url": null,
+    "credit": "Étienne-Jules Marey, 1883. Chronophotographie géométrique (Homme marchant). Station Physiologique, Paris / Collège de France. Public domain.",
+    "notes": "Public domain early movement study with clear archival provenance."
+  },
+  "files": {
+    "media": {
+      "path": "media.mp4",
+      "type": "video/mp4",
+      "bytes": 106352,
+      "sha256": "1f1c36112f5a330e3d9a355f2da18b324045b242837871508209f19c7acac0de",
+      "duration": 1.26,
+      "width": 191,
+      "height": 572,
+      "fps": 5.56,
+      "frames": 7,
+      "frame_delays_ms": [
+        180,
+        180,
+        180,
+        180,
+        180,
+        180,
+        180
+      ],
+      "variable_delays": false,
+      "loop_count": 0,
+      "disposal": [
+        0
+      ],
+      "palette": 227,
+      "phash": "173070e878cc0c17",
+      "motion_curve": [
+        17.57,
+        20.99,
+        18.29,
+        23.39,
+        26.56
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 65544,
+      "sha256": "2d0fb6f9bf0591bf74886c224264a279fcae3f21a85f42c62ce1e390d926f52c"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 26700,
+      "sha256": "74d3f60d5bb771919d24f7abefd6c63e437da1f3fbec1feb77328b215662e3b8",
+      "width": 191,
+      "height": 572
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 21438,
+      "sha256": "93be725199157666a54f558809885747a71da4f99a37f017e3ddb0969d8a9446",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.gif",
+      "type": "image/gif",
+      "bytes": 303919,
+      "sha256": "677791fa7ad9602a7b6a5aea0d369ff10cc97337f881568c9ad95f97c8e94020",
+      "width": 191,
+      "height": 572,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://www.college-de-france.fr/chaire/etienne-jules-marey",
+      "date": "2026-10-20",
+      "sha256": "677791fa7ad9602a7b6a5aea0d369ff10cc97337f881568c9ad95f97c8e94020"
+    },
+    {
+      "step": "derived",
+      "file": "media.mp4",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(iw/2)*2):max(2,trunc(ih/2)*2)' -c:v libx264 -pix_fmt yuv420p -crf 23 -movflags +faststart -an",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(min(768,iw)/2)*2):max(2,trunc(ih/2)*2)' -c:v libvpx-vp9 -pix_fmt yuva420p -crf 32 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "middle-frame webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "gif 1.0",
+      "model": "pillow-gif-walk+dhash",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-20"
+    }
+  ],
+  "added": "2026-10-20",
+  "updated": "2026-10-20",
+  "proposed": {
+    "gif": {
+      "analyzer": "gif",
+      "version": "1.0",
+      "confidence": 0.95,
+      "date": "2026-10-20",
+      "tags": []
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 21.36,
+      "border_motion": 15.3
+    }
+  }
+}

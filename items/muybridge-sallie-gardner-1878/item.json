@@ -1,0 +1,183 @@
+{
+  "id": "muybridge-sallie-gardner-1878",
+  "title": "The Horse in Motion — Sallie Gardner at a Gallop",
+  "kind": "animation",
+  "status": "published",
+  "summary": "Leland Stanford's mare Sallie Gardner galloping at Palo Alto track, proving all four hooves leave the ground simultaneously.",
+  "description": "Captured in June 1878 at the Palo Alto Stock Farm using a battery of 24 cameras with electro-magnetic shutter releases triggered by tripwires. Published in 1881 as 'The Attitudes of Animals in Motion'. One of the foundational achievements in the history of high-speed photography and moving images.",
+  "tags": [
+    "short",
+    "landscape-format",
+    "silent",
+    "bw",
+    "one-shot-anim",
+    "movement",
+    "fast"
+  ],
+  "keywords": [],
+  "collections": [],
+  "demos": [],
+  "creators": [],
+  "date": "1878",
+  "source": {
+    "url": "https://www.loc.gov/pictures/item/2006676100/",
+    "origin": "https://www.loc.gov/pictures/item/2006676100/",
+    "archive": "Library of Congress / Stanford University Archives",
+    "retrieved": "2026-10-20",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US-expired",
+    "license_url": null,
+    "credit": "Eadweard Muybridge, 1878. The Horse in Motion: Sallie Gardner. Palo Alto Stock Farm / Library of Congress. Public domain.",
+    "notes": "Public domain early movement study with clear archival provenance."
+  },
+  "files": {
+    "media": {
+      "path": "media.mp4",
+      "type": "video/mp4",
+      "bytes": 267767,
+      "sha256": "52ef3739d1274224a614234665cda6c4d981a2481841cd2277f576f9e06883c0",
+      "duration": 1.1,
+      "width": 967,
+      "height": 673,
+      "fps": 10.0,
+      "frames": 11,
+      "frame_delays_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "variable_delays": false,
+      "loop_count": 0,
+      "disposal": [
+        1
+      ],
+      "palette": 240,
+      "phash": "9884c6869e929ec6",
+      "motion_curve": [
+        25.28,
+        28.68,
+        36.78,
+        26.99,
+        27.53
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 213710,
+      "sha256": "f294e8fdd3b65342b6093f39296181497685ce3b117c3447a426fe825ba74cb0"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 55824,
+      "sha256": "5063fe453cbdcb12fb201e32ad29aef99b070f6c57fde2afeae65bf65b62efd6",
+      "width": 967,
+      "height": 673
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 17828,
+      "sha256": "b36968b4306165e5e6f04bc6fea00b40fd062ed27f3a96cda47877bd25a5c34e",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.gif",
+      "type": "image/gif",
+      "bytes": 1686624,
+      "sha256": "48db3f8115caf6b7e09f01c6eed16a5cd6bbbdca5ee45183df02577eee5221cc",
+      "width": 967,
+      "height": 673,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://www.loc.gov/pictures/item/2006676100/",
+      "date": "2026-10-20",
+      "sha256": "48db3f8115caf6b7e09f01c6eed16a5cd6bbbdca5ee45183df02577eee5221cc"
+    },
+    {
+      "step": "derived",
+      "file": "media.mp4",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(iw/2)*2):max(2,trunc(ih/2)*2)' -c:v libx264 -pix_fmt yuv420p -crf 23 -movflags +faststart -an",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(min(768,iw)/2)*2):max(2,trunc(ih/2)*2)' -c:v libvpx-vp9 -pix_fmt yuva420p -crf 32 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "middle-frame webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "gif 1.0",
+      "model": "pillow-gif-walk+dhash",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-20"
+    }
+  ],
+  "added": "2026-10-20",
+  "updated": "2026-10-20",
+  "proposed": {
+    "gif": {
+      "analyzer": "gif",
+      "version": "1.0",
+      "confidence": 0.95,
+      "date": "2026-10-20",
+      "tags": []
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 29.05,
+      "border_motion": 35.7
+    }
+  }
+}

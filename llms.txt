@@ -5,7 +5,7 @@
 > `Access-Control-Allow-Origin: *` so any browser sketch, Genereti node, p5.js
 > canvas, Three.js scene, or student assignment can stream or download by stable URL.
 
-Published inventory: 26 items (12 animation, 4 image, 2 model, 1 splat, 1 vector, 6 video) and 7 clips.
+Published inventory: 35 items (16 animation, 4 image, 2 model, 1 splat, 1 vector, 11 video) and 7 clips.
 
 ## 1. Machine-Readable Indexes (Never Scrape HTML)
 

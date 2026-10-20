@@ -1,0 +1,204 @@
+{
+  "id": "marey-alvin-kraenzlein-haies-1900",
+  "title": "Saut de haies par l'athlète américain Alvin Kraenzlein",
+  "kind": "video",
+  "status": "published",
+  "summary": "Olympic champion Alvin Kraenzlein demonstrating his revolutionary straight-leg hurdling technique at the 1900 Paris Exposition.",
+  "description": "Recorded on continuous moving celluloid film by Étienne-Jules Marey at the Station Physiologique de Paris during the 1900 Summer Olympic Games. Alvin Kraenzlein was the four-time gold medalist who invented the modern hurdling technique of clearing the hurdle with a straight front leg. Excellent for high-speed body tracking.",
+  "tags": [
+    "short",
+    "landscape-format",
+    "silent",
+    "bw",
+    "cuts",
+    "movement",
+    "fast"
+  ],
+  "keywords": [],
+  "collections": [],
+  "demos": [],
+  "creators": [],
+  "date": "1900",
+  "source": {
+    "url": "https://www.college-de-france.fr/",
+    "origin": "https://www.college-de-france.fr/",
+    "archive": "Collège de France / Cinémathèque française / Archives françaises du film (CNC)",
+    "retrieved": "2026-10-20",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-old-100",
+    "license_url": null,
+    "credit": "Étienne-Jules Marey, 1900. Saut de haie par Alvin Kraenzlein. Station Physiologique de Paris / Collège de France. Public domain.",
+    "notes": "Public domain early movement study with clear archival provenance."
+  },
+  "files": {
+    "media": {
+      "path": "media.webm",
+      "type": "video/webm",
+      "bytes": 1555713,
+      "sha256": "c74aa25eb6c1d5c649131302fa9b4fc0ce27c5eb400d82bf46dfcb78cdf8de0c",
+      "duration": 9.289,
+      "width": 1280,
+      "height": 666,
+      "fps": 25.08,
+      "motion_curve": [
+        19.27,
+        18.46,
+        26.32,
+        17.26,
+        11.62,
+        11.06,
+        17.1,
+        11.98,
+        21.09,
+        20.1,
+        12.89,
+        8.17,
+        5.72,
+        10.44,
+        13.64,
+        18.24
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 519547,
+      "sha256": "857bfcd706aa4901122e55baed9ccb6dff4d810b2ebab211f541ac7b2e92ed1e"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 51510,
+      "sha256": "cefa5f168042aecb27329fdd22155bbcf39a90bab7f5572d1ab198a79c2c18af",
+      "width": 1280,
+      "height": 666
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 14020,
+      "sha256": "b3a27784c0adbd121812362130820613cdd654a1bbb20ab12be69095d72e04c1",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.webm",
+      "type": "video/webm",
+      "bytes": 7560610,
+      "sha256": "5388208dd0ba616d45438d6e59abdb136842fb64b3173f705289b144b352ac57",
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://www.college-de-france.fr/",
+      "date": "2026-10-20",
+      "sha256": "5388208dd0ba616d45438d6e59abdb136842fb64b3173f705289b144b352ac57"
+    },
+    {
+      "step": "derived",
+      "file": "media.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='min(1280,iw)':-2 -c:v libvpx-vp9 -crf 33 -b:v 0 -row-mt 1 -cpu-used 4 -c:a libopus -b:a 96k",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf fps=15,scale='min(768,iw)':-2 -c:v libvpx-vp9 -crf 35 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "ffmpeg 9.0.2 + Pillow",
+      "args": "-ss 0.93 -frames:v 1 -> webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "scenes 1.0",
+      "model": "ffmpeg-scene+silence",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "audio 1.0",
+      "model": "ffmpeg-pcm+onset-bpm",
+      "date": "2026-10-20"
+    }
+  ],
+  "added": "2026-10-20",
+  "updated": "2026-10-20",
+  "proposed": {
+    "scenes": {
+      "analyzer": "scenes",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "clips": [
+        {
+          "n": 1,
+          "title": "Clip 01 (0.0s–3.7s)",
+          "summary": "Segment 1 from 0.0s to 3.7s.",
+          "tags": [],
+          "demos": [],
+          "in": 0.0,
+          "out": 3.71,
+          "file": "clips/01.webm",
+          "thumb": "clips/01.thumb.webp"
+        },
+        {
+          "n": 2,
+          "title": "Clip 02 (3.7s–9.3s)",
+          "summary": "Segment 2 from 3.7s to 9.3s.",
+          "tags": [],
+          "demos": [],
+          "in": 3.71,
+          "out": 9.29,
+          "file": "clips/02.webm",
+          "thumb": "clips/02.thumb.webp"
+        }
+      ],
+      "scene_cuts": [
+        3.71,
+        5.58
+      ]
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 15.28,
+      "border_motion": 18.05
+    }
+  }
+}

@@ -2593,6 +2593,10 @@
                   )}</div>`
                 : ""
             }
+            <div style="margin-top:0.5rem; display:flex; gap:0.4rem;">
+              <a href="curate.html" class="btn-small">Curate in Studio 🔒</a>
+              <a href="#/${escapeHtml(item.id)}" class="btn-small">Preview Item</a>
+            </div>
           </div>
         </article>
       `;

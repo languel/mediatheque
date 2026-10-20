@@ -1,0 +1,206 @@
+{
+  "id": "lumiere-arrivee-train-la-ciotat-1895",
+  "title": "L'Arrivée d'un train en gare de La Ciotat",
+  "kind": "video",
+  "status": "published",
+  "summary": "A steam locomotive pulling passenger cars into the station of La Ciotat as travelers disembark along the platform.",
+  "description": "Filmed in late 1895 with the Cinématographe by Louis and Auguste Lumière. Famous for its diagonal composition from upper-right to lower-left foreground, introducing visual depth and perspective to moving picture audiences.",
+  "tags": [
+    "landscape-format",
+    "bw",
+    "cuts",
+    "movement"
+  ],
+  "keywords": [],
+  "collections": [],
+  "demos": [],
+  "creators": [],
+  "date": "1895",
+  "source": {
+    "url": "https://catalogue-lumiere.com/arrivee-dun-train-a-la-ciotat/",
+    "origin": "https://catalogue-lumiere.com/arrivee-dun-train-a-la-ciotat/",
+    "archive": "Institut Lumière (Lyon) / Centre national du cinéma et de l'image animée (CNC)",
+    "retrieved": "2026-10-20",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-old-100",
+    "license_url": null,
+    "credit": "Louis Lumière, 1895. L'Arrivée d'un train en gare de La Ciotat (Vue n° 653). Institut Lumière / CNC. Public domain.",
+    "notes": "Public domain early movement study with clear archival provenance."
+  },
+  "files": {
+    "media": {
+      "path": "media.webm",
+      "type": "video/webm",
+      "bytes": 4756758,
+      "sha256": "f11f2407c878d488c0475a01530098b66fa9cc7f6a7f51cc15edd948d854a2d6",
+      "duration": 49.049,
+      "width": 540,
+      "height": 360,
+      "fps": 29.97,
+      "motion_curve": [
+        0.31,
+        0.01,
+        14.36,
+        6.09,
+        6.38,
+        5.97,
+        6.09,
+        6.88,
+        10.81,
+        13.43,
+        9.43,
+        8.41,
+        7.9,
+        7.49,
+        17.13,
+        8.91
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 2045485,
+      "sha256": "eb5ebe7fb384c93f1d3f754f883d31b96426db3d7678d00121d67689b5e533c3"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 14962,
+      "sha256": "dd78eba4dff9e876a184fd6e825f92881125d447bd7b2c8d2c6a72170e31039b",
+      "width": 540,
+      "height": 360
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 12310,
+      "sha256": "82ef453aee0ae6bbc51cbe2ca391b0071b95bc108c82c7765f21317cea75cae5",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.webm",
+      "type": "video/webm",
+      "bytes": 4756758,
+      "sha256": "f11f2407c878d488c0475a01530098b66fa9cc7f6a7f51cc15edd948d854a2d6",
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://catalogue-lumiere.com/arrivee-dun-train-a-la-ciotat/",
+      "date": "2026-10-20",
+      "sha256": "f11f2407c878d488c0475a01530098b66fa9cc7f6a7f51cc15edd948d854a2d6"
+    },
+    {
+      "step": "derived",
+      "file": "media.webm",
+      "tool": "copy (web-ready source)",
+      "args": "cp lumiere-arrivee-train-la-ciotat-1895.webm media.webm",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf fps=15,scale='min(768,iw)':-2 -c:v libvpx-vp9 -crf 35 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "ffmpeg 9.0.2 + Pillow",
+      "args": "-ss 4.9 -frames:v 1 -> webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "scenes 1.0",
+      "model": "ffmpeg-scene+silence",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "audio 1.0",
+      "model": "ffmpeg-pcm+onset-bpm",
+      "date": "2026-10-20"
+    }
+  ],
+  "added": "2026-10-20",
+  "updated": "2026-10-20",
+  "proposed": {
+    "scenes": {
+      "analyzer": "scenes",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "clips": [
+        {
+          "n": 1,
+          "title": "Clip 01 (0.0s–4.0s)",
+          "summary": "Segment 1 from 0.0s to 4.0s.",
+          "tags": [],
+          "demos": [],
+          "in": 0.0,
+          "out": 3.97,
+          "file": "clips/01.webm",
+          "thumb": "clips/01.thumb.webp"
+        },
+        {
+          "n": 2,
+          "title": "Clip 02 (4.0s–49.0s)",
+          "summary": "Segment 2 from 4.0s to 49.0s.",
+          "tags": [],
+          "demos": [],
+          "in": 3.97,
+          "out": 49.05,
+          "file": "clips/02.webm",
+          "thumb": "clips/02.thumb.webp"
+        }
+      ],
+      "scene_cuts": [
+        3.97
+      ]
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "tags": [],
+      "mean_motion": 8.0,
+      "border_motion": 7.02
+    },
+    "audio": {
+      "analyzer": "audio",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "tags": [],
+      "rms": 0.0687
+    }
+  }
+}

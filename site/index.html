@@ -49,6 +49,9 @@
         <a class="nav-pill" href="#/review" id="nav-review-link" title="Draft &amp; review queue">
           Review <span id="review-badge" class="badge-count" hidden>0</span>
         </a>
+        <a class="nav-pill" href="curate.html" id="nav-curate-link" title="Curator Studio: review, annotate, approve, and publish media" style="border-color: rgba(59, 130, 246, 0.4); color: var(--text);">
+          Curator Studio 🔒
+        </a>
         <a class="nav-pill" href="../llms.txt" data-llms-link target="_blank" rel="noopener">
           llms.txt
         </a>
@@ -148,7 +151,10 @@
               <code>catalog.json</code>.
             </p>
           </div>
-          <a href="#/" class="btn-small">← Back to Published Gallery</a>
+          <div style="display:flex; gap:0.5rem; align-items:center;">
+            <a href="curate.html" class="btn-small btn-small--primary">Open Curator Studio 🔒</a>
+            <a href="#/" class="btn-small">← Back to Published Gallery</a>
+          </div>
         </div>
         <div id="review-list" class="review-list"></div>
       </section>

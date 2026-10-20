@@ -1,0 +1,200 @@
+{
+  "id": "edison-boxing-cats-1894",
+  "title": "The Boxing Cats (Prof. Welton's)",
+  "kind": "video",
+  "status": "published",
+  "summary": "Henry Welton's trained domestic cats sparring with miniature boxing gloves in a miniature ring at Thomas Edison's Black Maria studio.",
+  "description": "Filmed in July 1894 at Edison's Black Maria studio in West Orange, New Jersey by William K.L. Dickson and William Heise. Deposited for copyright protection as a paper print in the Library of Congress. One of the earliest animal motion pictures in cinema history and an iconic early internet favorite.",
+  "tags": [
+    "landscape-format",
+    "silent",
+    "bw",
+    "cuts",
+    "movement",
+    "fast"
+  ],
+  "keywords": [],
+  "collections": [],
+  "demos": [],
+  "creators": [],
+  "date": "1894",
+  "source": {
+    "archive": "Library of Congress Motion Picture, Broadcasting and Recorded Sound Division",
+    "url": "https://www.loc.gov/item/00694119/",
+    "origin": "https://www.loc.gov/item/00694119/"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US-expired",
+    "credit": "William K.L. Dickson and William Heise (Edison Kinetoscope), 1894. The Boxing Cats (Prof. Welton's). Library of Congress Paper Print Collection. Public domain.",
+    "notes": "Public domain early movement study with clear archival provenance."
+  },
+  "files": {
+    "media": {
+      "path": "media.webm",
+      "type": "video/webm",
+      "bytes": 1311437,
+      "sha256": "a3206e9f840a0732b177e0c11d2fa1b512e00e694ccaca6f2b2407d32a5fca59",
+      "duration": 22.562,
+      "width": 320,
+      "height": 240,
+      "fps": 29.92,
+      "motion_curve": [
+        0.04,
+        0.03,
+        31.17,
+        14.44,
+        20.26,
+        15.21,
+        19.6,
+        21.24,
+        23.96,
+        22.6,
+        16.61,
+        18.77,
+        20.78,
+        17.58,
+        19.62,
+        18.64
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 642077,
+      "sha256": "e116239f2283569f9d8c34bf16c68a8495e64245489f6e2dec935ee29de997cf"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 7470,
+      "sha256": "5b6ceca688504fdf5d13b994a2030d2e3c16a0e29d613437d9e1eb30ce05ba3d",
+      "width": 320,
+      "height": 240
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 12778,
+      "sha256": "4fa71679016d546f83eb42b187cd75d3c000b08c318fcdf6af9e3c1b0d82ccb9",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.webm",
+      "type": "video/webm",
+      "bytes": 1311437,
+      "sha256": "a3206e9f840a0732b177e0c11d2fa1b512e00e694ccaca6f2b2407d32a5fca59",
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://www.loc.gov/item/00694119/",
+      "date": "2026-10-20",
+      "sha256": "a3206e9f840a0732b177e0c11d2fa1b512e00e694ccaca6f2b2407d32a5fca59"
+    },
+    {
+      "step": "derived",
+      "file": "media.webm",
+      "tool": "copy (web-ready source)",
+      "args": "cp edison-boxing-cats-1894.webm media.webm",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf fps=15,scale='min(768,iw)':-2 -c:v libvpx-vp9 -crf 35 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "ffmpeg 9.0.2 + Pillow",
+      "args": "-ss 2.26 -frames:v 1 -> webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "scenes 1.0",
+      "model": "ffmpeg-scene+silence",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "audio 1.0",
+      "model": "ffmpeg-pcm+onset-bpm",
+      "date": "2026-10-20"
+    }
+  ],
+  "added": "2026-10-20",
+  "updated": "2026-10-20",
+  "proposed": {
+    "scenes": {
+      "analyzer": "scenes",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "clips": [
+        {
+          "n": 1,
+          "title": "Clip 01 (0.0s–2.9s)",
+          "summary": "Segment 1 from 0.0s to 2.9s.",
+          "tags": [],
+          "demos": [],
+          "in": 0.0,
+          "out": 2.94,
+          "file": "clips/01.webm",
+          "thumb": "clips/01.thumb.webp"
+        },
+        {
+          "n": 2,
+          "title": "Clip 02 (2.9s–22.6s)",
+          "summary": "Segment 2 from 2.9s to 22.6s.",
+          "tags": [],
+          "demos": [],
+          "in": 2.94,
+          "out": 22.56,
+          "file": "clips/02.webm",
+          "thumb": "clips/02.thumb.webp"
+        }
+      ],
+      "scene_cuts": [
+        2.94
+      ]
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 17.32,
+      "border_motion": 10.15
+    }
+  },
+  "plate": null
+}

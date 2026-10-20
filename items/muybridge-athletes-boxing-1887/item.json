@@ -1,0 +1,185 @@
+{
+  "id": "muybridge-athletes-boxing-1887",
+  "title": "Athletes Boxing — Animal Locomotion (Plate 333)",
+  "kind": "animation",
+  "status": "published",
+  "summary": "Two athletes boxing and sparring, captured in sequential high-speed chronophotography for the University of Pennsylvania.",
+  "description": "Plate 333 from Eadweard Muybridge's 1887 landmark portfolio 'Animal Locomotion: An Electro-Photographic Investigation of Consecutive Phases of Animal Movements' (University of Pennsylvania). Demonstrates rapid footwork, defensive guards, and jab exchanges, ideal for dual-person pose estimation.",
+  "tags": [
+    "short",
+    "portrait",
+    "silent",
+    "color",
+    "seamless-loop",
+    "loop-friendly",
+    "movement",
+    "fast"
+  ],
+  "keywords": [],
+  "collections": [],
+  "demos": [],
+  "creators": [],
+  "date": "1887",
+  "source": {
+    "url": "https://www.loc.gov/pictures/item/2004665352/",
+    "origin": "https://www.loc.gov/pictures/item/2004665352/",
+    "archive": "University of Pennsylvania / Library of Congress Prints and Photographs Division",
+    "retrieved": "2026-10-20",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US-expired",
+    "license_url": null,
+    "credit": "Eadweard Muybridge, 1887. Athletes Boxing (Animal Locomotion, Plate 333). University of Pennsylvania. Public domain.",
+    "notes": "Public domain early movement study with clear archival provenance."
+  },
+  "files": {
+    "media": {
+      "path": "media.mp4",
+      "type": "video/mp4",
+      "bytes": 298991,
+      "sha256": "33ee21c03482c70c6bc6c315a597e398be64948bf8624d6fb5235df09b2958e0",
+      "duration": 1.8,
+      "width": 550,
+      "height": 650,
+      "fps": 5.0,
+      "frames": 9,
+      "frame_delays_ms": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "variable_delays": false,
+      "loop_count": 0,
+      "disposal": [
+        1
+      ],
+      "palette": 17122,
+      "phash": "d89292b292ccc8d0",
+      "motion_curve": [
+        44.61,
+        34.89,
+        40.72,
+        58.39,
+        51.39,
+        38.66,
+        26.9,
+        36.03
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 147340,
+      "sha256": "7b0a7397648e94170a4fa891f591dc6facafcf954a6841c6787023a98d4a7702"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 57198,
+      "sha256": "3f34774dc4754869adb223ae8bafe3224dc6223d5239dbf859f1afe2a781a2c5",
+      "width": 550,
+      "height": 650
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 22262,
+      "sha256": "a205022566d847b4c168c6d9da5a584564e2f6ad096c030366018bff98a8904f",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.gif",
+      "type": "image/gif",
+      "bytes": 2116988,
+      "sha256": "bb2c83de8423dfa43e6e1690b717c960c784e72c2de72b87f743dc24a8c443ff",
+      "width": 550,
+      "height": 650,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://www.loc.gov/pictures/item/2004665352/",
+      "date": "2026-10-20",
+      "sha256": "bb2c83de8423dfa43e6e1690b717c960c784e72c2de72b87f743dc24a8c443ff"
+    },
+    {
+      "step": "derived",
+      "file": "media.mp4",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(iw/2)*2):max(2,trunc(ih/2)*2)' -c:v libx264 -pix_fmt yuv420p -crf 23 -movflags +faststart -an",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(min(768,iw)/2)*2):max(2,trunc(ih/2)*2)' -c:v libvpx-vp9 -pix_fmt yuva420p -crf 32 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "middle-frame webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "gif 1.0",
+      "model": "pillow-gif-walk+dhash",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-20"
+    }
+  ],
+  "added": "2026-10-20",
+  "updated": "2026-10-20",
+  "proposed": {
+    "gif": {
+      "analyzer": "gif",
+      "version": "1.0",
+      "confidence": 0.95,
+      "date": "2026-10-20",
+      "tags": []
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 41.45,
+      "border_motion": 24.41
+    }
+  }
+}

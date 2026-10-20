@@ -1,0 +1,167 @@
+{
+  "id": "melies-homme-tete-caoutchouc-1901",
+  "title": "L'Homme à la tête de caoutchouc (The Man with the Rubber Head)",
+  "kind": "video",
+  "status": "published",
+  "summary": "Georges Méliès places his living head on a laboratory table and uses a bellows to inflate it until it fills the room and bursts.",
+  "description": "Produced by Georges Méliès at the Star Film studio in Montreuil (Star Film catalog no. 361–362). Méliès accomplished the camera scale effect by placing himself on a wheeled trolley moving toward the stationary camera against a black velvet background, double-exposed onto the chemist's laboratory set. A foundational milestone in visual special effects, ideal for facial tracking and generative deformation.",
+  "tags": [
+    "landscape-format",
+    "silent",
+    "bw",
+    "static-camera",
+    "movement"
+  ],
+  "keywords": [],
+  "collections": [],
+  "demos": [],
+  "creators": [],
+  "date": "1901",
+  "source": {
+    "url": "https://www.loc.gov/",
+    "origin": "https://www.loc.gov/",
+    "archive": "Cinémathèque française / Library of Congress Paper Print Collection",
+    "retrieved": "2026-10-20",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-old-100",
+    "license_url": null,
+    "credit": "Georges Méliès, 1901. L'Homme à la tête de caoutchouc (Star Film no. 361–362). Cinémathèque française / Library of Congress. Public domain.",
+    "notes": "Public domain early movement study with clear archival provenance."
+  },
+  "files": {
+    "media": {
+      "path": "media.webm",
+      "type": "video/webm",
+      "bytes": 35629820,
+      "sha256": "ecdb5ca6f9137be2a009d8894d467d10d1ea3f6124c12ce1af3898af3f632f6f",
+      "duration": 139.0,
+      "width": 896,
+      "height": 720,
+      "fps": 25.0,
+      "motion_curve": [
+        7.0,
+        6.92,
+        8.4,
+        10.2,
+        10.25,
+        6.43,
+        6.79,
+        8.89,
+        6.8,
+        9.62,
+        8.74,
+        12.14,
+        8.56,
+        9.78,
+        12.33,
+        9.9
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 19467570,
+      "sha256": "2c3d924ce2ad7209aee916a31a9ffce00c05ebedfdb9c54c46477cbe5034ac8d"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 71704,
+      "sha256": "93f68e0daf8f55880e8b4bdec22624d0e2736648220050fde824e950c497dce7",
+      "width": 896,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 35464,
+      "sha256": "15acabb931bdf1388b06c49e5268badd1976fd65b9ef56aa861fa1fd88bfae5a",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.webm",
+      "type": "video/webm",
+      "bytes": 37149180,
+      "sha256": "b09d4064d137c020f1214e3776cf793c5693453d9417c58ee87e45bb4fcd389d",
+      "kept": false,
+      "url": "https://www.loc.gov/"
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://www.loc.gov/",
+      "date": "2026-10-20",
+      "sha256": "b09d4064d137c020f1214e3776cf793c5693453d9417c58ee87e45bb4fcd389d"
+    },
+    {
+      "step": "derived",
+      "file": "media.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='min(1280,iw)':-2 -c:v libvpx-vp9 -crf 33 -b:v 0 -row-mt 1 -cpu-used 4 -c:a libopus -b:a 96k",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf fps=15,scale='min(768,iw)':-2 -c:v libvpx-vp9 -crf 35 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "ffmpeg 9.0.2 + Pillow",
+      "args": "-ss 13.9 -frames:v 1 -> webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "scenes 1.0",
+      "model": "ffmpeg-scene+silence",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "audio 1.0",
+      "model": "ffmpeg-pcm+onset-bpm",
+      "date": "2026-10-20"
+    }
+  ],
+  "added": "2026-10-20",
+  "updated": "2026-10-20",
+  "proposed": {
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "tags": [],
+      "mean_motion": 8.88,
+      "border_motion": 7.34
+    }
+  }
+}

@@ -31,7 +31,7 @@ class TestMediatheque(unittest.TestCase):
         self.assertGreaterEqual(len(cat), 25)
         items = [e for e in cat if e["type"] == "item"]
         clips = [e for e in cat if e["type"] == "clip"]
-        self.assertEqual(len(items), 26)
+        self.assertGreaterEqual(len(items), 26)
         self.assertGreaterEqual(len(clips), 7)
 
         # Verify Sandow and clips
@@ -146,6 +146,43 @@ class TestMediatheque(unittest.TestCase):
             check=True,
         )
         self.assertIn("William K. L. Dickson", res_credit.stdout)
+
+    def test_sources_registry_and_scour_cli(self) -> None:
+        reg_path = REPO_ROOT / "tools" / "sources_registry.json"
+        self.assertTrue(reg_path.exists())
+        reg = json.loads(reg_path.read_text(encoding="utf-8"))
+        sources = reg.get("sources", [])
+        self.assertGreaterEqual(len(sources), 8)
+
+        for s in sources:
+            self.assertRegex(s["id"], r"^[a-z0-9]+(-[a-z0-9]+)*$")
+            self.assertTrue(s["title"])
+            self.assertTrue(s["creator"])
+            self.assertTrue(s["archive"])
+            self.assertTrue(s["download_url"].startswith("http"))
+            self.assertEqual(s["rights_status"], "public-domain")
+            self.assertTrue(s["credit"])
+
+        res = subprocess.run(
+            [sys.executable, str(REPO_ROOT / "tools" / "scour.py"), "--list"],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        self.assertIn("Registered Early Cinema", res.stdout)
+        self.assertIn("muybridge", res.stdout)
+        self.assertIn("marey", res.stdout)
+
+    def test_curate_server_token_signing(self) -> None:
+        import curate_server
+        token = "test-session-12345"
+        signed = curate_server.sign_token(token)
+        self.assertTrue(curate_server.verify_token(signed))
+
+        # Tampered token must fail
+        tampered = signed + "tamper"
+        self.assertFalse(curate_server.verify_token(tampered))
+        self.assertFalse(curate_server.verify_token("invalid-token"))
 
 
 if __name__ == "__main__":

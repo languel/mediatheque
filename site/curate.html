@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mediathèque — Curator Studio</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/curate.css" />
+</head>
+<body class="curate-body">
+
+  <!-- Passcode Auth Overlay -->
+  <div id="auth-gate" class="auth-gate">
+    <div class="auth-card">
+      <div class="auth-card__header">
+        <span class="card-badge">RESTRICTED CURATION GATEWAY</span>
+        <h1 class="auth-card__title">Curator Studio</h1>
+        <p class="auth-card__subtitle">Enter your curatorial passcode to review, annotate, approve, and publish archive media.</p>
+      </div>
+      <form id="auth-form" class="auth-input-group">
+        <label for="passcode-input" class="curate-label">Curator Passcode</label>
+        <input
+          type="password"
+          id="passcode-input"
+          class="auth-input"
+          placeholder="••••••••••••"
+          autocomplete="current-password"
+          required
+          autofocus
+        />
+        <div id="auth-error-msg" class="auth-error" hidden></div>
+        <button type="submit" class="auth-btn" id="btn-submit-auth">Unlock Studio</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Studio Main Application -->
+  <div id="studio-app" style="display:flex; flex-direction:column; min-height:100vh;">
+    <!-- Top Header -->
+    <header class="curator-header">
+      <div class="curator-brand">
+        <a href="#/" class="curator-brand__logo">Mediathèque</a>
+        <span class="curator-brand__badge">Curator Studio</span>
+        <span id="server-status-pill" class="card-badge" style="margin-left:0.5rem;">Connecting…</span>
+      </div>
+
+      <nav class="curator-tabs">
+        <button type="button" class="curator-tab is-active" data-curate-tab="review">
+          Review Queue <span id="badge-review-count" class="tab-badge tab-badge--alert">0</span>
+        </button>
+        <button type="button" class="curator-tab" data-curate-tab="published">
+          Published Set <span id="badge-published-count" class="tab-badge">0</span>
+        </button>
+        <button type="button" class="curator-tab" data-curate-tab="all">
+          All Items <span id="badge-all-count" class="tab-badge">0</span>
+        </button>
+        <button type="button" class="curator-tab" data-curate-tab="scour">
+          Scour Archives
+        </button>
+      </nav>
+
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <button type="button" class="btn-curate" id="btn-rebuild-catalog" title="Rebuild catalog.json and review.json">Rebuild Catalog</button>
+        <button type="button" class="btn-curate" id="btn-git-status" title="View git status and commit approved items">Git Commit</button>
+        <a href="index.html" target="_blank" class="btn-curate" title="Open public gallery in new tab">Public Gallery ↗</a>
+        <button type="button" class="btn-curate" id="btn-logout" title="Lock Curator Studio">Lock 🔒</button>
+      </div>
+    </header>
+
+    <!-- Workspace Main Views -->
+    <main class="curator-workspace">
+      <!-- Left Sidebar: Items List -->
+      <aside class="curator-sidebar">
+        <div class="sidebar-search-box">
+          <input
+            type="search"
+            id="curate-search-input"
+            class="sidebar-search-input"
+            placeholder="Filter items by title, ID, creator, tag…"
+          />
+          <div class="sidebar-filter-chips">
+            <button type="button" class="filter-chip-mini is-active" data-sidebar-filter="all">All</button>
+            <button type="button" class="filter-chip-mini" data-sidebar-filter="ready">Ready to Publish</button>
+            <button type="button" class="filter-chip-mini" data-sidebar-filter="needs-work">Needs Work</button>
+            <button type="button" class="filter-chip-mini" data-sidebar-filter="video">Video</button>
+            <button type="button" class="filter-chip-mini" data-sidebar-filter="animation">Animation</button>
+          </div>
+        </div>
+
+        <div id="curate-items-list" class="sidebar-items-list">
+          <p class="muted-copy" style="padding:1rem;">Loading items…</p>
+        </div>
+      </aside>
+
+      <!-- Right Area: Detail Workbench or Scourer Tab -->
+      <section id="curator-workbench" class="curator-workbench">
+        <div class="workbench-topbar">
+          <div>
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <span id="detail-item-kind-badge" class="card-badge">KIND</span>
+              <span id="detail-item-status-badge" class="status-badge status-badge--review">REVIEW</span>
+              <span id="detail-item-id" class="eyebrow">item-id</span>
+            </div>
+            <h2 id="detail-item-heading" style="margin-top:0.35rem; font-size:1.35rem; font-weight:600;">Select an item to inspect and curate</h2>
+          </div>
+
+          <div class="workbench-actions">
+            <button type="button" class="btn-curate" id="btn-action-save">Save Annotation</button>
+            <button type="button" class="btn-curate btn-curate--publish" id="btn-action-publish">Approve &amp; Publish</button>
+            <button type="button" class="btn-curate" id="btn-action-unpublish" hidden>Move to Review</button>
+            <a id="btn-link-public" href="#/" target="_blank" class="btn-curate">Public View ↗</a>
+          </div>
+        </div>
+
+        <div id="workbench-content-grid" class="workbench-grid">
+          <!-- Left Sub-panel: Media Player, Aspect Ratio & Files -->
+          <div style="display:flex; flex-direction:column; gap:1.25rem;">
+            <!-- Media Stage Box -->
+            <div class="editor-box">
+              <div class="editor-box__title">
+                <span>Media Inspection &amp; Aspect Ratio</span>
+                <span id="readout-ar" class="card-badge">Ratio</span>
+              </div>
+              <div id="workbench-player-wrap" class="viewer-stage viewer-stage--checker" style="min-height:280px; max-height:420px; overflow:hidden;">
+                <!-- Video, GIF, or Image injected here -->
+              </div>
+              <div style="display:flex; justify-content:space-between; font-family:var(--mono); font-size:0.72rem; color:var(--muted);">
+                <span id="readout-dims">Dimensions: —</span>
+                <span id="readout-dur">Duration: —</span>
+                <span id="readout-fps">FPS: —</span>
+              </div>
+            </div>
+
+            <!-- Publication Readiness Checklist -->
+            <div class="editor-box">
+              <div class="editor-box__title">Publication Readiness Checklist</div>
+              <div id="checklist-container" style="display:flex; flex-direction:column; gap:0.4rem;">
+                <!-- Dynamic checklist items -->
+              </div>
+            </div>
+
+            <!-- Files & Derivatives Table -->
+            <div class="editor-box">
+              <div class="editor-box__title">File Inventory &amp; Hashes</div>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Role</th>
+                    <th>File</th>
+                    <th>Size</th>
+                    <th>SHA-256</th>
+                  </tr>
+                </thead>
+                <tbody id="files-table-body">
+                  <!-- File rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Right Sub-panel: Metadata, Rights & Tagging Editor -->
+          <div style="display:flex; flex-direction:column; gap:1.25rem;">
+            <!-- Curatorial Metadata Form -->
+            <div class="editor-box">
+              <div class="editor-box__title">Curatorial Metadata</div>
+              <div class="curate-form-group">
+                <label class="curate-label">Title</label>
+                <input type="text" id="input-title" class="curate-input" />
+              </div>
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.75rem;">
+                <div class="curate-form-group">
+                  <label class="curate-label">Date (Year)</label>
+                  <input type="text" id="input-date" class="curate-input" placeholder="e.g. 1895" />
+                </div>
+                <div class="curate-form-group">
+                  <label class="curate-label">Plate / Sequence</label>
+                  <input type="text" id="input-plate" class="curate-input" placeholder="e.g. Plate 333" />
+                </div>
+              </div>
+              <div class="curate-form-group">
+                <label class="curate-label">Summary (Card / Search View)</label>
+                <textarea id="input-summary" class="curate-textarea" rows="2"></textarea>
+              </div>
+              <div class="curate-form-group">
+                <label class="curate-label">Description &amp; Historical Context</label>
+                <textarea id="input-description" class="curate-textarea" rows="4"></textarea>
+              </div>
+            </div>
+
+            <!-- Creators Editor -->
+            <div class="editor-box">
+              <div class="editor-box__title">
+                <span>Creators &amp; Attribution Roles</span>
+                <button type="button" class="btn-curate" id="btn-add-creator" style="padding:0.15rem 0.5rem; font-size:0.7rem;">+ Add Creator</button>
+              </div>
+              <div id="creators-editor-list" style="display:flex; flex-direction:column; gap:0.5rem;">
+                <!-- Creator rows -->
+              </div>
+            </div>
+
+            <!-- Rights & Provenance -->
+            <div class="editor-box">
+              <div class="editor-box__title">
+                <span>Rights &amp; Archival Provenance</span>
+                <button type="button" class="btn-curate" id="btn-auto-credit" style="padding:0.15rem 0.5rem; font-size:0.7rem;">Generate Credit Line</button>
+              </div>
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.75rem;">
+                <div class="curate-form-group">
+                  <label class="curate-label">Rights Status</label>
+                  <select id="select-rights-status" class="curate-select">
+                    <option value="public-domain">public-domain</option>
+                    <option value="cc">cc</option>
+                    <option value="fair-use-teaching">fair-use-teaching</option>
+                    <option value="licensed">licensed</option>
+                    <option value="unknown">unknown</option>
+                  </select>
+                </div>
+                <div class="curate-form-group">
+                  <label class="curate-label">License</label>
+                  <input type="text" id="input-license" class="curate-input" placeholder="e.g. PD-US-expired, PD-old-100" />
+                </div>
+              </div>
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.75rem;">
+                <div class="curate-form-group">
+                  <label class="curate-label">Holding Archive / Collection</label>
+                  <input type="text" id="input-archive" class="curate-input" placeholder="e.g. Library of Congress" />
+                </div>
+                <div class="curate-form-group">
+                  <label class="curate-label">Source URL</label>
+                  <input type="url" id="input-source-url" class="curate-input" placeholder="https://..." />
+                </div>
+              </div>
+              <div class="curate-form-group">
+                <label class="curate-label">Attribution Credit Line (Required)</label>
+                <textarea id="input-credit" class="curate-textarea" rows="2"></textarea>
+              </div>
+            </div>
+
+            <!-- Controlled Vocabulary Tags & Demos -->
+            <div class="editor-box">
+              <div class="editor-box__title">
+                <span>Controlled Vocabulary Tags</span>
+                <button type="button" class="btn-curate" id="btn-accept-proposed" style="padding:0.15rem 0.5rem; font-size:0.7rem;" hidden>Accept Analyzer Tags</button>
+              </div>
+              <div class="curate-form-group">
+                <label class="curate-label">Active Tags</label>
+                <div id="active-tags-wrap" class="tag-chips-wrap"></div>
+              </div>
+              <div class="curate-form-group">
+                <label class="curate-label">Suggested &amp; Vocabulary Tags</label>
+                <div id="vocab-tags-wrap" class="tag-chips-wrap"></div>
+              </div>
+              <div class="curate-form-group" style="margin-top:0.5rem;">
+                <label class="curate-label">Class Demo Categories</label>
+                <div id="demos-chips-wrap" class="tag-chips-wrap"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scour Archives Tab Content -->
+        <div id="scour-tab-content" style="display:none; flex-direction:column; gap:1.5rem;">
+          <div class="editor-box">
+            <div class="editor-box__title">Scour by URL or Identifier</div>
+            <p style="font-size:0.82rem; color:var(--copy); margin:0;">
+              Ingest a new public domain motion study or chronophotograph directly from Wikimedia Commons or the Library of Congress. The asset will be downloaded, processed into proxy and delivery derivatives, analyzed for optical flow and scenes, and placed into the Review Queue.
+            </p>
+            <form id="form-scour-url" style="display:flex; gap:0.5rem; margin-top:0.5rem;">
+              <input
+                type="url"
+                id="input-scour-url"
+                class="curate-input"
+                style="flex:1;"
+                placeholder="https://commons.wikimedia.org/wiki/File:... or direct media URL"
+                required
+              />
+              <button type="submit" class="btn-curate btn-curate--publish">Scour &amp; Ingest</button>
+            </form>
+          </div>
+
+          <div class="editor-box">
+            <div class="editor-box__title">Early Cinema &amp; Chronophotography Presets</div>
+            <div id="scour-presets-grid" class="scour-grid">
+              <!-- Preset cards injected dynamically -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Git Commit Modal -->
+  <dialog id="modal-git" style="background:var(--surface); color:var(--text); border:1px solid var(--line-strong); border-radius:6px; padding:1.5rem; max-width:560px; width:100%;">
+    <h3 style="margin-top:0;">Git Status &amp; Commit</h3>
+    <pre id="git-status-pre" style="background:var(--art-bg); padding:0.75rem; border:1px solid var(--line); border-radius:3px; font-size:0.75rem; max-height:200px; overflow-y:auto;"></pre>
+    <div class="curate-form-group" style="margin:1rem 0;">
+      <label class="curate-label">Commit Message</label>
+      <input type="text" id="git-commit-msg" class="curate-input" value="Curate and publish approved early cinema works" />
+    </div>
+    <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
+      <button type="button" class="btn-curate" id="btn-close-git">Cancel</button>
+      <button type="button" class="btn-curate btn-curate--publish" id="btn-execute-git-commit">Commit Changes</button>
+    </div>
+  </dialog>
+
+  <script src="js/curate.js"></script>
+</body>
+</html>

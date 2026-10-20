@@ -1,0 +1,215 @@
+{
+  "id": "skladanowsky-boxing-kangaroo-1895",
+  "title": "Das boxende Känguruh (The Boxing Kangaroo)",
+  "kind": "video",
+  "status": "published",
+  "summary": "A boxing kangaroo sparring against circus artist Delaware, projected with the Bioscop at the Berlin Wintergarten in November 1895.",
+  "description": "Recorded in 1895 by Max and Emil Skladanowsky with the Bioscop dual-projector system. Shown at the Berlin Wintergarten theatre starting on 1 November 1895, making the Skladanowsky brothers among the very first commercial moving picture exhibitors in Europe.",
+  "tags": [
+    "landscape-format",
+    "bw",
+    "cuts",
+    "movement",
+    "fast",
+    "silent"
+  ],
+  "keywords": [],
+  "collections": [],
+  "demos": [],
+  "creators": [],
+  "date": "1895",
+  "source": {
+    "url": "https://www.bundesarchiv.de/",
+    "origin": "https://www.bundesarchiv.de/",
+    "archive": "Bundesarchiv / Deutsches Filmmuseum (Frankfurt am Main)",
+    "retrieved": "2026-10-20",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-old-70",
+    "license_url": null,
+    "credit": "Max Skladanowsky, 1895. Das boxende Känguruh (Bioscop). Bundesarchiv / Deutsches Filmmuseum. Public domain.",
+    "notes": "Public domain early movement study with clear archival provenance."
+  },
+  "files": {
+    "media": {
+      "path": "media.webm",
+      "type": "video/webm",
+      "bytes": 641735,
+      "sha256": "68cbd67a6762d5ee5b29a4804ad4be20f7aa5519309e33ef3fe9dac88a04c00a",
+      "duration": 17.265,
+      "width": 320,
+      "height": 240,
+      "fps": 1000.0,
+      "motion_curve": [
+        22.86,
+        22.51,
+        17.11,
+        26.81,
+        25.07,
+        16.95,
+        21.71,
+        15.98,
+        26.04,
+        24.34,
+        63.1,
+        19.56,
+        19.51,
+        22.01,
+        22.94,
+        20.8
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 433459,
+      "sha256": "e3fa6a2fccff8e5e4338644efd6c205c642ae76046daf8db805993937ca71aba"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 4176,
+      "sha256": "4f2261f3641830616aca6d3193e5dcc4d607f11a3fc3c99dcf2967c195deb5da",
+      "width": 320,
+      "height": 240
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 6698,
+      "sha256": "d46c5e5f93eb2b6a3938129a980faadb57434e521600c96d2d3b8fd8f6bef581",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.webm",
+      "type": "video/webm",
+      "bytes": 641735,
+      "sha256": "68cbd67a6762d5ee5b29a4804ad4be20f7aa5519309e33ef3fe9dac88a04c00a",
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://www.bundesarchiv.de/",
+      "date": "2026-10-20",
+      "sha256": "68cbd67a6762d5ee5b29a4804ad4be20f7aa5519309e33ef3fe9dac88a04c00a"
+    },
+    {
+      "step": "derived",
+      "file": "media.webm",
+      "tool": "copy (web-ready source)",
+      "args": "cp skladanowsky-boxing-kangaroo-1895.webm media.webm",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf fps=15,scale='min(768,iw)':-2 -c:v libvpx-vp9 -crf 35 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "ffmpeg 9.0.2 + Pillow",
+      "args": "-ss 1.73 -frames:v 1 -> webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "scenes 1.0",
+      "model": "ffmpeg-scene+silence",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "audio 1.0",
+      "model": "ffmpeg-pcm+onset-bpm",
+      "date": "2026-10-20"
+    }
+  ],
+  "added": "2026-10-20",
+  "updated": "2026-10-20",
+  "proposed": {
+    "scenes": {
+      "analyzer": "scenes",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "clips": [
+        {
+          "n": 1,
+          "title": "Clip 01 (0.0s–6.3s)",
+          "summary": "Segment 1 from 0.0s to 6.3s.",
+          "tags": [],
+          "demos": [],
+          "in": 0.0,
+          "out": 6.33,
+          "file": "clips/01.webm",
+          "thumb": "clips/01.thumb.webp"
+        },
+        {
+          "n": 2,
+          "title": "Clip 02 (6.3s–11.8s)",
+          "summary": "Segment 2 from 6.3s to 11.8s.",
+          "tags": [],
+          "demos": [],
+          "in": 6.33,
+          "out": 11.79,
+          "file": "clips/02.webm",
+          "thumb": "clips/02.thumb.webp"
+        },
+        {
+          "n": 3,
+          "title": "Clip 03 (11.8s–17.3s)",
+          "summary": "Segment 3 from 11.8s to 17.3s.",
+          "tags": [],
+          "demos": [],
+          "in": 11.79,
+          "out": 17.27,
+          "file": "clips/03.webm",
+          "thumb": "clips/03.thumb.webp"
+        }
+      ],
+      "scene_cuts": [
+        1.0,
+        6.33,
+        11.79
+      ]
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 24.13,
+      "border_motion": 15.66
+    }
+  }
+}
