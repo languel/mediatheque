@@ -10,7 +10,7 @@
     />
     <title>Mediathèque — Teaching Media Archive</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css?v=zen" />
     <script
       type="module"
       src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
@@ -59,6 +59,15 @@
           JSON
         </a>
         <button
+          class="nav-pill nav-pill--icon"
+          type="button"
+          id="btn-toggle-zen"
+          aria-label="Toggle Zen mode (Alt+Z)"
+          title="Toggle Zen visual mode (Alt+Z)"
+        >
+          <span class="site-icon" style="font-size:1.15rem;">◎</span>
+        </button>
+        <button
           class="theme-toggle"
           type="button"
           id="theme-toggle"
@@ -66,6 +75,20 @@
           title="Toggle dark/light theme"
         >
           ◐
+        </button>
+        <button
+          class="nav-pill nav-pill--icon"
+          type="button"
+          id="btn-open-about"
+          aria-label="About Mediathèque"
+          title="About Mediathèque"
+        >
+          <span class="site-icon site-icon--person" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="3.1" />
+              <path d="M5.5 20c.9-3.1 3.2-4.8 6.5-4.8s5.6 1.7 6.5 4.8" />
+            </svg>
+          </span>
         </button>
       </nav>
     </header>
@@ -76,9 +99,9 @@
         <div class="filter-bar" role="region" aria-label="Filters and sorting">
           <div class="filter-group" role="group" aria-label="Entry type">
             <span class="filter-label">Show</span>
-            <button type="button" class="chip is-active" data-type-filter="both">Both</button>
-            <button type="button" class="chip" data-type-filter="item">Items</button>
+            <button type="button" class="chip is-active" data-type-filter="item">Items</button>
             <button type="button" class="chip" data-type-filter="clip">Clips</button>
+            <button type="button" class="chip" data-type-filter="both">Both</button>
           </div>
 
           <div class="filter-group" role="group" aria-label="Media kind" id="kind-chips">
@@ -162,7 +185,92 @@
 
     <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 
+    <!-- FULL-WINDOW PREVIEW WITH TOP CAROUSEL (ZEN & REGULAR EXPAND) -->
+    <div id="zen-preview-modal" class="full-window-preview" aria-modal="true" role="dialog" hidden>
+      <div class="carousel-rail" id="zen-carousel-rail" aria-label="Media carousel">
+        <button class="carousel-control" id="zen-carousel-prev" type="button" aria-label="Previous item">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+        <div class="thumbnail-viewport" id="zen-thumbnail-viewport">
+          <div class="thumbnail-track" id="zen-thumbnail-track" role="tablist" aria-label="Archive entries"></div>
+        </div>
+        <button class="carousel-control" id="zen-carousel-next" type="button" aria-label="Next item">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+        <button class="carousel-control carousel-control--close" id="zen-preview-close" type="button" aria-label="Close preview (Esc)" title="Close (Esc)">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="full-window-stage" id="zen-media-stage"></div>
+    </div>
+
+    <!-- ABOUT DIALOG (PORTFOLIO-EXAMPLE INSPIRED) -->
+    <dialog id="about-dialog" class="about-dialog">
+      <div class="about-dialog__header">
+        <h2 class="about-dialog__title">
+          <span class="site-icon site-icon--person" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="3.1" />
+              <path d="M5.5 20c.9-3.1 3.2-4.8 6.5-4.8s5.6 1.7 6.5 4.8" />
+            </svg>
+          </span>
+          About Mediathèque
+        </h2>
+        <button type="button" class="about-dialog__close" id="about-dialog-close" aria-label="Close dialog">✕</button>
+      </div>
+      <div class="about-dialog__body">
+        <p style="font-size:1.05rem; color:var(--text); font-weight:500;">
+          A personal public archive of teaching media: early cinema, chronophotography, movement studies, procedural graphics, and synthetic signal.
+        </p>
+        <p>
+          Mediathèque curates historical and generative media for research and creative coding. Every entry carries verified provenance, public domain attribution, multi-resolution delivery derivatives, and machine-readable metadata.
+        </p>
+
+        <div class="about-dialog__grid">
+          <div>
+            <h3>Formats &amp; Signals</h3>
+            <p style="font-size:0.8rem; margin:0;">
+              Video (VP9 WebM), animated GIFs, high-res plates, multi-track audio, 3D glTF/GLB models, Gaussian splats (.spz), SVGs, and markdown texts.
+            </p>
+          </div>
+          <div>
+            <h3>Integrations</h3>
+            <p style="font-size:0.8rem; margin:0;">
+              One-click ComfyUI <code>GeneretiMediaStream</code> canvas paste, Python <code>urllib</code>/<code>ffmpeg</code> snippets, and <code>llms.txt</code> for autonomous AI coding agents.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h3>Keyboard Shortcuts</h3>
+          <div class="about-shortcuts-list">
+            <div><kbd>/</kbd></div><div>Focus search input (reveals top bar in Zen mode)</div>
+            <div><kbd>Alt</kbd> + <kbd>Z</kbd></div><div>Toggle Zen Mode (purely visual browsing)</div>
+            <div><kbd>F</kbd></div><div>Toggle Full-Window preview with top carousel</div>
+            <div><kbd>←</kbd> / <kbd>→</kbd></div><div>Navigate carousel items in preview</div>
+            <div><kbd>Space</kbd></div><div>Play / pause video transport</div>
+            <div><kbd>Esc</kbd></div><div>Close full-window preview / dialogs</div>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:1rem; font-family:var(--mono); font-size:0.75rem; color:var(--muted); flex-wrap:wrap; gap:0.5rem;">
+          <span>Mediathèque v1.0 · Public Domain</span>
+          <div style="display:flex; gap:1rem;">
+            <a href="../llms.txt" target="_blank" style="color:var(--text);">llms.txt</a>
+            <a href="../catalog.json" target="_blank" style="color:var(--text);">catalog.json</a>
+            <a href="https://github.com/languel/mediatheque" target="_blank" style="color:var(--text);">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
     <script src="js/zip.js" defer></script>
-    <script src="js/main.js" defer></script>
+    <script src="js/main.js?v=zen" defer></script>
   </body>
 </html>

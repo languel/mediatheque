@@ -10,7 +10,7 @@
     review: [],
     tagsVocab: null,
     query: "",
-    typeFilter: "both", // both | item | clip
+    typeFilter: "item", // item | clip | both
     kindFilter: "all",
     rightsFilter: "all",
     activeTags: new Set(),
@@ -18,6 +18,7 @@
     sortBy: "title",
     selectedIds: new Set(),
     itemCache: new Map(),
+    isZenMode: localStorage.getItem("mediatheque_zen") === "true",
   };
 
   const els = {
@@ -40,6 +41,19 @@
     reviewList: document.getElementById("review-list"),
     reviewBadge: document.getElementById("review-badge"),
     themeToggle: document.getElementById("theme-toggle"),
+    btnToggleZen: document.getElementById("btn-toggle-zen"),
+    btnOpenAbout: document.getElementById("btn-open-about"),
+    aboutDialog: document.getElementById("about-dialog"),
+    aboutDialogClose: document.getElementById("about-dialog-close"),
+    zenPreviewModal: document.getElementById("zen-preview-modal"),
+    zenCarouselRail: document.getElementById("zen-carousel-rail"),
+    zenCarouselPrev: document.getElementById("zen-carousel-prev"),
+    zenCarouselNext: document.getElementById("zen-carousel-next"),
+    zenPreviewClose: document.getElementById("zen-preview-close"),
+    zenThumbnailViewport: document.getElementById("zen-thumbnail-viewport"),
+    zenThumbnailTrack: document.getElementById("zen-thumbnail-track"),
+    zenMediaStage: document.getElementById("zen-media-stage"),
+    siteHeader: document.querySelector(".site-header"),
     toast: document.getElementById("toast"),
   };
 
@@ -152,6 +166,163 @@
         localStorage.setItem("mediatheque-theme", next);
       });
     }
+  }
+
+  // Zen Mode (purely visual archive browsing)
+  function initZenMode() {
+    if (state.isZenMode) {
+      document.body.classList.add("zen-mode");
+      if (els.btnToggleZen) els.btnToggleZen.classList.add("is-active");
+    }
+    if (els.btnToggleZen) {
+      els.btnToggleZen.addEventListener("click", () => {
+        toggleZenMode();
+      });
+    }
+  }
+
+  function setZenMode(active) {
+    state.isZenMode = Boolean(active);
+    document.body.classList.toggle("zen-mode", state.isZenMode);
+    if (els.btnToggleZen) {
+      els.btnToggleZen.classList.toggle("is-active", state.isZenMode);
+      els.btnToggleZen.title = state.isZenMode ? "Exit Zen mode (Alt+Z)" : "Enter Zen visual mode (Alt+Z)";
+    }
+    localStorage.setItem("mediatheque_zen", state.isZenMode ? "true" : "false");
+    showToast(state.isZenMode ? "Zen Mode: On (Purely Visual)" : "Zen Mode: Off");
+    if (state.isZenMode && !els.viewDetail.hidden) {
+      const hash = window.location.hash || "";
+      const targetId = hash.startsWith("#/") ? hash.slice(2) : null;
+      if (targetId) openFullWindowPreview(targetId);
+    }
+  }
+
+  function toggleZenMode() {
+    setZenMode(!state.isZenMode);
+  }
+
+  // Full-Window Preview & Top Carousel (portfolio-example inspired)
+  let activeCarouselId = null;
+
+  function openFullWindowPreview(targetId) {
+    const entries = getFilteredEntries();
+    if (!entries.length) return;
+    activeCarouselId = targetId || entries[0].id;
+    const currentEntry = entries.find((e) => e.id === activeCarouselId) || entries[0];
+    activeCarouselId = currentEntry.id;
+
+    if (window.location.hash !== "#/" + currentEntry.id) {
+      history.replaceState(null, "", "#/" + currentEntry.id);
+    }
+
+    renderFullWindowMedia(currentEntry);
+    renderCarouselTrack(entries, activeCarouselId);
+
+    if (els.zenPreviewModal) {
+      els.zenPreviewModal.hidden = false;
+      requestAnimationFrame(() => els.zenPreviewModal.classList.add("is-open"));
+    }
+  }
+
+  function closeFullWindowPreview() {
+    if (!els.zenPreviewModal) return;
+    els.zenPreviewModal.classList.remove("is-open");
+    setTimeout(() => {
+      els.zenPreviewModal.hidden = true;
+      if (els.zenMediaStage) els.zenMediaStage.innerHTML = "";
+    }, 200);
+  }
+
+  function renderFullWindowMedia(entry) {
+    if (!els.zenMediaStage) return;
+    const mediaUrl = resolveAssetUrl(entry.proxy || entry.media);
+    const origUrl = resolveAssetUrl(entry.media);
+
+    if (entry.kind === "video" || entry.kind === "animation") {
+      els.zenMediaStage.innerHTML = `
+        <video
+          id="zen-player-video"
+          src="${escapeHtml(mediaUrl)}"
+          autoplay
+          loop
+          playsinline
+          controls
+          style="max-width:100vw; max-height:100vh; object-fit:contain; background:transparent;"
+        ></video>
+      `;
+      const vid = document.getElementById("zen-player-video");
+      if (vid) vid.play().catch(() => {});
+    } else if (entry.kind === "image" || entry.kind === "vector") {
+      els.zenMediaStage.innerHTML = `
+        <img
+          src="${escapeHtml(origUrl || mediaUrl)}"
+          alt="${escapeHtml(entry.title)}"
+          style="max-width:100vw; max-height:100vh; object-fit:contain; background:transparent;"
+        />
+      `;
+    } else if (entry.kind === "model") {
+      els.zenMediaStage.innerHTML = `
+        <model-viewer
+          src="${escapeHtml(origUrl)}"
+          auto-rotate
+          camera-controls
+          shadow-intensity="1"
+          style="width:100vw; height:100vh; background:transparent;"
+        ></model-viewer>
+      `;
+    } else {
+      els.zenMediaStage.innerHTML = `
+        <div style="display:flex; flex-direction:column; align-items:center; gap:1rem; color:var(--copy);">
+          <img src="${escapeHtml(resolveAssetUrl(entry.thumb || entry.poster))}" alt="${escapeHtml(entry.title)}" style="max-height:60vh; max-width:80vw; object-fit:contain; background:transparent;" />
+          <h2 style="font-size:1.25rem; margin:0;">${escapeHtml(entry.title)}</h2>
+        </div>
+      `;
+    }
+  }
+
+  function renderCarouselTrack(entries, currentId) {
+    if (!els.zenThumbnailTrack) return;
+    els.zenThumbnailTrack.innerHTML = entries
+      .map((entry) => {
+        const isSel = entry.id === currentId;
+        const thumbUrl = resolveAssetUrl(entry.thumb || entry.poster);
+        return `
+          <button
+            type="button"
+            class="project-thumb ${isSel ? "is-selected" : ""}"
+            data-carousel-id="${escapeHtml(entry.id)}"
+            aria-selected="${isSel ? "true" : "false"}"
+            title="${escapeHtml(entry.title)}"
+          >
+            ${thumbUrl ? `<img src="${escapeHtml(thumbUrl)}" alt="${escapeHtml(entry.title)}" loading="lazy" />` : ""}
+          </button>
+        `;
+      })
+      .join("");
+
+    els.zenThumbnailTrack.querySelectorAll("[data-carousel-id]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-carousel-id");
+        if (id && id !== activeCarouselId) {
+          openFullWindowPreview(id);
+        }
+      });
+    });
+
+    const selThumb = els.zenThumbnailTrack.querySelector('[aria-selected="true"]');
+    if (selThumb) {
+      selThumb.scrollIntoView({ inline: "center", behavior: "smooth" });
+    }
+  }
+
+  function navigateCarousel(delta) {
+    const entries = getFilteredEntries();
+    if (!entries.length) return;
+    const currIdx = entries.findIndex((e) => e.id === activeCarouselId);
+    let nextIdx = (currIdx === -1 ? 0 : currIdx) + delta;
+    if (nextIdx < 0) nextIdx = entries.length - 1;
+    if (nextIdx >= entries.length) nextIdx = 0;
+    openFullWindowPreview(entries[nextIdx].id);
   }
 
   // Adjust header links for root vs /site/
@@ -1102,6 +1273,9 @@
                     )}">Full Work (${formatDuration(files.media && files.media.duration)})</a>`
                   : ""
               }
+              <button type="button" class="btn-small" id="btn-open-fullwindow" data-entry-id="${escapeHtml(
+                activeClip ? `${item.id}/${String(activeClip.n).padStart(2, "0")}` : item.id
+              )}" data-tooltip="Open full-window preview with carousel (F)">⛶ Full Window</button>
             </div>
           </div>
         </div>
@@ -1219,6 +1393,7 @@
             <button type="button" class="btn-small" data-zoom="1">100%</button>
             <button type="button" class="btn-small" data-zoom="2">200%</button>
             <button type="button" class="btn-small" data-zoom="3">300%</button>
+            <button type="button" class="btn-small" id="btn-open-fullwindow" data-entry-id="${escapeHtml(item.id)}" data-tooltip="Open full-window preview with carousel (F)">⛶ Full Window</button>
           </div>
           <span>${(files.media && files.media.width) || "—"} × ${
         (files.media && files.media.height) || "—"
@@ -1250,7 +1425,10 @@
       `;
       controlsHtml = `
         <div class="viewer-controls">
-          <span>3D GLB · Drag to orbit, scroll to zoom</span>
+          <div class="viewer-controls__group">
+            <span>3D GLB · Drag to orbit, scroll to zoom</span>
+            <button type="button" class="btn-small" id="btn-open-fullwindow" data-entry-id="${escapeHtml(item.id)}" data-tooltip="Open full-window preview with carousel (F)">⛶ Full Window</button>
+          </div>
           <span>${item.triangles ? `${item.triangles.toLocaleString()} triangles` : ""}</span>
         </div>
       `;
@@ -1281,9 +1459,10 @@
       controlsHtml = `
         <div class="viewer-controls">
           <div class="viewer-controls__group">
-            <button type="button" class="btn-small" data-svg-bg="checker">Checker</button>
+            <button type="button" class="btn-small" data-svg-bg="transparent">Transparent</button>
             <button type="button" class="btn-small" data-svg-bg="dark">Dark</button>
             <button type="button" class="btn-small" data-svg-bg="light">Light</button>
+            <button type="button" class="btn-small" id="btn-open-fullwindow" data-entry-id="${escapeHtml(item.id)}" data-tooltip="Open full-window preview with carousel (F)">⛶ Full Window</button>
           </div>
           <span>Sanitized SVG Vector</span>
         </div>
@@ -2356,15 +2535,24 @@
         btn.addEventListener("click", () => {
           const mode = btn.getAttribute("data-svg-bg");
           svgStage.classList.remove("viewer-stage--checker");
-          if (mode === "checker") {
-            svgStage.style.background = "";
-            svgStage.classList.add("viewer-stage--checker");
+          if (mode === "transparent" || mode === "checker") {
+            svgStage.style.background = "transparent";
+            svgStage.classList.remove("viewer-stage--checker");
           } else if (mode === "light") {
             svgStage.style.background = "#f2f1ed";
           } else {
             svgStage.style.background = "#121212";
           }
         });
+      });
+    }
+
+    // Full-Window Preview trigger from detail stage
+    const btnFullWindow = document.getElementById("btn-open-fullwindow");
+    if (btnFullWindow) {
+      btnFullWindow.addEventListener("click", () => {
+        const id = btnFullWindow.getAttribute("data-entry-id") || rawId;
+        openFullWindowPreview(id);
       });
     }
 
@@ -2705,9 +2893,18 @@
       if (targetId.startsWith("item/")) {
         targetId = targetId.slice(5);
       }
+      if (state.isZenMode) {
+        showSection("gallery");
+        openFullWindowPreview(targetId);
+        return;
+      }
       showSection("detail");
       renderDetailView(targetId);
       return;
+    }
+
+    if (els.zenPreviewModal && !els.zenPreviewModal.hidden) {
+      closeFullWindowPreview();
     }
 
     showSection("gallery");
@@ -2734,20 +2931,136 @@
           renderGallery();
         }
       });
+      els.searchInput.addEventListener("blur", () => {
+        if (els.siteHeader) {
+          els.siteHeader.classList.remove("is-revealed");
+        }
+      });
     }
 
-    // Keyboard `/` to focus search, `Escape` to return to grid
+    // Mouse movement detection for top bar & carousel hover in Zen Mode
+    document.addEventListener("mousemove", (e) => {
+      if (state.isZenMode) {
+        if (e.clientY < 65) {
+          document.body.classList.add("topbar-hover");
+        } else if (document.activeElement !== els.searchInput) {
+          document.body.classList.remove("topbar-hover");
+        }
+      }
+      if (els.zenPreviewModal && !els.zenPreviewModal.hidden) {
+        if (e.clientY < 90) {
+          els.zenPreviewModal.classList.add("topbar-hover");
+        } else {
+          els.zenPreviewModal.classList.remove("topbar-hover");
+        }
+      }
+    });
+
+    // Keyboard shortcuts: Alt+Z (Zen mode), `/` (search), `Escape`, `F` (full window), arrow keys
     window.addEventListener("keydown", (e) => {
+      // Alt+Z toggles Zen mode
+      if (e.altKey && (e.key === "z" || e.key === "Z" || e.code === "KeyZ")) {
+        e.preventDefault();
+        toggleZenMode();
+        return;
+      }
+
+      // If full-window preview is open, handle its navigation
+      if (els.zenPreviewModal && !els.zenPreviewModal.hidden) {
+        if (e.key === "Escape") {
+          e.preventDefault();
+          closeFullWindowPreview();
+          if (state.isZenMode) window.location.hash = "#/";
+          return;
+        }
+        if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          navigateCarousel(-1);
+          return;
+        }
+        if (e.key === "ArrowRight") {
+          e.preventDefault();
+          navigateCarousel(1);
+          return;
+        }
+        if (e.key === " ") {
+          const vid = document.getElementById("zen-player-video");
+          if (vid) {
+            e.preventDefault();
+            if (vid.paused) vid.play();
+            else vid.pause();
+          }
+          return;
+        }
+      }
+
+      // Shortcut `/` to reveal search bar and focus
       if (e.key === "/" && document.activeElement !== els.searchInput) {
         const tag = (document.activeElement && document.activeElement.tagName) || "";
         if (tag !== "INPUT" && tag !== "TEXTAREA" && tag !== "SELECT") {
           e.preventDefault();
+          if (state.isZenMode && els.siteHeader) {
+            els.siteHeader.classList.add("is-revealed");
+          }
           if (els.searchInput) els.searchInput.focus();
         }
-      } else if (e.key === "Escape" && window.location.hash && window.location.hash !== "#/") {
-        window.location.hash = "#/";
+      } else if (e.key === "Escape") {
+        if (els.aboutDialog && els.aboutDialog.open) {
+          els.aboutDialog.close();
+        } else if (window.location.hash && window.location.hash !== "#/") {
+          window.location.hash = "#/";
+        }
+      } else if (
+        (e.key === "f" || e.key === "F") &&
+        !els.viewDetail.hidden &&
+        document.activeElement.tagName !== "INPUT" &&
+        document.activeElement.tagName !== "TEXTAREA"
+      ) {
+        e.preventDefault();
+        const hash = window.location.hash || "";
+        const targetId = hash.startsWith("#/") ? hash.slice(2) : null;
+        if (targetId) openFullWindowPreview(targetId);
       }
     });
+
+    // Full-Window Preview Controls
+    if (els.zenPreviewClose) {
+      els.zenPreviewClose.addEventListener("click", () => {
+        closeFullWindowPreview();
+        if (state.isZenMode) window.location.hash = "#/";
+      });
+    }
+    if (els.zenCarouselPrev) {
+      els.zenCarouselPrev.addEventListener("click", () => navigateCarousel(-1));
+    }
+    if (els.zenCarouselNext) {
+      els.zenCarouselNext.addEventListener("click", () => navigateCarousel(1));
+    }
+
+    // About Dialog Events
+    if (els.btnOpenAbout && els.aboutDialog) {
+      els.btnOpenAbout.addEventListener("click", () => {
+        els.aboutDialog.showModal();
+      });
+    }
+    if (els.aboutDialogClose && els.aboutDialog) {
+      els.aboutDialogClose.addEventListener("click", () => {
+        els.aboutDialog.close();
+      });
+    }
+    if (els.aboutDialog) {
+      els.aboutDialog.addEventListener("click", (e) => {
+        const rect = els.aboutDialog.getBoundingClientRect();
+        if (
+          e.clientX < rect.left ||
+          e.clientX > rect.right ||
+          e.clientY < rect.top ||
+          e.clientY > rect.bottom
+        ) {
+          els.aboutDialog.close();
+        }
+      });
+    }
 
     // Type filter chips (Both / Items / Clips)
     document.querySelectorAll("[data-type-filter]").forEach((btn) => {
@@ -2910,6 +3223,7 @@
   }
 
   initTheme();
+  initZenMode();
   initHeaderLinks();
   bindGlobalEvents();
   loadData();

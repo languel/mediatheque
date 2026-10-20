@@ -885,7 +885,7 @@
             ${isInstalled ? "disabled" : ""}
             style="margin-top:0.4rem;"
           >
-            ${isInstalled ? "Already in Archive" : "Scour & Ingest"}
+            ${isInstalled ? "Already in Archive" : "Process"}
           </button>
         </div>
       `;
@@ -895,7 +895,7 @@
     els.scourPresetsGrid.querySelectorAll("[data-scour-id]:not([disabled])").forEach((btn) => {
       btn.addEventListener("click", async () => {
         const id = btn.getAttribute("data-scour-id");
-        btn.textContent = "Scouring & Analyzing…";
+        btn.textContent = "Processing…";
         btn.disabled = true;
         if (state.isLiveServer) {
           try {
@@ -908,19 +908,19 @@
               body: JSON.stringify({ id })
             });
             if (res.ok) {
-              alert(`Successfully scoured and ingested ${id}!`);
+              alert(`Successfully processed and ingested ${id}!`);
               await loadItems();
               switchTab("review");
               selectItem(id);
               return;
             }
           } catch (e) {
-            alert("Scour failed: " + e);
+            alert("Process failed: " + e);
           }
         } else {
-          alert(`To scour in local mode, run: python3 tools/scour.py --id ${id}`);
+          alert(`To process in local mode, run: python3 tools/scour.py --id ${id}`);
         }
-        btn.textContent = "Scour & Ingest";
+        btn.textContent = "Process";
         btn.disabled = false;
       });
     });

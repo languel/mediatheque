@@ -672,12 +672,8 @@ kbd {
 }
 
 .viewer-stage--checker {
-  background-image: linear-gradient(45deg, #222 25%, transparent 25%),
-    linear-gradient(-45deg, #222 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #222 75%),
-    linear-gradient(-45deg, transparent 75%, #222 75%);
-  background-size: 20px 20px;
-  background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+  background-image: none;
+  background-color: transparent;
 }
 
 .viewer-controls {
@@ -1315,5 +1311,395 @@ kbd {
   background: #e2b857;
   color: #111110;
   border-color: #e2b857;
+}
+
+/* ==========================================================================
+   ZEN MODE, FULL-WINDOW PREVIEW & CAROUSEL (PORTFOLIO-EXAMPLE INSPIRED)
+   ========================================================================== */
+
+/* Header Glyph Icons & Zen / About Controls */
+.nav-pill--icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.2rem;
+  height: 2rem;
+  padding: 0 0.45rem;
+  cursor: pointer;
+}
+
+.nav-pill--icon.is-active {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.site-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.site-icon--person svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.4;
+}
+
+/* Zen Mode Active State */
+body.zen-mode {
+  --header-height: 3.25rem;
+}
+
+/* In Zen Mode, hide all text chrome: labels, counts, filter-bar, summaries, badges */
+body.zen-mode .filter-bar,
+body.zen-mode .sub-toolbar,
+body.zen-mode #facet-drawer,
+body.zen-mode .media-card__body,
+body.zen-mode .media-card__badges,
+body.zen-mode .site-header__count,
+body.zen-mode .wordmark__title,
+body.zen-mode .nav-pill:not(.nav-pill--icon),
+body.zen-mode .detail-sidebar,
+body.zen-mode .detail-right,
+body.zen-mode .detail-header,
+body.zen-mode .tabs-section,
+body.zen-mode .bottom-tables-section {
+  display: none !important;
+}
+
+/* In Zen Mode, top bar only appears on hover near the top or on shortcut (/) */
+body.zen-mode .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 220ms var(--ease), opacity 220ms ease;
+}
+
+body.zen-mode .site-header:hover,
+body.zen-mode.topbar-hover .site-header,
+body.zen-mode .site-header.is-revealed {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.zen-mode .search-box {
+  max-width: 380px;
+}
+
+body.zen-mode .main-container {
+  max-width: 100%;
+  padding: 0;
+}
+
+body.zen-mode .gallery-section {
+  padding: 0.5rem;
+}
+
+body.zen-mode .media-grid {
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 5px;
+}
+
+body.zen-mode .media-card {
+  border: 1px solid transparent;
+  background: var(--surface);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+body.zen-mode .media-card:hover {
+  transform: scale(1.02);
+  border-color: var(--line-strong);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  z-index: 2;
+}
+
+body.zen-mode .media-card__thumb-wrap {
+  aspect-ratio: 1;
+  background: transparent;
+}
+
+body.zen-mode .media-card__thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Full-Window Preview Overlay */
+.full-window-preview {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+.full-window-preview.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Top Carousel Rail (portfolio-example inspired) */
+.carousel-rail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0 1rem;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+  transform: translateY(0);
+  transition: transform 220ms var(--ease), opacity 220ms ease;
+}
+
+/* In Zen Mode, top carousel only appears on hover near the top */
+body.zen-mode .carousel-rail,
+.carousel-rail--autohide {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.zen-mode .carousel-rail:hover,
+body.zen-mode .full-window-preview.topbar-hover .carousel-rail,
+.carousel-rail--autohide:hover,
+.full-window-preview.topbar-hover .carousel-rail--autohide {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.thumbnail-viewport {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.thumbnail-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.thumbnail-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: max-content;
+  min-width: 100%;
+  padding: 0 0.5rem;
+}
+
+.project-thumb {
+  position: relative;
+  flex: 0 0 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 3px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: border-color 160ms ease, opacity 160ms ease, transform 160ms ease;
+}
+
+.project-thumb:hover,
+.project-thumb:focus-visible {
+  border-color: var(--line-strong);
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.project-thumb[aria-selected="true"] {
+  border-color: var(--text);
+  opacity: 1;
+  box-shadow: 0 0 0 1px var(--text);
+  transform: scale(1.05);
+}
+
+.project-thumb img,
+.project-thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-control {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.carousel-control:hover {
+  color: var(--text);
+  background: var(--surface-raised);
+  border-color: var(--line);
+}
+
+.carousel-control--close {
+  margin-left: 0.5rem;
+}
+
+/* Full-Window Media Stage */
+.full-window-stage {
+  flex: 1 1 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.full-window-stage video,
+.full-window-stage img,
+.full-window-stage model-viewer {
+  max-width: 100vw;
+  max-height: 100vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  background: transparent !important;
+}
+
+/* About Overlay / Modal (portfolio-example inspired) */
+.about-dialog {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  padding: 2.25rem;
+  max-width: 680px;
+  width: 90vw;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7);
+}
+
+.about-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.about-dialog__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1rem;
+}
+
+.about-dialog__title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.about-dialog__close {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 1.25rem;
+  padding: 0.25rem;
+  line-height: 1;
+}
+
+.about-dialog__close:hover {
+  color: var(--text);
+}
+
+.about-dialog__body {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--copy);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.about-dialog__body h3 {
+  font-size: 1rem;
+  margin: 0 0 0.35rem 0;
+  color: var(--text);
+  font-family: var(--mono);
+  letter-spacing: 0.04em;
+}
+
+.about-dialog__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  background: var(--art-bg);
+  padding: 1rem;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+}
+
+.about-shortcuts-list {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.35rem 1rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+}
+
+.about-shortcuts-list kbd {
+  background: var(--surface-raised);
+  border: 1px solid var(--line-strong);
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  color: var(--text);
+  font-size: 0.75rem;
 }
 
