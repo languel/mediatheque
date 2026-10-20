@@ -26,17 +26,14 @@
   "creators": [],
   "date": "2026",
   "source": {
-    "url": null,
-    "origin": null,
-    "archive": null,
-    "retrieved": "2026-10-18",
-    "via": null
+    "archive": "unknown",
+    "url": "",
+    "origin": ""
   },
   "rights": {
     "status": "unknown",
-    "license": null,
-    "license_url": null,
-    "credit": "",
+    "license": "PD-old-100",
+    "credit": "unknown",
     "notes": "Source URL and license unverified; kept in draft."
   },
   "files": {
@@ -172,5 +169,6 @@
       "mean_motion": 0.7,
       "border_motion": 0.02
     }
-  }
+  },
+  "plate": null
 }

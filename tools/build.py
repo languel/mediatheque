@@ -6,22 +6,58 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import subprocess
+import sys
 from datetime import date
 from pathlib import Path
 from typing import Any
 
-import yaml
-from PIL import Image
+try:
+    import yaml
+except ImportError:
+    yaml = None
+
+try:
+    from PIL import Image
+except ImportError:
+    Image = None
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
+def bootstrap_venv(script_path: Path) -> None:
+    if os.environ.get("_MEDIATHEQUE_VENV_ACTIVE"):
+        return
+    in_venv = sys.prefix != getattr(sys, "base_prefix", sys.prefix)
+    if not in_venv:
+        venv_python = script_path.resolve().parent.parent / ".venv" / "bin" / "python"
+        if venv_python.exists():
+            os.environ["_MEDIATHEQUE_VENV_ACTIVE"] = "1"
+            os.execv(str(venv_python), [str(venv_python), str(script_path.resolve())] + sys.argv[1:])
+
+
 def load_config() -> dict[str, Any]:
     cfg_path = REPO_ROOT / "mediatheque.yaml"
-    if cfg_path.exists():
+    if not cfg_path.exists():
+        return {}
+    if yaml is not None:
         return yaml.safe_load(cfg_path.read_text(encoding="utf-8")) or {}
-    return {}
+    # Zero-dependency fallback parser for mediatheque.yaml
+    cfg: dict[str, Any] = {}
+    for line in cfg_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if ":" in line:
+            k, v = line.split(":", 1)
+            k = k.strip()
+            v = v.split("#")[0].strip().strip('"').strip("'")
+            if v.isdigit():
+                cfg[k] = int(v)
+            elif v:
+                cfg[k] = v
+    return cfg
 
 
 def sha256_file(path: Path) -> str:
@@ -563,6 +599,7 @@ def build_all(cut_clips: bool = True) -> dict[str, Any]:
 
 
 def main() -> None:
+    bootstrap_venv(Path(__file__))
     parser = argparse.ArgumentParser(description="Build catalog.json, catalog.jsonl, review.json, and llms.txt")
     parser.add_argument("--no-cut-clips", action="store_true", help="Skip cutting clip video/audio files")
     args = parser.parse_args()

@@ -8,20 +8,16 @@ from datetime import date
 from pathlib import Path
 from typing import Any, Callable
 
-from . import audio, detector, flow, gif, mediapipe, probe, render, scenes, text, vlm
+import importlib
 
-ANALYZERS: dict[str, Any] = {
-    "probe": probe,
-    "gif": gif,
-    "scenes": scenes,
-    "flow": flow,
-    "mediapipe": mediapipe,
-    "detector": detector,
-    "vlm": vlm,
-    "audio": audio,
-    "render": render,
-    "text": text,
-}
+_MODULE_NAMES = ["audio", "detector", "flow", "gif", "mediapipe", "probe", "render", "scenes", "text", "vlm"]
+ANALYZERS: dict[str, Any] = {}
+
+for _mod_name in _MODULE_NAMES:
+    try:
+        ANALYZERS[_mod_name] = importlib.import_module(f".{_mod_name}", package=__name__)
+    except Exception:
+        pass
 
 COST_ORDER = [
     "probe",

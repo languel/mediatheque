@@ -1,0 +1,265 @@
+{
+  "id": "edison-fred-otts-sneeze-1894",
+  "title": "Edison Kinetoscopic Record of a Sneeze (Fred Ott's Sneeze)",
+  "kind": "video",
+  "status": "draft",
+  "summary": "Fred Ott taking a pinch of snuff and sneezing, the earliest surviving copyrighted motion picture in the United States.",
+  "description": "Recorded in early January 1894 at Edison's Black Maria studio in West Orange, New Jersey by William K.L. Dickson. Deposited for copyright as a paper print on January 9, 1894. A seminal landmark in cinema history.",
+  "tags": [
+    "landscape-format",
+    "bw",
+    "cuts",
+    "movement",
+    "silent"
+  ],
+  "keywords": [],
+  "collections": [],
+  "demos": [],
+  "creators": [],
+  "date": "1894",
+  "source": {
+    "url": "https://www.loc.gov/item/00694192/",
+    "origin": "https://www.loc.gov/item/00694192/",
+    "archive": "Library of Congress Motion Picture, Broadcasting and Recorded Sound Division",
+    "retrieved": "2026-10-20",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US-expired",
+    "license_url": null,
+    "credit": "William K. L. Dickson, 1894. Edison Kinetoscopic Record of a Sneeze. Edison Manufacturing Co. / Library of Congress. Public domain.",
+    "notes": "Public domain early movement study with clear archival provenance."
+  },
+  "files": {
+    "media": {
+      "path": "media.webm",
+      "type": "video/webm",
+      "bytes": 3283714,
+      "sha256": "ae2e70f942ffa3a8fa7389db305806c472abf27c725e67cc2a56f3bf8a7aa055",
+      "duration": 28.684,
+      "width": 1280,
+      "height": 960,
+      "fps": 24.0,
+      "motion_curve": [
+        0.6,
+        3.93,
+        0.42,
+        1.68,
+        4.11,
+        1.29,
+        0.91,
+        0.0,
+        0.0,
+        2.21,
+        33.31,
+        18.7,
+        32.59,
+        22.69,
+        17.52,
+        32.99
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 1097269,
+      "sha256": "22223bfb7b418d8cbd064e004427ff1cfa33af4b7adfecebb0d72a3a6f903e20"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 24946,
+      "sha256": "6e3698080f3a4e8a28dc0f7b593605d735eafda12672298624be62f709321b23",
+      "width": 1280,
+      "height": 960
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 11078,
+      "sha256": "d815194a8116f22610174825340fcb0dcabe67491b1c64ee70390ca8e407fbd5",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.webm",
+      "type": "video/webm",
+      "bytes": 3268590,
+      "sha256": "9388b79b0f638fa2a8e5423365b51b1de5e99fa0b69a80e698198f624606d0d1",
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://www.loc.gov/item/00694192/",
+      "date": "2026-10-20",
+      "sha256": "9388b79b0f638fa2a8e5423365b51b1de5e99fa0b69a80e698198f624606d0d1"
+    },
+    {
+      "step": "derived",
+      "file": "media.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='min(1280,iw)':-2 -c:v libvpx-vp9 -crf 33 -b:v 0 -row-mt 1 -cpu-used 4 -c:a libopus -b:a 96k",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf fps=15,scale='min(768,iw)':-2 -c:v libvpx-vp9 -crf 35 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "ffmpeg 9.0.2 + Pillow",
+      "args": "-ss 2.87 -frames:v 1 -> webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "scenes 1.0",
+      "model": "ffmpeg-scene+silence",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "audio 1.0",
+      "model": "ffmpeg-pcm+onset-bpm",
+      "date": "2026-10-20"
+    }
+  ],
+  "added": "2026-10-20",
+  "updated": "2026-10-20",
+  "proposed": {
+    "scenes": {
+      "analyzer": "scenes",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "clips": [
+        {
+          "n": 1,
+          "title": "Clip 01 (0.0s–13.0s)",
+          "summary": "Segment 1 from 0.0s to 13.0s.",
+          "tags": [],
+          "demos": [],
+          "in": 0.0,
+          "out": 13.04,
+          "file": "clips/01.webm",
+          "thumb": "clips/01.thumb.webp"
+        },
+        {
+          "n": 2,
+          "title": "Clip 02 (13.0s–15.9s)",
+          "summary": "Segment 2 from 13.0s to 15.9s.",
+          "tags": [],
+          "demos": [],
+          "in": 13.04,
+          "out": 15.92,
+          "file": "clips/02.webm",
+          "thumb": "clips/02.thumb.webp"
+        },
+        {
+          "n": 3,
+          "title": "Clip 03 (15.9s–19.8s)",
+          "summary": "Segment 3 from 15.9s to 19.8s.",
+          "tags": [],
+          "demos": [],
+          "in": 15.92,
+          "out": 19.79,
+          "file": "clips/03.webm",
+          "thumb": "clips/03.thumb.webp"
+        },
+        {
+          "n": 4,
+          "title": "Clip 04 (19.8s–22.4s)",
+          "summary": "Segment 4 from 19.8s to 22.4s.",
+          "tags": [],
+          "demos": [],
+          "in": 19.79,
+          "out": 22.42,
+          "file": "clips/04.webm",
+          "thumb": "clips/04.thumb.webp"
+        },
+        {
+          "n": 5,
+          "title": "Clip 05 (22.4s–25.0s)",
+          "summary": "Segment 5 from 22.4s to 25.0s.",
+          "tags": [],
+          "demos": [],
+          "in": 22.42,
+          "out": 25.04,
+          "file": "clips/05.webm",
+          "thumb": "clips/05.thumb.webp"
+        },
+        {
+          "n": 6,
+          "title": "Clip 06 (25.0s–27.7s)",
+          "summary": "Segment 6 from 25.0s to 27.7s.",
+          "tags": [],
+          "demos": [],
+          "in": 25.04,
+          "out": 27.67,
+          "file": "clips/06.webm",
+          "thumb": "clips/06.thumb.webp"
+        },
+        {
+          "n": 7,
+          "title": "Clip 07 (27.7s–28.7s)",
+          "summary": "Segment 7 from 27.7s to 28.7s.",
+          "tags": [],
+          "demos": [],
+          "in": 27.67,
+          "out": 28.68,
+          "file": "clips/07.webm",
+          "thumb": "clips/07.thumb.webp"
+        }
+      ],
+      "scene_cuts": [
+        13.04,
+        15.92,
+        16.92,
+        19.79,
+        20.79,
+        22.42,
+        23.42,
+        25.04,
+        26.04,
+        27.67
+      ]
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 10.53,
+      "border_motion": 9.48
+    }
+  }
+}

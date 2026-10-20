@@ -228,7 +228,19 @@ def scour_url(url: str, title: str | None = None) -> str | None:
     return scour_from_registry(spec)
 
 
+def bootstrap_venv(script_path: Path) -> None:
+    if os.environ.get("_MEDIATHEQUE_VENV_ACTIVE"):
+        return
+    in_venv = sys.prefix != getattr(sys, "base_prefix", sys.prefix)
+    if not in_venv:
+        venv_python = script_path.resolve().parent.parent / ".venv" / "bin" / "python"
+        if venv_python.exists():
+            os.environ["_MEDIATHEQUE_VENV_ACTIVE"] = "1"
+            os.execv(str(venv_python), [str(venv_python), str(script_path.resolve())] + sys.argv[1:])
+
+
 def main() -> None:
+    bootstrap_venv(Path(__file__))
     parser = argparse.ArgumentParser(description="Scour verified early cinema & chronophotography works into Mediathèque.")
     parser.add_argument("--list", action="store_true", help="List scoured items registered in sources_registry.json")
     parser.add_argument("--id", type=str, help="Scour a specific item by ID from sources_registry.json")

@@ -393,82 +393,6 @@
     "sequence": "Animal Locomotion (1887)"
   },
   {
-    "id": "countconstantdelay0",
-    "type": "item",
-    "title": "Zero-Delay Frame Counter Test GIF",
-    "kind": "animation",
-    "status": "published",
-    "summary": "Synthetic 10-frame GIF with 0ms frame delay headers for browser/decoder timing tests.",
-    "tags": [
-      "text-content",
-      "abstract",
-      "bw",
-      "plain-bg",
-      "short",
-      "square",
-      "loop-friendly",
-      "low-palette",
-      "pixel-art",
-      "frame-sequence",
-      "contemporary",
-      "portrait",
-      "silent",
-      "pingpong",
-      "movement",
-      "fast",
-      "static-camera"
-    ],
-    "keywords": [
-      "test pattern",
-      "GIF timing",
-      "0ms delay",
-      "frame counter",
-      "decoder"
-    ],
-    "collections": [
-      "graphics-random"
-    ],
-    "demos": [
-      "loop",
-      "typography"
-    ],
-    "date": "2026",
-    "creators": [
-      "Mediathèque Teaching Lab"
-    ],
-    "creator_roles": [
-      {
-        "name": "Mediathèque Teaching Lab",
-        "role": "author"
-      }
-    ],
-    "rights": {
-      "status": "public-domain",
-      "license": "CC0-1.0",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
-    },
-    "credit": "GIF timing diagnostic test asset, Mediathèque (CC0 1.0).",
-    "source_url": "https://languel.github.io/mediatheque/items/countconstantdelay0/original.gif",
-    "archive": "Mediathèque Test Suite",
-    "thumb": "items/countconstantdelay0/thumb.webp",
-    "poster": "items/countconstantdelay0/poster.webp",
-    "media": "items/countconstantdelay0/original.gif",
-    "video_media": "items/countconstantdelay0/media.mp4",
-    "proxy": "items/countconstantdelay0/proxy.webm",
-    "original": "items/countconstantdelay0/original.gif",
-    "width": 80,
-    "height": 112,
-    "aspect_ratio": "5:7",
-    "duration": 1.32,
-    "fps": 3.03,
-    "frames": 4,
-    "triangles": null,
-    "splats": null,
-    "bytes": 7476,
-    "url": "https://languel.github.io/mediatheque/items/countconstantdelay0/original.gif",
-    "added": "2026-10-18"
-  },
-  {
     "id": "danse-serpentine-lumiere-1897",
     "type": "item",
     "title": "Danse serpentine (Lumière, 1897)",
@@ -755,12 +679,12 @@
     "sequence": "Animal Locomotion (1887)"
   },
   {
-    "id": "edison-boxing-cats-1894",
+    "id": "edison-may-irwin-kiss-1896",
     "type": "item",
-    "title": "The Boxing Cats (Prof. Welton's)",
+    "title": "The May Irwin Kiss",
     "kind": "video",
     "status": "published",
-    "summary": "Henry Welton's trained domestic cats sparring with miniature boxing gloves in a miniature ring at Thomas Edison's Black Maria studio.",
+    "summary": "May Irwin and John C. Rice reenacting the final scene from the stage musical The Widow Jones, the first romantic kiss shown on film.",
     "tags": [
       "landscape-format",
       "silent",
@@ -772,7 +696,7 @@
     "keywords": [],
     "collections": [],
     "demos": [],
-    "date": "1894",
+    "date": "1896",
     "creators": [],
     "creator_roles": [],
     "rights": {
@@ -780,25 +704,25 @@
       "license": "PD-US-expired",
       "license_url": null
     },
-    "credit": "William K.L. Dickson and William Heise (Edison Kinetoscope), 1894. The Boxing Cats (Prof. Welton's). Library of Congress Paper Print Collection. Public domain.",
-    "source_url": "https://www.loc.gov/item/00694119/",
+    "credit": "William K. L. Dickson, 1896. The Kiss (The May Irwin Kiss). Edison Manufacturing Co. / Library of Congress. Public domain.",
+    "source_url": "https://www.loc.gov/item/00694134/",
     "archive": "Library of Congress Motion Picture, Broadcasting and Recorded Sound Division",
-    "thumb": "items/edison-boxing-cats-1894/thumb.webp",
-    "poster": "items/edison-boxing-cats-1894/poster.webp",
-    "media": "items/edison-boxing-cats-1894/media.webm",
-    "video_media": "items/edison-boxing-cats-1894/media.webm",
-    "proxy": "items/edison-boxing-cats-1894/proxy.webm",
-    "original": "items/edison-boxing-cats-1894/original.webm",
-    "width": 320,
-    "height": 240,
+    "thumb": "items/edison-may-irwin-kiss-1896/thumb.webp",
+    "poster": "items/edison-may-irwin-kiss-1896/poster.webp",
+    "media": "items/edison-may-irwin-kiss-1896/media.webm",
+    "video_media": "items/edison-may-irwin-kiss-1896/media.webm",
+    "proxy": "items/edison-may-irwin-kiss-1896/proxy.webm",
+    "original": "items/edison-may-irwin-kiss-1896/original.webm",
+    "width": 640,
+    "height": 480,
     "aspect_ratio": "4:3",
-    "duration": 22.562,
-    "fps": 29.92,
+    "duration": 15.032,
+    "fps": 30.0,
     "frames": null,
     "triangles": null,
     "splats": null,
-    "bytes": 1311437,
-    "url": "https://languel.github.io/mediatheque/items/edison-boxing-cats-1894/media.webm",
+    "bytes": 741098,
+    "url": "https://languel.github.io/mediatheque/items/edison-may-irwin-kiss-1896/media.webm",
     "added": "2026-10-20"
   },
   {
@@ -1777,6 +1701,57 @@
     "added": "2026-10-20"
   },
   {
+    "id": "muybridge-buffalo-galloping-1887",
+    "type": "item",
+    "title": "Buffalo Galloping — Animal Locomotion (Plate 700)",
+    "kind": "animation",
+    "status": "published",
+    "summary": "American bison galloping, captured in sequential chronophotography for the Animal Locomotion series.",
+    "tags": [
+      "short",
+      "landscape-format",
+      "silent",
+      "bw",
+      "low-palette",
+      "dithered",
+      "seamless-loop",
+      "loop-friendly",
+      "movement",
+      "fast"
+    ],
+    "keywords": [],
+    "collections": [],
+    "demos": [],
+    "date": "1887",
+    "creators": [],
+    "creator_roles": [],
+    "rights": {
+      "status": "public-domain",
+      "license": "PD-US-expired",
+      "license_url": null
+    },
+    "credit": "Eadweard Muybridge, 1887. Buffalo Galloping (Animal Locomotion, Plate 700). University of Pennsylvania. Public domain.",
+    "source_url": "https://www.loc.gov/pictures/item/2004665352/",
+    "archive": "University of Pennsylvania / Library of Congress",
+    "thumb": "items/muybridge-buffalo-galloping-1887/thumb.webp",
+    "poster": "items/muybridge-buffalo-galloping-1887/poster.webp",
+    "media": "items/muybridge-buffalo-galloping-1887/original.gif",
+    "video_media": "items/muybridge-buffalo-galloping-1887/media.mp4",
+    "proxy": "items/muybridge-buffalo-galloping-1887/proxy.webm",
+    "original": "items/muybridge-buffalo-galloping-1887/original.gif",
+    "width": 225,
+    "height": 138,
+    "aspect_ratio": "1.63:1",
+    "duration": 0.96,
+    "fps": 16.67,
+    "frames": 16,
+    "triangles": null,
+    "splats": null,
+    "bytes": 227042,
+    "url": "https://languel.github.io/mediatheque/items/muybridge-buffalo-galloping-1887/original.gif",
+    "added": "2026-10-20"
+  },
+  {
     "id": "muybridge-human-male-walking-animated",
     "type": "item",
     "title": "Human Male Walking — Animal Locomotion Plate 1 (Muybridge, 1887)",
@@ -2076,151 +2051,6 @@
     "added": "2026-10-18",
     "plate": "189",
     "sequence": "Animal Locomotion (1887)"
-  },
-  {
-    "id": "pileus-logo",
-    "type": "item",
-    "title": "Pileus Cloud Emblem (SVG Vector)",
-    "kind": "vector",
-    "status": "published",
-    "summary": "Spiral cloud and pileus cap vector emblem in clean SVG paths.",
-    "tags": [
-      "abstract",
-      "pattern",
-      "square",
-      "transparent",
-      "filled",
-      "line-art",
-      "plotter-ready",
-      "icon",
-      "contemporary",
-      "own-capture"
-    ],
-    "keywords": [
-      "pileus",
-      "cloud",
-      "spiral",
-      "vector",
-      "SVG",
-      "logo",
-      "plotter"
-    ],
-    "collections": [
-      "svg"
-    ],
-    "demos": [
-      "plotter",
-      "typography",
-      "texture"
-    ],
-    "date": "2026",
-    "creators": [
-      "Mediathèque Teaching Lab"
-    ],
-    "creator_roles": [
-      {
-        "name": "Mediathèque Teaching Lab",
-        "role": "designer"
-      }
-    ],
-    "rights": {
-      "status": "cc",
-      "license": "CC0-1.0",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
-    },
-    "credit": "Pileus emblem SVG, Mediathèque Teaching Collection (CC0 1.0).",
-    "source_url": "https://languel.github.io/mediatheque/items/pileus-logo/media.svg",
-    "archive": "Mediathèque Teaching Collection",
-    "thumb": "items/pileus-logo/thumb.webp",
-    "poster": "items/pileus-logo/poster.webp",
-    "media": "items/pileus-logo/media.svg",
-    "video_media": "items/pileus-logo/media.svg",
-    "proxy": null,
-    "original": "items/pileus-logo/original.svg",
-    "width": 1024,
-    "height": 1024,
-    "aspect_ratio": "1:1",
-    "duration": null,
-    "fps": null,
-    "frames": null,
-    "triangles": null,
-    "splats": null,
-    "bytes": 2056,
-    "url": "https://languel.github.io/mediatheque/items/pileus-logo/media.svg",
-    "added": "2026-10-18"
-  },
-  {
-    "id": "rectangles",
-    "type": "item",
-    "title": "Primary Rectangles Palette Study (GIF)",
-    "kind": "animation",
-    "status": "published",
-    "summary": "Minimal multi-frame geometric color rectangle study for palette quantization demos.",
-    "tags": [
-      "abstract",
-      "pattern",
-      "color",
-      "plain-bg",
-      "short",
-      "loop-friendly",
-      "low-palette",
-      "pixel-art",
-      "contemporary",
-      "landscape-format",
-      "silent",
-      "movement",
-      "fast"
-    ],
-    "keywords": [
-      "rectangles",
-      "geometry",
-      "palette",
-      "indexed color",
-      "test pattern"
-    ],
-    "collections": [
-      "graphics-random"
-    ],
-    "demos": [
-      "color",
-      "loop",
-      "texture"
-    ],
-    "date": "2026",
-    "creators": [
-      "Mediathèque Teaching Lab"
-    ],
-    "creator_roles": [
-      {
-        "name": "Mediathèque Teaching Lab",
-        "role": "author"
-      }
-    ],
-    "rights": {
-      "status": "public-domain",
-      "license": "CC0-1.0",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
-    },
-    "credit": "Primary Rectangles study, Mediathèque (CC0 1.0).",
-    "source_url": "https://languel.github.io/mediatheque/items/rectangles/original.gif",
-    "archive": "Mediathèque Test Suite",
-    "thumb": "items/rectangles/thumb.webp",
-    "poster": "items/rectangles/poster.webp",
-    "media": "items/rectangles/original.gif",
-    "video_media": "items/rectangles/media.mp4",
-    "proxy": "items/rectangles/proxy.webm",
-    "original": "items/rectangles/original.gif",
-    "width": 400,
-    "height": 300,
-    "aspect_ratio": "4:3",
-    "duration": 1.2,
-    "fps": 2.5,
-    "frames": 3,
-    "triangles": null,
-    "splats": null,
-    "bytes": 1699,
-    "url": "https://languel.github.io/mediatheque/items/rectangles/original.gif",
-    "added": "2026-10-18"
   },
   {
     "id": "sandow-1894",
@@ -2582,53 +2412,6 @@
     "added": "2026-10-18"
   },
   {
-    "id": "skladanowsky-boxing-kangaroo-1895",
-    "type": "item",
-    "title": "Das boxende Känguruh (The Boxing Kangaroo)",
-    "kind": "video",
-    "status": "published",
-    "summary": "A boxing kangaroo sparring against circus artist Delaware, projected with the Bioscop at the Berlin Wintergarten in November 1895.",
-    "tags": [
-      "landscape-format",
-      "bw",
-      "cuts",
-      "movement",
-      "fast",
-      "silent"
-    ],
-    "keywords": [],
-    "collections": [],
-    "demos": [],
-    "date": "1895",
-    "creators": [],
-    "creator_roles": [],
-    "rights": {
-      "status": "public-domain",
-      "license": "PD-old-70",
-      "license_url": null
-    },
-    "credit": "Max Skladanowsky, 1895. Das boxende Känguruh (Bioscop). Bundesarchiv / Deutsches Filmmuseum. Public domain.",
-    "source_url": "https://www.bundesarchiv.de/",
-    "archive": "Bundesarchiv / Deutsches Filmmuseum (Frankfurt am Main)",
-    "thumb": "items/skladanowsky-boxing-kangaroo-1895/thumb.webp",
-    "poster": "items/skladanowsky-boxing-kangaroo-1895/poster.webp",
-    "media": "items/skladanowsky-boxing-kangaroo-1895/media.webm",
-    "video_media": "items/skladanowsky-boxing-kangaroo-1895/media.webm",
-    "proxy": "items/skladanowsky-boxing-kangaroo-1895/proxy.webm",
-    "original": "items/skladanowsky-boxing-kangaroo-1895/original.webm",
-    "width": 320,
-    "height": 240,
-    "aspect_ratio": "4:3",
-    "duration": 17.265,
-    "fps": 1000.0,
-    "frames": null,
-    "triangles": null,
-    "splats": null,
-    "bytes": 641735,
-    "url": "https://languel.github.io/mediatheque/items/skladanowsky-boxing-kangaroo-1895/media.webm",
-    "added": "2026-10-20"
-  },
-  {
     "id": "snowy-dystopian-eastern-european-city",
     "type": "item",
     "title": "Snowy Concrete Courtyard Pavilion (Gaussian Splat .spz)",
@@ -2772,82 +2555,6 @@
     "splats": null,
     "bytes": 447530,
     "url": "https://languel.github.io/mediatheque/items/tristan-tzara/media.webp",
-    "added": "2026-10-18"
-  },
-  {
-    "id": "wayang-female-transparent",
-    "type": "item",
-    "title": "Wayang Kulit Articulated Puppet Sheet (Transparent PNG)",
-    "kind": "image",
-    "status": "published",
-    "summary": "Javanese shadow-puppet figure with separated upper and lower arm segments on transparent alpha.",
-    "tags": [
-      "person",
-      "object",
-      "single",
-      "fullbody",
-      "side",
-      "bw",
-      "high-contrast",
-      "plain-bg",
-      "silhouette",
-      "portrait",
-      "transparent",
-      "alpha",
-      "drawing"
-    ],
-    "keywords": [
-      "Wayang Kulit",
-      "puppet",
-      "rigging",
-      "cutout",
-      "joints",
-      "silhouette",
-      "alpha"
-    ],
-    "collections": [
-      "graphics-random"
-    ],
-    "demos": [
-      "rigging",
-      "pose",
-      "segmentation",
-      "body-zones"
-    ],
-    "date": "2026",
-    "creators": [
-      "Mediathèque Teaching Lab"
-    ],
-    "creator_roles": [
-      {
-        "name": "Mediathèque Teaching Lab",
-        "role": "preparer"
-      }
-    ],
-    "rights": {
-      "status": "public-domain",
-      "license": "CC0-1.0",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
-    },
-    "credit": "Traditional Wayang Kulit articulated puppet sheet, prepared for Mediathèque (CC0 1.0).",
-    "source_url": "https://languel.github.io/mediatheque/items/wayang-female-transparent/media.webp",
-    "archive": "Mediathèque Teaching Collection",
-    "thumb": "items/wayang-female-transparent/thumb.webp",
-    "poster": "items/wayang-female-transparent/poster.webp",
-    "media": "items/wayang-female-transparent/media.webp",
-    "video_media": "items/wayang-female-transparent/media.webp",
-    "proxy": null,
-    "original": "items/wayang-female-transparent/original.png",
-    "width": 997,
-    "height": 1411,
-    "aspect_ratio": "1:1.42",
-    "duration": null,
-    "fps": null,
-    "frames": null,
-    "triangles": null,
-    "splats": null,
-    "bytes": 147424,
-    "url": "https://languel.github.io/mediatheque/items/wayang-female-transparent/media.webp",
     "added": "2026-10-18"
   },
   {

@@ -1,0 +1,185 @@
+{
+  "id": "muybridge-greyhound-galloping-1887",
+  "title": "Greyhound Galloping — Descriptive Zoopraxography",
+  "kind": "animation",
+  "status": "draft",
+  "summary": "Full-speed rotary gallop of a greyhound, demonstrating full spinal extension and suspension phases in high-speed chronophotography.",
+  "description": "From Eadweard Muybridge's 1887 Animal Locomotion and Descriptive Zoopraxography studies. The greyhound's classic double-suspension rotary gallop is one of the clearest demonstrations of quadrupeds in rapid motion.",
+  "tags": [
+    "short",
+    "landscape-format",
+    "silent",
+    "bw",
+    "seamless-loop",
+    "loop-friendly",
+    "movement",
+    "fast"
+  ],
+  "keywords": [],
+  "collections": [],
+  "demos": [],
+  "creators": [],
+  "date": "1887",
+  "source": {
+    "url": "https://www.loc.gov/pictures/item/2004665352/",
+    "origin": "https://www.loc.gov/pictures/item/2004665352/",
+    "archive": "University of Pennsylvania / Library of Congress",
+    "retrieved": "2026-10-20",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US-expired",
+    "license_url": null,
+    "credit": "Eadweard Muybridge, 1887. Greyhound Galloping (Descriptive Zoopraxography). University of Pennsylvania. Public domain.",
+    "notes": "Public domain early movement study with clear archival provenance."
+  },
+  "files": {
+    "media": {
+      "path": "media.mp4",
+      "type": "video/mp4",
+      "bytes": 129353,
+      "sha256": "a3b72303477671eaa869c20927ca11ae83f782df160469739e07930a5d69fb3a",
+      "duration": 1.2,
+      "width": 1060,
+      "height": 323,
+      "fps": 10.0,
+      "frames": 12,
+      "frame_delays_ms": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "variable_delays": false,
+      "loop_count": 0,
+      "disposal": [
+        1
+      ],
+      "palette": 223,
+      "phash": "e161795b0d4d6907",
+      "motion_curve": [
+        15.0,
+        17.89,
+        15.45,
+        13.34,
+        11.56
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 118224,
+      "sha256": "05252366df91e1a2ee3b3971cb437a53aaa86121e31364ef2b496fc3a23983d9"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 21850,
+      "sha256": "a45738f1d1033c5f6adeace5bcd72fa248554f946e6dc3d51872154778064109",
+      "width": 1060,
+      "height": 323
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 8676,
+      "sha256": "fe6f24ab76cdf27527d02366b27ea519f89bb764a6a23c099c9662c5849ebc88",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.gif",
+      "type": "image/gif",
+      "bytes": 1299961,
+      "sha256": "208c5bf06ec316b86b215b6ab5101dd6cbd390e795db6739bf927e43bfe2504f",
+      "width": 1060,
+      "height": 323,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://www.loc.gov/pictures/item/2004665352/",
+      "date": "2026-10-20",
+      "sha256": "208c5bf06ec316b86b215b6ab5101dd6cbd390e795db6739bf927e43bfe2504f"
+    },
+    {
+      "step": "derived",
+      "file": "media.mp4",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(iw/2)*2):max(2,trunc(ih/2)*2)' -c:v libx264 -pix_fmt yuv420p -crf 23 -movflags +faststart -an",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(min(768,iw)/2)*2):max(2,trunc(ih/2)*2)' -c:v libvpx-vp9 -pix_fmt yuva420p -crf 32 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "middle-frame webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "gif 1.0",
+      "model": "pillow-gif-walk+dhash",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-20"
+    }
+  ],
+  "added": "2026-10-20",
+  "updated": "2026-10-20",
+  "proposed": {
+    "gif": {
+      "analyzer": "gif",
+      "version": "1.0",
+      "confidence": 0.95,
+      "date": "2026-10-20",
+      "tags": []
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 14.65,
+      "border_motion": 9.82
+    }
+  }
+}

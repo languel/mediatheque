@@ -2,7 +2,7 @@
   "id": "rectangles",
   "title": "Primary Rectangles Palette Study (GIF)",
   "kind": "animation",
-  "status": "published",
+  "status": "review",
   "summary": "Minimal multi-frame geometric color rectangle study for palette quantization demos.",
   "description": "Minimalist geometric GIF composed of flat color rectangles for testing palette extraction, indexed color tables, and crisp pixel-art scaling.",
   "tags": [

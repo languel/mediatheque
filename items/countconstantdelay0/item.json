@@ -2,7 +2,7 @@
   "id": "countconstantdelay0",
   "title": "Zero-Delay Frame Counter Test GIF",
   "kind": "animation",
-  "status": "published",
+  "status": "review",
   "summary": "Synthetic 10-frame GIF with 0ms frame delay headers for browser/decoder timing tests.",
   "description": "Diagnostic animated GIF counting frames with constant 0ms header delay to test how browsers, ffmpeg, and creative-coding runtimes clamp sub-10ms GIF frame durations.",
   "tags": [

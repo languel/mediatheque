@@ -1,0 +1,188 @@
+{
+  "id": "muybridge-buffalo-galloping-1887",
+  "title": "Buffalo Galloping — Animal Locomotion (Plate 700)",
+  "kind": "animation",
+  "status": "published",
+  "summary": "American bison galloping, captured in sequential chronophotography for the Animal Locomotion series.",
+  "description": "Plate 700 from Eadweard Muybridge's 1887 University of Pennsylvania series 'Animal Locomotion'. Captures the heavy gallop and gait phases of the American bison, an extraordinary visual benchmark for quadruped movement.",
+  "tags": [
+    "short",
+    "landscape-format",
+    "silent",
+    "bw",
+    "low-palette",
+    "dithered",
+    "seamless-loop",
+    "loop-friendly",
+    "movement",
+    "fast"
+  ],
+  "keywords": [],
+  "collections": [],
+  "demos": [],
+  "creators": [],
+  "date": "1887",
+  "source": {
+    "archive": "University of Pennsylvania / Library of Congress",
+    "url": "https://www.loc.gov/pictures/item/2004665352/",
+    "origin": "https://www.loc.gov/pictures/item/2004665352/"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US-expired",
+    "credit": "Eadweard Muybridge, 1887. Buffalo Galloping (Animal Locomotion, Plate 700). University of Pennsylvania. Public domain.",
+    "notes": "Public domain early movement study with clear archival provenance."
+  },
+  "files": {
+    "media": {
+      "path": "media.mp4",
+      "type": "video/mp4",
+      "bytes": 52738,
+      "sha256": "9cf1acbf301ac47f1042b300839fb9372f2cf082b0657c0f52d878b61ce140c5",
+      "duration": 0.96,
+      "width": 225,
+      "height": 138,
+      "fps": 16.67,
+      "frames": 16,
+      "frame_delays_ms": [
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60
+      ],
+      "variable_delays": false,
+      "loop_count": 0,
+      "disposal": [
+        1
+      ],
+      "palette": 31,
+      "phash": "410101090b43c580",
+      "motion_curve": [
+        24.1,
+        34.51,
+        24.86,
+        29.37
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 61225,
+      "sha256": "5269e1e3b60c8accaf621fda4fb54c9be9e7d946f21cd3896f458e8ee71c02a8"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 9190,
+      "sha256": "15e4f36100b4345092200cf9fbfbf21f0af873a3e23459ed9115cc979f8c8587",
+      "width": 225,
+      "height": 138
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 19386,
+      "sha256": "35b6462a7155fa900e2f7f9ab391b2327a23f7539cbf585dc1cfc5f52fcb61b9",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.gif",
+      "type": "image/gif",
+      "bytes": 227042,
+      "sha256": "9496fdb8f471b29db42a3b28e64d1b410a88b94f1be7297f1e0a5e19b59e6d0d",
+      "width": 225,
+      "height": 138,
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://www.loc.gov/pictures/item/2004665352/",
+      "date": "2026-10-20",
+      "sha256": "9496fdb8f471b29db42a3b28e64d1b410a88b94f1be7297f1e0a5e19b59e6d0d"
+    },
+    {
+      "step": "derived",
+      "file": "media.mp4",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(iw/2)*2):max(2,trunc(ih/2)*2)' -c:v libx264 -pix_fmt yuv420p -crf 23 -movflags +faststart -an",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf scale='max(2,trunc(min(768,iw)/2)*2):max(2,trunc(ih/2)*2)' -c:v libvpx-vp9 -pix_fmt yuva420p -crf 32 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "middle-frame webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "gif 1.0",
+      "model": "pillow-gif-walk+dhash",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-20"
+    }
+  ],
+  "added": "2026-10-20",
+  "updated": "2026-10-20",
+  "proposed": {
+    "gif": {
+      "analyzer": "gif",
+      "version": "1.0",
+      "confidence": 0.95,
+      "date": "2026-10-20",
+      "tags": []
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 28.21,
+      "border_motion": 21.79
+    }
+  },
+  "plate": null
+}

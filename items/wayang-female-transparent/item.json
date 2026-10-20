@@ -2,7 +2,7 @@
   "id": "wayang-female-transparent",
   "title": "Wayang Kulit Articulated Puppet Sheet (Transparent PNG)",
   "kind": "image",
-  "status": "published",
+  "status": "review",
   "summary": "Javanese shadow-puppet figure with separated upper and lower arm segments on transparent alpha.",
   "description": "High-contrast monochrome cutout of a traditional Javanese Wayang Kulit puppet with its torso and four articulated arm/hand pieces laid out with pivot holes on a transparent alpha background. Designed for 2D forward/inverse kinematics rigging and pose-driven puppetry in p5.js or Three.js.",
   "tags": [

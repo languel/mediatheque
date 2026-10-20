@@ -53,6 +53,8 @@
     btnSave: document.getElementById("btn-action-save"),
     btnPublish: document.getElementById("btn-action-publish"),
     btnUnpublish: document.getElementById("btn-action-unpublish"),
+    btnWithdraw: document.getElementById("btn-action-withdraw"),
+    btnDelete: document.getElementById("btn-action-delete"),
     btnPublicView: document.getElementById("btn-link-public"),
     playerWrap: document.getElementById("workbench-player-wrap"),
     readoutAr: document.getElementById("readout-ar"),
@@ -404,6 +406,8 @@
 
     els.btnPublish.hidden = item.status === "published";
     els.btnUnpublish.hidden = item.status !== "published";
+    els.btnWithdraw.hidden = item.status === "withdrawn";
+    els.btnDelete.hidden = false;
     els.btnPublicView.href = `index.html#/${item.id}`;
 
     // Populate Player
@@ -748,6 +752,9 @@
 
   els.btnUnpublish.addEventListener("click", async () => {
     if (!state.selectedItem) return;
+    const ok = confirm(`Unpublish '${state.selectedItem.id}'?\n\nThis will remove it from the public catalog and move it back to the Review Queue.`);
+    if (!ok) return;
+
     if (state.isLiveServer) {
       const res = await fetch(`/api/items/${state.selectedItem.id}/unpublish`, {
         method: "POST",
@@ -756,7 +763,65 @@
       if (res.ok) {
         await loadItems();
         selectItem(state.selectedItem.id);
+      } else {
+        const err = await res.json().catch(() => ({}));
+        alert(`Failed to unpublish: ${err.error || res.statusText}`);
       }
+    } else {
+      alert(`To unpublish in static mode, edit items/${state.selectedItem.id}/item.json and set status: review, then rebuild.`);
+    }
+  });
+
+  els.btnWithdraw.addEventListener("click", async () => {
+    if (!state.selectedItem) return;
+    const ok = confirm(`Withdraw '${state.selectedItem.id}'?\n\nThis will remove it from both the public catalog and review queue, but retain its files on disk in an archived/withdrawn state.`);
+    if (!ok) return;
+
+    if (state.isLiveServer) {
+      const res = await fetch(`/api/items/${state.selectedItem.id}/withdraw`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${state.authToken}` }
+      });
+      if (res.ok) {
+        await loadItems();
+        selectItem(state.selectedItem.id);
+      } else {
+        const err = await res.json().catch(() => ({}));
+        alert(`Failed to withdraw: ${err.error || res.statusText}`);
+      }
+    } else {
+      alert(`To withdraw in static mode, set status: withdrawn in items/${state.selectedItem.id}/item.json.`);
+    }
+  });
+
+  els.btnDelete.addEventListener("click", async () => {
+    if (!state.selectedItem) return;
+    const targetId = state.selectedItem.id;
+    const ok = confirm(`PERMANENTLY DELETE item '${targetId}'?\n\n⚠️ WARNING: This will completely delete the folder items/${targetId}/ and all media/derivatives from disk. This cannot be undone.`);
+    if (!ok) return;
+
+    if (state.isLiveServer) {
+      const res = await fetch(`/api/items/${targetId}/delete`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${state.authToken}` }
+      });
+      if (res.ok) {
+        state.selectedItem = null;
+        state.selectedFullItem = null;
+        await loadItems();
+        // Clear workbench
+        els.itemHeading.textContent = "Select an item to inspect and curate";
+        els.itemIdPill.textContent = "—";
+        els.itemKindBadge.textContent = "—";
+        els.itemStatusBadge.textContent = "—";
+        els.itemStatusBadge.className = "status-badge";
+        els.playerWrap.innerHTML = "";
+      } else {
+        const err = await res.json().catch(() => ({}));
+        alert(`Failed to delete: ${err.error || res.statusText}`);
+      }
+    } else {
+      alert(`To delete in CLI mode, run: rm -rf items/${targetId} && python3 tools/build.py`);
     }
   });
 

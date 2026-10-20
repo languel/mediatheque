@@ -1,0 +1,234 @@
+{
+  "id": "lumiere-sortie-usine-1895",
+  "title": "La Sortie de l'Usine Lumière à Lyon (Workers Leaving the Lumière Factory)",
+  "kind": "video",
+  "status": "draft",
+  "summary": "Workers exiting the gates of the Lumière photographic factory in Lyon, widely celebrated as the birth of projected motion pictures.",
+  "description": "Filmed in 1895 with the Cinématographe by Louis Lumière at the gates of the Lumière factory in Lyon-Montplaisir. First projected to a paying public on 28 December 1895 at the Salon Indien du Grand Café in Paris.",
+  "tags": [
+    "landscape-format",
+    "tinted",
+    "cuts",
+    "movement",
+    "fast"
+  ],
+  "keywords": [],
+  "collections": [],
+  "demos": [],
+  "creators": [],
+  "date": "1895",
+  "source": {
+    "url": "https://www.institut-lumiere.org/",
+    "origin": "https://www.institut-lumiere.org/",
+    "archive": "Institut Lumière / CNC Archives françaises du film",
+    "retrieved": "2026-10-20",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-old-100",
+    "license_url": null,
+    "credit": "Louis Lumière, 1895. La Sortie de l'Usine Lumière à Lyon. Cinématographe Lumière. Public domain.",
+    "notes": "Public domain early movement study with clear archival provenance."
+  },
+  "files": {
+    "media": {
+      "path": "media.webm",
+      "type": "video/webm",
+      "bytes": 4979063,
+      "sha256": "5b9e5e3878d22e14050a41a3746ef467613ca8ac73f796d4e6bbc2aadacd3098",
+      "duration": 46.28,
+      "width": 480,
+      "height": 360,
+      "fps": 25.0,
+      "motion_curve": [
+        1.88,
+        1.04,
+        43.23,
+        12.12,
+        15.5,
+        20.47,
+        18.14,
+        19.48,
+        21.19,
+        22.65,
+        20.82,
+        22.88,
+        19.32,
+        20.45,
+        26.4,
+        18.74
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 4156813,
+      "sha256": "ac8f81e84c983cc61f483415e6ad79469b9266e9460aba63fe5f50a1f64eac10"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 25990,
+      "sha256": "efaee8a18a4c39784355ddaa2075f452bb2645658c08bea951d853111bcd5bf3",
+      "width": 480,
+      "height": 360
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 23376,
+      "sha256": "965b9fe5e63d4376e39571e9d033f67b53aa334191e0539100d4fc5aafca8e74",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.webm",
+      "type": "video/webm",
+      "bytes": 4979063,
+      "sha256": "5b9e5e3878d22e14050a41a3746ef467613ca8ac73f796d4e6bbc2aadacd3098",
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://www.institut-lumiere.org/",
+      "date": "2026-10-20",
+      "sha256": "5b9e5e3878d22e14050a41a3746ef467613ca8ac73f796d4e6bbc2aadacd3098"
+    },
+    {
+      "step": "derived",
+      "file": "media.webm",
+      "tool": "copy (web-ready source)",
+      "args": "cp lumiere-sortie-usine-1895.webm media.webm",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf fps=15,scale='min(768,iw)':-2 -c:v libvpx-vp9 -crf 35 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "ffmpeg 9.0.2 + Pillow",
+      "args": "-ss 4.63 -frames:v 1 -> webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "scenes 1.0",
+      "model": "ffmpeg-scene+silence",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "audio 1.0",
+      "model": "ffmpeg-pcm+onset-bpm",
+      "date": "2026-10-20"
+    }
+  ],
+  "added": "2026-10-20",
+  "updated": "2026-10-20",
+  "proposed": {
+    "scenes": {
+      "analyzer": "scenes",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "clips": [
+        {
+          "n": 1,
+          "title": "Clip 01 (0.0s–3.1s)",
+          "summary": "Segment 1 from 0.0s to 3.1s.",
+          "tags": [],
+          "demos": [],
+          "in": 0.0,
+          "out": 3.08,
+          "file": "clips/01.webm",
+          "thumb": "clips/01.thumb.webp"
+        },
+        {
+          "n": 2,
+          "title": "Clip 02 (3.1s–17.9s)",
+          "summary": "Segment 2 from 3.1s to 17.9s.",
+          "tags": [],
+          "demos": [],
+          "in": 3.08,
+          "out": 17.88,
+          "file": "clips/02.webm",
+          "thumb": "clips/02.thumb.webp"
+        },
+        {
+          "n": 3,
+          "title": "Clip 03 (17.9s–45.2s)",
+          "summary": "Segment 3 from 17.9s to 45.2s.",
+          "tags": [],
+          "demos": [],
+          "in": 17.88,
+          "out": 45.16,
+          "file": "clips/03.webm",
+          "thumb": "clips/03.thumb.webp"
+        },
+        {
+          "n": 4,
+          "title": "Clip 04 (45.2s–46.3s)",
+          "summary": "Segment 4 from 45.2s to 46.3s.",
+          "tags": [],
+          "demos": [],
+          "in": 45.16,
+          "out": 46.28,
+          "file": "clips/04.webm",
+          "thumb": "clips/04.thumb.webp"
+        }
+      ],
+      "scene_cuts": [
+        3.08,
+        17.88,
+        45.16
+      ]
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 18.91,
+      "border_motion": 17.03
+    },
+    "audio": {
+      "analyzer": "audio",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "tags": [],
+      "rms": 0.1208
+    }
+  },
+  "bpm": 90.9
+}

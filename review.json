@@ -77,6 +77,355 @@
     "notes": "Source URL and license unverified; kept in draft."
   },
   {
+    "id": "countconstantdelay0",
+    "type": "item",
+    "title": "Zero-Delay Frame Counter Test GIF",
+    "kind": "animation",
+    "status": "review",
+    "summary": "Synthetic 10-frame GIF with 0ms frame delay headers for browser/decoder timing tests.",
+    "tags": [
+      "text-content",
+      "abstract",
+      "bw",
+      "plain-bg",
+      "short",
+      "square",
+      "loop-friendly",
+      "low-palette",
+      "pixel-art",
+      "frame-sequence",
+      "contemporary",
+      "portrait",
+      "silent",
+      "pingpong",
+      "movement",
+      "fast",
+      "static-camera"
+    ],
+    "keywords": [
+      "test pattern",
+      "GIF timing",
+      "0ms delay",
+      "frame counter",
+      "decoder"
+    ],
+    "collections": [
+      "graphics-random"
+    ],
+    "demos": [
+      "loop",
+      "typography"
+    ],
+    "date": "2026",
+    "creators": [
+      "Mediathèque Teaching Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Mediathèque Teaching Lab",
+        "role": "author"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "credit": "GIF timing diagnostic test asset, Mediathèque (CC0 1.0).",
+    "source_url": "https://languel.github.io/mediatheque/items/countconstantdelay0/original.gif",
+    "archive": "Mediathèque Test Suite",
+    "thumb": "items/countconstantdelay0/thumb.webp",
+    "poster": "items/countconstantdelay0/poster.webp",
+    "media": "items/countconstantdelay0/original.gif",
+    "video_media": "items/countconstantdelay0/media.mp4",
+    "proxy": "items/countconstantdelay0/proxy.webm",
+    "original": "items/countconstantdelay0/original.gif",
+    "width": 80,
+    "height": 112,
+    "aspect_ratio": "5:7",
+    "duration": 1.32,
+    "fps": 3.03,
+    "frames": 4,
+    "triangles": null,
+    "splats": null,
+    "bytes": 7476,
+    "url": "https://languel.github.io/mediatheque/items/countconstantdelay0/original.gif",
+    "added": "2026-10-18",
+    "proposed": {
+      "gif": {
+        "analyzer": "gif",
+        "version": "1.0",
+        "confidence": 0.95,
+        "date": "2026-10-18",
+        "tags": []
+      },
+      "flow": {
+        "analyzer": "flow",
+        "version": "1.0",
+        "confidence": 0.85,
+        "date": "2026-10-18",
+        "tags": [],
+        "mean_motion": 17.88,
+        "border_motion": 0.0
+      }
+    },
+    "proposed_tags": [],
+    "notes": ""
+  },
+  {
+    "id": "edison-boxing-cats-1894",
+    "type": "item",
+    "title": "The Boxing Cats (Prof. Welton's)",
+    "kind": "video",
+    "status": "review",
+    "summary": "Henry Welton's trained domestic cats sparring with miniature boxing gloves in a miniature ring at Thomas Edison's Black Maria studio.",
+    "tags": [
+      "landscape-format",
+      "silent",
+      "bw",
+      "cuts",
+      "movement",
+      "fast"
+    ],
+    "keywords": [],
+    "collections": [],
+    "demos": [],
+    "date": "1894",
+    "creators": [],
+    "creator_roles": [],
+    "rights": {
+      "status": "public-domain",
+      "license": "PD-US-expired",
+      "license_url": null
+    },
+    "credit": "William K.L. Dickson and William Heise (Edison Kinetoscope), 1894. The Boxing Cats (Prof. Welton's). Library of Congress Paper Print Collection. Public domain.",
+    "source_url": "https://www.loc.gov/item/00694119/",
+    "archive": "Library of Congress Motion Picture, Broadcasting and Recorded Sound Division",
+    "thumb": "items/edison-boxing-cats-1894/thumb.webp",
+    "poster": "items/edison-boxing-cats-1894/poster.webp",
+    "media": "items/edison-boxing-cats-1894/media.webm",
+    "video_media": "items/edison-boxing-cats-1894/media.webm",
+    "proxy": "items/edison-boxing-cats-1894/proxy.webm",
+    "original": "items/edison-boxing-cats-1894/original.webm",
+    "width": 320,
+    "height": 240,
+    "aspect_ratio": "4:3",
+    "duration": 22.562,
+    "fps": 29.92,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "bytes": 1311437,
+    "url": "https://languel.github.io/mediatheque/items/edison-boxing-cats-1894/media.webm",
+    "added": "2026-10-20",
+    "proposed": {
+      "scenes": {
+        "analyzer": "scenes",
+        "version": "1.0",
+        "confidence": 0.85,
+        "date": "2026-10-20",
+        "clips": [
+          {
+            "n": 1,
+            "title": "Clip 01 (0.0s–2.9s)",
+            "summary": "Segment 1 from 0.0s to 2.9s.",
+            "tags": [],
+            "demos": [],
+            "in": 0.0,
+            "out": 2.94,
+            "file": "clips/01.webm",
+            "thumb": "clips/01.thumb.webp"
+          },
+          {
+            "n": 2,
+            "title": "Clip 02 (2.9s–22.6s)",
+            "summary": "Segment 2 from 2.9s to 22.6s.",
+            "tags": [],
+            "demos": [],
+            "in": 2.94,
+            "out": 22.56,
+            "file": "clips/02.webm",
+            "thumb": "clips/02.thumb.webp"
+          }
+        ],
+        "scene_cuts": [
+          2.94
+        ]
+      },
+      "flow": {
+        "analyzer": "flow",
+        "version": "1.0",
+        "confidence": 0.85,
+        "date": "2026-10-20",
+        "tags": [
+          "moving-camera"
+        ],
+        "mean_motion": 17.32,
+        "border_motion": 10.15
+      }
+    },
+    "proposed_tags": [],
+    "notes": "Public domain early movement study with clear archival provenance."
+  },
+  {
+    "id": "edison-fred-otts-sneeze-1894",
+    "type": "item",
+    "title": "Edison Kinetoscopic Record of a Sneeze (Fred Ott's Sneeze)",
+    "kind": "video",
+    "status": "draft",
+    "summary": "Fred Ott taking a pinch of snuff and sneezing, the earliest surviving copyrighted motion picture in the United States.",
+    "tags": [
+      "landscape-format",
+      "bw",
+      "cuts",
+      "movement",
+      "silent"
+    ],
+    "keywords": [],
+    "collections": [],
+    "demos": [],
+    "date": "1894",
+    "creators": [],
+    "creator_roles": [],
+    "rights": {
+      "status": "public-domain",
+      "license": "PD-US-expired",
+      "license_url": null
+    },
+    "credit": "William K. L. Dickson, 1894. Edison Kinetoscopic Record of a Sneeze. Edison Manufacturing Co. / Library of Congress. Public domain.",
+    "source_url": "https://www.loc.gov/item/00694192/",
+    "archive": "Library of Congress Motion Picture, Broadcasting and Recorded Sound Division",
+    "thumb": "items/edison-fred-otts-sneeze-1894/thumb.webp",
+    "poster": "items/edison-fred-otts-sneeze-1894/poster.webp",
+    "media": "items/edison-fred-otts-sneeze-1894/media.webm",
+    "video_media": "items/edison-fred-otts-sneeze-1894/media.webm",
+    "proxy": "items/edison-fred-otts-sneeze-1894/proxy.webm",
+    "original": "items/edison-fred-otts-sneeze-1894/original.webm",
+    "width": 1280,
+    "height": 960,
+    "aspect_ratio": "4:3",
+    "duration": 28.684,
+    "fps": 24.0,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "bytes": 3283714,
+    "url": "https://languel.github.io/mediatheque/items/edison-fred-otts-sneeze-1894/media.webm",
+    "added": "2026-10-20",
+    "proposed": {
+      "scenes": {
+        "analyzer": "scenes",
+        "version": "1.0",
+        "confidence": 0.85,
+        "date": "2026-10-20",
+        "clips": [
+          {
+            "n": 1,
+            "title": "Clip 01 (0.0s–13.0s)",
+            "summary": "Segment 1 from 0.0s to 13.0s.",
+            "tags": [],
+            "demos": [],
+            "in": 0.0,
+            "out": 13.04,
+            "file": "clips/01.webm",
+            "thumb": "clips/01.thumb.webp"
+          },
+          {
+            "n": 2,
+            "title": "Clip 02 (13.0s–15.9s)",
+            "summary": "Segment 2 from 13.0s to 15.9s.",
+            "tags": [],
+            "demos": [],
+            "in": 13.04,
+            "out": 15.92,
+            "file": "clips/02.webm",
+            "thumb": "clips/02.thumb.webp"
+          },
+          {
+            "n": 3,
+            "title": "Clip 03 (15.9s–19.8s)",
+            "summary": "Segment 3 from 15.9s to 19.8s.",
+            "tags": [],
+            "demos": [],
+            "in": 15.92,
+            "out": 19.79,
+            "file": "clips/03.webm",
+            "thumb": "clips/03.thumb.webp"
+          },
+          {
+            "n": 4,
+            "title": "Clip 04 (19.8s–22.4s)",
+            "summary": "Segment 4 from 19.8s to 22.4s.",
+            "tags": [],
+            "demos": [],
+            "in": 19.79,
+            "out": 22.42,
+            "file": "clips/04.webm",
+            "thumb": "clips/04.thumb.webp"
+          },
+          {
+            "n": 5,
+            "title": "Clip 05 (22.4s–25.0s)",
+            "summary": "Segment 5 from 22.4s to 25.0s.",
+            "tags": [],
+            "demos": [],
+            "in": 22.42,
+            "out": 25.04,
+            "file": "clips/05.webm",
+            "thumb": "clips/05.thumb.webp"
+          },
+          {
+            "n": 6,
+            "title": "Clip 06 (25.0s–27.7s)",
+            "summary": "Segment 6 from 25.0s to 27.7s.",
+            "tags": [],
+            "demos": [],
+            "in": 25.04,
+            "out": 27.67,
+            "file": "clips/06.webm",
+            "thumb": "clips/06.thumb.webp"
+          },
+          {
+            "n": 7,
+            "title": "Clip 07 (27.7s–28.7s)",
+            "summary": "Segment 7 from 27.7s to 28.7s.",
+            "tags": [],
+            "demos": [],
+            "in": 27.67,
+            "out": 28.68,
+            "file": "clips/07.webm",
+            "thumb": "clips/07.thumb.webp"
+          }
+        ],
+        "scene_cuts": [
+          13.04,
+          15.92,
+          16.92,
+          19.79,
+          20.79,
+          22.42,
+          23.42,
+          25.04,
+          26.04,
+          27.67
+        ]
+      },
+      "flow": {
+        "analyzer": "flow",
+        "version": "1.0",
+        "confidence": 0.85,
+        "date": "2026-10-20",
+        "tags": [
+          "moving-camera"
+        ],
+        "mean_motion": 10.53,
+        "border_motion": 9.48
+      }
+    },
+    "proposed_tags": [],
+    "notes": "Public domain early movement study with clear archival provenance."
+  },
+  {
     "id": "giphy-1",
     "type": "item",
     "title": "Oskar Schlemmer — Triadisches Ballett (Disc Costumes Loop)",
@@ -172,6 +521,132 @@
     },
     "proposed_tags": [],
     "notes": "1970 film reconstruction remains under broadcast copyright; kept in draft."
+  },
+  {
+    "id": "lumiere-sortie-usine-1895",
+    "type": "item",
+    "title": "La Sortie de l'Usine Lumière à Lyon (Workers Leaving the Lumière Factory)",
+    "kind": "video",
+    "status": "draft",
+    "summary": "Workers exiting the gates of the Lumière photographic factory in Lyon, widely celebrated as the birth of projected motion pictures.",
+    "tags": [
+      "landscape-format",
+      "tinted",
+      "cuts",
+      "movement",
+      "fast"
+    ],
+    "keywords": [],
+    "collections": [],
+    "demos": [],
+    "date": "1895",
+    "creators": [],
+    "creator_roles": [],
+    "rights": {
+      "status": "public-domain",
+      "license": "PD-old-100",
+      "license_url": null
+    },
+    "credit": "Louis Lumière, 1895. La Sortie de l'Usine Lumière à Lyon. Cinématographe Lumière. Public domain.",
+    "source_url": "https://www.institut-lumiere.org/",
+    "archive": "Institut Lumière / CNC Archives françaises du film",
+    "thumb": "items/lumiere-sortie-usine-1895/thumb.webp",
+    "poster": "items/lumiere-sortie-usine-1895/poster.webp",
+    "media": "items/lumiere-sortie-usine-1895/media.webm",
+    "video_media": "items/lumiere-sortie-usine-1895/media.webm",
+    "proxy": "items/lumiere-sortie-usine-1895/proxy.webm",
+    "original": "items/lumiere-sortie-usine-1895/original.webm",
+    "width": 480,
+    "height": 360,
+    "aspect_ratio": "4:3",
+    "duration": 46.28,
+    "fps": 25.0,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "bytes": 4979063,
+    "url": "https://languel.github.io/mediatheque/items/lumiere-sortie-usine-1895/media.webm",
+    "added": "2026-10-20",
+    "proposed": {
+      "scenes": {
+        "analyzer": "scenes",
+        "version": "1.0",
+        "confidence": 0.85,
+        "date": "2026-10-20",
+        "clips": [
+          {
+            "n": 1,
+            "title": "Clip 01 (0.0s–3.1s)",
+            "summary": "Segment 1 from 0.0s to 3.1s.",
+            "tags": [],
+            "demos": [],
+            "in": 0.0,
+            "out": 3.08,
+            "file": "clips/01.webm",
+            "thumb": "clips/01.thumb.webp"
+          },
+          {
+            "n": 2,
+            "title": "Clip 02 (3.1s–17.9s)",
+            "summary": "Segment 2 from 3.1s to 17.9s.",
+            "tags": [],
+            "demos": [],
+            "in": 3.08,
+            "out": 17.88,
+            "file": "clips/02.webm",
+            "thumb": "clips/02.thumb.webp"
+          },
+          {
+            "n": 3,
+            "title": "Clip 03 (17.9s–45.2s)",
+            "summary": "Segment 3 from 17.9s to 45.2s.",
+            "tags": [],
+            "demos": [],
+            "in": 17.88,
+            "out": 45.16,
+            "file": "clips/03.webm",
+            "thumb": "clips/03.thumb.webp"
+          },
+          {
+            "n": 4,
+            "title": "Clip 04 (45.2s–46.3s)",
+            "summary": "Segment 4 from 45.2s to 46.3s.",
+            "tags": [],
+            "demos": [],
+            "in": 45.16,
+            "out": 46.28,
+            "file": "clips/04.webm",
+            "thumb": "clips/04.thumb.webp"
+          }
+        ],
+        "scene_cuts": [
+          3.08,
+          17.88,
+          45.16
+        ]
+      },
+      "flow": {
+        "analyzer": "flow",
+        "version": "1.0",
+        "confidence": 0.85,
+        "date": "2026-10-20",
+        "tags": [
+          "moving-camera"
+        ],
+        "mean_motion": 18.91,
+        "border_motion": 17.03
+      },
+      "audio": {
+        "analyzer": "audio",
+        "version": "1.0",
+        "confidence": 0.85,
+        "date": "2026-10-20",
+        "tags": [],
+        "rms": 0.1208
+      }
+    },
+    "proposed_tags": [],
+    "notes": "Public domain early movement study with clear archival provenance."
   },
   {
     "id": "metastaseis2",
@@ -283,12 +758,12 @@
     "creator_roles": [],
     "rights": {
       "status": "unknown",
-      "license": null,
+      "license": "PD-old-100",
       "license_url": null
     },
-    "credit": "",
-    "source_url": null,
-    "archive": null,
+    "credit": "unknown",
+    "source_url": "",
+    "archive": "unknown",
     "thumb": "items/muted-b/thumb.webp",
     "poster": "items/muted-b/poster.webp",
     "media": "items/muted-b/media.mp4",
@@ -323,9 +798,358 @@
     "notes": "Source URL and license unverified; kept in draft."
   },
   {
+    "id": "muybridge-greyhound-galloping-1887",
+    "type": "item",
+    "title": "Greyhound Galloping — Descriptive Zoopraxography",
+    "kind": "animation",
+    "status": "draft",
+    "summary": "Full-speed rotary gallop of a greyhound, demonstrating full spinal extension and suspension phases in high-speed chronophotography.",
+    "tags": [
+      "short",
+      "landscape-format",
+      "silent",
+      "bw",
+      "seamless-loop",
+      "loop-friendly",
+      "movement",
+      "fast"
+    ],
+    "keywords": [],
+    "collections": [],
+    "demos": [],
+    "date": "1887",
+    "creators": [],
+    "creator_roles": [],
+    "rights": {
+      "status": "public-domain",
+      "license": "PD-US-expired",
+      "license_url": null
+    },
+    "credit": "Eadweard Muybridge, 1887. Greyhound Galloping (Descriptive Zoopraxography). University of Pennsylvania. Public domain.",
+    "source_url": "https://www.loc.gov/pictures/item/2004665352/",
+    "archive": "University of Pennsylvania / Library of Congress",
+    "thumb": "items/muybridge-greyhound-galloping-1887/thumb.webp",
+    "poster": "items/muybridge-greyhound-galloping-1887/poster.webp",
+    "media": "items/muybridge-greyhound-galloping-1887/original.gif",
+    "video_media": "items/muybridge-greyhound-galloping-1887/media.mp4",
+    "proxy": "items/muybridge-greyhound-galloping-1887/proxy.webm",
+    "original": "items/muybridge-greyhound-galloping-1887/original.gif",
+    "width": 1060,
+    "height": 323,
+    "aspect_ratio": "3.28:1",
+    "duration": 1.2,
+    "fps": 10.0,
+    "frames": 12,
+    "triangles": null,
+    "splats": null,
+    "bytes": 1299961,
+    "url": "https://languel.github.io/mediatheque/items/muybridge-greyhound-galloping-1887/original.gif",
+    "added": "2026-10-20",
+    "proposed": {
+      "gif": {
+        "analyzer": "gif",
+        "version": "1.0",
+        "confidence": 0.95,
+        "date": "2026-10-20",
+        "tags": []
+      },
+      "flow": {
+        "analyzer": "flow",
+        "version": "1.0",
+        "confidence": 0.85,
+        "date": "2026-10-20",
+        "tags": [
+          "moving-camera"
+        ],
+        "mean_motion": 14.65,
+        "border_motion": 9.82
+      }
+    },
+    "proposed_tags": [],
+    "notes": "Public domain early movement study with clear archival provenance."
+  },
+  {
+    "id": "pileus-logo",
+    "type": "item",
+    "title": "Pileus Cloud Emblem (SVG Vector)",
+    "kind": "vector",
+    "status": "review",
+    "summary": "Spiral cloud and pileus cap vector emblem in clean SVG paths.",
+    "tags": [
+      "abstract",
+      "pattern",
+      "square",
+      "transparent",
+      "filled",
+      "line-art",
+      "plotter-ready",
+      "icon",
+      "contemporary",
+      "own-capture"
+    ],
+    "keywords": [
+      "pileus",
+      "cloud",
+      "spiral",
+      "vector",
+      "SVG",
+      "logo",
+      "plotter"
+    ],
+    "collections": [
+      "svg"
+    ],
+    "demos": [
+      "plotter",
+      "typography",
+      "texture"
+    ],
+    "date": "2026",
+    "creators": [
+      "Mediathèque Teaching Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Mediathèque Teaching Lab",
+        "role": "designer"
+      }
+    ],
+    "rights": {
+      "status": "cc",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "credit": "Pileus emblem SVG, Mediathèque Teaching Collection (CC0 1.0).",
+    "source_url": "https://languel.github.io/mediatheque/items/pileus-logo/media.svg",
+    "archive": "Mediathèque Teaching Collection",
+    "thumb": "items/pileus-logo/thumb.webp",
+    "poster": "items/pileus-logo/poster.webp",
+    "media": "items/pileus-logo/media.svg",
+    "video_media": "items/pileus-logo/media.svg",
+    "proxy": null,
+    "original": "items/pileus-logo/original.svg",
+    "width": 1024,
+    "height": 1024,
+    "aspect_ratio": "1:1",
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "bytes": 2056,
+    "url": "https://languel.github.io/mediatheque/items/pileus-logo/media.svg",
+    "added": "2026-10-18",
+    "proposed": {},
+    "proposed_tags": [],
+    "notes": ""
+  },
+  {
+    "id": "rectangles",
+    "type": "item",
+    "title": "Primary Rectangles Palette Study (GIF)",
+    "kind": "animation",
+    "status": "review",
+    "summary": "Minimal multi-frame geometric color rectangle study for palette quantization demos.",
+    "tags": [
+      "abstract",
+      "pattern",
+      "color",
+      "plain-bg",
+      "short",
+      "loop-friendly",
+      "low-palette",
+      "pixel-art",
+      "contemporary",
+      "landscape-format",
+      "silent",
+      "movement",
+      "fast"
+    ],
+    "keywords": [
+      "rectangles",
+      "geometry",
+      "palette",
+      "indexed color",
+      "test pattern"
+    ],
+    "collections": [
+      "graphics-random"
+    ],
+    "demos": [
+      "color",
+      "loop",
+      "texture"
+    ],
+    "date": "2026",
+    "creators": [
+      "Mediathèque Teaching Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Mediathèque Teaching Lab",
+        "role": "author"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "credit": "Primary Rectangles study, Mediathèque (CC0 1.0).",
+    "source_url": "https://languel.github.io/mediatheque/items/rectangles/original.gif",
+    "archive": "Mediathèque Test Suite",
+    "thumb": "items/rectangles/thumb.webp",
+    "poster": "items/rectangles/poster.webp",
+    "media": "items/rectangles/original.gif",
+    "video_media": "items/rectangles/media.mp4",
+    "proxy": "items/rectangles/proxy.webm",
+    "original": "items/rectangles/original.gif",
+    "width": 400,
+    "height": 300,
+    "aspect_ratio": "4:3",
+    "duration": 1.2,
+    "fps": 2.5,
+    "frames": 3,
+    "triangles": null,
+    "splats": null,
+    "bytes": 1699,
+    "url": "https://languel.github.io/mediatheque/items/rectangles/original.gif",
+    "added": "2026-10-18",
+    "proposed": {
+      "gif": {
+        "analyzer": "gif",
+        "version": "1.0",
+        "confidence": 0.95,
+        "date": "2026-10-18",
+        "tags": []
+      },
+      "flow": {
+        "analyzer": "flow",
+        "version": "1.0",
+        "confidence": 0.85,
+        "date": "2026-10-18",
+        "tags": [
+          "moving-camera"
+        ],
+        "mean_motion": 39.0,
+        "border_motion": 39.0
+      }
+    },
+    "proposed_tags": [],
+    "notes": ""
+  },
+  {
+    "id": "skladanowsky-boxing-kangaroo-1895",
+    "type": "item",
+    "title": "Das boxende Känguruh (The Boxing Kangaroo)",
+    "kind": "video",
+    "status": "review",
+    "summary": "A boxing kangaroo sparring against circus artist Delaware, projected with the Bioscop at the Berlin Wintergarten in November 1895.",
+    "tags": [
+      "landscape-format",
+      "bw",
+      "cuts",
+      "movement",
+      "fast",
+      "silent"
+    ],
+    "keywords": [],
+    "collections": [],
+    "demos": [],
+    "date": "1895",
+    "creators": [],
+    "creator_roles": [],
+    "rights": {
+      "status": "public-domain",
+      "license": "PD-old-70",
+      "license_url": null
+    },
+    "credit": "Max Skladanowsky, 1895. Das boxende Känguruh (Bioscop). Bundesarchiv / Deutsches Filmmuseum. Public domain.",
+    "source_url": "https://www.bundesarchiv.de/",
+    "archive": "Bundesarchiv / Deutsches Filmmuseum (Frankfurt am Main)",
+    "thumb": "items/skladanowsky-boxing-kangaroo-1895/thumb.webp",
+    "poster": "items/skladanowsky-boxing-kangaroo-1895/poster.webp",
+    "media": "items/skladanowsky-boxing-kangaroo-1895/media.webm",
+    "video_media": "items/skladanowsky-boxing-kangaroo-1895/media.webm",
+    "proxy": "items/skladanowsky-boxing-kangaroo-1895/proxy.webm",
+    "original": "items/skladanowsky-boxing-kangaroo-1895/original.webm",
+    "width": 320,
+    "height": 240,
+    "aspect_ratio": "4:3",
+    "duration": 17.265,
+    "fps": 1000.0,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "bytes": 641735,
+    "url": "https://languel.github.io/mediatheque/items/skladanowsky-boxing-kangaroo-1895/media.webm",
+    "added": "2026-10-20",
+    "proposed": {
+      "scenes": {
+        "analyzer": "scenes",
+        "version": "1.0",
+        "confidence": 0.85,
+        "date": "2026-10-20",
+        "clips": [
+          {
+            "n": 1,
+            "title": "Clip 01 (0.0s–6.3s)",
+            "summary": "Segment 1 from 0.0s to 6.3s.",
+            "tags": [],
+            "demos": [],
+            "in": 0.0,
+            "out": 6.33,
+            "file": "clips/01.webm",
+            "thumb": "clips/01.thumb.webp"
+          },
+          {
+            "n": 2,
+            "title": "Clip 02 (6.3s–11.8s)",
+            "summary": "Segment 2 from 6.3s to 11.8s.",
+            "tags": [],
+            "demos": [],
+            "in": 6.33,
+            "out": 11.79,
+            "file": "clips/02.webm",
+            "thumb": "clips/02.thumb.webp"
+          },
+          {
+            "n": 3,
+            "title": "Clip 03 (11.8s–17.3s)",
+            "summary": "Segment 3 from 11.8s to 17.3s.",
+            "tags": [],
+            "demos": [],
+            "in": 11.79,
+            "out": 17.27,
+            "file": "clips/03.webm",
+            "thumb": "clips/03.thumb.webp"
+          }
+        ],
+        "scene_cuts": [
+          1.0,
+          6.33,
+          11.79
+        ]
+      },
+      "flow": {
+        "analyzer": "flow",
+        "version": "1.0",
+        "confidence": 0.85,
+        "date": "2026-10-20",
+        "tags": [
+          "moving-camera"
+        ],
+        "mean_motion": 24.13,
+        "border_motion": 15.66
+      }
+    },
+    "proposed_tags": [],
+    "notes": "Public domain early movement study with clear archival provenance."
+  },
+  {
     "id": "street-view-mh",
     "type": "item",
-    "title": "Street View — Memorial Hall Exterior",
+    "title": "Myrtle Hall Exterior",
     "kind": "image",
     "status": "draft",
     "summary": "Panoramic street-level view outside Memorial Hall on Pratt Institute campus.",
@@ -347,21 +1171,18 @@
     "collections": [
       "panorama"
     ],
-    "demos": [
-      "projection",
-      "depth"
-    ],
+    "demos": [],
     "date": "2026",
     "creators": [],
     "creator_roles": [],
     "rights": {
-      "status": "unknown",
-      "license": null,
+      "status": "cc",
+      "license": "CC0",
       "license_url": null
     },
-    "credit": "",
-    "source_url": null,
-    "archive": null,
+    "credit": "languel",
+    "source_url": "",
+    "archive": "",
     "thumb": "items/street-view-mh/thumb.webp",
     "poster": "items/street-view-mh/poster.webp",
     "media": "items/street-view-mh/media.webp",
@@ -443,5 +1264,84 @@
     "proposed": {},
     "proposed_tags": [],
     "notes": "Google Street View screenshot; kept in draft pending own-capture replacement."
+  },
+  {
+    "id": "wayang-female-transparent",
+    "type": "item",
+    "title": "Wayang Kulit Articulated Puppet Sheet (Transparent PNG)",
+    "kind": "image",
+    "status": "review",
+    "summary": "Javanese shadow-puppet figure with separated upper and lower arm segments on transparent alpha.",
+    "tags": [
+      "person",
+      "object",
+      "single",
+      "fullbody",
+      "side",
+      "bw",
+      "high-contrast",
+      "plain-bg",
+      "silhouette",
+      "portrait",
+      "transparent",
+      "alpha",
+      "drawing"
+    ],
+    "keywords": [
+      "Wayang Kulit",
+      "puppet",
+      "rigging",
+      "cutout",
+      "joints",
+      "silhouette",
+      "alpha"
+    ],
+    "collections": [
+      "graphics-random"
+    ],
+    "demos": [
+      "rigging",
+      "pose",
+      "segmentation",
+      "body-zones"
+    ],
+    "date": "2026",
+    "creators": [
+      "Mediathèque Teaching Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Mediathèque Teaching Lab",
+        "role": "preparer"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "credit": "Traditional Wayang Kulit articulated puppet sheet, prepared for Mediathèque (CC0 1.0).",
+    "source_url": "https://languel.github.io/mediatheque/items/wayang-female-transparent/media.webp",
+    "archive": "Mediathèque Teaching Collection",
+    "thumb": "items/wayang-female-transparent/thumb.webp",
+    "poster": "items/wayang-female-transparent/poster.webp",
+    "media": "items/wayang-female-transparent/media.webp",
+    "video_media": "items/wayang-female-transparent/media.webp",
+    "proxy": null,
+    "original": "items/wayang-female-transparent/original.png",
+    "width": 997,
+    "height": 1411,
+    "aspect_ratio": "1:1.42",
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "bytes": 147424,
+    "url": "https://languel.github.io/mediatheque/items/wayang-female-transparent/media.webp",
+    "added": "2026-10-18",
+    "proposed": {},
+    "proposed_tags": [],
+    "notes": ""
   }
 ]

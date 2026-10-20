@@ -3,6 +3,18 @@
 
 from __future__ import annotations
 
+import os
+import sys
+from pathlib import Path
+
+# Auto-re-execute in project .venv if available and not already active
+if __name__ == "__main__":
+    _in_venv = sys.prefix != getattr(sys, "base_prefix", sys.prefix)
+    _venv_python = Path(__file__).resolve().parent.parent / ".venv" / "bin" / "python"
+    if not _in_venv and _venv_python.exists() and not os.environ.get("_MEDIATHEQUE_VENV_ACTIVE"):
+        os.environ["_MEDIATHEQUE_VENV_ACTIVE"] = "1"
+        os.execv(str(_venv_python), [str(_venv_python), str(Path(__file__).resolve())] + sys.argv[1:])
+
 import argparse
 import base64
 import hashlib
@@ -10,17 +22,14 @@ import hmac
 import http.cookies
 import json
 import mimetypes
-import os
 import re
 import secrets
 import subprocess
-import sys
 import time
 import urllib.parse
 from datetime import date
 from http import HTTPStatus
 from http.server import HTTPServer, SimpleHTTPRequestHandler
-from pathlib import Path
 from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -196,6 +205,16 @@ class CuratorRequestHandler(SimpleHTTPRequestHandler):
         m_reject = re.match(r"^/api/items/([a-z0-9\-]+)/reject$", path)
         if m_reject:
             self.handle_reject_item(m_reject.group(1))
+            return
+
+        m_withdraw = re.match(r"^/api/items/([a-z0-9\-]+)/withdraw$", path)
+        if m_withdraw:
+            self.handle_withdraw_item(m_withdraw.group(1))
+            return
+
+        m_delete = re.match(r"^/api/items/([a-z0-9\-]+)/delete$", path)
+        if m_delete:
+            self.handle_delete_item(m_delete.group(1))
             return
 
         if path == "/api/scour":
@@ -398,6 +417,37 @@ class CuratorRequestHandler(SimpleHTTPRequestHandler):
         item_path.write_text(json.dumps(current, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         build_catalog(REPO_ROOT)
         self.send_json({"success": True, "item": current, "message": f"Moved {item_id} to draft"})
+
+    def handle_withdraw_item(self, item_id: str) -> None:
+        """Mark item as withdrawn (excluded from public catalog and review queue, retained on disk)."""
+        item_path = REPO_ROOT / "items" / item_id / "item.json"
+        if not item_path.exists():
+            self.send_json({"error": f"Item not found: {item_id}"}, status=404)
+            return
+        current = json.loads(item_path.read_text(encoding="utf-8"))
+        current["status"] = "withdrawn"
+        current["updated"] = str(date.today())
+        item_path.write_text(json.dumps(current, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        build_catalog(REPO_ROOT)
+        self.send_json({"success": True, "item": current, "message": f"Withdrawn {item_id} from catalog and review"})
+
+    def handle_delete_item(self, item_id: str) -> None:
+        """Permanently delete an item directory from items/ and rebuild catalogs."""
+        if not re.match(r"^[a-z0-9]+(-[a-z0-9]+)*$", item_id):
+            self.send_json({"error": "Invalid item ID format"}, status=400)
+            return
+        item_dir = (REPO_ROOT / "items" / item_id).resolve()
+        if item_dir.parent != (REPO_ROOT / "items").resolve():
+            self.send_json({"error": "Access denied: outside items directory"}, status=403)
+            return
+        if not item_dir.exists():
+            self.send_json({"error": f"Item not found: {item_id}"}, status=404)
+            return
+
+        import shutil
+        shutil.rmtree(item_dir)
+        build_catalog(REPO_ROOT)
+        self.send_json({"success": True, "message": f"Permanently deleted {item_id} and updated catalogs"})
 
     def handle_scour_action(self) -> None:
         body = self.read_json_body()

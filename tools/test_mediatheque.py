@@ -184,6 +184,40 @@ class TestMediatheque(unittest.TestCase):
         self.assertFalse(curate_server.verify_token(tampered))
         self.assertFalse(curate_server.verify_token("invalid-token"))
 
+    def test_item_unpublish_and_withdraw_lifecycle(self) -> None:
+        temp_id = "test-lifecycle-sample"
+        temp_dir = REPO_ROOT / "items" / temp_id
+        temp_dir.mkdir(parents=True, exist_ok=True)
+        sample_item = {
+            "id": temp_id,
+            "title": "Temporary Test Sample",
+            "kind": "image",
+            "status": "published",
+            "summary": "Sample summary for test.",
+            "source": {"url": "https://example.org/test"},
+            "rights": {"status": "public-domain", "credit": "Test Credit"},
+            "files": {"media": {"path": "media.webp", "bytes": 100, "mime": "image/webp"}}
+        }
+        (temp_dir / "item.json").write_text(json.dumps(sample_item), encoding="utf-8")
+        try:
+            # Test unpublish
+            ingest.unpublish_item(temp_id)
+            updated = json.loads((temp_dir / "item.json").read_text(encoding="utf-8"))
+            self.assertEqual(updated["status"], "review")
+
+            # Test withdraw
+            ingest.withdraw_item(temp_id)
+            updated = json.loads((temp_dir / "item.json").read_text(encoding="utf-8"))
+            self.assertEqual(updated["status"], "withdrawn")
+
+            # Test delete
+            ingest.delete_item(temp_id)
+            self.assertFalse(temp_dir.exists())
+        finally:
+            if temp_dir.exists():
+                import shutil
+                shutil.rmtree(temp_dir)
+
 
 if __name__ == "__main__":
     unittest.main()

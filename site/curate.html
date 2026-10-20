@@ -108,7 +108,9 @@
           <div class="workbench-actions">
             <button type="button" class="btn-curate" id="btn-action-save">Save Annotation</button>
             <button type="button" class="btn-curate btn-curate--publish" id="btn-action-publish">Approve &amp; Publish</button>
-            <button type="button" class="btn-curate" id="btn-action-unpublish" hidden>Move to Review</button>
+            <button type="button" class="btn-curate" id="btn-action-unpublish" hidden title="Remove from public catalog and move back to Review Queue">Unpublish</button>
+            <button type="button" class="btn-curate" id="btn-action-withdraw" title="Remove from catalog and review queue (mark as withdrawn)">Withdraw</button>
+            <button type="button" class="btn-curate" id="btn-action-delete" style="color:var(--accent-red, #ff5555); border-color:rgba(255,85,85,0.4);" title="Permanently delete item from disk">Delete Item</button>
             <a id="btn-link-public" href="#/" target="_blank" class="btn-curate">Public View ↗</a>
           </div>
         </div>

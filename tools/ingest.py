@@ -20,14 +20,32 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
-import yaml
-from PIL import Image
+try:
+    import yaml
+except ImportError:
+    yaml = None
+
+try:
+    from PIL import Image
+except ImportError:
+    Image = None
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT / "tools"))
 
 from analyzers import load_valid_tags, run_analyzers  # noqa: E402
 from analyzers.scenes import build_clip_proposals, detect_audio_silences, detect_video_scenes  # noqa: E402
+
+
+def bootstrap_venv(script_path: Path) -> None:
+    if os.environ.get("_MEDIATHEQUE_VENV_ACTIVE"):
+        return
+    in_venv = sys.prefix != getattr(sys, "base_prefix", sys.prefix)
+    if not in_venv:
+        venv_python = script_path.resolve().parent.parent / ".venv" / "bin" / "python"
+        if venv_python.exists():
+            os.environ["_MEDIATHEQUE_VENV_ACTIVE"] = "1"
+            os.execv(str(venv_python), [str(venv_python), str(script_path.resolve())] + sys.argv[1:])
 
 KIND_BY_EXT: dict[str, str] = {
     ".mp4": "video",
@@ -94,9 +112,25 @@ SIDECAR_SUFFIXES = (".source.txt", ".json", ".html", ".htm")
 
 def load_config() -> dict[str, Any]:
     cfg_path = REPO_ROOT / "mediatheque.yaml"
-    if cfg_path.exists():
+    if not cfg_path.exists():
+        return {}
+    if yaml is not None:
         return yaml.safe_load(cfg_path.read_text(encoding="utf-8")) or {}
-    return {}
+    # Zero-dependency fallback parser for mediatheque.yaml
+    cfg: dict[str, Any] = {}
+    for line in cfg_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if ":" in line:
+            k, v = line.split(":", 1)
+            k = k.strip()
+            v = v.split("#")[0].strip().strip('"').strip("'")
+            if v.isdigit():
+                cfg[k] = int(v)
+            elif v:
+                cfg[k] = v
+    return cfg
 
 
 def sha256_file(path: Path) -> str:
@@ -911,6 +945,45 @@ def publish_item(item_id: str) -> None:
     print(f"[publish] {item_id} -> published")
 
 
+def unpublish_item(item_id: str) -> None:
+    """Move an item from published catalog back to review queue."""
+    item_dir = REPO_ROOT / "items" / item_id
+    item_json_path = item_dir / "item.json"
+    if not item_json_path.exists():
+        raise SystemExit(f"Item not found: {item_id}")
+    item = json.loads(item_json_path.read_text(encoding="utf-8"))
+    item["status"] = "review"
+    item["updated"] = str(date.today())
+    item_json_path.write_text(json.dumps(item, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"[unpublish] {item_id} -> review")
+
+
+def withdraw_item(item_id: str) -> None:
+    """Withdraw an item (hidden from catalog and review queue, retained on disk)."""
+    item_dir = REPO_ROOT / "items" / item_id
+    item_json_path = item_dir / "item.json"
+    if not item_json_path.exists():
+        raise SystemExit(f"Item not found: {item_id}")
+    item = json.loads(item_json_path.read_text(encoding="utf-8"))
+    item["status"] = "withdrawn"
+    item["updated"] = str(date.today())
+    item_json_path.write_text(json.dumps(item, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"[withdraw] {item_id} -> withdrawn")
+
+
+def delete_item(item_id: str) -> None:
+    """Permanently delete an item directory from disk."""
+    if not re.match(r"^[a-z0-9]+(-[a-z0-9]+)*$", item_id):
+        raise SystemExit(f"Invalid item ID: {item_id}")
+    item_dir = (REPO_ROOT / "items" / item_id).resolve()
+    if item_dir.parent != (REPO_ROOT / "items").resolve():
+        raise SystemExit(f"Access denied: outside items directory: {item_id}")
+    if not item_dir.exists():
+        raise SystemExit(f"Item not found: {item_id}")
+    shutil.rmtree(item_dir)
+    print(f"[delete] permanently deleted items/{item_id}")
+
+
 def collect_inbox_files(inbox_dir: Path) -> list[tuple[Path, str | None]]:
     """Return list of (file_path, collection_name) from inbox_dir, skipping sidecars and hidden files."""
     entries: list[tuple[Path, str | None]] = []
@@ -1115,6 +1188,7 @@ def ingest_file(
 
 
 def main() -> None:
+    bootstrap_venv(Path(__file__))
     parser = argparse.ArgumentParser(description="Ingest media from inbox/ into items/<id>/")
     parser.add_argument("--inbox", type=Path, default=REPO_ROOT / "inbox", help="Inbox directory to scan")
     parser.add_argument("--dry-run", action="store_true", help="Show what would happen without modifying files")
@@ -1130,6 +1204,9 @@ def main() -> None:
     parser.add_argument("--frames", type=str, default=None, metavar="ID", help="Generate frames.zip and sheet.png for GIF item ID")
     parser.add_argument("--accept", type=str, default=None, metavar="ID", help="Accept analyzer proposals for item ID")
     parser.add_argument("--publish", type=str, default=None, metavar="ID", help="Mark item ID as published after checking requirements")
+    parser.add_argument("--unpublish", type=str, default=None, metavar="ID", help="Move published item ID back to review queue")
+    parser.add_argument("--withdraw", type=str, default=None, metavar="ID", help="Mark item ID as withdrawn")
+    parser.add_argument("--delete", type=str, default=None, metavar="ID", help="Permanently delete item ID from disk")
     args = parser.parse_args()
 
     cfg = load_config()
@@ -1150,6 +1227,15 @@ def main() -> None:
         return
     if args.publish:
         publish_item(args.publish)
+        return
+    if args.unpublish:
+        unpublish_item(args.unpublish)
+        return
+    if args.withdraw:
+        withdraw_item(args.withdraw)
+        return
+    if args.delete:
+        delete_item(args.delete)
         return
 
     items_dir = REPO_ROOT / "items"

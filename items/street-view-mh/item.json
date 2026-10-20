@@ -1,6 +1,6 @@
 {
   "id": "street-view-mh",
-  "title": "Street View — Memorial Hall Exterior",
+  "title": "Myrtle Hall Exterior",
   "kind": "image",
   "status": "draft",
   "summary": "Panoramic street-level view outside Memorial Hall on Pratt Institute campus.",
@@ -23,24 +23,18 @@
   "collections": [
     "panorama"
   ],
-  "demos": [
-    "projection",
-    "depth"
-  ],
+  "demos": [],
   "creators": [],
   "date": "2026",
   "source": {
-    "url": null,
-    "origin": null,
-    "archive": null,
-    "retrieved": "2026-10-18",
-    "via": null
+    "archive": "",
+    "url": "",
+    "origin": ""
   },
   "rights": {
-    "status": "unknown",
-    "license": null,
-    "license_url": null,
-    "credit": "",
+    "status": "cc",
+    "license": "CC0",
+    "credit": "languel",
     "notes": "Google Street View screenshot; kept in draft pending own-capture replacement."
   },
   "files": {
@@ -107,5 +101,6 @@
     }
   ],
   "added": "2026-10-18",
-  "updated": "2026-10-20"
+  "updated": "2026-10-20",
+  "plate": null
 }

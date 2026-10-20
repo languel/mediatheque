@@ -6,12 +6,16 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import sys
 from pathlib import Path
 from typing import Any
 
-import yaml
+try:
+    import yaml
+except ImportError:
+    yaml = None
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT / "tools"))
@@ -19,6 +23,17 @@ sys.path.insert(0, str(REPO_ROOT / "tools"))
 from analyzers import load_valid_tags  # noqa: E402
 from build import compact_clip_entry, compact_item_entry, generate_llms_txt  # noqa: E402
 from ingest import MIME_BY_EXT  # noqa: E402
+
+
+def bootstrap_venv(script_path: Path) -> None:
+    if os.environ.get("_MEDIATHEQUE_VENV_ACTIVE"):
+        return
+    in_venv = sys.prefix != getattr(sys, "base_prefix", sys.prefix)
+    if not in_venv:
+        venv_python = script_path.resolve().parent.parent / ".venv" / "bin" / "python"
+        if venv_python.exists():
+            os.environ["_MEDIATHEQUE_VENV_ACTIVE"] = "1"
+            os.execv(str(venv_python), [str(venv_python), str(script_path.resolve())] + sys.argv[1:])
 
 SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 VALID_KINDS = {"video", "image", "animation", "audio", "model", "splat", "vector", "text", "dataset"}
@@ -36,9 +51,25 @@ def sha256_file(path: Path) -> str:
 
 def load_config() -> dict[str, Any]:
     cfg_path = REPO_ROOT / "mediatheque.yaml"
-    if cfg_path.exists():
+    if not cfg_path.exists():
+        return {}
+    if yaml is not None:
         return yaml.safe_load(cfg_path.read_text(encoding="utf-8")) or {}
-    return {}
+    # Zero-dependency fallback parser for mediatheque.yaml
+    cfg: dict[str, Any] = {}
+    for line in cfg_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if ":" in line:
+            k, v = line.split(":", 1)
+            k = k.strip()
+            v = v.split("#")[0].strip().strip('"').strip("'")
+            if v.isdigit():
+                cfg[k] = int(v)
+            elif v:
+                cfg[k] = v
+    return cfg
 
 
 def check_svg_sanitized(svg_path: Path, item_id: str, errors: list[str]) -> None:
@@ -291,6 +322,7 @@ def validate_repo(verify_hashes: bool = True, verify_catalog: bool = True) -> tu
 
 
 def main() -> None:
+    bootstrap_venv(Path(__file__))
     parser = argparse.ArgumentParser(description="Validate Mediathèque items and generated catalog files")
     parser.add_argument("--fast", action="store_true", help="Skip full sha256 recomputation on large files")
     parser.add_argument("--no-catalog", action="store_true", help="Skip checking catalog.json freshness")

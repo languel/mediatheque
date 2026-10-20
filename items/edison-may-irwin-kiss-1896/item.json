@@ -1,0 +1,200 @@
+{
+  "id": "edison-may-irwin-kiss-1896",
+  "title": "The May Irwin Kiss",
+  "kind": "video",
+  "status": "published",
+  "summary": "May Irwin and John C. Rice reenacting the final scene from the stage musical The Widow Jones, the first romantic kiss shown on film.",
+  "description": "Filmed in April 1896 at the Edison Black Maria studio for the Raff & Gammon Vitascope. Recorded onto 35mm film and later preserved via the Library of Congress paper print collection.",
+  "tags": [
+    "landscape-format",
+    "silent",
+    "bw",
+    "cuts",
+    "movement",
+    "fast"
+  ],
+  "keywords": [],
+  "collections": [],
+  "demos": [],
+  "creators": [],
+  "date": "1896",
+  "source": {
+    "archive": "Library of Congress Motion Picture, Broadcasting and Recorded Sound Division",
+    "url": "https://www.loc.gov/item/00694134/",
+    "origin": "https://www.loc.gov/item/00694134/"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US-expired",
+    "credit": "William K. L. Dickson, 1896. The Kiss (The May Irwin Kiss). Edison Manufacturing Co. / Library of Congress. Public domain.",
+    "notes": "Public domain early movement study with clear archival provenance."
+  },
+  "files": {
+    "media": {
+      "path": "media.webm",
+      "type": "video/webm",
+      "bytes": 741098,
+      "sha256": "43ba3040d525321b0e5e6b1b3a53dc08222d077c361dc5051ec0dd3acb8d8f5f",
+      "duration": 15.032,
+      "width": 640,
+      "height": 480,
+      "fps": 30.0,
+      "motion_curve": [
+        8.03,
+        6.01,
+        7.94,
+        7.6,
+        10.05,
+        10.99,
+        9.59,
+        8.58,
+        9.44,
+        9.51,
+        30.65,
+        35.32,
+        30.4,
+        22.56,
+        13.63,
+        21.81
+      ]
+    },
+    "proxy": {
+      "path": "proxy.webm",
+      "type": "video/webm",
+      "bytes": 808319,
+      "sha256": "16dbc2246a232f2ede925ee8bcb26bad7ace31d843e61988c2551e1b59b6ff8a"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 14750,
+      "sha256": "ce3bc7c16b1ebdad63155f276c534040f9374318d6c88ce5a8dc288e865c3cc3",
+      "width": 640,
+      "height": 480
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 12474,
+      "sha256": "43a0011c9859d53c48f3fed33409f96464ff8186c6b559f6e4ed58d8a444bc0d",
+      "width": 480,
+      "height": 480
+    },
+    "original": {
+      "path": "original.webm",
+      "type": "video/webm",
+      "bytes": 741098,
+      "sha256": "43ba3040d525321b0e5e6b1b3a53dc08222d077c361dc5051ec0dd3acb8d8f5f",
+      "kept": true
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://www.loc.gov/item/00694134/",
+      "date": "2026-10-20",
+      "sha256": "43ba3040d525321b0e5e6b1b3a53dc08222d077c361dc5051ec0dd3acb8d8f5f"
+    },
+    {
+      "step": "derived",
+      "file": "media.webm",
+      "tool": "copy (web-ready source)",
+      "args": "cp edison-may-irwin-kiss-1896.webm media.webm",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "proxy.webm",
+      "tool": "ffmpeg 9.0.2",
+      "args": "-vf fps=15,scale='min(768,iw)':-2 -c:v libvpx-vp9 -crf 35 -b:v 0 -row-mt 1 -cpu-used 4 -an",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "ffmpeg 9.0.2 + Pillow",
+      "args": "-ss 1.5 -frames:v 1 -> webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "scenes 1.0",
+      "model": "ffmpeg-scene+silence",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "flow 1.0",
+      "model": "ffmpeg-rawgray-flow",
+      "date": "2026-10-20"
+    },
+    {
+      "step": "analyzed",
+      "tool": "audio 1.0",
+      "model": "ffmpeg-pcm+onset-bpm",
+      "date": "2026-10-20"
+    }
+  ],
+  "added": "2026-10-20",
+  "updated": "2026-10-20",
+  "proposed": {
+    "scenes": {
+      "analyzer": "scenes",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "clips": [
+        {
+          "n": 1,
+          "title": "Clip 01 (0.0s–14.1s)",
+          "summary": "Segment 1 from 0.0s to 14.1s.",
+          "tags": [],
+          "demos": [],
+          "in": 0.0,
+          "out": 14.13,
+          "file": "clips/01.webm",
+          "thumb": "clips/01.thumb.webp"
+        },
+        {
+          "n": 2,
+          "title": "Clip 02 (14.1s–15.0s)",
+          "summary": "Segment 2 from 14.1s to 15.0s.",
+          "tags": [],
+          "demos": [],
+          "in": 14.13,
+          "out": 15.03,
+          "file": "clips/02.webm",
+          "thumb": "clips/02.thumb.webp"
+        }
+      ],
+      "scene_cuts": [
+        14.13
+      ]
+    },
+    "flow": {
+      "analyzer": "flow",
+      "version": "1.0",
+      "confidence": 0.85,
+      "date": "2026-10-20",
+      "tags": [
+        "moving-camera"
+      ],
+      "mean_motion": 14.27,
+      "border_motion": 10.04
+    }
+  },
+  "plate": null
+}
