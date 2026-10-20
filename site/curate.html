@@ -62,7 +62,8 @@
 
       <div style="display:flex; align-items:center; gap:0.5rem;">
         <button type="button" class="btn-curate" id="btn-rebuild-catalog" title="Rebuild catalog.json and review.json">Rebuild Catalog</button>
-        <button type="button" class="btn-curate" id="btn-git-status" title="View git status and commit approved items">Git Commit</button>
+        <button type="button" class="btn-curate" id="btn-git-status" title="View git status, commit, and push">Git Sync 🚀</button>
+        <button type="button" class="btn-curate" id="btn-github-settings" title="GitHub Cloud Token Settings">GitHub Settings ⚙️</button>
         <a href="index.html" target="_blank" class="btn-curate" title="Open public gallery in new tab">Public Gallery ↗</a>
         <button type="button" class="btn-curate" id="btn-logout" title="Lock Curator Studio">Lock 🔒</button>
       </div>
@@ -261,8 +262,20 @@
           </div>
         </div>
 
-        <!-- Scour Archives Tab Content -->
+        <!-- Scour Archives & Ingest Tab Content -->
         <div id="scour-tab-content" style="display:none; flex-direction:column; gap:1.5rem;">
+          <div class="editor-box">
+            <div class="editor-box__title">Upload Local Media File</div>
+            <p style="font-size:0.82rem; color:var(--copy); margin:0;">
+              Upload an image, animated GIF, video, 3D model, or audio clip directly from your device into the Review Queue. Derivatives, proxies, and aspect ratio analysis will be generated automatically.
+            </p>
+            <div style="display:flex; gap:0.75rem; align-items:center; margin-top:0.75rem;">
+              <input type="file" id="input-media-upload" class="curate-input" style="flex:1;" />
+              <button type="button" class="btn-curate btn-curate--publish" id="btn-upload-file">Upload &amp; Ingest</button>
+            </div>
+            <div id="upload-status-msg" style="font-size:0.8rem; margin-top:0.4rem; color:var(--muted);"></div>
+          </div>
+
           <div class="editor-box">
             <div class="editor-box__title">Scour by URL or Identifier</div>
             <p style="font-size:0.82rem; color:var(--copy); margin:0;">
@@ -300,9 +313,34 @@
       <label class="curate-label">Commit Message</label>
       <input type="text" id="git-commit-msg" class="curate-input" value="Curate and publish approved early cinema works" />
     </div>
+    <div class="curate-form-group" style="margin:0.5rem 0 1rem 0;">
+      <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.85rem; cursor:pointer;">
+        <input type="checkbox" id="git-push-checkbox" checked />
+        <span><strong>Push to GitHub (origin/main)</strong> to update GitHub Pages immediately</span>
+      </label>
+    </div>
     <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
       <button type="button" class="btn-curate" id="btn-close-git">Cancel</button>
-      <button type="button" class="btn-curate btn-curate--publish" id="btn-execute-git-commit">Commit Changes</button>
+      <button type="button" class="btn-curate btn-curate--publish" id="btn-execute-git-commit">Commit &amp; Push</button>
+    </div>
+  </dialog>
+
+  <!-- GitHub Cloud Token Settings Modal -->
+  <dialog id="modal-github" style="background:var(--surface); color:var(--text); border:1px solid var(--line-strong); border-radius:6px; padding:1.5rem; max-width:540px; width:100%;">
+    <h3 style="margin-top:0;">GitHub Cloud Sync Settings</h3>
+    <p style="font-size:0.82rem; color:var(--copy);">
+      When running Curator Studio on GitHub Pages, provide a GitHub Personal Access Token (PAT) with <code>repo</code> or <code>contents: write</code> scope to commit, publish, and trigger cloud ingestion directly from your browser.
+    </p>
+    <div class="curate-form-group" style="margin:1rem 0;">
+      <label class="curate-label">GitHub Personal Access Token (PAT)</label>
+      <input type="password" id="input-github-token" class="curate-input" placeholder="ghp_... or github_pat_..." />
+    </div>
+    <div style="font-size:0.75rem; color:var(--muted); margin-bottom:1rem;">
+      Tokens are stored only in your browser's local storage and sent directly to <code>api.github.com</code>.
+    </div>
+    <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
+      <button type="button" class="btn-curate" id="btn-close-github-modal">Cancel</button>
+      <button type="button" class="btn-curate btn-curate--publish" id="btn-save-github-token">Save Token</button>
     </div>
   </dialog>
 

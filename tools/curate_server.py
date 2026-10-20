@@ -229,6 +229,10 @@ class CuratorRequestHandler(SimpleHTTPRequestHandler):
             self.handle_git_commit()
             return
 
+        if path == "/api/upload":
+            self.handle_upload_file()
+            return
+
         self.send_json({"error": "Not Found"}, status=404)
 
     # -------------------------------------------------------------------------
@@ -495,12 +499,64 @@ class CuratorRequestHandler(SimpleHTTPRequestHandler):
     def handle_git_commit(self) -> None:
         body = self.read_json_body()
         msg = body.get("message", "Curate and publish approved items").strip()
+        push = body.get("push", True)
         try:
             subprocess.run(["git", "add", "."], check=True)
             res = subprocess.run(["git", "commit", "-m", msg], capture_output=True, text=True, check=True)
-            self.send_json({"success": True, "output": res.stdout, "message": "Changes committed successfully"})
+            push_info = ""
+            if push:
+                push_res = subprocess.run(["git", "push", "origin", "main"], capture_output=True, text=True, check=True)
+                push_info = "\n" + (push_res.stdout or "") + (push_res.stderr or "")
+            self.send_json({
+                "success": True,
+                "output": res.stdout + push_info,
+                "message": "Changes committed and pushed to GitHub successfully!" if push else "Changes committed locally"
+            })
         except subprocess.CalledProcessError as err:
             self.send_json({"error": err.stderr or err.stdout, "success": False}, status=500)
+
+    def handle_upload_file(self) -> None:
+        """Handle direct file upload from web browser into inbox and trigger ingest."""
+        body = self.read_json_body()
+        filename = body.get("filename", "upload.bin")
+        base64_data = body.get("content_base64", "")
+        title = body.get("title", "")
+        if not base64_data:
+            self.send_json({"error": "No file content provided"}, status=400)
+            return
+
+        file_bytes = base64.b64decode(base64_data)
+        inbox_dir = REPO_ROOT / "inbox"
+        inbox_dir.mkdir(parents=True, exist_ok=True)
+        safe_name = re.sub(r"[^a-zA-Z0-9_\.\-]", "_", filename)
+        target_path = inbox_dir / safe_name
+        target_path.write_bytes(file_bytes)
+
+        if title:
+            sidecar = target_path.with_suffix(target_path.suffix + ".meta.yaml")
+            sidecar.write_text(f"title: {title}\nstatus: review\n", encoding="utf-8")
+
+        from ingest import get_existing_hashes, get_existing_phashes, ingest_file, load_config
+        cfg = load_config()
+        existing_hashes = get_existing_hashes(REPO_ROOT / "items")
+        existing_phashes = get_existing_phashes(REPO_ROOT / "items")
+        enabled_analyzers = list(cfg.get("default_analyzers", ["probe", "gif", "scenes", "flow", "render"]))
+
+        new_id = ingest_file(
+            file_path=target_path,
+            collection=None,
+            items_dir=REPO_ROOT / "items",
+            done_dir=inbox_dir / ".done",
+            cfg=cfg,
+            existing_hashes=existing_hashes,
+            existing_phashes=existing_phashes,
+            enabled_analyzers=enabled_analyzers,
+            dry_run=False,
+            keep_inbox=False,
+        )
+
+        build_catalog(REPO_ROOT)
+        self.send_json({"success": True, "id": new_id, "message": f"Successfully ingested {safe_name} as {new_id}"})
 
 
 def main() -> None:

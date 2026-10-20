@@ -1,0 +1,46 @@
+name: Remote Ingest Media
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL to ingest (Wikimedia Commons or direct media URL)'
+        required: true
+      title:
+        description: 'Optional Title Override'
+        required: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install system tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run scour/ingest
+        run: |
+          python3 tools/scour.py --url "${{ github.event.inputs.url }}" --title "${{ github.event.inputs.title }}"
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add items/ catalog.json catalog.jsonl review.json llms.txt
+          git commit -m "Ingest ${{ github.event.inputs.url }} via GitHub Web App" || echo "No changes"
+          git push origin main

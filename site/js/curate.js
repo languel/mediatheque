@@ -951,7 +951,35 @@
         alert("Scour failed: " + err);
       }
     } else {
-      alert(`To scour URL in local mode, run: python3 tools/scour.py --url "${url}"`);
+      const pat = localStorage.getItem("github_pat");
+      if (pat) {
+        try {
+          const res = await fetch("https://api.github.com/repos/languel/mediatheque/actions/workflows/ingest.yml/dispatches", {
+            method: "POST",
+            headers: {
+              "Accept": "application/vnd.github+json",
+              "Authorization": `Bearer ${pat}`,
+              "X-GitHub-Api-Version": "2022-11-28"
+            },
+            body: JSON.stringify({
+              ref: "main",
+              inputs: { url: url }
+            })
+          });
+          if (res.ok) {
+            alert("Dispatched remote ingestion on GitHub Actions! The runner will download, transcode, and commit the item to main. It will appear on GitHub Pages in ~1-2 minutes.");
+            els.inputScourUrl.value = "";
+            return;
+          } else {
+            const err = await res.json().catch(() => ({}));
+            alert("GitHub API error: " + (err.message || res.statusText));
+          }
+        } catch (err) {
+          alert("Failed calling GitHub API: " + err);
+        }
+      } else {
+        alert(`To scour from GitHub Pages, click 'GitHub Settings ⚙️' and enter your GitHub Personal Access Token, or run locally: python3 tools/scour.py --url "${url}"`);
+      }
     }
   });
 
@@ -1033,19 +1061,120 @@
 
   els.btnExecuteGitCommit.addEventListener("click", async () => {
     const msg = els.gitCommitMsg.value.trim() || "Curate and publish early cinema works";
-    const res = await fetch("/api/git/commit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${state.authToken}`
-      },
-      body: JSON.stringify({ message: msg })
-    });
-    if (res.ok) {
-      alert("Committed successfully!");
-      els.modalGit.close();
+    const push = document.getElementById("git-push-checkbox")?.checked ?? true;
+    els.btnExecuteGitCommit.textContent = push ? "Committing & Pushing…" : "Committing…";
+    els.btnExecuteGitCommit.disabled = true;
+    try {
+      const res = await fetch("/api/git/commit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${state.authToken}`
+        },
+        body: JSON.stringify({ message: msg, push: push })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.success) {
+        alert(push ? "Committed and pushed to GitHub successfully! GitHub Pages deployment will update in ~1 minute." : "Committed locally!");
+        els.modalGit.close();
+      } else {
+        alert("Commit failed: " + (data.error || "unknown error"));
+      }
+    } catch (err) {
+      alert("Error committing: " + err);
+    } finally {
+      els.btnExecuteGitCommit.textContent = "Commit & Push";
+      els.btnExecuteGitCommit.disabled = false;
     }
   });
+
+  // Direct File Upload
+  const btnUpload = document.getElementById("btn-upload-file");
+  const inputMediaUpload = document.getElementById("input-media-upload");
+  const uploadStatusMsg = document.getElementById("upload-status-msg");
+
+  if (btnUpload && inputMediaUpload) {
+    btnUpload.addEventListener("click", async () => {
+      const file = inputMediaUpload.files[0];
+      if (!file) {
+        alert("Please select a media file to upload first.");
+        return;
+      }
+      if (file.size > 100 * 1024 * 1024) {
+        alert("File exceeds maximum upload limit of 100MB.");
+        return;
+      }
+
+      btnUpload.disabled = true;
+      btnUpload.textContent = "Uploading & Analyzing…";
+      uploadStatusMsg.textContent = `Reading ${file.name} (${(file.size / 1024 / 1024).toFixed(1)} MB)…`;
+
+      const reader = new FileReader();
+      reader.onload = async () => {
+        try {
+          const base64Data = reader.result.split(",")[1];
+          uploadStatusMsg.textContent = "Uploading to server and running analyzers…";
+          const res = await fetch("/api/upload", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${state.authToken}`
+            },
+            body: JSON.stringify({
+              filename: file.name,
+              content_base64: base64Data,
+              title: file.name.replace(/\.[^/.]+$/, "").replace(/[_\-]+/g, " ")
+            })
+          });
+          const data = await res.json();
+          if (res.ok && data.success) {
+            uploadStatusMsg.textContent = `✓ Ingested as ${data.id}!`;
+            alert(`File successfully uploaded and ingested as '${data.id}'!`);
+            inputMediaUpload.value = "";
+            await loadItems();
+            switchTab("review");
+            selectItem(data.id);
+          } else {
+            uploadStatusMsg.textContent = "Upload failed: " + (data.error || "Unknown error");
+            alert("Upload error: " + (data.error || "Unknown"));
+          }
+        } catch (err) {
+          uploadStatusMsg.textContent = "Error: " + err;
+          alert("Upload failed: " + err);
+        } finally {
+          btnUpload.disabled = false;
+          btnUpload.textContent = "Upload & Ingest";
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // GitHub Cloud Settings
+  const btnGithubSettings = document.getElementById("btn-github-settings");
+  const modalGithub = document.getElementById("modal-github");
+  const inputGithubToken = document.getElementById("input-github-token");
+  const btnCloseGithubModal = document.getElementById("btn-close-github-modal");
+  const btnSaveGithubToken = document.getElementById("btn-save-github-token");
+
+  if (btnGithubSettings && modalGithub) {
+    btnGithubSettings.addEventListener("click", () => {
+      inputGithubToken.value = localStorage.getItem("github_pat") || "";
+      modalGithub.showModal();
+    });
+    btnCloseGithubModal.addEventListener("click", () => modalGithub.close());
+    btnSaveGithubToken.addEventListener("click", () => {
+      const val = inputGithubToken.value.trim();
+      if (val) {
+        localStorage.setItem("github_pat", val);
+        alert("GitHub Token saved to local browser storage!");
+      } else {
+        localStorage.removeItem("github_pat");
+        alert("GitHub Token cleared.");
+      }
+      modalGithub.close();
+    });
+  }
 
   // Start Auth Check on Load
   checkAuthStatus();
