@@ -53,7 +53,7 @@ jobs:
           cp -r site/* _site/site/
           cp -r items _site/items
           cp catalog.json catalog.jsonl review.json llms.txt spec.md README.md _site/
-          cp tools/tags.json tools/schema.json _site/tools/
+          cp tools/tags.json tools/schema.json tools/sources_registry.json _site/tools/
           touch _site/.nojekyll
 
       - name: Setup Pages
