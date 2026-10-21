@@ -279,6 +279,7 @@
   // Full-Window Preview & Top Carousel (portfolio-example inspired)
   let activeCarouselId = null;
   let activeCardId = null;
+  let activeSparkInstance = null;
 
   function updateHoverBar(id) {
     if (!els.zenHoverBar || !els.zenHoverTitle) return;
@@ -344,6 +345,12 @@
 
   function closeFullWindowPreview() {
     if (!els.zenPreviewModal) return;
+    if (activeSparkInstance) {
+      try {
+        activeSparkInstance.dispose();
+      } catch (e) {}
+      activeSparkInstance = null;
+    }
     els.zenPreviewModal.classList.remove("is-open");
     setTimeout(() => {
       els.zenPreviewModal.hidden = true;
@@ -353,6 +360,12 @@
 
   function renderFullWindowMedia(entry) {
     if (!els.zenMediaStage) return;
+    if (activeSparkInstance) {
+      try {
+        activeSparkInstance.dispose();
+      } catch (e) {}
+      activeSparkInstance = null;
+    }
     els.zenMediaStage.classList.toggle("is-fit", state.previewFullFit);
     const mediaUrl = resolveAssetUrl(entry.proxy || entry.media);
     const origUrl = resolveAssetUrl(entry.media);
@@ -386,6 +399,12 @@
           shadow-intensity="1"
         ></model-viewer>
       `;
+    } else if (entry.kind === "splat") {
+      els.zenMediaStage.innerHTML = `
+        <div id="zen-splat-container" style="width:100vw; height:100vh; position:relative; overflow:hidden;"></div>
+      `;
+      const container = document.getElementById("zen-splat-container");
+      initSparkSplatViewer(container, origUrl || mediaUrl, null);
     } else {
       els.zenMediaStage.innerHTML = `
         <div style="display:flex; flex-direction:column; align-items:center; gap:1rem; color:var(--copy);">
@@ -778,13 +797,18 @@
                     : ""
                 }
               </div>
-              <input
-                type="checkbox"
-                class="card-select"
+              <button
+                type="button"
+                class="card-select-btn"
                 data-select-id="${escapeHtml(entry.id)}"
                 aria-label="Select ${escapeHtml(entry.title)}"
-                ${checked}
-              />
+                title="Select (Enter)"
+              >
+                <svg viewBox="0 0 16 16" width="15" height="15" fill="none">
+                  <rect x="1.5" y="1.5" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.6" class="select-box-outer" />
+                  <rect x="4.5" y="4.5" width="7" height="7" rx="1" fill="currentColor" stroke="none" class="select-box-inner" />
+                </svg>
+              </button>
             </div>
           </div>
           <div class="media-card__body">
@@ -1639,19 +1663,21 @@
         </div>
       `;
     } else if (item.kind === "splat") {
-      const splatSrc = resolveAssetUrl(mediaRel);
       viewerHtml = `
         <div class="viewer-stage" style="flex-direction: column;">
-          <canvas id="splat-canvas" width="840" height="520" data-splat-url="${escapeHtml(
-            splatSrc
-          )}" style="width:100%; height:520px; cursor: grab;"></canvas>
+          <div id="splat-viewer-container" style="width:100%; height:520px; position:relative; overflow:hidden; background:var(--art-bg); display:flex; align-items:center; justify-content:center;">
+            <div id="splat-loading" style="font-family:var(--mono); font-size:0.82rem; color:var(--muted);">Loading 3D Gaussian Splats with Spark.js…</div>
+          </div>
         </div>
       `;
       controlsHtml = `
         <div class="viewer-controls">
-          <span>Interactive 3D Gaussian Splat Viewer (.spz) · Drag to orbit, wheel to zoom</span>
+          <div class="viewer-controls__group">
+            <span>Interactive 3D Gaussian Splat (.spz) · Drag to orbit, wheel to zoom</span>
+            <button type="button" class="btn-small" id="btn-open-fullwindow" data-entry-id="${escapeHtml(item.id)}" data-tooltip="Open full-window preview with carousel (F)">⛶ Full Window</button>
+          </div>
           <span id="splat-status">${
-            item.splats ? `${Number(item.splats).toLocaleString()} splats` : "Loading splats…"
+            item.splats ? `${Number(item.splats).toLocaleString()} splats (Spark.js)` : "Spark.js 3DGS"
           }</span>
         </div>
       `;
@@ -2776,9 +2802,11 @@
     }
 
     // Interactive 3D Gaussian Splat (.spz) viewer
-    const splatCanvas = document.getElementById("splat-canvas");
-    if (splatCanvas) {
-      initSplatViewer(splatCanvas, splatCanvas.getAttribute("data-splat-url"));
+    const splatViewerContainer = document.getElementById("splat-viewer-container");
+    if (splatViewerContainer) {
+      const splatPath = item.files && item.files.media ? item.files.media.path : "media.spz";
+      const splatUrl = resolveAssetUrl(`items/${item.id}/${splatPath}`);
+      initSparkSplatViewer(splatViewerContainer, splatUrl, document.getElementById("splat-status"));
     }
 
     // Jump to tag / demo filter from detail view
@@ -2796,154 +2824,125 @@
     });
   }
 
-  // Native browser 3D Gaussian Splat (.spz v2) decompression & interactive orbit viewer
-  async function initSplatViewer(canvas, url) {
-    const statusEl = document.getElementById("splat-status");
-    const ctx = canvas.getContext("2d");
-    let yaw = 0.32;
-    let pitch = -0.22;
-    let zoom = 1.0;
-    let dragging = false;
-    let lastX = 0;
-    let lastY = 0;
+  // Interactive 3D Gaussian Splat (.spz / 3DGS) viewer powered by Spark.js (@sparkjsdev/spark)
+  async function initSparkSplatViewer(container, url, statusEl) {
+    if (!container) return;
+    if (activeSparkInstance) {
+      try {
+        activeSparkInstance.dispose();
+      } catch (e) {}
+      activeSparkInstance = null;
+    }
 
     try {
-      const res = await fetch(url);
-      if (!res.ok || typeof DecompressionStream === "undefined") {
-        throw new Error("Stream unavailable");
-      }
-      const ds = new DecompressionStream("gzip");
-      const decompressed = res.body.pipeThrough(ds);
-      const buf = await new Response(decompressed).arrayBuffer();
-      const dv = new DataView(buf);
-      const magic = dv.getUint32(0, true);
-      if (magic !== 0x5053474e) throw new Error("Unsupported splat header");
-      const totalPoints = dv.getUint32(8, true);
-      const fracBits = dv.getInt8(13);
-      const scaleDiv = 1 << fracBits;
+      const THREE = await import("three");
+      const { SparkRenderer, SplatMesh } = await import("@sparkjsdev/spark");
+      const { OrbitControls } = await import("three/addons/controls/OrbitControls.js");
 
-      // Subsample ~35,000 splats for 60fps interactive orbiting in canvas
-      const step = Math.max(1, Math.floor(totalPoints / 35000));
-      const count = Math.floor(totalPoints / step);
-      const px = new Float32Array(count);
-      const py = new Float32Array(count);
-      const pz = new Float32Array(count);
-      const cr = new Uint8Array(count);
-      const cg = new Uint8Array(count);
-      const cb = new Uint8Array(count);
-      const u8 = new Uint8Array(buf);
+      const width = container.clientWidth || 800;
+      const height = container.clientHeight || 520;
 
-      const posOffset = 16;
-      const alphaOffset = 16 + totalPoints * 9;
-      const colorOffset = alphaOffset + totalPoints;
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(55, width / height, 0.1, 2000);
+      camera.position.set(0, 5, 25);
 
-      let k = 0;
-      for (let i = 0; i < totalPoints && k < count; i += step) {
-        const a = u8[alphaOffset + i];
-        if (a < 38) continue;
-        const pIdx = posOffset + i * 9;
-        let x = u8[pIdx] | (u8[pIdx + 1] << 8) | (u8[pIdx + 2] << 16);
-        let y = u8[pIdx + 3] | (u8[pIdx + 4] << 8) | (u8[pIdx + 5] << 16);
-        let z = u8[pIdx + 6] | (u8[pIdx + 7] << 8) | (u8[pIdx + 8] << 16);
-        if (x >= 0x800000) x -= 0x1000000;
-        if (y >= 0x800000) y -= 0x1000000;
-        if (z >= 0x800000) z -= 0x1000000;
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      container.appendChild(renderer.domElement);
 
-        px[k] = x / scaleDiv;
-        py[k] = y / scaleDiv;
-        pz[k] = z / scaleDiv;
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.08;
+      controls.rotateSpeed = 0.8;
+      controls.zoomSpeed = 1.0;
+      controls.panSpeed = 0.8;
 
-        const cIdx = colorOffset + i * 3;
-        cr[k] = Math.min(255, Math.max(0, Math.round((((u8[cIdx] / 255 - 0.5) / 0.15) * 0.2821 + 0.5) * 255)));
-        cg[k] = Math.min(255, Math.max(0, Math.round((((u8[cIdx + 1] / 255 - 0.5) / 0.15) * 0.2821 + 0.5) * 255)));
-        cb[k] = Math.min(255, Math.max(0, Math.round((((u8[cIdx + 2] / 255 - 0.5) / 0.15) * 0.2821 + 0.5) * 255)));
-        k++;
-      }
+      const spark = new SparkRenderer({ renderer });
+      scene.add(spark);
 
-      const validCount = k;
-      if (statusEl) {
-        statusEl.textContent = `${totalPoints.toLocaleString()} splats loaded (interactive orbit ready)`;
-      }
+      const splatMesh = new SplatMesh({ url });
+      scene.add(splatMesh);
 
-      const drawFrame = () => {
-        const W = canvas.width;
-        const H = canvas.height;
-        const imgData = ctx.createImageData(W, H);
-        const data = imgData.data;
-        for (let i = 0; i < data.length; i += 4) {
-          data[i] = 16;
-          data[i + 1] = 16;
-          data[i + 2] = 16;
-          data[i + 3] = 255;
-        }
+      let disposed = false;
+      let animId = null;
 
-        const cy = Math.cos(yaw);
-        const sy = Math.sin(yaw);
-        const cp = Math.cos(pitch);
-        const sp = Math.sin(pitch);
-        const scale = Math.min(W, H) * 0.032 * zoom;
-        const halfW = W * 0.5;
-        const halfH = H * 0.5;
-
-        for (let i = 0; i < validCount; i++) {
-          const x = px[i];
-          const y = py[i];
-          const z = pz[i];
-          const rx = x * cy + z * sy;
-          const rz = -x * sy + z * cy;
-          const ry = y * cp - rz * sp;
-          const depth = y * sp + rz * cp + 28;
-          if (depth <= 1) continue;
-
-          const sx = Math.round(halfW + (rx * scale * 18) / depth);
-          const sy2 = Math.round(halfH - (ry * scale * 18) / depth);
-          if (sx < 1 || sx >= W - 2 || sy2 < 1 || sy2 >= H - 2) continue;
-
-          const r = cr[i];
-          const g = cg[i];
-          const b = cb[i];
-          for (let dy = 0; dy <= 1; dy++) {
-            for (let dx = 0; dx <= 1; dx++) {
-              const p = ((sy2 + dy) * W + (sx + dx)) * 4;
-              data[p] = r;
-              data[p + 1] = g;
-              data[p + 2] = b;
-            }
+      const ro = new ResizeObserver((entries) => {
+        if (disposed) return;
+        for (const entry of entries) {
+          const cr = entry.contentRect;
+          if (cr.width > 0 && cr.height > 0) {
+            camera.aspect = cr.width / cr.height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(cr.width, cr.height);
           }
         }
-        ctx.putImageData(imgData, 0, 0);
+      });
+      ro.observe(container);
+
+      const animate = () => {
+        if (disposed) return;
+        animId = requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
       };
+      animate();
 
-      drawFrame();
-
-      canvas.addEventListener("pointerdown", (e) => {
-        dragging = true;
-        lastX = e.clientX;
-        lastY = e.clientY;
-        canvas.setPointerCapture(e.pointerId);
-      });
-      canvas.addEventListener("pointermove", (e) => {
-        if (!dragging) return;
-        yaw += (e.clientX - lastX) * 0.007;
-        pitch = Math.max(-1.2, Math.min(1.2, pitch + (e.clientY - lastY) * 0.007));
-        lastX = e.clientX;
-        lastY = e.clientY;
-        requestAnimationFrame(drawFrame);
-      });
-      canvas.addEventListener("pointerup", () => {
-        dragging = false;
-      });
-      canvas.addEventListener(
-        "wheel",
-        (e) => {
-          e.preventDefault();
-          zoom = Math.max(0.3, Math.min(4.0, zoom * (e.deltaY < 0 ? 1.1 : 0.9)));
-          requestAnimationFrame(drawFrame);
+      const instance = {
+        dispose() {
+          if (disposed) return;
+          disposed = true;
+          if (animId) cancelAnimationFrame(animId);
+          ro.disconnect();
+          try {
+            controls.dispose();
+          } catch (e) {}
+          try {
+            splatMesh.dispose();
+          } catch (e) {}
+          try {
+            spark.dispose();
+          } catch (e) {}
+          try {
+            renderer.dispose();
+          } catch (e) {}
+          if (renderer.domElement && renderer.domElement.parentNode) {
+            renderer.domElement.parentNode.removeChild(renderer.domElement);
+          }
         },
-        { passive: false }
-      );
-    } catch (_err) {
-      if (statusEl) statusEl.textContent = "Preview mode";
+      };
+      activeSparkInstance = instance;
+
+      // When splat is decoded and GPU buffers are populated
+      await splatMesh.initialized;
+      if (disposed) return;
+
+      const loadingEl = container.querySelector("#splat-loading");
+      if (loadingEl) loadingEl.remove();
+
+      try {
+        const bb = splatMesh.getBoundingBox();
+        const center = new THREE.Vector3().addVectors(bb.min, bb.max).multiplyScalar(0.5);
+        const size = new THREE.Vector3().subVectors(bb.max, bb.min);
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const dist = Math.max(15, Math.min(100, maxDim * 0.45));
+        camera.position.set(center.x, center.y + maxDim * 0.06, center.z + dist);
+        controls.target.copy(center);
+        controls.update();
+      } catch (_e) {}
+
+      if (statusEl) {
+        statusEl.textContent = `${splatMesh.numSplats.toLocaleString()} splats · Interactive orbit (Spark.js)`;
+      }
+
+      return instance;
+    } catch (err) {
+      console.warn("Spark.js viewer error:", err);
+      if (statusEl) statusEl.textContent = "Preview mode (Spark.js error)";
+      const loadingEl = container.querySelector("#splat-loading");
+      if (loadingEl) {
+        loadingEl.textContent = "Spark.js viewer unavailable: " + (err.message || "WebGL error");
+      }
     }
   }
 
@@ -3118,6 +3117,12 @@
   }
 
   function showSection(which) {
+    if (activeSparkInstance && which !== "detail") {
+      try {
+        activeSparkInstance.dispose();
+      } catch (e) {}
+      activeSparkInstance = null;
+    }
     if (els.viewGallery) els.viewGallery.hidden = which !== "gallery";
     if (els.viewDetail) els.viewDetail.hidden = which !== "detail";
     if (els.viewReview) els.viewReview.hidden = which !== "review";

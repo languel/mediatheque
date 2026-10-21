@@ -601,11 +601,7 @@ kbd {
 }
 
 .card-select {
-  pointer-events: auto;
-  width: 1.25rem;
-  height: 1.25rem;
-  accent-color: var(--text);
-  cursor: pointer;
+  display: none !important;
 }
 
 .media-card__body {
@@ -1466,19 +1462,19 @@ kbd {
   display: block;
 }
 
-.site-icon--zen .zen-square-outer {
-  display: block;
+.site-icon--zen .zen-circle-outer {
+  stroke: currentColor;
 }
 
-.site-icon--zen .zen-square-inner {
-  display: block; /* Non-Zen default: square with filled square inside */
+.site-icon--zen .zen-dot-fill {
+  display: none; /* Non-Zen default: empty ring/dot */
 }
 
-/* Zen active state: blank square (no inner square), no filled background */
-body.zen-mode .site-icon--zen .zen-square-inner,
-.nav-pill--icon.is-active .site-icon--zen .zen-square-inner,
-.carousel-control.is-active .site-icon--zen .zen-square-inner {
-  display: none !important;
+/* Zen active state: filled dot inside ring, no filled background */
+body.zen-mode .site-icon--zen .zen-dot-fill,
+.nav-pill--icon.is-active .site-icon--zen .zen-dot-fill,
+.carousel-control.is-active .site-icon--zen .zen-dot-fill {
+  display: block !important;
 }
 
 /* Zen Mode Active State */
@@ -1491,7 +1487,7 @@ body.zen-mode .filter-bar,
 body.zen-mode .sub-toolbar,
 body.zen-mode #facet-drawer,
 body.zen-mode .media-card__body,
-body.zen-mode .media-card__badges,
+body.zen-mode .media-card__badges .badge-group,
 body.zen-mode .site-header__count,
 body.zen-mode .wordmark__title,
 body.zen-mode .nav-pill:not(.nav-pill--icon),
@@ -1552,47 +1548,76 @@ body.zen-mode .media-grid {
   gap: 5px;
 }
 
-/* Card Selection Indicator & Active Highlight Frame */
+/* Card Selection Button: Single unified empty/filled square */
 .media-card {
   position: relative;
 }
 
-.media-card::after {
-  content: "";
-  position: absolute;
-  top: 7px;
-  right: 7px;
-  z-index: 10;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.65);
-  background: rgba(0, 0, 0, 0.4);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 140ms ease, transform 140ms ease;
-  transform: scale(0.9);
+.card-select-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  background: rgba(15, 15, 15, 0.75) !important;
+  border-radius: 3px;
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  pointer-events: auto;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  transition: color 140ms ease, opacity 140ms ease, transform 140ms ease, border-color 140ms ease;
+  transform: scale(0.95);
+  margin-left: auto;
 }
 
-/* Hover or keyboard active highlight on unselected card: reveal subtle empty circle */
-.media-card:hover::after,
-.media-card.is-highlighted::after {
-  opacity: 0.75;
-  transform: scale(1);
+.card-select-btn:hover {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+  transform: scale(1.08);
 }
 
-/* Selected card: subtle circle with filled center dot matching unselected aesthetic */
-.media-card.is-selected::after {
-  opacity: 0.95 !important;
+.card-select-btn svg {
+  display: block;
+}
+
+.card-select-btn .select-box-outer {
+  stroke: currentColor;
+}
+
+.card-select-btn .select-box-inner {
+  display: none; /* Unselected: empty square */
+  fill: currentColor;
+}
+
+/* Selected state: filled square inside */
+.media-card.is-selected .card-select-btn {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  border-color: rgba(255, 255, 255, 0.7) !important;
   transform: scale(1) !important;
-  border-color: rgba(255, 255, 255, 0.75);
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.88) 28%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0.4) 100%);
 }
 
-/* When viewing only selected set: hide selection buttons and icons */
-body.show-selection-only .media-card::after,
-body.show-selection-only .card-select {
+.media-card.is-selected .card-select-btn .select-box-inner {
+  display: block !important; /* Selected: filled square */
+}
+
+/* In Zen Mode: card-select-btn is hidden until hover/highlight or selected */
+body.zen-mode .card-select-btn {
+  opacity: 0;
+  border-color: transparent !important;
+  background: rgba(0, 0, 0, 0.45) !important;
+}
+
+body.zen-mode .media-card:hover .card-select-btn,
+body.zen-mode .media-card.is-highlighted .card-select-btn,
+body.zen-mode .media-card.is-selected .card-select-btn {
+  opacity: 1 !important;
+}
+
+/* When viewing only selected set: hide selection button completely */
+body.show-selection-only .card-select-btn {
   display: none !important;
 }
 

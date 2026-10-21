@@ -10,7 +10,16 @@
     />
     <title>Mediathèque — Teaching Media Archive</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/styles.css?v=zen6" />
+    <link rel="stylesheet" href="css/styles.css?v=zen10" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+          "@sparkjsdev/spark": "https://sparkjs.dev/releases/spark/2.4.0/spark.module.js"
+        }
+      }
+    </script>
     <script
       type="module"
       src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
@@ -90,8 +99,8 @@
         >
           <span class="site-icon site-icon--zen" aria-hidden="true">
             <svg viewBox="0 0 16 16" width="16" height="16" fill="none">
-              <rect x="1.5" y="1.5" width="13" height="13" rx="1.5" stroke="currentColor" stroke-width="1.6" class="zen-square-outer" />
-              <rect x="5" y="5" width="6" height="6" rx="0.5" fill="currentColor" stroke="none" class="zen-square-inner" />
+              <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5" class="zen-circle-outer" />
+              <circle cx="8" cy="8" r="2.6" fill="currentColor" stroke="none" class="zen-dot-fill" />
             </svg>
           </span>
         </button>
@@ -220,8 +229,8 @@
         <button class="carousel-control" id="zen-carousel-zen" type="button" aria-label="Toggle Zen mode (Alt+Z)" title="Toggle Zen visual mode (Alt+Z)">
           <span class="site-icon site-icon--zen" aria-hidden="true">
             <svg viewBox="0 0 16 16" width="16" height="16" fill="none">
-              <rect x="1.5" y="1.5" width="13" height="13" rx="1.5" stroke="currentColor" stroke-width="1.6" class="zen-square-outer" />
-              <rect x="5" y="5" width="6" height="6" rx="0.5" fill="currentColor" stroke="none" class="zen-square-inner" />
+              <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5" class="zen-circle-outer" />
+              <circle cx="8" cy="8" r="2.6" fill="currentColor" stroke="none" class="zen-dot-fill" />
             </svg>
           </span>
         </button>
@@ -299,6 +308,6 @@
     </dialog>
 
     <script src="js/zip.js" defer></script>
-    <script src="js/main.js?v=zen6" defer></script>
+    <script src="js/main.js?v=zen10" defer></script>
   </body>
 </html>
