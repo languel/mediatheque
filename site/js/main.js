@@ -275,6 +275,26 @@
 
   // Full-Window Preview & Top Carousel (portfolio-example inspired)
   let activeCarouselId = null;
+  let activeCardId = null;
+
+  function highlightCard(id, scrollIntoView = false) {
+    if (!els.mediaGrid) return;
+    if (activeCardId === id && !scrollIntoView) return;
+
+    const prev = els.mediaGrid.querySelector(".media-card.is-highlighted");
+    if (prev) prev.classList.remove("is-highlighted");
+
+    activeCardId = id;
+    if (!id) return;
+
+    const card = els.mediaGrid.querySelector(`.media-card[data-entry-id="${CSS.escape(id)}"]`);
+    if (card) {
+      card.classList.add("is-highlighted");
+      if (scrollIntoView) {
+        card.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" });
+      }
+    }
+  }
 
   function openFullWindowPreview(targetId) {
     const entries = getFilteredEntries();
@@ -607,6 +627,7 @@
   }
 
   function updateShowChipsUI() {
+    document.body.classList.toggle("show-selection-only", Boolean(state.showSelectionOnly));
     document.querySelectorAll("[data-type-filter]").forEach((btn) => {
       const tf = btn.getAttribute("data-type-filter");
       if (tf === "selection") {
@@ -708,7 +729,7 @@
             : "";
 
         return `
-        <article class="media-card ${isSel ? "is-selected" : ""}" data-entry-id="${escapeHtml(entry.id)}" data-hover-video="${escapeHtml(hoverVideo)}">
+        <article class="media-card ${isSel ? "is-selected" : ""} ${activeCardId === entry.id ? "is-highlighted" : ""}" data-entry-id="${escapeHtml(entry.id)}" data-hover-video="${escapeHtml(hoverVideo)}">
           <a class="media-card__thumb-wrap" href="#/${escapeHtml(entry.id)}">
             ${
               thumbUrl
@@ -3097,16 +3118,17 @@
       });
     }
 
-    // Track hovered card in gallery for Enter selection shortcut & F preview
-    let hoveredCardId = null;
-
+    // Mouse movement over media grid updates highlighted card frame
     if (els.mediaGrid) {
-      els.mediaGrid.addEventListener("mouseover", (e) => {
+      els.mediaGrid.addEventListener("mousemove", (e) => {
         const card = e.target.closest(".media-card");
-        hoveredCardId = card ? card.getAttribute("data-entry-id") : null;
+        const id = card ? card.getAttribute("data-entry-id") : null;
+        if (id && id !== activeCardId) {
+          highlightCard(id, false);
+        }
       });
       els.mediaGrid.addEventListener("mouseleave", () => {
-        hoveredCardId = null;
+        // Keep activeCardId so Arrow keys can continue seamlessly from last frame
       });
     }
 
@@ -3149,7 +3171,8 @@
         (e.key === "s" || e.key === "S") &&
         !e.altKey && !e.ctrlKey && !e.metaKey &&
         document.activeElement.tagName !== "INPUT" &&
-        document.activeElement.tagName !== "TEXTAREA"
+        document.activeElement.tagName !== "TEXTAREA" &&
+        document.activeElement.tagName !== "SELECT"
       ) {
         if (els.viewGallery && !els.viewGallery.hidden) {
           e.preventDefault();
@@ -3158,17 +3181,99 @@
         }
       }
 
-      // Enter key: toggle selected status of hovered card in card mode
+      // Card mode Arrow key navigation (Left, Right, Up, Down)
+      if (
+        (e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === "ArrowUp" || e.key === "ArrowDown") &&
+        !e.altKey && !e.ctrlKey && !e.metaKey &&
+        (!els.zenPreviewModal || els.zenPreviewModal.hidden) &&
+        els.viewGallery && !els.viewGallery.hidden &&
+        document.activeElement.tagName !== "INPUT" &&
+        document.activeElement.tagName !== "TEXTAREA" &&
+        document.activeElement.tagName !== "SELECT"
+      ) {
+        const cards = Array.from(els.mediaGrid.querySelectorAll(".media-card"));
+        if (cards.length > 0) {
+          e.preventDefault();
+          let currentIndex = cards.findIndex((c) => c.getAttribute("data-entry-id") === activeCardId);
+          if (currentIndex === -1) {
+            highlightCard(cards[0].getAttribute("data-entry-id"), true);
+            return;
+          }
+
+          let targetCard = null;
+          if (e.key === "ArrowLeft") {
+            const newIndex = Math.max(0, currentIndex - 1);
+            targetCard = cards[newIndex];
+          } else if (e.key === "ArrowRight") {
+            const newIndex = Math.min(cards.length - 1, currentIndex + 1);
+            targetCard = cards[newIndex];
+          } else {
+            const curCard = cards[currentIndex];
+            const curRect = curCard.getBoundingClientRect();
+            const curCenterX = curRect.left + curRect.width / 2;
+
+            if (e.key === "ArrowDown") {
+              const below = cards.filter((c) => {
+                const r = c.getBoundingClientRect();
+                return r.top >= curRect.bottom - 8;
+              });
+              if (below.length > 0) {
+                const minTop = Math.min(...below.map((c) => c.getBoundingClientRect().top));
+                const rowCards = below.filter((c) => c.getBoundingClientRect().top <= minTop + 15);
+                targetCard = rowCards.reduce(
+                  (closest, c) => {
+                    const r = c.getBoundingClientRect();
+                    const dist = Math.abs(r.left + r.width / 2 - curCenterX);
+                    return dist < closest.dist ? { card: c, dist } : closest;
+                  },
+                  { card: rowCards[0], dist: Infinity }
+                ).card;
+              } else {
+                targetCard = cards[cards.length - 1];
+              }
+            } else if (e.key === "ArrowUp") {
+              const above = cards.filter((c) => {
+                const r = c.getBoundingClientRect();
+                return r.bottom <= curRect.top + 8;
+              });
+              if (above.length > 0) {
+                const maxBottom = Math.max(...above.map((c) => c.getBoundingClientRect().bottom));
+                const rowCards = above.filter((c) => c.getBoundingClientRect().bottom >= maxBottom - 15);
+                targetCard = rowCards.reduce(
+                  (closest, c) => {
+                    const r = c.getBoundingClientRect();
+                    const dist = Math.abs(r.left + r.width / 2 - curCenterX);
+                    return dist < closest.dist ? { card: c, dist } : closest;
+                  },
+                  { card: rowCards[0], dist: Infinity }
+                ).card;
+              } else {
+                targetCard = cards[0];
+              }
+            }
+          }
+
+          if (targetCard) {
+            highlightCard(targetCard.getAttribute("data-entry-id"), true);
+          }
+          return;
+        }
+      }
+
+      // Enter key: toggle selected status of highlighted or hovered card in card mode
       if (
         e.key === "Enter" &&
         !e.altKey && !e.ctrlKey && !e.metaKey &&
+        (!els.zenPreviewModal || els.zenPreviewModal.hidden) &&
+        els.viewGallery && !els.viewGallery.hidden &&
         document.activeElement.tagName !== "INPUT" &&
-        document.activeElement.tagName !== "TEXTAREA"
+        document.activeElement.tagName !== "TEXTAREA" &&
+        document.activeElement.tagName !== "SELECT"
       ) {
-        if (els.viewGallery && !els.viewGallery.hidden && hoveredCardId) {
+        if (activeCardId) {
           e.preventDefault();
           e.stopPropagation();
-          toggleItemSelection(hoveredCardId);
+          toggleItemSelection(activeCardId);
           return;
         }
       }
@@ -3189,8 +3294,8 @@
           const hash = window.location.hash || "";
           const targetId = hash.startsWith("#/") ? hash.slice(2) : null;
           if (targetId) openFullWindowPreview(targetId);
-        } else if (hoveredCardId) {
-          openFullWindowPreview(hoveredCardId);
+        } else if (activeCardId) {
+          openFullWindowPreview(activeCardId);
         }
         return;
       }
@@ -3427,6 +3532,22 @@
           copyText(copyBtn.getAttribute("data-copy-url"), "Stream URL");
           return;
         }
+
+        // Top-right corner click on card (subtle selection icon hit target)
+        if (!state.showSelectionOnly) {
+          const card = e.target.closest(".media-card");
+          if (card) {
+            const rect = card.getBoundingClientRect();
+            if (e.clientX >= rect.right - 34 && e.clientY <= rect.top + 34) {
+              e.preventDefault();
+              e.stopPropagation();
+              const id = card.getAttribute("data-entry-id");
+              toggleItemSelection(id);
+              return;
+            }
+          }
+        }
+
         const checkbox = e.target.closest("[data-select-id]");
         if (checkbox) {
           e.stopPropagation();
