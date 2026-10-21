@@ -10,7 +10,7 @@
     />
     <title>Mediathèque — Teaching Media Archive</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/styles.css?v=zen" />
+    <link rel="stylesheet" href="css/styles.css?v=zen3" />
     <script
       type="module"
       src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
@@ -59,20 +59,11 @@
           JSON
         </a>
         <button
-          class="nav-pill nav-pill--icon"
-          type="button"
-          id="btn-toggle-zen"
-          aria-label="Toggle Zen mode (Alt+Z)"
-          title="Toggle Zen visual mode (Alt+Z)"
-        >
-          <span class="site-icon" style="font-size:1.15rem;">◎</span>
-        </button>
-        <button
           class="theme-toggle"
           type="button"
           id="theme-toggle"
-          aria-label="Toggle color theme"
-          title="Toggle dark/light theme"
+          aria-label="Toggle color theme (Alt+D)"
+          title="Toggle dark/light theme (Alt+D)"
         >
           ◐
         </button>
@@ -90,6 +81,15 @@
             </svg>
           </span>
         </button>
+        <button
+          class="nav-pill nav-pill--icon"
+          type="button"
+          id="btn-toggle-zen"
+          aria-label="Toggle Zen mode (Alt+Z)"
+          title="Toggle Zen visual mode (Alt+Z)"
+        >
+          <span class="site-icon" style="font-size:1.15rem;">◎</span>
+        </button>
       </nav>
     </header>
 
@@ -101,7 +101,7 @@
             <span class="filter-label">Show</span>
             <button type="button" class="chip is-active" data-type-filter="item">Items</button>
             <button type="button" class="chip" data-type-filter="clip">Clips</button>
-            <button type="button" class="chip" data-type-filter="both">Both</button>
+            <button type="button" class="chip" id="filter-selection" data-type-filter="selection" title="Toggle selection only (S)">Selection</button>
           </div>
 
           <div class="filter-group" role="group" aria-label="Media kind" id="kind-chips">
@@ -188,7 +188,10 @@
     <!-- FULL-WINDOW PREVIEW WITH TOP CAROUSEL (ZEN & REGULAR EXPAND) -->
     <div id="zen-preview-modal" class="full-window-preview" aria-modal="true" role="dialog" hidden>
       <div class="carousel-rail" id="zen-carousel-rail" aria-label="Media carousel">
-        <button class="carousel-control" id="zen-carousel-prev" type="button" aria-label="Previous item">
+        <button class="carousel-control" id="zen-carousel-home" type="button" aria-label="Home / Back to gallery (Esc)" title="Home (Esc)">
+          <span class="site-icon" style="font-size:1.15rem;">▦</span>
+        </button>
+        <button class="carousel-control" id="zen-carousel-prev" type="button" aria-label="Previous item (←)" title="Previous (←)">
           <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M15 18l-6-6 6-6" />
           </svg>
@@ -196,15 +199,21 @@
         <div class="thumbnail-viewport" id="zen-thumbnail-viewport">
           <div class="thumbnail-track" id="zen-thumbnail-track" role="tablist" aria-label="Archive entries"></div>
         </div>
-        <button class="carousel-control" id="zen-carousel-next" type="button" aria-label="Next item">
+        <button class="carousel-control" id="zen-carousel-next" type="button" aria-label="Next item (→)" title="Next (→)">
           <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 18l6-6-6-6" />
           </svg>
         </button>
-        <button class="carousel-control carousel-control--close" id="zen-preview-close" type="button" aria-label="Close preview (Esc)" title="Close (Esc)">
-          <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 6L6 18M6 6l12 12" />
-          </svg>
+        <button class="carousel-control" id="zen-carousel-about" type="button" aria-label="About Mediathèque" title="About Mediathèque">
+          <span class="site-icon site-icon--person" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="3.1" />
+              <path d="M5.5 20c.9-3.1 3.2-4.8 6.5-4.8s5.6 1.7 6.5 4.8" />
+            </svg>
+          </span>
+        </button>
+        <button class="carousel-control" id="zen-carousel-zen" type="button" aria-label="Toggle Zen mode (Alt+Z)" title="Toggle Zen visual mode (Alt+Z)">
+          <span class="site-icon" style="font-size:1.15rem;">◎</span>
         </button>
       </div>
       <div class="full-window-stage" id="zen-media-stage"></div>
@@ -252,10 +261,13 @@
           <div class="about-shortcuts-list">
             <div><kbd>/</kbd></div><div>Focus search input (reveals top bar in Zen mode)</div>
             <div><kbd>Alt</kbd> + <kbd>Z</kbd></div><div>Toggle Zen Mode (purely visual browsing)</div>
-            <div><kbd>F</kbd></div><div>Toggle Full-Window preview with top carousel</div>
+            <div><kbd>Alt</kbd> + <kbd>D</kbd></div><div>Toggle Dark / Light Theme</div>
+            <div><kbd>F</kbd></div><div>Toggle Full-Window Preview &amp; Fit</div>
+            <div><kbd>S</kbd></div><div>Toggle filter: show only selected items</div>
+            <div><kbd>Enter</kbd></div><div>Toggle selection on hovered card</div>
             <div><kbd>←</kbd> / <kbd>→</kbd></div><div>Navigate carousel items in preview</div>
             <div><kbd>Space</kbd></div><div>Play / pause video transport</div>
-            <div><kbd>Esc</kbd></div><div>Close full-window preview / dialogs</div>
+            <div><kbd>Esc</kbd></div><div>Home / close preview / dialogs</div>
           </div>
         </div>
 
@@ -271,6 +283,6 @@
     </dialog>
 
     <script src="js/zip.js" defer></script>
-    <script src="js/main.js?v=zen" defer></script>
+    <script src="js/main.js?v=zen3" defer></script>
   </body>
 </html>

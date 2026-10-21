@@ -5,20 +5,48 @@
   const isSubdir = window.location.pathname.includes("/site/");
   const ROOT_PREFIX = isSubdir ? "../" : "./";
 
+  function loadStoredSet(key, fallbackArr = []) {
+    try {
+      const raw = localStorage.getItem(key);
+      if (raw) {
+        const arr = JSON.parse(raw);
+        if (Array.isArray(arr)) return new Set(arr);
+      }
+    } catch (_e) {}
+    return new Set(fallbackArr);
+  }
+
+  function saveStoredSet(key, set) {
+    try {
+      localStorage.setItem(key, JSON.stringify(Array.from(set)));
+    } catch (_e) {}
+  }
+
+  const savedZen = localStorage.getItem("mediatheque_zen");
+  const initialZen = savedZen !== null ? savedZen === "true" : true; // Initial state: Zen mode default
+
+  const savedTypeFilters = loadStoredSet("mediatheque_type_filters", ["item"]); // Default: Items active
+  const savedKindFilters = loadStoredSet("mediatheque_kind_filters", ["all"]); // Default: All kinds active
+  const savedSelections = loadStoredSet("mediatheque_selected_ids", []);
+  const savedShowSelection = localStorage.getItem("mediatheque_show_selection") === "true";
+  const savedFullFit = localStorage.getItem("mediatheque_preview_fit") !== "false"; // Default: true (stretch to fit window)
+
   const state = {
     catalog: [],
     review: [],
     tagsVocab: null,
     query: "",
-    typeFilter: "item", // item | clip | both
-    kindFilter: "all",
-    rightsFilter: "all",
+    typeFilters: savedTypeFilters, // Set of active types: "item", "clip"
+    showSelectionOnly: savedShowSelection,
+    kindFilters: savedKindFilters, // Set of active kinds: e.g. "video", "animation" or "all"
+    rightsFilter: localStorage.getItem("mediatheque_rights_filter") || "all",
     activeTags: new Set(),
     activeDemos: new Set(),
-    sortBy: "title",
-    selectedIds: new Set(),
+    sortBy: localStorage.getItem("mediatheque_sort_by") || "title",
+    selectedIds: savedSelections,
     itemCache: new Map(),
-    isZenMode: localStorage.getItem("mediatheque_zen") === "true",
+    isZenMode: initialZen,
+    previewFullFit: savedFullFit,
   };
 
   const els = {
@@ -47,13 +75,17 @@
     aboutDialogClose: document.getElementById("about-dialog-close"),
     zenPreviewModal: document.getElementById("zen-preview-modal"),
     zenCarouselRail: document.getElementById("zen-carousel-rail"),
+    zenCarouselHome: document.getElementById("zen-carousel-home"),
     zenCarouselPrev: document.getElementById("zen-carousel-prev"),
     zenCarouselNext: document.getElementById("zen-carousel-next"),
+    zenCarouselAbout: document.getElementById("zen-carousel-about"),
+    zenCarouselZen: document.getElementById("zen-carousel-zen"),
     zenPreviewClose: document.getElementById("zen-preview-close"),
     zenThumbnailViewport: document.getElementById("zen-thumbnail-viewport"),
     zenThumbnailTrack: document.getElementById("zen-thumbnail-track"),
     zenMediaStage: document.getElementById("zen-media-stage"),
     siteHeader: document.querySelector(".site-header"),
+    filterSelection: document.getElementById("filter-selection"),
     toast: document.getElementById("toast"),
   };
 
@@ -153,19 +185,23 @@
     const saved = localStorage.getItem("mediatheque-theme");
     if (saved === "light") {
       document.documentElement.setAttribute("data-theme", "light");
+    } else {
+      document.documentElement.removeAttribute("data-theme");
     }
     if (els.themeToggle) {
-      els.themeToggle.addEventListener("click", () => {
-        const cur = document.documentElement.getAttribute("data-theme");
-        const next = cur === "light" ? "dark" : "light";
-        if (next === "light") {
-          document.documentElement.setAttribute("data-theme", "light");
-        } else {
-          document.documentElement.removeAttribute("data-theme");
-        }
-        localStorage.setItem("mediatheque-theme", next);
-      });
+      els.themeToggle.addEventListener("click", toggleTheme);
     }
+  }
+
+  function toggleTheme() {
+    const cur = document.documentElement.getAttribute("data-theme");
+    const next = cur === "light" ? "dark" : "light";
+    if (next === "light") {
+      document.documentElement.setAttribute("data-theme", "light");
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+    }
+    localStorage.setItem("mediatheque-theme", next);
   }
 
   // Zen Mode (purely visual archive browsing)
@@ -173,11 +209,13 @@
     if (state.isZenMode) {
       document.body.classList.add("zen-mode");
       if (els.btnToggleZen) els.btnToggleZen.classList.add("is-active");
+      if (els.zenCarouselZen) els.zenCarouselZen.classList.add("is-active");
     }
     if (els.btnToggleZen) {
-      els.btnToggleZen.addEventListener("click", () => {
-        toggleZenMode();
-      });
+      els.btnToggleZen.addEventListener("click", toggleZenMode);
+    }
+    if (els.zenCarouselZen) {
+      els.zenCarouselZen.addEventListener("click", toggleZenMode);
     }
   }
 
@@ -188,17 +226,51 @@
       els.btnToggleZen.classList.toggle("is-active", state.isZenMode);
       els.btnToggleZen.title = state.isZenMode ? "Exit Zen mode (Alt+Z)" : "Enter Zen visual mode (Alt+Z)";
     }
+    if (els.zenCarouselZen) {
+      els.zenCarouselZen.classList.toggle("is-active", state.isZenMode);
+      els.zenCarouselZen.title = state.isZenMode ? "Exit Zen mode (Alt+Z)" : "Enter Zen visual mode (Alt+Z)";
+    }
     localStorage.setItem("mediatheque_zen", state.isZenMode ? "true" : "false");
-    showToast(state.isZenMode ? "Zen Mode: On (Purely Visual)" : "Zen Mode: Off");
-    if (state.isZenMode && !els.viewDetail.hidden) {
-      const hash = window.location.hash || "";
-      const targetId = hash.startsWith("#/") ? hash.slice(2) : null;
-      if (targetId) openFullWindowPreview(targetId);
+
+    const isPreviewOpen = els.zenPreviewModal && !els.zenPreviewModal.hidden;
+
+    if (!state.isZenMode) {
+      // Switched to NON-ZEN mode
+      if (isPreviewOpen) {
+        // Exit zen preview modal to regular detail mode
+        const currentId = activeCarouselId;
+        closeFullWindowPreview();
+        if (currentId) {
+          showSection("detail");
+          renderDetailView(currentId);
+          window.location.hash = "#/" + currentId;
+        }
+      }
+    } else {
+      // Switched to ZEN mode
+      if (!els.viewDetail.hidden) {
+        const hash = window.location.hash || "";
+        const targetId = hash.startsWith("#/") ? hash.slice(2) : null;
+        if (targetId) openFullWindowPreview(targetId);
+      }
     }
   }
 
   function toggleZenMode() {
     setZenMode(!state.isZenMode);
+  }
+
+  // Full-Window Preview & Fit controls (F key)
+  function setPreviewFullFit(fit) {
+    state.previewFullFit = Boolean(fit);
+    localStorage.setItem("mediatheque_preview_fit", state.previewFullFit ? "true" : "false");
+    if (els.zenMediaStage) {
+      els.zenMediaStage.classList.toggle("is-fit", state.previewFullFit);
+    }
+  }
+
+  function togglePreviewFullFit() {
+    setPreviewFullFit(!state.previewFullFit);
   }
 
   // Full-Window Preview & Top Carousel (portfolio-example inspired)
@@ -235,6 +307,7 @@
 
   function renderFullWindowMedia(entry) {
     if (!els.zenMediaStage) return;
+    els.zenMediaStage.classList.toggle("is-fit", state.previewFullFit);
     const mediaUrl = resolveAssetUrl(entry.proxy || entry.media);
     const origUrl = resolveAssetUrl(entry.media);
 
@@ -247,7 +320,6 @@
           loop
           playsinline
           controls
-          style="max-width:100vw; max-height:100vh; object-fit:contain; background:transparent;"
         ></video>
       `;
       const vid = document.getElementById("zen-player-video");
@@ -257,7 +329,6 @@
         <img
           src="${escapeHtml(origUrl || mediaUrl)}"
           alt="${escapeHtml(entry.title)}"
-          style="max-width:100vw; max-height:100vh; object-fit:contain; background:transparent;"
         />
       `;
     } else if (entry.kind === "model") {
@@ -267,7 +338,6 @@
           auto-rotate
           camera-controls
           shadow-intensity="1"
-          style="width:100vw; height:100vh; background:transparent;"
         ></model-viewer>
       `;
     } else {
@@ -358,6 +428,9 @@
       els.reviewBadge.hidden = false;
     }
 
+    updateShowChipsUI();
+    updateKindChipsUI();
+    updateSelectionUI();
     renderFacetDrawer();
     handleRoute();
   }
@@ -426,8 +499,24 @@
       .filter(Boolean);
 
     const filtered = state.catalog.filter((entry) => {
-      if (state.typeFilter !== "both" && entry.type !== state.typeFilter) return false;
-      if (state.kindFilter !== "all" && entry.kind !== state.kindFilter) return false;
+      // Non-exclusive selection filter
+      if (state.showSelectionOnly && !state.selectedIds.has(entry.id)) {
+        return false;
+      }
+
+      // Non-exclusive type filter (item / clip)
+      if (state.typeFilters.size > 0 && !state.typeFilters.has(entry.type)) {
+        return false;
+      }
+
+      // Non-exclusive kind filter (video, animation, image, audio, model, splat, vector, text)
+      if (
+        state.kindFilters.size > 0 &&
+        !state.kindFilters.has("all") &&
+        !state.kindFilters.has(entry.kind)
+      ) {
+        return false;
+      }
 
       if (state.rightsFilter !== "all") {
         const rs = (entry.rights && entry.rights.status) || "unknown";
@@ -483,6 +572,11 @@
   function renderActiveFilterPills() {
     if (!els.activeFilters) return;
     const pills = [];
+    if (state.showSelectionOnly) {
+      pills.push(
+        `<button type="button" class="active-pill" data-remove-selection>selection:${state.selectedIds.size} ×</button>`
+      );
+    }
     for (const t of state.activeTags) {
       pills.push(
         `<button type="button" class="active-pill" data-remove-tag="${escapeHtml(t)}">tag:${escapeHtml(t)} ×</button>`
@@ -502,12 +596,75 @@
   }
 
   function updateSelectionUI() {
-    if (!els.selectionStatus) return;
-    const count = state.selectedIds.size;
-    els.selectionStatus.textContent = `${count} selected`;
-    if (els.btnClearSelection) {
-      els.btnClearSelection.hidden = count === 0;
+    if (els.selectionStatus) {
+      const count = state.selectedIds.size;
+      els.selectionStatus.textContent = `${count} selected`;
+      if (els.btnClearSelection) {
+        els.btnClearSelection.hidden = count === 0;
+      }
     }
+    updateShowChipsUI();
+  }
+
+  function updateShowChipsUI() {
+    document.querySelectorAll("[data-type-filter]").forEach((btn) => {
+      const tf = btn.getAttribute("data-type-filter");
+      if (tf === "selection") {
+        btn.classList.toggle("is-active", Boolean(state.showSelectionOnly));
+        btn.textContent = state.selectedIds.size > 0 ? `Selection (${state.selectedIds.size})` : "Selection";
+      } else {
+        btn.classList.toggle("is-active", state.typeFilters.has(tf));
+      }
+    });
+  }
+
+  function updateKindChipsUI() {
+    const isAll = state.kindFilters.has("all") || state.kindFilters.size === 0;
+    document.querySelectorAll("[data-kind-filter]").forEach((btn) => {
+      const kf = btn.getAttribute("data-kind-filter");
+      if (kf === "all") {
+        btn.classList.toggle("is-active", isAll);
+      } else {
+        btn.classList.toggle("is-active", !isAll && state.kindFilters.has(kf));
+      }
+    });
+  }
+
+  function toggleItemSelection(id) {
+    if (!id) return;
+    if (state.selectedIds.has(id)) {
+      state.selectedIds.delete(id);
+    } else {
+      state.selectedIds.add(id);
+    }
+    saveStoredSet("mediatheque_selected_ids", state.selectedIds);
+
+    const card = els.mediaGrid ? els.mediaGrid.querySelector(`.media-card[data-entry-id="${CSS.escape(id)}"]`) : null;
+    if (card) {
+      const isSel = state.selectedIds.has(id);
+      card.classList.toggle("is-selected", isSel);
+      const cb = card.querySelector(`[data-select-id="${CSS.escape(id)}"]`);
+      if (cb) cb.checked = isSel;
+    }
+    updateSelectionUI();
+    if (state.showSelectionOnly) {
+      if (state.selectedIds.size === 0) {
+        state.showSelectionOnly = false;
+        localStorage.setItem("mediatheque_show_selection", "false");
+        updateShowChipsUI();
+      }
+      renderGallery();
+    }
+  }
+
+  function toggleShowSelectionOnly() {
+    if (state.selectedIds.size === 0 && !state.showSelectionOnly) {
+      return;
+    }
+    state.showSelectionOnly = !state.showSelectionOnly;
+    localStorage.setItem("mediatheque_show_selection", state.showSelectionOnly ? "true" : "false");
+    updateShowChipsUI();
+    renderGallery();
   }
 
   function renderGallery() {
@@ -521,6 +678,7 @@
 
     renderActiveFilterPills();
     updateSelectionUI();
+    updateKindChipsUI();
 
     if (entries.length === 0) {
       els.mediaGrid.innerHTML = `<p class="muted-copy" style="grid-column: 1 / -1; padding: 2rem 0;">No items or clips match the current filter.</p>`;
@@ -539,7 +697,8 @@
             : rightsStatus === "cc"
             ? entry.rights.license || "CC"
             : rightsStatus;
-        const checked = state.selectedIds.has(entry.id) ? "checked" : "";
+        const isSel = state.selectedIds.has(entry.id);
+        const checked = isSel ? "checked" : "";
         const streamUrl = resolveAbsoluteUrl(entry.media);
         const hoverVideo =
           entry.kind === "video"
@@ -549,7 +708,7 @@
             : "";
 
         return `
-        <article class="media-card" data-entry-id="${escapeHtml(entry.id)}" data-hover-video="${escapeHtml(hoverVideo)}">
+        <article class="media-card ${isSel ? "is-selected" : ""}" data-entry-id="${escapeHtml(entry.id)}" data-hover-video="${escapeHtml(hoverVideo)}">
           <a class="media-card__thumb-wrap" href="#/${escapeHtml(entry.id)}">
             ${
               thumbUrl
@@ -2938,6 +3097,19 @@
       });
     }
 
+    // Track hovered card in gallery for Enter selection shortcut & F preview
+    let hoveredCardId = null;
+
+    if (els.mediaGrid) {
+      els.mediaGrid.addEventListener("mouseover", (e) => {
+        const card = e.target.closest(".media-card");
+        hoveredCardId = card ? card.getAttribute("data-entry-id") : null;
+      });
+      els.mediaGrid.addEventListener("mouseleave", () => {
+        hoveredCardId = null;
+      });
+    }
+
     // Mouse movement detection for top bar & carousel hover in Zen Mode
     document.addEventListener("mousemove", (e) => {
       if (state.isZenMode) {
@@ -2956,12 +3128,70 @@
       }
     });
 
-    // Keyboard shortcuts: Alt+Z (Zen mode), `/` (search), `Escape`, `F` (full window), arrow keys
+    // Keyboard shortcuts: Alt+Z (Zen mode), Alt+D (Dark mode), `/` (search), `Escape`, `F` (full window), `S` (selection filter), `Enter` (select card), arrow keys
     window.addEventListener("keydown", (e) => {
       // Alt+Z toggles Zen mode
       if (e.altKey && (e.key === "z" || e.key === "Z" || e.code === "KeyZ")) {
         e.preventDefault();
         toggleZenMode();
+        return;
+      }
+
+      // Alt+D toggles theme
+      if (e.altKey && (e.key === "d" || e.key === "D" || e.code === "KeyD")) {
+        e.preventDefault();
+        toggleTheme();
+        return;
+      }
+
+      // S key: toggle showing selection set only (when not in text input)
+      if (
+        (e.key === "s" || e.key === "S") &&
+        !e.altKey && !e.ctrlKey && !e.metaKey &&
+        document.activeElement.tagName !== "INPUT" &&
+        document.activeElement.tagName !== "TEXTAREA"
+      ) {
+        if (els.viewGallery && !els.viewGallery.hidden) {
+          e.preventDefault();
+          toggleShowSelectionOnly();
+          return;
+        }
+      }
+
+      // Enter key: toggle selected status of hovered card in card mode
+      if (
+        e.key === "Enter" &&
+        !e.altKey && !e.ctrlKey && !e.metaKey &&
+        document.activeElement.tagName !== "INPUT" &&
+        document.activeElement.tagName !== "TEXTAREA"
+      ) {
+        if (els.viewGallery && !els.viewGallery.hidden && hoveredCardId) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleItemSelection(hoveredCardId);
+          return;
+        }
+      }
+
+      // F key: in preview mode toggles full-window fit (stretch vs 1:1)
+      // Outside preview mode opens full-window preview
+      if (
+        (e.key === "f" || e.key === "F") &&
+        !e.altKey && !e.ctrlKey && !e.metaKey &&
+        document.activeElement.tagName !== "INPUT" &&
+        document.activeElement.tagName !== "TEXTAREA"
+      ) {
+        e.preventDefault();
+        const isPreviewOpen = els.zenPreviewModal && !els.zenPreviewModal.hidden;
+        if (isPreviewOpen) {
+          togglePreviewFullFit();
+        } else if (!els.viewDetail.hidden) {
+          const hash = window.location.hash || "";
+          const targetId = hash.startsWith("#/") ? hash.slice(2) : null;
+          if (targetId) openFullWindowPreview(targetId);
+        } else if (hoveredCardId) {
+          openFullWindowPreview(hoveredCardId);
+        }
         return;
       }
 
@@ -3010,24 +3240,14 @@
         } else if (window.location.hash && window.location.hash !== "#/") {
           window.location.hash = "#/";
         }
-      } else if (
-        (e.key === "f" || e.key === "F") &&
-        !els.viewDetail.hidden &&
-        document.activeElement.tagName !== "INPUT" &&
-        document.activeElement.tagName !== "TEXTAREA"
-      ) {
-        e.preventDefault();
-        const hash = window.location.hash || "";
-        const targetId = hash.startsWith("#/") ? hash.slice(2) : null;
-        if (targetId) openFullWindowPreview(targetId);
       }
     });
 
-    // Full-Window Preview Controls
-    if (els.zenPreviewClose) {
-      els.zenPreviewClose.addEventListener("click", () => {
+    // Carousel Rail Controls (Home, Prev, Next, About, Zen)
+    if (els.zenCarouselHome) {
+      els.zenCarouselHome.addEventListener("click", () => {
         closeFullWindowPreview();
-        if (state.isZenMode) window.location.hash = "#/";
+        window.location.hash = "#/";
       });
     }
     if (els.zenCarouselPrev) {
@@ -3035,6 +3255,14 @@
     }
     if (els.zenCarouselNext) {
       els.zenCarouselNext.addEventListener("click", () => navigateCarousel(1));
+    }
+    if (els.zenCarouselAbout) {
+      els.zenCarouselAbout.addEventListener("click", () => {
+        if (els.aboutDialog) els.aboutDialog.showModal();
+      });
+    }
+    if (els.zenCarouselZen) {
+      els.zenCarouselZen.addEventListener("click", toggleZenMode);
     }
 
     // About Dialog Events
@@ -3062,22 +3290,51 @@
       });
     }
 
-    // Type filter chips (Both / Items / Clips)
+    // Type filter chips (Items / Clips / Selection) - Non-exclusive toggles
     document.querySelectorAll("[data-type-filter]").forEach((btn) => {
       btn.addEventListener("click", () => {
-        document.querySelectorAll("[data-type-filter]").forEach((b) => b.classList.remove("is-active"));
-        btn.classList.add("is-active");
-        state.typeFilter = btn.getAttribute("data-type-filter");
+        const tf = btn.getAttribute("data-type-filter");
+        if (tf === "selection") {
+          toggleShowSelectionOnly();
+          return;
+        }
+        if (state.typeFilters.has(tf)) {
+          if (state.typeFilters.size > 1) {
+            state.typeFilters.delete(tf);
+          } else {
+            // If toggling off the last one, toggle the other on
+            state.typeFilters.delete(tf);
+            state.typeFilters.add(tf === "item" ? "clip" : "item");
+          }
+        } else {
+          state.typeFilters.add(tf);
+        }
+        saveStoredSet("mediatheque_type_filters", state.typeFilters);
+        updateShowChipsUI();
         renderGallery();
       });
     });
 
-    // Kind filter chips
+    // Kind filter chips - Non-exclusive toggles (Video, Animation, Image, Audio, 3D, Splat, etc.)
     document.querySelectorAll("[data-kind-filter]").forEach((btn) => {
       btn.addEventListener("click", () => {
-        document.querySelectorAll("[data-kind-filter]").forEach((b) => b.classList.remove("is-active"));
-        btn.classList.add("is-active");
-        state.kindFilter = btn.getAttribute("data-kind-filter");
+        const kf = btn.getAttribute("data-kind-filter");
+        if (kf === "all") {
+          state.kindFilters.clear();
+          state.kindFilters.add("all");
+        } else {
+          state.kindFilters.delete("all");
+          if (state.kindFilters.has(kf)) {
+            state.kindFilters.delete(kf);
+            if (state.kindFilters.size === 0) {
+              state.kindFilters.add("all");
+            }
+          } else {
+            state.kindFilters.add(kf);
+          }
+        }
+        saveStoredSet("mediatheque_kind_filters", state.kindFilters);
+        updateKindChipsUI();
         renderGallery();
       });
     });
@@ -3131,6 +3388,14 @@
 
     if (els.activeFilters) {
       els.activeFilters.addEventListener("click", (e) => {
+        const rmSel = e.target.closest("[data-remove-selection]");
+        if (rmSel) {
+          state.showSelectionOnly = false;
+          localStorage.setItem("mediatheque_show_selection", "false");
+          updateShowChipsUI();
+          renderGallery();
+          return;
+        }
         const rmTag = e.target.closest("[data-remove-tag]");
         if (rmTag) {
           state.activeTags.delete(rmTag.getAttribute("data-remove-tag"));
@@ -3166,9 +3431,7 @@
         if (checkbox) {
           e.stopPropagation();
           const id = checkbox.getAttribute("data-select-id");
-          if (checkbox.checked) state.selectedIds.add(id);
-          else state.selectedIds.delete(id);
-          updateSelectionUI();
+          toggleItemSelection(id);
         }
       });
 
@@ -3208,12 +3471,16 @@
     if (els.btnSelectFiltered) {
       els.btnSelectFiltered.addEventListener("click", () => {
         getFilteredEntries().forEach((e) => state.selectedIds.add(e.id));
+        saveStoredSet("mediatheque_selected_ids", state.selectedIds);
         renderGallery();
       });
     }
     if (els.btnClearSelection) {
       els.btnClearSelection.addEventListener("click", () => {
         state.selectedIds.clear();
+        state.showSelectionOnly = false;
+        saveStoredSet("mediatheque_selected_ids", state.selectedIds);
+        localStorage.setItem("mediatheque_show_selection", "false");
         renderGallery();
       });
     }

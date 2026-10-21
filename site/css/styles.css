@@ -47,6 +47,37 @@
   padding: 0;
 }
 
+/* Disable browser default focus ring / blue selection frame */
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus,
+:focus-visible,
+button:focus,
+button:focus-visible,
+a:focus,
+a:focus-visible,
+input:focus,
+input:focus-visible,
+select:focus,
+select:focus-visible,
+.nav-pill:focus,
+.nav-pill:focus-visible,
+.theme-toggle:focus,
+.theme-toggle:focus-visible,
+.carousel-control:focus,
+.carousel-control:focus-visible,
+.project-thumb:focus,
+.project-thumb:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 html {
   background: var(--bg);
   color: var(--text);
@@ -440,11 +471,16 @@ kbd {
   border: 1px solid var(--line);
   border-radius: 3px;
   overflow: hidden;
-  transition: border-color 0.16s ease, transform 0.16s ease;
+  transition: border-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
 }
 
 .media-card:hover {
   border-color: var(--line-strong);
+}
+
+.media-card.is-selected {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 2px var(--accent) !important;
 }
 
 .media-card__thumb-wrap {
@@ -1408,7 +1444,7 @@ body.zen-mode .main-container {
 }
 
 body.zen-mode .gallery-section {
-  padding: 0.5rem;
+  padding: calc(var(--header-height, 3.5rem) + 0.75rem) 0.5rem 0.5rem;
 }
 
 body.zen-mode .media-grid {
@@ -1417,6 +1453,7 @@ body.zen-mode .media-grid {
 }
 
 body.zen-mode .media-card {
+  position: relative;
   border: 1px solid transparent;
   background: var(--surface);
   border-radius: 4px;
@@ -1429,6 +1466,30 @@ body.zen-mode .media-card:hover {
   border-color: var(--line-strong);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
   z-index: 2;
+}
+
+body.zen-mode .media-card.is-selected {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px var(--accent) !important;
+}
+
+body.zen-mode .media-card.is-selected::after {
+  content: "✓";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
 }
 
 body.zen-mode .media-card__thumb-wrap {
@@ -1599,12 +1660,33 @@ body.zen-mode .full-window-preview.topbar-hover .carousel-rail,
 .full-window-stage video,
 .full-window-stage img,
 .full-window-stage model-viewer {
-  max-width: 100vw;
-  max-height: 100vh;
-  width: auto;
-  height: auto;
-  object-fit: contain;
   background: transparent !important;
+  transition: width 160ms ease, height 160ms ease;
+}
+
+/* Stretched to fit available space (default / toggled with F) */
+.full-window-stage.is-fit video,
+.full-window-stage.is-fit img {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  object-fit: contain !important;
+}
+
+/* 1:1 original scale */
+.full-window-stage:not(.is-fit) video,
+.full-window-stage:not(.is-fit) img {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  object-fit: contain !important;
+}
+
+.full-window-stage model-viewer {
+  width: 100vw;
+  height: 100vh;
 }
 
 /* About Overlay / Modal (portfolio-example inspired) */
