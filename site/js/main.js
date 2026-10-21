@@ -86,6 +86,9 @@
     zenMediaStage: document.getElementById("zen-media-stage"),
     siteHeader: document.querySelector(".site-header"),
     filterSelection: document.getElementById("filter-selection"),
+    zenHoverBar: document.getElementById("zen-hover-bar"),
+    zenHoverTitle: document.getElementById("zen-hover-title"),
+    zenHoverMeta: document.getElementById("zen-hover-meta"),
     toast: document.getElementById("toast"),
   };
 
@@ -277,6 +280,28 @@
   let activeCarouselId = null;
   let activeCardId = null;
 
+  function updateHoverBar(id) {
+    if (!els.zenHoverBar || !els.zenHoverTitle) return;
+    if (!id || (els.zenPreviewModal && !els.zenPreviewModal.hidden)) {
+      els.zenHoverBar.classList.remove("is-visible");
+      return;
+    }
+    const entry = (state.catalog && state.catalog.find((e) => e.id === id)) || null;
+    if (!entry) {
+      els.zenHoverBar.classList.remove("is-visible");
+      return;
+    }
+    els.zenHoverTitle.textContent = entry.title || id;
+    if (els.zenHoverMeta) {
+      const parts = [];
+      if (entry.creator) parts.push(entry.creator);
+      if (entry.date) parts.push(entry.date);
+      if (entry.kind) parts.push(entry.kind);
+      els.zenHoverMeta.textContent = parts.length ? `(${parts.join(" · ")})` : "";
+    }
+    els.zenHoverBar.classList.add("is-visible");
+  }
+
   function highlightCard(id, scrollIntoView = false) {
     if (!els.mediaGrid) return;
     if (activeCardId === id && !scrollIntoView) return;
@@ -285,6 +310,7 @@
     if (prev) prev.classList.remove("is-highlighted");
 
     activeCardId = id;
+    updateHoverBar(id);
     if (!id) return;
 
     const card = els.mediaGrid.querySelector(`.media-card[data-entry-id="${CSS.escape(id)}"]`);
@@ -730,7 +756,7 @@
 
         return `
         <article class="media-card ${isSel ? "is-selected" : ""} ${activeCardId === entry.id ? "is-highlighted" : ""}" data-entry-id="${escapeHtml(entry.id)}" data-hover-video="${escapeHtml(hoverVideo)}">
-          <a class="media-card__thumb-wrap" href="#/${escapeHtml(entry.id)}">
+          <div class="media-card__thumb-wrap" role="link" tabindex="0" data-href="#/${escapeHtml(entry.id)}" aria-label="${escapeHtml(entry.title)}">
             ${
               thumbUrl
                 ? `<img class="media-card__thumb" src="${escapeHtml(thumbUrl)}" alt="${escapeHtml(
@@ -760,10 +786,10 @@
                 ${checked}
               />
             </div>
-          </a>
+          </div>
           <div class="media-card__body">
             <div class="media-card__head">
-              <a href="#/${escapeHtml(entry.id)}" class="media-card__title">${escapeHtml(entry.title)}</a>
+              <span class="media-card__title" role="link" tabindex="0" data-href="#/${escapeHtml(entry.id)}">${escapeHtml(entry.title)}</span>
               ${entry.date ? `<span class="media-card__date">${escapeHtml(entry.date)}</span>` : ""}
             </div>
             <p class="media-card__summary">${escapeHtml(entry.summary)}</p>
@@ -3128,7 +3154,7 @@
         }
       });
       els.mediaGrid.addEventListener("mouseleave", () => {
-        // Keep activeCardId so Arrow keys can continue seamlessly from last frame
+        updateHoverBar(null);
       });
     }
 
@@ -3553,6 +3579,21 @@
           e.stopPropagation();
           const id = checkbox.getAttribute("data-select-id");
           toggleItemSelection(id);
+          return;
+        }
+
+        const link = e.target.closest("[data-href]");
+        if (link) {
+          const href = link.getAttribute("data-href");
+          if (href) {
+            e.preventDefault();
+            if (e.metaKey || e.ctrlKey) {
+              window.open(href, "_blank");
+            } else {
+              window.location.hash = href;
+            }
+          }
+          return;
         }
       });
 

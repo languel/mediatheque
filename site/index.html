@@ -10,7 +10,7 @@
     />
     <title>Mediathèque — Teaching Media Archive</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/styles.css?v=zen4" />
+    <link rel="stylesheet" href="css/styles.css?v=zen6" />
     <script
       type="module"
       src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
@@ -89,10 +89,9 @@
           title="Toggle Zen visual mode (Alt+Z)"
         >
           <span class="site-icon site-icon--zen" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
-              <circle cx="12" cy="12" r="7.5" stroke="currentColor" stroke-width="1.6" />
-              <circle cx="12" cy="12" r="2.8" fill="currentColor" stroke="none" class="zen-dot-fill" />
-              <circle cx="12" cy="12" r="2.8" stroke="currentColor" stroke-width="1.4" fill="none" class="zen-dot-empty" />
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="none">
+              <rect x="1.5" y="1.5" width="13" height="13" rx="1.5" stroke="currentColor" stroke-width="1.6" class="zen-square-outer" />
+              <rect x="5" y="5" width="6" height="6" rx="0.5" fill="currentColor" stroke="none" class="zen-square-inner" />
             </svg>
           </span>
         </button>
@@ -220,15 +219,20 @@
         </button>
         <button class="carousel-control" id="zen-carousel-zen" type="button" aria-label="Toggle Zen mode (Alt+Z)" title="Toggle Zen visual mode (Alt+Z)">
           <span class="site-icon site-icon--zen" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
-              <circle cx="12" cy="12" r="7.5" stroke="currentColor" stroke-width="1.6" />
-              <circle cx="12" cy="12" r="2.8" fill="currentColor" stroke="none" class="zen-dot-fill" />
-              <circle cx="12" cy="12" r="2.8" stroke="currentColor" stroke-width="1.4" fill="none" class="zen-dot-empty" />
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="none">
+              <rect x="1.5" y="1.5" width="13" height="13" rx="1.5" stroke="currentColor" stroke-width="1.6" class="zen-square-outer" />
+              <rect x="5" y="5" width="6" height="6" rx="0.5" fill="currentColor" stroke="none" class="zen-square-inner" />
             </svg>
           </span>
         </button>
       </div>
       <div class="full-window-stage" id="zen-media-stage"></div>
+    </div>
+
+    <!-- BOTTOM MEDIA TITLE STATUS BAR (REPLACES NATIVE BROWSER URL PREVIEW) -->
+    <div class="zen-hover-bar" id="zen-hover-bar" aria-live="polite" aria-hidden="true">
+      <span class="zen-hover-bar__title" id="zen-hover-title"></span>
+      <span class="zen-hover-bar__meta" id="zen-hover-meta"></span>
     </div>
 
     <!-- ABOUT DIALOG (PORTFOLIO-EXAMPLE INSPIRED) -->
@@ -295,6 +299,6 @@
     </dialog>
 
     <script src="js/zip.js" defer></script>
-    <script src="js/main.js?v=zen4" defer></script>
+    <script src="js/main.js?v=zen6" defer></script>
   </body>
 </html>
