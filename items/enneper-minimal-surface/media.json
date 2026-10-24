@@ -1,0 +1,32 @@
+{
+  "id": "enneper-minimal-surface",
+  "math_type": "parametric",
+  "title": "Enneper Minimal Surface",
+  "formula": "x = u - u\u00b3/3 + uv\u00b2, y = -v + v\u00b3/3 - vu\u00b2, z = u\u00b2 - v\u00b2",
+  "latex": "x = u - \\frac{u^3}{3} + uv^2,\\quad y = -v + \\frac{v^3}{3} - vu^2,\\quad z = u^2 - v^2",
+  "domain": "u \\in [-1.6, 1.6], \\quad v \\in [-1.6, 1.6]",
+  "invariants": {
+    "mean_curvature": "H = 0",
+    "total_gaussian_curvature": "-4\\pi",
+    "degree": "3",
+    "discovered_by": "Alfred Enneper (1864)"
+  },
+  "parametric_fn": "(u, v, target) => { const x = u - (u * u * u) / 3.0 + u * (v * v); const y = -v + (v * v * v) / 3.0 - v * (u * u); const z = u * u - v * v; target.set(x, z, -y).multiplyScalar(0.55); }",
+  "camera": {
+    "position": [
+      0.0,
+      0.8,
+      3.6
+    ],
+    "target": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "fov": 45
+  },
+  "parameters": {
+    "u_bound": 1.6,
+    "v_bound": 1.6
+  }
+}

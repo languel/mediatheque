@@ -600,6 +600,12 @@ kbd {
   background: rgba(45, 82, 56, 0.88);
 }
 
+.card-badge--sdf {
+  background: rgba(85, 55, 120, 0.88);
+  border-color: rgba(185, 145, 245, 0.35);
+  color: #f3e8ff;
+}
+
 .card-select {
   display: none !important;
 }
@@ -2010,5 +2016,89 @@ body.zen-mode .full-window-preview.topbar-hover .carousel-rail,
   border-radius: 3px;
   color: var(--text);
   font-size: 0.75rem;
+}
+
+/* Mathematical Foundation & Formula Viewer */
+.media-card__formula {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: #c4b5fd;
+  background: rgba(147, 51, 234, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.18);
+  padding: 0.15rem 0.35rem;
+  border-radius: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+
+.math-foundation-box {
+  background: linear-gradient(180deg, rgba(32, 24, 48, 0.45) 0%, var(--surface) 100%);
+  border-color: rgba(168, 120, 240, 0.25);
+}
+
+.math-formula-render {
+  padding: 0.85rem 1rem;
+  background: #090a0f;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  color: #f0edf6;
+  text-align: center;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.math-formula-render .katex-display {
+  margin: 0.35rem 0;
+}
+
+.math-domain-row {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  margin-bottom: 0.75rem;
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.math-domain-label {
+  color: #c4b5fd;
+  font-weight: 500;
+}
+
+.math-invariants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.math-invariant-item {
+  padding: 0.45rem 0.6rem;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.math-invariant-name {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.math-invariant-val {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: #e2e8f0;
 }
 

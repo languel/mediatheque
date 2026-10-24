@@ -2,7 +2,7 @@
   "facets": {
     "subject": {
       "label": "Subject",
-      "kinds": ["video", "animation", "image", "model", "splat", "vector"],
+      "kinds": ["video", "animation", "image", "model", "splat", "vector", "sdf"],
       "tags": {
         "person": "Human figure or portrait",
         "animal": "Animal, bird, horse, or creature",
@@ -42,7 +42,7 @@
     },
     "view": {
       "label": "Camera view",
-      "kinds": ["video", "animation", "image", "model", "splat"],
+      "kinds": ["video", "animation", "image", "model", "splat", "sdf"],
       "tags": {
         "front": "Frontal view facing camera",
         "side": "Lateral / profile view",
@@ -112,7 +112,7 @@
     },
     "format": {
       "label": "Format & geometry",
-      "kinds": ["video", "animation", "image", "audio", "model", "splat", "vector", "text"],
+      "kinds": ["video", "animation", "image", "audio", "model", "splat", "vector", "text", "sdf"],
       "tags": {
         "short": "Duration 10 seconds or under",
         "loop-friendly": "Works cleanly when played in a continuous loop",
@@ -125,7 +125,7 @@
     },
     "era": {
       "label": "Era & source",
-      "kinds": ["video", "animation", "image", "audio", "model", "splat", "vector", "text"],
+      "kinds": ["video", "animation", "image", "audio", "model", "splat", "vector", "text", "sdf"],
       "tags": {
         "early-film": "Early cinema (c. 1888–1915, Edison, Lumière, Marey, Demenÿ)",
         "chronophotography": "Sequential motion-capture plates or strips (Muybridge, Marey)",
@@ -262,6 +262,20 @@
         "code": "Source code or shader study",
         "data": "Structured table or dataset"
       }
+    },
+    "sdf": {
+      "label": "SDF & Math",
+      "kinds": ["sdf"],
+      "tags": {
+        "primitive": "Basic geometric SDF (sphere, box, torus, cylinder)",
+        "fractal": "Iterated function system or fractal SDF (Mandelbulb, Menger)",
+        "minimal-surface": "Minimal surface with zero mean curvature (Gyroid, Enneper, Schwarz)",
+        "parametric": "Explicit mathematical parametric surface r(u,v)",
+        "implicit": "Implicit algebraic or polynomial surface f(x,y,z)=0",
+        "knot": "Torus knot, trefoil knot, or mathematical link",
+        "manifold": "Topological manifold or non-orientable surface (Klein bottle, Mobius)",
+        "raymarching": "Volumetric GLSL raymarching distance field"
+      }
     }
   },
   "demos": {
@@ -289,6 +303,8 @@
     "typography": "Kinetic type, layout, or glyph manipulation",
     "3d-viewer": "Three.js / WebGL / model-viewer 3D inspection and lighting",
     "splat-viewer": "3D Gaussian Splat rendering and camera paths",
+    "sdf-viewer": "Interactive Three.js raymarching SDF and mathematical expression shader",
+    "math-surface": "Procedural mathematical parametric/implicit surface evaluation in Three.js",
     "projection": "Equirectangular / panoramic projection and environment mapping",
     "loop": "Seamless temporal looping, phase, and polyrhythm",
     "granular": "Granular audio or frame-scrubbing synthesis",

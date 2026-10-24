@@ -1,0 +1,113 @@
+{
+  "id": "gyroid-minimal-surface",
+  "title": "Gyroid Minimal Surface (Trigonometric SDF)",
+  "kind": "sdf",
+  "status": "published",
+  "summary": "Triply periodic minimal surface with zero mean curvature discovered by Alan Schoen in 1970.",
+  "description": "The Gyroid is an infinitely connected, non-self-intersecting triply periodic minimal surface (TPMS) discovered by NASA scientist Alan Schoen in 1970. It divides three-dimensional space into two congruent, interwoven labyrinthine networks of channels. Its defining nodal approximation equation is $\\sin(x)\\cos(y) + \\sin(y)\\cos(z) + \\sin(z)\\cos(x) = 0$. Rendered here via real-time raymarched signed distance field (SDF) in Three.js.",
+  "tags": [
+    "abstract",
+    "pattern",
+    "minimal-surface",
+    "implicit",
+    "raymarching",
+    "three-quarter",
+    "seamless",
+    "contemporary"
+  ],
+  "keywords": [
+    "gyroid",
+    "TPMS",
+    "minimal surface",
+    "SDF",
+    "signed distance field",
+    "implicit surface",
+    "Schoen",
+    "trigonometric"
+  ],
+  "collections": [
+    "math",
+    "spatial"
+  ],
+  "demos": [
+    "sdf-viewer",
+    "math-surface",
+    "3d-viewer"
+  ],
+  "creators": [
+    {
+      "name": "Alan Schoen (1970) / Mediath\u00e8que Math Lab",
+      "role": "mathematician"
+    }
+  ],
+  "date": "1970",
+  "source": {
+    "url": "https://languel.github.io/mediatheque/items/gyroid-minimal-surface/media.json",
+    "origin": null,
+    "archive": "Mediath\u00e8que Mathematics & Spatial Collection",
+    "retrieved": "2026-10-24",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "credit": "Gyroid minimal surface nodal approximation (Alan Schoen, 1970; Public Domain).",
+    "notes": ""
+  },
+  "formula": "sin(x)cos(y) + sin(y)cos(z) + sin(z)cos(x) = 0",
+  "math_type": "sdf",
+  "latex": "\\sin(x)\\cos(y) + \\sin(y)\\cos(z) + \\sin(z)\\cos(x) = 0",
+  "domain": "\\mathbb{R}^3 / \\mathbb{Z}^3 \\text{ (Triply periodic in } x, y, z \\text{)}",
+  "invariants": {
+    "mean_curvature": "H = 0",
+    "genus": "3 (per unit cell)",
+    "space_group": "I4_1 32",
+    "discovered_by": "Alan Schoen (1970)"
+  },
+  "files": {
+    "media": {
+      "path": "media.json",
+      "type": "application/json",
+      "bytes": 808,
+      "sha256": "1462b57f1928151b0185a159ad394e49a84e656bf8097fb95bec11596a82744c"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 4904,
+      "sha256": "8975ef88859662485b219d459cd3ae3e1dcd8f200684df0d2aef4e751b3b3d39",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 1380,
+      "sha256": "fb737c9183ca5c61264e6aef4cf31076bd4c8473a154690a0485e355b34b5dc6",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "formulated",
+      "tool": "mathematics",
+      "date": "2026-10-24"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "render_sdf_preview",
+      "date": "2026-10-24"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "render_sdf_preview",
+      "date": "2026-10-24"
+    }
+  ],
+  "added": "2026-10-24",
+  "updated": "2026-10-24"
+}

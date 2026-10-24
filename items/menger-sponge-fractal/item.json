@@ -1,0 +1,110 @@
+{
+  "id": "menger-sponge-fractal",
+  "title": "Menger Sponge 3D Distance Field",
+  "kind": "sdf",
+  "status": "published",
+  "summary": "Universal curve fractal with infinite surface area and zero Lebesgue volume discovered by Karl Menger in 1926.",
+  "description": "The Menger sponge is a 3D generalization of the Cantor set and Sierpi\u0144ski carpet, described by Austrian mathematician Karl Menger in 1926. It is constructed by repeatedly dividing each cube into  \\times 3 \\times 3 = 27$ sub-cubes and removing the central sub-cube and the 6 face-centered sub-cubes. Its Hausdorff dimension is $\\frac{\\ln 20}{\\ln 3} \\approx 2.7268$. Evaluated in Three.js using folded iterative domain distance estimation.",
+  "tags": [
+    "abstract",
+    "fractal",
+    "raymarching",
+    "three-quarter",
+    "archival"
+  ],
+  "keywords": [
+    "Menger sponge",
+    "fractal",
+    "Sierpinski",
+    "universal curve",
+    "SDF",
+    "raymarching",
+    "Hausdorff",
+    "cube"
+  ],
+  "collections": [
+    "math",
+    "spatial"
+  ],
+  "demos": [
+    "sdf-viewer",
+    "math-surface",
+    "3d-viewer"
+  ],
+  "creators": [
+    {
+      "name": "Karl Menger (1926)",
+      "role": "mathematician"
+    }
+  ],
+  "date": "1926",
+  "source": {
+    "url": "https://languel.github.io/mediatheque/items/menger-sponge-fractal/media.json",
+    "origin": null,
+    "archive": "Mediath\u00e8que Mathematics & Spatial Collection",
+    "retrieved": "2026-10-24",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "credit": "Menger Sponge fractal geometry (Karl Menger, 1926; Public Domain).",
+    "notes": ""
+  },
+  "formula": "d_{n+1} = max(d_n, -cross_subtraction(p_n))",
+  "math_type": "sdf",
+  "latex": "\\dim_H = \\frac{\\ln 20}{\\ln 3} \\approx 2.72683,\\quad \\mathcal{H}^s(M) \\in (0, \\infty)",
+  "domain": "\\mathbf{p} \\in [-1, 1]^3",
+  "invariants": {
+    "hausdorff_dimension": "\\approx 2.7268",
+    "topological_dimension": "1 (Universal curve)",
+    "lebesgue_measure": "\\lambda(M) = 0",
+    "discovered_by": "Karl Menger (1926)"
+  },
+  "files": {
+    "media": {
+      "path": "media.json",
+      "type": "application/json",
+      "bytes": 1166,
+      "sha256": "7bb70fcf96dfa8807b2b05cab55820911530c0d606fad00a18a2321d6dda9aa9"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 26428,
+      "sha256": "b7501db93f6ac2239a51620be9d700d7764f9a19bfd835b8e10bb07695ef5738",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 15788,
+      "sha256": "dce188e3e32be1902e3230e6536b3a49d3debff9d76dc4238da3fbac847adf92",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "formulated",
+      "tool": "mathematics",
+      "date": "2026-10-24"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "render_sdf_preview",
+      "date": "2026-10-24"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "render_sdf_preview",
+      "date": "2026-10-24"
+    }
+  ],
+  "added": "2026-10-24",
+  "updated": "2026-10-24"
+}

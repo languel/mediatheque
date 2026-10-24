@@ -28,7 +28,7 @@
     "title": { "type": "string", "minLength": 1 },
     "kind": {
       "type": "string",
-      "enum": ["video", "image", "animation", "audio", "model", "splat", "vector", "text", "dataset"]
+      "enum": ["video", "image", "animation", "audio", "model", "splat", "vector", "text", "dataset", "sdf"]
     },
     "status": {
       "type": "string",

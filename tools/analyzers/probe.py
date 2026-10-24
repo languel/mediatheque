@@ -122,6 +122,18 @@ def analyze(item_dir: Path, item: dict[str, Any], source_file: Path) -> dict[str
         measured_fields["lines"] = len(text_content.splitlines())
         measured_fields["words"] = len(text_content.split())
 
+    elif kind == "sdf":
+        measured_tags.append("three-quarter")
+        if source_file.suffix.lower() == ".json":
+            try:
+                sdf_data = json.loads(source_file.read_text(encoding="utf-8"))
+                if sdf_data.get("formula"):
+                    measured_fields["formula"] = sdf_data["formula"]
+                if sdf_data.get("math_type"):
+                    measured_fields["math_type"] = sdf_data["math_type"]
+            except Exception:
+                pass
+
     return {
         "measured_tags": list(dict.fromkeys(measured_tags)),
         "measured_fields": measured_fields,

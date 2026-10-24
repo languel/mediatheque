@@ -1,0 +1,110 @@
+{
+  "id": "klein-bottle-immersion",
+  "title": "Klein Bottle Figure-8 Immersion",
+  "kind": "sdf",
+  "status": "published",
+  "summary": "Parametric immersion of the classical non-orientable 2D manifold in 3D Euclidean space.",
+  "description": "The Klein bottle is a famous two-dimensional topological manifold with Euler characteristic 0 and no boundary. It is non-orientable, meaning a path can reverse an observer's orientation without crossing an edge. Because it cannot be embedded in $\\mathbb{R}^3$ without self-intersection, this parametric Figure-8 immersion maps it into 3D space with a continuous ribbon of self-crossing geometry.",
+  "tags": [
+    "abstract",
+    "manifold",
+    "parametric",
+    "three-quarter",
+    "seamless",
+    "archival"
+  ],
+  "keywords": [
+    "Klein bottle",
+    "manifold",
+    "topology",
+    "non-orientable",
+    "parametric surface",
+    "Figure-8",
+    "immersion"
+  ],
+  "collections": [
+    "math",
+    "spatial"
+  ],
+  "demos": [
+    "math-surface",
+    "sdf-viewer",
+    "3d-viewer"
+  ],
+  "creators": [
+    {
+      "name": "Felix Klein (1882) / Mediath\u00e8que Math Lab",
+      "role": "mathematician"
+    }
+  ],
+  "date": "1882",
+  "source": {
+    "url": "https://languel.github.io/mediatheque/items/klein-bottle-immersion/media.json",
+    "origin": null,
+    "archive": "Mediath\u00e8que Mathematics & Spatial Collection",
+    "retrieved": "2026-10-24",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "credit": "Klein bottle Figure-8 immersion (Felix Klein, 1882; Public Domain).",
+    "notes": ""
+  },
+  "formula": "r(u, v) = ((r + cos(u/2)sin(v) - sin(u/2)sin(2v))cos(u), ...)",
+  "math_type": "parametric",
+  "latex": "x = \\left(r + \\cos\\frac{u}{2}\\sin v - \\sin\\frac{u}{2}\\sin 2v\\right)\\cos u,\\quad y = \\left(r + \\cos\\frac{u}{2}\\sin v - \\sin\\frac{u}{2}\\sin 2v\\right)\\sin u,\\quad z = \\sin\\frac{u}{2}\\sin v + \\cos\\frac{u}{2}\\sin 2v",
+  "domain": "u \\in [0, 2\\pi), \\quad v \\in [0, 2\\pi)",
+  "invariants": {
+    "euler_characteristic": "\\chi = 0",
+    "orientability": "Non-orientable",
+    "boundary": "\\partial M = \\emptyset",
+    "discovered_by": "Felix Klein (1882)"
+  },
+  "files": {
+    "media": {
+      "path": "media.json",
+      "type": "application/json",
+      "bytes": 1339,
+      "sha256": "1a80c9c087c758ebbafd939f33398bb2c89bb07322696dfc184d4e82b6d2354f"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 18752,
+      "sha256": "010cd06d9a5bff0067ca382e18ee68b352194ffa627a71d5f88dbdb038fa40b9",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 8236,
+      "sha256": "65ad33f3c4ea2052055fce21e8255bcc06132cc35fe5f15df1db4115fbfc6c56",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "formulated",
+      "tool": "mathematics",
+      "date": "2026-10-24"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "render_sdf_preview",
+      "date": "2026-10-24"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "render_sdf_preview",
+      "date": "2026-10-24"
+    }
+  ],
+  "added": "2026-10-24",
+  "updated": "2026-10-24"
+}

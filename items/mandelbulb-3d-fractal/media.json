@@ -1,0 +1,31 @@
+{
+  "id": "mandelbulb-3d-fractal",
+  "math_type": "sdf",
+  "title": "Mandelbulb 3D Fractal",
+  "formula": "v \u21a6 v\u2078 + c (Power-8 spherical coordinate iteration)",
+  "latex": "\\mathbf{v}_{n+1} = \\mathbf{v}_n^8 + \\mathbf{c},\\quad \\mathbf{v} = (r^8, 8\\theta, 8\\phi)",
+  "domain": "\\mathbf{v} \\in \\mathbb{R}^3, \\quad \\|\\mathbf{v}\\| \\le 2.0",
+  "invariants": {
+    "fractal_dimension": "\\approx 2.71",
+    "iteration_power": "n = 8",
+    "discovered_by": "Daniel White & Paul Nylander (2009)"
+  },
+  "glsl": "float map(vec3 p) {\n    vec3 w = p;\n    float m = dot(w, w);\n    float dz = 1.0;\n    for (int i = 0; i < 6; i++) {\n        float r = length(w);\n        if (r > 2.0) break;\n        float th = acos(clamp(w.y / r, -1.0, 1.0));\n        float ph = atan(w.x, w.z);\n        dz = 8.0 * pow(r, 7.0) * dz + 1.0;\n        float r8 = pow(r, 8.0);\n        th *= 8.0;\n        ph *= 8.0;\n        w = r8 * vec3(sin(th) * sin(ph), cos(th), sin(th) * cos(ph)) + p;\n    }\n    return 0.5 * log(length(w)) * length(w) / dz;\n}",
+  "camera": {
+    "position": [
+      0.0,
+      0.2,
+      2.8
+    ],
+    "target": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "fov": 45
+  },
+  "parameters": {
+    "iterations": 6,
+    "power": 8.0
+  }
+}

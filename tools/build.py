@@ -301,6 +301,8 @@ def compact_item_entry(item: dict[str, Any], base_url: str) -> dict[str, Any]:
         "frames": media_info.get("frames"),
         "triangles": item.get("triangles") or media_info.get("triangles"),
         "splats": item.get("splats") or media_info.get("splats"),
+        "formula": item.get("formula"),
+        "math_type": item.get("math_type"),
         "bytes": (orig_info.get("bytes") if orig_rel and item.get("kind") == "animation" else media_info.get("bytes")),
         "url": f"{base_url}/items/{item_id}/{primary_stream_rel}" if primary_stream_rel else f"{base_url}/items/{item_id}/item.json",
         "added": item.get("added"),

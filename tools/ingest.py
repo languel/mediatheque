@@ -80,6 +80,8 @@ KIND_BY_EXT: dict[str, str] = {
     ".md": "text",
     ".txt": "text",
     ".pdf": "text",
+    ".glsl": "sdf",
+    ".wgsl": "sdf",
 }
 
 MIME_BY_EXT: dict[str, str] = {
@@ -105,6 +107,9 @@ MIME_BY_EXT: dict[str, str] = {
     ".txt": "text/plain",
     ".pdf": "application/pdf",
     ".zip": "application/zip",
+    ".json": "application/json",
+    ".glsl": "text/x-glsl",
+    ".wgsl": "text/x-wgsl",
 }
 
 SIDECAR_SUFFIXES = (".source.txt", ".json", ".html", ".htm")
@@ -1084,7 +1089,7 @@ def ingest_file(
         files = derive_image(file_path, item_dir, cfg, provenance)
     elif kind == "audio":
         files = derive_audio(file_path, item_dir, cfg, provenance)
-    elif kind in ("model", "splat"):
+    elif kind in ("model", "splat", "sdf"):
         files = derive_model_or_splat(file_path, item_dir, kind, cfg, provenance)
     elif kind == "vector":
         files = derive_vector(file_path, item_dir, cfg, provenance)

@@ -1,0 +1,108 @@
+{
+  "id": "enneper-minimal-surface",
+  "title": "Enneper Minimal Surface",
+  "kind": "sdf",
+  "status": "published",
+  "summary": "Classical self-intersecting minimal surface with zero mean curvature and cubical parameterization.",
+  "description": "Discovered by German mathematician Alfred Enneper in 1864 in connection with the Weierstrass-Enneper representation of minimal surfaces. The surface has zero mean curvature at all points ( = 0$), implying it locally minimizes surface area for a given boundary. Its parameterization is polynomial of degree 3, with coordinates given by  = u(1 - u^2/3 + v^2)$,  = -v(1 - v^2/3 + u^2)$,  = u^2 - v^2$.",
+  "tags": [
+    "abstract",
+    "minimal-surface",
+    "parametric",
+    "three-quarter",
+    "archival"
+  ],
+  "keywords": [
+    "Enneper surface",
+    "minimal surface",
+    "Weierstrass-Enneper",
+    "zero mean curvature",
+    "differential geometry",
+    "parametric"
+  ],
+  "collections": [
+    "math",
+    "spatial"
+  ],
+  "demos": [
+    "math-surface",
+    "sdf-viewer",
+    "3d-viewer"
+  ],
+  "creators": [
+    {
+      "name": "Alfred Enneper (1864) / Mediath\u00e8que Math Lab",
+      "role": "mathematician"
+    }
+  ],
+  "date": "1864",
+  "source": {
+    "url": "https://languel.github.io/mediatheque/items/enneper-minimal-surface/media.json",
+    "origin": null,
+    "archive": "Mediath\u00e8que Mathematics & Spatial Collection",
+    "retrieved": "2026-10-24",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "credit": "Enneper minimal surface parametric representation (Alfred Enneper, 1864; Public Domain).",
+    "notes": ""
+  },
+  "formula": "x = u - u\u00b3/3 + uv\u00b2, y = -v + v\u00b3/3 - vu\u00b2, z = u\u00b2 - v\u00b2",
+  "math_type": "parametric",
+  "latex": "x = u - \\frac{u^3}{3} + uv^2,\\quad y = -v + \\frac{v^3}{3} - vu^2,\\quad z = u^2 - v^2",
+  "domain": "u \\in [-1.6, 1.6], \\quad v \\in [-1.6, 1.6]",
+  "invariants": {
+    "mean_curvature": "H = 0",
+    "total_gaussian_curvature": "-4\\pi",
+    "degree": "3",
+    "discovered_by": "Alfred Enneper (1864)"
+  },
+  "files": {
+    "media": {
+      "path": "media.json",
+      "type": "application/json",
+      "bytes": 941,
+      "sha256": "1d2f757bcff3035a8cd3be998a97d75df04e0c5fda6ceeb7ebacf1440923d10b"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 10840,
+      "sha256": "0edbae4d88d7af4af880df6f97d0e0d2064c699fb1ea12dec4f0e94f62c6cb83",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 5420,
+      "sha256": "97b8040589101422e5fcd30a1dfff73a6ecc7229dd1aaf9942bfe0997099212b",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "formulated",
+      "tool": "mathematics",
+      "date": "2026-10-24"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "render_sdf_preview",
+      "date": "2026-10-24"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "render_sdf_preview",
+      "date": "2026-10-24"
+    }
+  ],
+  "added": "2026-10-24",
+  "updated": "2026-10-24"
+}

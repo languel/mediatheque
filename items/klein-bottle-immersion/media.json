@@ -1,0 +1,31 @@
+{
+  "id": "klein-bottle-immersion",
+  "math_type": "parametric",
+  "title": "Klein Bottle Figure-8 Immersion",
+  "formula": "r(u, v) = ((r + cos(u/2)sin(v) - sin(u/2)sin(2v))cos(u), (r + cos(u/2)sin(v) - sin(u/2)sin(2v))sin(u), sin(u/2)sin(v) + cos(u/2)sin(2v))",
+  "latex": "x = \\left(r + \\cos\\frac{u}{2}\\sin v - \\sin\\frac{u}{2}\\sin 2v\\right)\\cos u,\\quad y = \\left(r + \\cos\\frac{u}{2}\\sin v - \\sin\\frac{u}{2}\\sin 2v\\right)\\sin u,\\quad z = \\sin\\frac{u}{2}\\sin v + \\cos\\frac{u}{2}\\sin 2v",
+  "domain": "u \\in [0, 2\\pi), \\quad v \\in [0, 2\\pi)",
+  "invariants": {
+    "euler_characteristic": "\\chi = 0",
+    "orientability": "Non-orientable",
+    "boundary": "\\partial M = \\emptyset",
+    "discovered_by": "Felix Klein (1882)"
+  },
+  "parametric_fn": "(u, v, target) => { const r = 1.8; const cu = Math.cos(u), su = Math.sin(u); const cu2 = Math.cos(u * 0.5), su2 = Math.sin(u * 0.5); const cv = Math.cos(v), sv = Math.sin(v); const s2v = Math.sin(2.0 * v); const x = (r + cu2 * sv - su2 * s2v) * cu; const y = (r + cu2 * sv - su2 * s2v) * su; const z = su2 * sv + cu2 * s2v; target.set(x, z, -y).multiplyScalar(0.7); }",
+  "camera": {
+    "position": [
+      0.0,
+      1.2,
+      4.0
+    ],
+    "target": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "fov": 45
+  },
+  "parameters": {
+    "radius": 1.8
+  }
+}

@@ -280,6 +280,7 @@
   let activeCarouselId = null;
   let activeCardId = null;
   let activeSparkInstance = null;
+  let activeSdfInstance = null;
 
   function updateHoverBar(id) {
     if (!els.zenHoverBar || !els.zenHoverTitle) return;
@@ -351,6 +352,12 @@
       } catch (e) {}
       activeSparkInstance = null;
     }
+    if (activeSdfInstance) {
+      try {
+        activeSdfInstance.dispose();
+      } catch (e) {}
+      activeSdfInstance = null;
+    }
     els.zenPreviewModal.classList.remove("is-open");
     setTimeout(() => {
       els.zenPreviewModal.hidden = true;
@@ -365,6 +372,12 @@
         activeSparkInstance.dispose();
       } catch (e) {}
       activeSparkInstance = null;
+    }
+    if (activeSdfInstance) {
+      try {
+        activeSdfInstance.dispose();
+      } catch (e) {}
+      activeSdfInstance = null;
     }
     els.zenMediaStage.classList.toggle("is-fit", state.previewFullFit);
     const mediaUrl = resolveAssetUrl(entry.proxy || entry.media);
@@ -405,6 +418,12 @@
       `;
       const container = document.getElementById("zen-splat-container");
       initSparkSplatViewer(container, origUrl || mediaUrl, null);
+    } else if (entry.kind === "sdf") {
+      els.zenMediaStage.innerHTML = `
+        <div id="zen-sdf-container" style="width:100vw; height:100vh; position:relative; overflow:hidden; background:#08090c;"></div>
+      `;
+      const container = document.getElementById("zen-sdf-container");
+      initThreeSdfViewer(container, entry, null, { fullWindow: true });
     } else {
       els.zenMediaStage.innerHTML = `
         <div style="display:flex; flex-direction:column; align-items:center; gap:1rem; color:var(--copy);">
@@ -786,7 +805,8 @@
             <div class="media-card__badges">
               <div class="badge-group">
                 ${isClip ? `<span class="card-badge card-badge--clip">Clip ${String(entry.n).padStart(2, "0")}</span>` : ""}
-                <span class="card-badge">${escapeHtml(entry.kind)}</span>
+                ${entry.kind === "sdf" ? `<span class="card-badge card-badge--sdf">SDF / Math</span>` : `<span class="card-badge">${escapeHtml(entry.kind)}</span>`}
+                ${entry.math_type ? `<span class="card-badge">${escapeHtml(entry.math_type)}</span>` : ""}
                 ${entry.aspect_ratio ? `<span class="card-badge">${escapeHtml(entry.aspect_ratio)}</span>` : ""}
                 ${dur ? `<span class="card-badge">${escapeHtml(dur)}</span>` : ""}
                 ${
@@ -816,6 +836,7 @@
               <span class="media-card__title" role="link" tabindex="0" data-href="#/${escapeHtml(entry.id)}">${escapeHtml(entry.title)}</span>
               ${entry.date ? `<span class="media-card__date">${escapeHtml(entry.date)}</span>` : ""}
             </div>
+            ${entry.formula ? `<div class="media-card__formula" title="${escapeHtml(entry.formula)}">${escapeHtml(entry.formula)}</div>` : ""}
             <p class="media-card__summary">${escapeHtml(entry.summary)}</p>
             <div class="media-card__footer">
               <div class="media-card__tags">
@@ -1025,6 +1046,24 @@
     const res = await fetch(resolveAssetUrl(`items/${itemId}/item.json`));
     if (!res.ok) return null;
     const data = await res.json();
+    if (data && data.kind === "sdf") {
+      const mathRel = (data.files && data.files.media && data.files.media.path) || "media.json";
+      try {
+        const mathResp = await fetch(resolveAssetUrl(`items/${itemId}/${mathRel}`));
+        if (mathResp.ok) {
+          const mathJson = await mathResp.json();
+          if (mathJson) {
+            data.domain = mathJson.domain || data.domain;
+            data.invariants = mathJson.invariants || data.invariants;
+            data.latex = mathJson.latex || data.latex;
+            data.glsl = mathJson.glsl || data.glsl;
+            data.parametric_fn = mathJson.parametric_fn || data.parametric_fn;
+            data.camera = mathJson.camera || data.camera;
+            data.parameters = mathJson.parameters || data.parameters;
+          }
+        }
+      } catch (_e) {}
+    }
     state.itemCache.set(itemId, data);
     return data;
   }
@@ -1161,6 +1200,8 @@
       htmlSnippet += `<audio src="${streamUrl}" crossorigin="anonymous" controls></audio>`;
     } else if (item.kind === "model") {
       htmlSnippet += `<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"><\/script>\n<model-viewer src="${streamUrl}" camera-controls auto-rotate></model-viewer>`;
+    } else if (item.kind === "sdf") {
+      htmlSnippet += `<div id="math-stage" style="width: 100%; height: 500px;"></div>\n<!-- Mathematical surface: ${escapeHtml(item.formula || title)} -->\n<script type="module">\n  // Load Three.js interactive math viewer for ${escapeHtml(item.id)}\n  import * as THREE from "three";\n  import { OrbitControls } from "three/addons/controls/OrbitControls.js";\n<\/script>`;
     } else {
       htmlSnippet += `<a href="${streamUrl}">${title}</a>`;
     }
@@ -1181,6 +1222,8 @@
       p5Snippet += `let img;\nfunction preload() {\n  img = loadImage("${streamUrl}");\n}\nfunction setup() {\n  createCanvas(img.width, img.height);\n  image(img, 0, 0);\n}`;
     } else if (item.kind === "model") {
       p5Snippet += `// Use Three.js GLTFLoader or model-viewer for .glb files:\nconst MODEL_URL = "${streamUrl}";`;
+    } else if (item.kind === "sdf") {
+      p5Snippet += `// Mathematical surface: ${item.formula || title}\nfunction setup() {\n  createCanvas(600, 600, WEBGL);\n}\nfunction draw() {\n  background(20);\n  orbitControl();\n}`;
     } else {
       p5Snippet += `const MEDIA_URL = "${streamUrl}";`;
     }
@@ -1190,6 +1233,8 @@
       threeSnippet += `import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";\n\nconst loader = new GLTFLoader();\nloader.load("${streamUrl}", (gltf) => {\n  scene.add(gltf.scene);\n});`;
     } else if (item.kind === "splat") {
       threeSnippet += `import { SplatMesh } from "@sparkjsdev/spark";\n\nconst splat = new SplatMesh({ url: "${streamUrl}" });\nscene.add(splat);`;
+    } else if (item.kind === "sdf") {
+      threeSnippet += `import * as THREE from "three";\nimport { OrbitControls } from "three/addons/controls/OrbitControls.js";\n\n// Three.js interactive math viewer (${item.formula || title})\n// Definition: ${streamUrl}\nconst resp = await fetch("${streamUrl}");\nconst mathData = await resp.json();`;
     } else if (item.kind === "video" || item.kind === "animation") {
       const aspectVal = ar ? ar.ratio : 1.333;
       const planeW = aspectVal >= 1.0 ? 4.0 : +(4.0 * aspectVal).toFixed(3);
@@ -1305,6 +1350,18 @@
 
   async function renderDetailView(rawId) {
     if (!els.detailRoot) return;
+    if (activeSparkInstance) {
+      try {
+        activeSparkInstance.dispose();
+      } catch (e) {}
+      activeSparkInstance = null;
+    }
+    if (activeSdfInstance) {
+      try {
+        activeSdfInstance.dispose();
+      } catch (e) {}
+      activeSdfInstance = null;
+    }
     const parts = rawId.split("/");
     const parentId = parts[0];
     const clipNum = parts[1] ? parseInt(parts[1], 10) : null;
@@ -1316,6 +1373,19 @@
         rawId
       )}</code> not found. <a href="#/" class="btn-small">← Back to Gallery</a></p>`;
       return;
+    }
+
+    if (item.kind === "sdf") {
+      const mathRel = (item.files && item.files.media && item.files.media.path) || "media.json";
+      try {
+        const mathResp = await fetch(resolveAssetUrl(`items/${item.id}/${mathRel}`));
+        const mathJson = await mathResp.json();
+        if (mathJson) {
+          item.domain = mathJson.domain || item.domain;
+          item.invariants = mathJson.invariants || item.invariants;
+          item.latex = mathJson.latex || item.latex;
+        }
+      } catch (_e) {}
     }
 
     const catEntry = state.catalog.find((e) => e.id === parentId && e.type === "item") || {};
@@ -1681,6 +1751,25 @@
           }</span>
         </div>
       `;
+    } else if (item.kind === "sdf") {
+      viewerHtml = `
+        <div class="viewer-stage" style="flex-direction: column;">
+          <div id="sdf-viewer-container" style="width:100%; height:520px; position:relative; overflow:hidden; background:#08090c; display:flex; align-items:center; justify-content:center;">
+            <div id="sdf-loading" style="font-family:var(--mono); font-size:0.82rem; color:var(--muted);">Initializing Three.js mathematical surface…</div>
+          </div>
+        </div>
+      `;
+      controlsHtml = `
+        <div class="viewer-controls">
+          <div class="viewer-controls__group">
+            <button type="button" class="btn-small btn-small--primary" id="btn-sdf-shading" data-tooltip="Cycle shading between Studio PBR, Surface Normals, and Wireframe">Shading: Studio PBR</button>
+            <button type="button" class="btn-small" id="btn-sdf-reset-camera" data-tooltip="Reset camera position and orbit target">Reset View</button>
+            <button type="button" class="btn-small" id="btn-sdf-autorotate" data-tooltip="Toggle turntable auto-rotation">Auto-Rotate: Off</button>
+            <button type="button" class="btn-small" id="btn-open-fullwindow" data-entry-id="${escapeHtml(item.id)}" data-tooltip="Open full-window preview with carousel (F)">⛶ Full Window</button>
+          </div>
+          <span id="sdf-status">${item.math_type === "sdf" ? "Three.js Raymarched SDF" : "Three.js Parametric Surface"}</span>
+        </div>
+      `;
     } else if (item.kind === "vector") {
       const svgSrc = resolveAssetUrl(mediaRel);
       viewerHtml = `
@@ -1827,6 +1916,41 @@
           ${item.description ? `<div class="detail-description">${escapeHtml(item.description)}</div>` : ""}
           ${lineageHtml}
 
+          ${
+            item.kind === "sdf"
+              ? `
+          <div class="panel-box math-foundation-box">
+            <div class="panel-box__title" style="display:flex; justify-content:space-between; align-items:center;">
+              <span>Mathematical Formulation</span>
+              <span class="card-badge card-badge--sdf">${escapeHtml((item.math_type || "sdf").toUpperCase())}</span>
+            </div>
+            <div id="math-formula-render" class="math-formula-render">
+              <code>${escapeHtml(item.formula || "")}</code>
+            </div>
+            ${item.domain ? `<div class="math-domain-row"><span class="math-domain-label">Domain:</span> <span id="math-domain-render">${escapeHtml(item.domain)}</span></div>` : ""}
+            ${
+              item.invariants
+                ? `
+              <div class="math-invariants-grid">
+                ${Object.entries(item.invariants)
+                  .map(
+                    ([k, v]) => `
+                  <div class="math-invariant-item">
+                    <span class="math-invariant-name">${escapeHtml(k.replace(/_/g, " "))}</span>
+                    <span class="math-invariant-val">${escapeHtml(v)}</span>
+                  </div>
+                `
+                  )
+                  .join("")}
+              </div>
+            `
+                : ""
+            }
+          </div>
+          `
+              : ""
+          }
+
           <!-- Stream & Proxy URLs Box -->
           <div class="panel-box">
             <div class="panel-box__title" style="display:flex; justify-content:space-between; align-items:center;">
@@ -1899,15 +2023,19 @@
           <div class="panel-box">
             <div class="panel-box__title">Use This in Class (CORS-Ready Snippets with Attribution)</div>
             <div class="snippet-tabs">
-              <button type="button" class="chip chip--small is-active" data-snippet-tab="p5">p5.js</button>
+              <button type="button" class="chip chip--small ${item.kind === "sdf" || item.kind === "model" || item.kind === "splat" ? "is-active" : ""}" data-snippet-tab="three">Three.js</button>
+              <button type="button" class="chip chip--small ${item.kind !== "sdf" && item.kind !== "model" && item.kind !== "splat" ? "is-active" : ""}" data-snippet-tab="p5">p5.js</button>
               <button type="button" class="chip chip--small" data-snippet-tab="html">HTML</button>
-              <button type="button" class="chip chip--small" data-snippet-tab="three">Three.js</button>
               <button type="button" class="chip chip--small" data-snippet-tab="genereti">ꘇ 2D stream</button>
               <button type="button" class="chip chip--small" data-snippet-tab="credits">Credits</button>
               <button type="button" class="btn-small" id="btn-download-comfy-json" hidden style="margin-left:auto;">Download .json</button>
               <button type="button" class="btn-small" id="btn-copy-snippet" style="margin-left:auto;">Copy Snippet</button>
             </div>
-            <pre class="snippet-pre" id="snippet-code">${escapeHtml(snippets.p5)}</pre>
+            <pre class="snippet-pre" id="snippet-code">${escapeHtml(
+              item.kind === "sdf" || item.kind === "model" || item.kind === "splat"
+                ? snippets.three
+                : snippets.p5
+            )}</pre>
           </div>
 
           <!-- Metadata Facts (Creators & Tags) -->
@@ -2115,7 +2243,8 @@
     }
 
     // Snippet tabs
-    let currentSnippetKey = "p5";
+    let currentSnippetKey =
+      item.kind === "sdf" || item.kind === "model" || item.kind === "splat" ? "three" : "p5";
     const snippetPre = document.getElementById("snippet-code");
     const btnCopySnippet = document.getElementById("btn-copy-snippet");
     const btnDownloadComfy = document.getElementById("btn-download-comfy-json");
@@ -2809,6 +2938,45 @@
       initSparkSplatViewer(splatViewerContainer, splatUrl, document.getElementById("splat-status"));
     }
 
+    // Interactive Three.js SDF / Mathematical Surface viewer
+    const sdfViewerContainer = document.getElementById("sdf-viewer-container");
+    if (sdfViewerContainer) {
+      initThreeSdfViewer(sdfViewerContainer, item, document.getElementById("sdf-status"), {
+        shadingBtn: document.getElementById("btn-sdf-shading"),
+        resetBtn: document.getElementById("btn-sdf-reset-camera"),
+        autorotateBtn: document.getElementById("btn-sdf-autorotate"),
+      });
+    }
+
+    // KaTeX formula & domain rendering
+    const formulaRenderEl = document.getElementById("math-formula-render");
+    if (formulaRenderEl) {
+      const renderMath = () => {
+        if (window.katex) {
+          try {
+            window.katex.render(item.latex || item.formula || "", formulaRenderEl, {
+              displayMode: true,
+              throwOnError: false,
+            });
+          } catch (e) {
+            formulaRenderEl.innerHTML = `<code>${escapeHtml(item.formula || "")}</code>`;
+          }
+          const domainEl = document.getElementById("math-domain-render");
+          if (domainEl && item.domain) {
+            try {
+              window.katex.render(item.domain, domainEl, {
+                displayMode: false,
+                throwOnError: false,
+              });
+            } catch (e) {}
+          }
+        } else {
+          setTimeout(renderMath, 120);
+        }
+      };
+      renderMath();
+    }
+
     // Jump to tag / demo filter from detail view
     els.detailRoot.querySelectorAll("[data-jump-tag]").forEach((a) => {
       a.addEventListener("click", () => {
@@ -2942,6 +3110,416 @@
       const loadingEl = container.querySelector("#splat-loading");
       if (loadingEl) {
         loadingEl.textContent = "Spark.js viewer unavailable: " + (err.message || "WebGL error");
+      }
+    }
+  }
+
+  // Interactive Three.js Mathematical & SDF Viewer (Raymarching + Parametric Surfaces)
+  async function initThreeSdfViewer(container, itemOrMedia, statusEl, options = {}) {
+    if (!container) return;
+    if (activeSdfInstance) {
+      try {
+        activeSdfInstance.dispose();
+      } catch (e) {}
+      activeSdfInstance = null;
+    }
+
+    try {
+      let data = itemOrMedia;
+      if (typeof data === "string") {
+        const resp = await fetch(data);
+        data = await resp.json();
+      } else if (!data.glsl && !data.parametric_fn) {
+        const mediaPath = (data.files && data.files.media && data.files.media.path) || "media.json";
+        const mediaUrl = resolveAssetUrl(`items/${data.id}/${mediaPath}`);
+        try {
+          const resp = await fetch(mediaUrl);
+          const json = await resp.json();
+          data = { ...data, ...json };
+        } catch (err) {
+          console.warn("Could not fetch math media.json:", err);
+        }
+      }
+
+      const THREE = await import("three");
+      const { OrbitControls } = await import("three/addons/controls/OrbitControls.js");
+
+      const width = container.clientWidth || 800;
+      const height = container.clientHeight || 520;
+
+      const scene = new THREE.Scene();
+      const fov = (data.camera && data.camera.fov) || 45;
+      const camera = new THREE.PerspectiveCamera(fov, width / height, 0.05, 100);
+
+      const camPos = (data.camera && data.camera.position) || [0, 0.5, 3.2];
+      camera.position.set(camPos[0], camPos[1], camPos[2]);
+      const camTarget = (data.camera && data.camera.target) || [0, 0, 0];
+      const targetVec = new THREE.Vector3(camTarget[0], camTarget[1], camTarget[2]);
+      camera.lookAt(targetVec);
+
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        powerPreference: "high-performance",
+      });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      container.appendChild(renderer.domElement);
+
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.08;
+      controls.rotateSpeed = 0.8;
+      controls.zoomSpeed = 1.0;
+      controls.panSpeed = 0.8;
+      controls.target.copy(targetVec);
+      controls.autoRotate = false;
+      controls.autoRotateSpeed = 1.2;
+
+      let disposed = false;
+      let animId = null;
+      let shadingMode = 0;
+      let parametricMesh = null;
+      let studioMat = null;
+      let normalMat = null;
+      let wireMat = null;
+      let uniforms = null;
+
+      const mathType = data.math_type || (data.glsl ? "sdf" : "parametric");
+
+      if (mathType === "sdf" && data.glsl) {
+        // Mode 1: Volumetric Signed Distance Function Raymarching
+        const quadGeo = new THREE.BufferGeometry();
+        const positions = new Float32Array([
+          -1, -1, 0,
+           1, -1, 0,
+          -1,  1, 0,
+          -1,  1, 0,
+           1, -1, 0,
+           1,  1, 0,
+        ]);
+        quadGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+
+        const fsCode = `
+          precision highp float;
+          uniform vec3 uCameraPos;
+          uniform mat4 uCameraWorld;
+          uniform mat4 uInvProj;
+          uniform vec2 uResolution;
+          uniform float uTime;
+          uniform int uShadingMode;
+
+          ${data.glsl}
+
+          vec3 calcNormal(vec3 p) {
+            float eps = 0.0012;
+            vec2 e = vec2(eps, 0.0);
+            return normalize(vec3(
+              map(p + e.xyy) - map(p - e.xyy),
+              map(p + e.yxy) - map(p - e.yxy),
+              map(p + e.yyx) - map(p - e.yyx)
+            ));
+          }
+
+          float calcAO(vec3 p, vec3 n) {
+            float occ = 0.0;
+            float sca = 1.0;
+            for (int i = 0; i < 4; i++) {
+              float h = 0.02 + 0.12 * float(i) / 3.0;
+              float d = map(p + h * n);
+              occ += (h - d) * sca;
+              sca *= 0.82;
+            }
+            return clamp(1.0 - 2.4 * occ, 0.0, 1.0);
+          }
+
+          void main() {
+            vec2 uv = gl_FragCoord.xy / uResolution;
+            vec2 ndc = uv * 2.0 - 1.0;
+
+            vec4 viewRay = uInvProj * vec4(ndc, -1.0, 1.0);
+            viewRay /= viewRay.w;
+            vec3 rd = normalize((uCameraWorld * vec4(normalize(viewRay.xyz), 0.0)).xyz);
+            vec3 ro = uCameraPos;
+
+            float t = 0.05;
+            float tmax = 24.0;
+            bool hit = false;
+            vec3 p;
+            for (int i = 0; i < 140; i++) {
+              p = ro + rd * t;
+              float d = map(p);
+              if (abs(d) < 0.0009) {
+                hit = true;
+                break;
+              }
+              if (t > tmax) break;
+              t += d * 0.72;
+            }
+
+            if (hit) {
+              vec3 n = calcNormal(p);
+              float ao = calcAO(p, n);
+              if (uShadingMode == 1) {
+                gl_FragColor = vec4(n * 0.5 + 0.5, 1.0);
+              } else if (uShadingMode == 2) {
+                float depthVal = exp(-0.16 * t);
+                gl_FragColor = vec4(vec3(ao * depthVal), 1.0);
+              } else {
+                vec3 light1 = normalize(vec3(1.2, 1.8, 1.5));
+                vec3 light2 = normalize(vec3(-1.0, -0.6, -1.0));
+                float diff1 = max(0.0, dot(n, light1));
+                float diff2 = max(0.0, dot(n, light2)) * 0.35;
+                vec3 viewDir = normalize(ro - p);
+                vec3 half1 = normalize(light1 + viewDir);
+                float spec = pow(max(0.0, dot(n, half1)), 28.0) * 0.42;
+                float fresnel = pow(1.0 - max(0.0, dot(n, viewDir)), 3.0) * 0.32;
+                vec3 baseCol = vec3(0.92, 0.94, 0.98);
+                vec3 col = baseCol * (diff1 * 0.88 + diff2 + 0.16) * ao + vec3(spec + fresnel);
+                gl_FragColor = vec4(col, 1.0);
+              }
+            } else {
+              vec3 bg = mix(vec3(0.065, 0.075, 0.095), vec3(0.02, 0.024, 0.032), length(ndc) * 0.55);
+              gl_FragColor = vec4(bg, 1.0);
+            }
+          }
+        `;
+
+        uniforms = {
+          uCameraPos: { value: camera.position.clone() },
+          uCameraWorld: { value: camera.matrixWorld.clone() },
+          uInvProj: { value: camera.projectionMatrixInverse.clone() },
+          uResolution: { value: new THREE.Vector2(width, height) },
+          uTime: { value: 0 },
+          uShadingMode: { value: 0 },
+        };
+
+        const quadMat = new THREE.ShaderMaterial({
+          vertexShader: `
+            void main() {
+              gl_Position = vec4(position.xy, 0.0, 1.0);
+            }
+          `,
+          fragmentShader: fsCode,
+          uniforms: uniforms,
+          depthWrite: false,
+          depthTest: false,
+        });
+
+        const quad = new THREE.Mesh(quadGeo, quadMat);
+        scene.add(quad);
+      } else {
+        // Mode 2: Procedural Parametric Surface
+        const ambLight = new THREE.AmbientLight(0xffffff, 0.7);
+        scene.add(ambLight);
+
+        const dirLight1 = new THREE.DirectionalLight(0xffffff, 1.6);
+        dirLight1.position.set(5, 10, 7);
+        scene.add(dirLight1);
+
+        const dirLight2 = new THREE.DirectionalLight(0x70a5fa, 0.8);
+        dirLight2.position.set(-6, -4, -6);
+        scene.add(dirLight2);
+
+        const dirLight3 = new THREE.DirectionalLight(0xf472b6, 0.4);
+        dirLight3.position.set(0, -6, 4);
+        scene.add(dirLight3);
+
+        let evalFn = null;
+        if (data.parametric_fn) {
+          try {
+            evalFn = eval("(" + data.parametric_fn + ")");
+          } catch (e) {
+            console.warn("Parametric eval error:", e);
+          }
+        }
+        if (!evalFn) {
+          evalFn = (u, v, target) => {
+            target.set(Math.cos(u) * Math.sin(v), Math.sin(u) * Math.sin(v), Math.cos(v));
+          };
+        }
+
+        let uMin = 0, uMax = Math.PI * 2;
+        let vMin = 0, vMax = Math.PI * 2;
+        if (data.id === "enneper-minimal-surface") {
+          const uBound = (data.parameters && data.parameters.u_bound) || 1.6;
+          const vBound = (data.parameters && data.parameters.v_bound) || 1.6;
+          uMin = -uBound;
+          uMax = uBound;
+          vMin = -vBound;
+          vMax = vBound;
+        }
+
+        const Nu = 120;
+        const Nv = 120;
+        const vertexCount = (Nu + 1) * (Nv + 1);
+        const positions = new Float32Array(vertexCount * 3);
+        const uvs = new Float32Array(vertexCount * 2);
+        const indices = [];
+
+        const tempVec = new THREE.Vector3();
+        let ptr = 0;
+        let uvPtr = 0;
+
+        for (let i = 0; i <= Nu; i++) {
+          const uFrac = i / Nu;
+          const u = uMin + uFrac * (uMax - uMin);
+          for (let j = 0; j <= Nv; j++) {
+            const vFrac = j / Nv;
+            const v = vMin + vFrac * (vMax - vMin);
+            evalFn(u, v, tempVec);
+            positions[ptr++] = tempVec.x;
+            positions[ptr++] = tempVec.y;
+            positions[ptr++] = tempVec.z;
+            uvs[uvPtr++] = uFrac;
+            uvs[uvPtr++] = vFrac;
+          }
+        }
+
+        for (let i = 0; i < Nu; i++) {
+          for (let j = 0; j < Nv; j++) {
+            const a = i * (Nv + 1) + j;
+            const b = (i + 1) * (Nv + 1) + j;
+            const c = (i + 1) * (Nv + 1) + (j + 1);
+            const d = i * (Nv + 1) + (j + 1);
+            indices.push(a, b, d);
+            indices.push(b, c, d);
+          }
+        }
+
+        const paramGeo = new THREE.BufferGeometry();
+        paramGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+        paramGeo.setAttribute("uv", new THREE.BufferAttribute(uvs, 2));
+        paramGeo.setIndex(indices);
+        paramGeo.computeVertexNormals();
+
+        studioMat = new THREE.MeshPhysicalMaterial({
+          color: 0xeef2f7,
+          roughness: 0.28,
+          metalness: 0.08,
+          clearcoat: 0.3,
+          clearcoatRoughness: 0.15,
+          side: THREE.DoubleSide,
+        });
+
+        normalMat = new THREE.MeshNormalMaterial({
+          side: THREE.DoubleSide,
+        });
+
+        wireMat = new THREE.MeshStandardMaterial({
+          color: 0x93c5fd,
+          wireframe: true,
+          side: THREE.DoubleSide,
+        });
+
+        parametricMesh = new THREE.Mesh(paramGeo, studioMat);
+        scene.add(parametricMesh);
+      }
+
+      const ro = new ResizeObserver((entries) => {
+        if (disposed) return;
+        for (const entry of entries) {
+          const cr = entry.contentRect;
+          if (cr.width > 0 && cr.height > 0) {
+            camera.aspect = cr.width / cr.height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(cr.width, cr.height);
+            if (uniforms) {
+              uniforms.uResolution.value.set(cr.width, cr.height);
+            }
+          }
+        }
+      });
+      ro.observe(container);
+
+      const startTime = performance.now();
+      const animate = () => {
+        if (disposed) return;
+        animId = requestAnimationFrame(animate);
+        controls.update();
+
+        if (mathType === "sdf" && uniforms) {
+          camera.updateMatrixWorld();
+          uniforms.uCameraPos.value.copy(camera.position);
+          uniforms.uCameraWorld.value.copy(camera.matrixWorld);
+          uniforms.uInvProj.value.copy(camera.projectionMatrixInverse);
+          uniforms.uTime.value = (performance.now() - startTime) * 0.001;
+        }
+
+        renderer.render(scene, camera);
+      };
+      animate();
+
+      const loadingEl = container.querySelector("#sdf-loading");
+      if (loadingEl) loadingEl.remove();
+
+      const shadingLabels = ["Shading: Studio PBR", "Shading: Surface Normals", "Shading: Wire/Curvature"];
+      const updateShadingMode = (newMode) => {
+        shadingMode = newMode % 3;
+        if (options.shadingBtn) {
+          options.shadingBtn.textContent = shadingLabels[shadingMode];
+        }
+        if (mathType === "sdf" && uniforms) {
+          uniforms.uShadingMode.value = shadingMode;
+        } else if (parametricMesh) {
+          if (shadingMode === 0) parametricMesh.material = studioMat;
+          else if (shadingMode === 1) parametricMesh.material = normalMat;
+          else if (shadingMode === 2) parametricMesh.material = wireMat;
+        }
+      };
+
+      if (options.shadingBtn) {
+        options.shadingBtn.addEventListener("click", () => {
+          updateShadingMode(shadingMode + 1);
+        });
+      }
+
+      if (options.resetBtn) {
+        options.resetBtn.addEventListener("click", () => {
+          camera.position.set(camPos[0], camPos[1], camPos[2]);
+          controls.target.copy(targetVec);
+          camera.lookAt(targetVec);
+          controls.update();
+        });
+      }
+
+      if (options.autorotateBtn) {
+        options.autorotateBtn.addEventListener("click", () => {
+          controls.autoRotate = !controls.autoRotate;
+          options.autorotateBtn.textContent = `Auto-Rotate: ${controls.autoRotate ? "On" : "Off"}`;
+          options.autorotateBtn.classList.toggle("btn-small--primary", controls.autoRotate);
+        });
+      }
+
+      if (statusEl) {
+        statusEl.textContent = `${mathType === "sdf" ? "Real-time Raymarched SDF" : "Parametric Manifold (28.8k tris)"} · Three.js WebGL`;
+      }
+
+      const instance = {
+        dispose() {
+          if (disposed) return;
+          disposed = true;
+          if (animId) cancelAnimationFrame(animId);
+          ro.disconnect();
+          try {
+            controls.dispose();
+          } catch (e) {}
+          try {
+            renderer.dispose();
+          } catch (e) {}
+          if (renderer.domElement && renderer.domElement.parentNode) {
+            renderer.domElement.parentNode.removeChild(renderer.domElement);
+          }
+        },
+      };
+      activeSdfInstance = instance;
+      return instance;
+    } catch (err) {
+      console.warn("Three.js SDF viewer error:", err);
+      if (statusEl) statusEl.textContent = "Three.js error: " + (err.message || "WebGL error");
+      const loadingEl = container.querySelector("#sdf-loading");
+      if (loadingEl) {
+        loadingEl.textContent = "Three.js viewer unavailable: " + (err.message || "WebGL error");
       }
     }
   }
@@ -3122,6 +3700,12 @@
         activeSparkInstance.dispose();
       } catch (e) {}
       activeSparkInstance = null;
+    }
+    if (activeSdfInstance && which !== "detail") {
+      try {
+        activeSdfInstance.dispose();
+      } catch (e) {}
+      activeSdfInstance = null;
     }
     if (els.viewGallery) els.viewGallery.hidden = which !== "gallery";
     if (els.viewDetail) els.viewDetail.hidden = which !== "detail";

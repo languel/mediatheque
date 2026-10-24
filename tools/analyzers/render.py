@@ -1,8 +1,9 @@
-"""Render analyzer: generates preview thumbnails and posters for 3D models (GLB), Gaussian splats (SPZ/SPLAT/PLY), SVG, and text."""
+"""Render analyzer: generates preview thumbnails and posters for 3D models (GLB), Gaussian splats (SPZ/SPLAT/PLY), SVG, text, and SDF/math expressions."""
 
 from __future__ import annotations
 
 import gzip
+import json
 import re
 import struct
 import subprocess
@@ -14,9 +15,9 @@ from typing import Any
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
-KINDS = ["model", "splat", "vector", "text"]
-VERSION = "1.0"
-MODEL = "software-zbuffer+splat+svg"
+KINDS = ["model", "splat", "vector", "text", "sdf"]
+VERSION = "1.1"
+MODEL = "software-zbuffer+splat+svg+sdf"
 
 
 def analyze(item_dir: Path, item: dict[str, Any], source_file: Path) -> dict[str, Any]:
@@ -32,6 +33,8 @@ def analyze(item_dir: Path, item: dict[str, Any], source_file: Path) -> dict[str
         render_svg_preview(source_file, poster_path, thumb_path)
     elif kind == "text":
         render_text_preview(source_file, poster_path, thumb_path)
+    elif kind == "sdf":
+        render_sdf_preview(source_file, poster_path, thumb_path)
 
     return {
         "measured_tags": [],
@@ -310,6 +313,216 @@ def render_text_preview(txt_path: Path, poster_path: Path, thumb_path: Path) -> 
         y += 42
     im.save(poster_path, "WEBP", quality=88)
     _save_square_thumb(im, thumb_path, 480)
+
+
+def _rasterize_mesh(verts: np.ndarray, faces: np.ndarray, W: int = 960, H: int = 720) -> Image.Image:
+    center = (verts.min(axis=0) + verts.max(axis=0)) * 0.5
+    span = float(np.max(verts.max(axis=0) - verts.min(axis=0))) or 1.0
+    verts = (verts - center) / span
+
+    yaw = np.deg2rad(38.0)
+    pitch = np.deg2rad(24.0)
+    ry = np.array([[np.cos(yaw), 0.0, np.sin(yaw)], [0.0, 1.0, 0.0], [-np.sin(yaw), 0.0, np.cos(yaw)]])
+    rx = np.array([[1.0, 0.0, 0.0], [0.0, np.cos(pitch), -np.sin(pitch)], [0.0, np.sin(pitch), np.cos(pitch)]])
+    rot = rx @ ry
+    v_rot = verts @ rot.T
+
+    v0 = v_rot[faces[:, 0]]
+    v1 = v_rot[faces[:, 1]]
+    v2 = v_rot[faces[:, 2]]
+    normals = np.cross(v1 - v0, v2 - v0)
+    norms = np.linalg.norm(normals, axis=1, keepdims=True) + 1e-8
+    normals = normals / norms
+
+    light_dir = np.array([0.45, 0.65, 0.61])
+    light_dir = light_dir / np.linalg.norm(light_dir)
+    lambert = np.abs(normals @ light_dir)
+    shade = 0.32 + 0.68 * lambert
+
+    face_colors = (normals * 0.5 + 0.5) * 235.0
+    shaded_rgb = np.clip(face_colors * shade[:, None], 0, 255).astype(np.uint8)
+
+    z_order = (v0[:, 2] + v1[:, 2] + v2[:, 2]) / 3.0
+    order = np.argsort(z_order)
+    v0, v1, v2, shaded_rgb = v0[order], v1[order], v2[order], shaded_rgb[order]
+
+    im = Image.new("RGB", (W, H), (18, 18, 20))
+    draw = ImageDraw.Draw(im)
+    scale = min(W, H) * 0.74
+    cx, cy = W * 0.5, H * 0.52
+
+    p0x = (cx + v0[:, 0] * scale).astype(np.int32)
+    p0y = (cy - v0[:, 1] * scale).astype(np.int32)
+    p1x = (cx + v1[:, 0] * scale).astype(np.int32)
+    p1y = (cy - v1[:, 1] * scale).astype(np.int32)
+    p2x = (cx + v2[:, 0] * scale).astype(np.int32)
+    p2y = (cy - v2[:, 1] * scale).astype(np.int32)
+
+    for i in range(len(v0)):
+        c = (int(shaded_rgb[i, 0]), int(shaded_rgb[i, 1]), int(shaded_rgb[i, 2]))
+        draw.polygon([(int(p0x[i]), int(p0y[i])), (int(p1x[i]), int(p1y[i])), (int(p2x[i]), int(p2y[i]))], fill=c)
+
+    return im
+
+
+def _raymarch_sdf_buffer(map_fn, w: int = 240, h: int = 180, ro: np.ndarray | None = None, max_steps: int = 40) -> np.ndarray:
+    if ro is None:
+        ro = np.array([0.0, 0.0, 3.2])
+    aspect = w / h
+    x = np.linspace(-1, 1, w) * aspect
+    y = np.linspace(1, -1, h)
+    xx, yy = np.meshgrid(x, y)
+    rd = np.stack([xx, yy, -np.ones_like(xx) * 1.8], axis=-1)
+    rd /= np.linalg.norm(rd, axis=-1, keepdims=True)
+
+    yaw, pitch = np.deg2rad(35.0), np.deg2rad(22.0)
+    ry = np.array([[np.cos(yaw), 0.0, np.sin(yaw)], [0.0, 1.0, 0.0], [-np.sin(yaw), 0.0, np.cos(yaw)]])
+    rx = np.array([[1.0, 0.0, 0.0], [0.0, np.cos(pitch), -np.sin(pitch)], [0.0, np.sin(pitch), np.cos(pitch)]])
+    rot = rx @ ry
+    rd = rd @ rot.T
+    cam_pos = ro @ rot.T
+
+    p = np.broadcast_to(cam_pos, rd.shape).copy()
+    for _ in range(max_steps):
+        d = map_fn(p)
+        p += rd * (d[..., None] * 0.85)
+
+    d_final = map_fn(p)
+    hit = np.abs(d_final) < 0.025
+    eps = 0.005
+    nx = map_fn(p + [eps, 0, 0]) - map_fn(p - [eps, 0, 0])
+    ny = map_fn(p + [0, eps, 0]) - map_fn(p - [0, eps, 0])
+    nz = map_fn(p + [0, 0, eps]) - map_fn(p - [0, 0, eps])
+    norm = np.stack([nx, ny, nz], axis=-1)
+    norm /= (np.linalg.norm(norm, axis=-1, keepdims=True) + 1e-8)
+
+    light = np.array([0.45, 0.65, 0.61])
+    light /= np.linalg.norm(light)
+    diff = np.clip(np.sum(norm * light, axis=-1), 0, 1)
+    base_col = (norm * 0.5 + 0.5) * 225.0
+    shaded = np.where(hit[..., None], base_col * (0.35 + 0.65 * diff[..., None]) / 255.0, 18.0 / 255.0)
+    return np.clip(shaded * 255, 0, 255).astype(np.uint8)
+
+
+def render_sdf_preview(sdf_path: Path, poster_path: Path, thumb_path: Path) -> None:
+    try:
+        content = sdf_path.read_text(encoding="utf-8", errors="replace")
+        data = {}
+        if sdf_path.suffix.lower() == ".json":
+            data = json.loads(content)
+
+        math_type = data.get("math_type", "sdf")
+        item_id = data.get("id") or sdf_path.parent.name
+        W, H = 960, 720
+
+        if math_type == "parametric":
+            if "klein" in item_id:
+                def fn(u, v):
+                    r = 1.8
+                    cu, su = np.cos(u), np.sin(u)
+                    cu2, su2 = np.cos(u / 2), np.sin(u / 2)
+                    cv, sv = np.cos(v), np.sin(v)
+                    s2v = np.sin(2 * v)
+                    return (
+                        (r + cu2 * sv - su2 * s2v) * cu,
+                        (r + cu2 * sv - su2 * s2v) * su,
+                        su2 * sv + cu2 * s2v,
+                    )
+                ur, vr = (0.0, 2 * np.pi), (0.0, 2 * np.pi)
+            elif "knot" in item_id:
+                def fn(u, v, p=3, q=5, r_tube=0.32, r_torus=2.2):
+                    phi, theta = u, v
+                    r = r_torus + 0.85 * np.cos(q * phi)
+                    cx = r * np.cos(p * phi)
+                    cy = r * np.sin(p * phi)
+                    cz = -0.85 * np.sin(q * phi)
+                    nx = np.cos(theta) * np.cos(p * phi)
+                    ny = np.cos(theta) * np.sin(p * phi)
+                    nz = np.sin(theta)
+                    return cx + r_tube * nx, cy + r_tube * ny, cz + r_tube * nz
+                ur, vr = (0.0, 2 * np.pi), (0.0, 2 * np.pi)
+            elif "enneper" in item_id:
+                def fn(u, v):
+                    return (
+                        u - (u**3) / 3.0 + u * (v**2),
+                        -v + (v**3) / 3.0 - v * (u**2),
+                        u**2 - v**2,
+                    )
+                ur, vr = (-1.55, 1.55), (-1.55, 1.55)
+            else:
+                def fn(u, v, R=2.0, r=0.8):
+                    return (
+                        (R + r * np.cos(v)) * np.cos(u),
+                        (R + r * np.cos(v)) * np.sin(u),
+                        r * np.sin(v),
+                    )
+                ur, vr = (0.0, 2 * np.pi), (0.0, 2 * np.pi)
+
+            res = 75
+            u = np.linspace(ur[0], ur[1], res)
+            v = np.linspace(vr[0], vr[1], res)
+            uu, vv = np.meshgrid(u, v)
+            x, y, z = fn(uu, vv)
+            verts = np.stack([x.ravel(), y.ravel(), z.ravel()], axis=-1)
+            faces = []
+            for i in range(res - 1):
+                for j in range(res - 1):
+                    i0 = i * res + j
+                    i1 = i0 + 1
+                    i2 = (i + 1) * res + j
+                    i3 = i2 + 1
+                    faces.append([i0, i1, i2])
+                    faces.append([i1, i3, i2])
+            faces = np.array(faces, dtype=np.int32)
+            im = _rasterize_mesh(verts, faces, W, H)
+        else:
+            sw, sh = 280, 210
+            if "gyroid" in item_id:
+                def map_fn(p):
+                    q = p * 2.5
+                    return (np.abs(np.sin(q[..., 0]) * np.cos(q[..., 1]) + np.sin(q[..., 1]) * np.cos(q[..., 2]) + np.sin(q[..., 2]) * np.cos(q[..., 0])) - 0.22) / 2.5
+            elif "mandelbulb" in item_id:
+                def map_fn(p):
+                    r = np.linalg.norm(p, axis=-1)
+                    theta = np.arctan2(np.sqrt(p[..., 0]**2 + p[..., 1]**2), p[..., 2] + 1e-7)
+                    phi = np.arctan2(p[..., 1], p[..., 0] + 1e-7)
+                    r8 = r**8
+                    dr = 8.0 * (r**7) + 1.0
+                    th8 = theta * 8.0
+                    ph8 = phi * 8.0
+                    b8_x = r8 * np.sin(th8) * np.cos(ph8) + p[..., 0]
+                    b8_y = r8 * np.sin(th8) * np.sin(ph8) + p[..., 1]
+                    b8_z = r8 * np.cos(th8) + p[..., 2]
+                    r_next = np.sqrt(b8_x**2 + b8_y**2 + b8_z**2)
+                    d_est = 0.5 * np.log(np.maximum(r_next, 1e-4)) * r_next / (dr + 1e-4)
+                    return np.maximum(d_est, r - 1.25)
+            elif "menger" in item_id:
+                def map_fn(p):
+                    d_box = np.max(np.abs(p) - 1.0, axis=-1)
+                    q = np.abs(p)
+                    da = np.maximum(q[..., 0], q[..., 1])
+                    db = np.maximum(q[..., 1], q[..., 2])
+                    dc = np.maximum(q[..., 2], q[..., 0])
+                    cross1 = -(np.minimum(np.minimum(da, db), dc) - 0.35)
+                    q2 = np.abs((q % 0.66) - 0.33)
+                    da2 = np.maximum(q2[..., 0], q2[..., 1])
+                    db2 = np.maximum(q2[..., 1], q2[..., 2])
+                    dc2 = np.maximum(q2[..., 2], q2[..., 0])
+                    cross2 = -(np.minimum(np.minimum(da2, db2), dc2) - 0.11)
+                    return np.maximum(np.maximum(d_box, cross1), cross2)
+            else:
+                def map_fn(p):
+                    q = np.stack([np.sqrt(p[..., 0]**2 + p[..., 2]**2) - 1.1, p[..., 1]], axis=-1)
+                    return np.linalg.norm(q, axis=-1) - 0.45
+
+            raw_rgb = _raymarch_sdf_buffer(map_fn, sw, sh)
+            im_low = Image.fromarray(raw_rgb)
+            im = im_low.resize((W, H), Image.Resampling.LANCZOS)
+
+        im.save(poster_path, "WEBP", quality=88)
+        _save_square_thumb(im, thumb_path, 480)
+    except Exception as exc:
+        _save_fallback_card("SDF / MATH", sdf_path.stem, poster_path, thumb_path)
 
 
 def _save_fallback_card(label: str, title: str, poster_path: Path, thumb_path: Path) -> None:

@@ -1,0 +1,109 @@
+{
+  "id": "mandelbulb-3d-fractal",
+  "title": "Mandelbulb 3D Fractal (Power-8 Distance Field)",
+  "kind": "sdf",
+  "status": "published",
+  "summary": "3D analog of the Mandelbrot set constructed by Daniel White and Paul Nylander using hypercomplex spherical coordinates.",
+  "description": "The Mandelbulb is a three-dimensional fractal construct developed in 2009 by Daniel White and Paul Nylander. It extends the classic complex Mandelbrot iteration  \\mapsto z^n + c$ into 3D using spherical coordinates  \\mapsto (r^8, 8\\theta, 8\\phi) + \\mathbf{c}$. Evaluated with volumetric raymarching distance estimation in Three.js.",
+  "tags": [
+    "abstract",
+    "fractal",
+    "raymarching",
+    "three-quarter",
+    "contemporary"
+  ],
+  "keywords": [
+    "mandelbulb",
+    "fractal",
+    "Mandelbrot",
+    "3D fractal",
+    "raymarching",
+    "distance estimator",
+    "SDF",
+    "spherical"
+  ],
+  "collections": [
+    "math",
+    "spatial"
+  ],
+  "demos": [
+    "sdf-viewer",
+    "math-surface",
+    "3d-viewer"
+  ],
+  "creators": [
+    {
+      "name": "Daniel White & Paul Nylander (2009)",
+      "role": "mathematician"
+    }
+  ],
+  "date": "2009",
+  "source": {
+    "url": "https://languel.github.io/mediatheque/items/mandelbulb-3d-fractal/media.json",
+    "origin": null,
+    "archive": "Mediath\u00e8que Mathematics & Spatial Collection",
+    "retrieved": "2026-10-24",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "credit": "Mandelbulb 3D fractal formulation (White & Nylander, 2009; Public Domain).",
+    "notes": ""
+  },
+  "formula": "v \u21a6 v\u2078 + c (spherical coordinate hypercomplex iteration)",
+  "math_type": "sdf",
+  "latex": "\\mathbf{v}_{n+1} = \\mathbf{v}_n^8 + \\mathbf{c},\\quad \\mathbf{v} = (r^8, 8\\theta, 8\\phi)",
+  "domain": "\\mathbf{v} \\in \\mathbb{R}^3, \\quad \\|\\mathbf{v}\\| \\le 2.0",
+  "invariants": {
+    "fractal_dimension": "\\approx 2.71",
+    "iteration_power": "n = 8",
+    "discovered_by": "Daniel White & Paul Nylander (2009)"
+  },
+  "files": {
+    "media": {
+      "path": "media.json",
+      "type": "application/json",
+      "bytes": 1256,
+      "sha256": "5290e2d40e5779948a5a9fc5096d2710cf24c99ab2a0cfcf14bd4f435f0161c0"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 13630,
+      "sha256": "7aad9efdf133610c4a117e016f95c8506762baa5c8e76378757782c5178ed899",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 7452,
+      "sha256": "3afc59176b1c964119ab2c27f00a48c8f4a81ad58d0347a9939cd8e8bcd260ff",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "formulated",
+      "tool": "mathematics",
+      "date": "2026-10-24"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "render_sdf_preview",
+      "date": "2026-10-24"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "render_sdf_preview",
+      "date": "2026-10-24"
+    }
+  ],
+  "added": "2026-10-24",
+  "updated": "2026-10-24"
+}

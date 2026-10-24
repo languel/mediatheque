@@ -36,7 +36,7 @@ def bootstrap_venv(script_path: Path) -> None:
             os.execv(str(venv_python), [str(venv_python), str(script_path.resolve())] + sys.argv[1:])
 
 SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
-VALID_KINDS = {"video", "image", "animation", "audio", "model", "splat", "vector", "text", "dataset"}
+VALID_KINDS = {"video", "image", "animation", "audio", "model", "splat", "vector", "text", "dataset", "sdf"}
 VALID_STATUSES = {"draft", "review", "published", "withdrawn"}
 VALID_RIGHTS = {"public-domain", "cc", "licensed", "fair-use-teaching", "unknown"}
 

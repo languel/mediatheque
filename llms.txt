@@ -5,7 +5,7 @@
 > `Access-Control-Allow-Origin: *` so any browser sketch, Genereti node, p5.js
 > canvas, Three.js scene, or student assignment can stream or download by stable URL.
 
-Published inventory: 31 items (15 animation, 3 image, 2 model, 1 splat, 10 video) and 7 clips.
+Published inventory: 37 items (15 animation, 3 image, 2 model, 6 sdf, 1 splat, 10 video) and 7 clips.
 
 ## 1. Machine-Readable Indexes (Never Scrape HTML)
 
@@ -40,16 +40,16 @@ All endpoints send `Access-Control-Allow-Origin: *`:
 ## 3. Controlled Vocabulary (`tags` & `demos`)
 
 ### Facets and Allowed Tags
-- **subject** (video/animation/image/model/splat/vector): `person`, `animal`, `object`, `vehicle`, `landscape`, `cityscape`, `interior`, `abstract`, `text-content`, `pattern`
+- **subject** (video/animation/image/model/splat/vector/sdf): `person`, `animal`, `object`, `vehicle`, `landscape`, `cityscape`, `interior`, `abstract`, `text-content`, `pattern`
 - **people** (video/animation/image): `single`, `pair`, `group`, `crowd`
 - **framing** (video/animation/image): `fullbody`, `upper-body`, `face`, `hands`, `feet`, `closeup`, `wide`, `arms-raised`
-- **view** (video/animation/image/model/splat): `front`, `side`, `back`, `top-down`, `three-quarter`
+- **view** (video/animation/image/model/splat/sdf): `front`, `side`, `back`, `top-down`, `three-quarter`
 - **action** (video/animation/image): `movement`, `dance`, `walk`, `run`, `jump`, `gesture`, `pose`, `fight`, `sport`, `work`, `talk`, `still`
 - **motion** (video/animation): `slow`, `fast`, `repetitive`, `cyclic`, `static-camera`, `moving-camera`, `cuts`
 - **look** (video/animation/image/vector): `bw`, `color`, `tinted`, `high-contrast`, `low-light`, `plain-bg`, `busy-bg`, `silhouette`, `grain`
 - **sound** (video/animation/audio): `silent`, `music`, `speech`, `percussion`, `ambient`, `noise`, `loop`
-- **format** (video/animation/image/audio/model/splat/vector/text): `short`, `loop-friendly`, `portrait`, `landscape-format`, `square`, `transparent`, `seamless`
-- **era** (video/animation/image/audio/model/splat/vector/text): `early-film`, `chronophotography`, `animation`, `archival`, `contemporary`, `generated`, `own-capture`
+- **format** (video/animation/image/audio/model/splat/vector/text/sdf): `short`, `loop-friendly`, `portrait`, `landscape-format`, `square`, `transparent`, `seamless`
+- **era** (video/animation/image/audio/model/splat/vector/text/sdf): `early-film`, `chronophotography`, `animation`, `archival`, `contemporary`, `generated`, `own-capture`
 - **gif** (animation): `seamless-loop`, `pingpong`, `one-shot-anim`, `cinemagraph`, `pixel-art`, `dithered`, `low-palette`, `transparent`, `frame-sequence`, `rotoscope`, `reaction`, `found-gif`
 - **still** (image): `photo`, `painting`, `drawing`, `print`, `diagram`, `scan`, `sequence`, `panorama`, `equirect`, `depth-map`, `alpha`
 - **sound-type** (audio): `music`, `speech`, `voice`, `field-recording`, `foley`, `sfx`, `drone`, `percussion`, `one-shot`, `loop`, `stem`, `impulse-response`
@@ -58,9 +58,10 @@ All endpoints send `Access-Control-Allow-Origin: *`:
 - **splat** (splat): `object`, `room`, `outdoor`, `person`, `360`, `cropped`, `noisy`
 - **svg** (vector): `line-art`, `filled`, `single-path`, `plotter-ready`, `icon`, `map`, `font-glyph`
 - **text** (text): `poem`, `script`, `manifesto`, `transcript`, `score`, `code`, `data`
+- **sdf** (sdf): `primitive`, `fractal`, `minimal-surface`, `parametric`, `implicit`, `knot`, `manifold`, `raymarching`
 
 ### Teaching Demos (`demos`)
-`pose`, `hands`, `face-mesh`, `face-expression`, `segmentation`, `object-detection`, `optical-flow`, `motion-trails`, `background-subtraction`, `body-zones`, `tracking`, `depth`, `style-transfer`, `img2img`, `texture`, `color`, `glitch`, `datamosh`, `audio-reactive`, `beat`, `sonification`, `typography`, `3d-viewer`, `splat-viewer`, `projection`, `loop`, `granular`, `convolution`, `speech-to-text`, `tts`, `midi`, `plotter`, `generative-text`, `photogrammetry`, `rigging`
+`pose`, `hands`, `face-mesh`, `face-expression`, `segmentation`, `object-detection`, `optical-flow`, `motion-trails`, `background-subtraction`, `body-zones`, `tracking`, `depth`, `style-transfer`, `img2img`, `texture`, `color`, `glitch`, `datamosh`, `audio-reactive`, `beat`, `sonification`, `typography`, `3d-viewer`, `splat-viewer`, `sdf-viewer`, `math-surface`, `projection`, `loop`, `granular`, `convolution`, `speech-to-text`, `tts`, `midi`, `plotter`, `generative-text`, `photogrammetry`, `rigging`
 
 ## 4. Query Recipes
 

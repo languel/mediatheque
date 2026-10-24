@@ -1,0 +1,31 @@
+{
+  "id": "menger-sponge-fractal",
+  "math_type": "sdf",
+  "title": "Menger Sponge 3D Distance Field",
+  "formula": "d_{n+1} = max(d_n, -cross_subtraction(p_n))",
+  "latex": "\\dim_H = \\frac{\\ln 20}{\\ln 3} \\approx 2.72683,\\quad \\mathcal{H}^s(M) \\in (0, \\infty)",
+  "domain": "\\mathbf{p} \\in [-1, 1]^3",
+  "invariants": {
+    "hausdorff_dimension": "\\approx 2.7268",
+    "topological_dimension": "1 (Universal curve)",
+    "lebesgue_measure": "\\lambda(M) = 0",
+    "discovered_by": "Karl Menger (1926)"
+  },
+  "glsl": "float map(vec3 p) {\n    float d = max(max(abs(p.x), abs(p.y)), abs(p.z)) - 1.0;\n    float s = 1.0;\n    for (int m = 0; m < 4; m++) {\n        vec3 a = mod(p * s, 2.0) - 1.0;\n        s *= 3.0;\n        vec3 r = abs(1.0 - 3.0 * abs(a));\n        float da = max(r.x, r.y);\n        float db = max(r.y, r.z);\n        float dc = max(r.z, r.x);\n        float c = (min(da, min(db, dc)) - 1.0) / s;\n        d = max(d, c);\n    }\n    return d;\n}",
+  "camera": {
+    "position": [
+      0.0,
+      0.4,
+      3.0
+    ],
+    "target": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "fov": 45
+  },
+  "parameters": {
+    "iterations": 4
+  }
+}

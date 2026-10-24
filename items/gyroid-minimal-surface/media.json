@@ -1,0 +1,32 @@
+{
+  "id": "gyroid-minimal-surface",
+  "math_type": "sdf",
+  "title": "Gyroid Minimal Surface",
+  "formula": "sin(x)cos(y) + sin(y)cos(z) + sin(z)cos(x) = 0",
+  "latex": "\\sin(x)\\cos(y) + \\sin(y)\\cos(z) + \\sin(z)\\cos(x) = 0",
+  "domain": "\\mathbb{R}^3 / \\mathbb{Z}^3 \\text{ (Triply periodic in } x, y, z \\text{)}",
+  "invariants": {
+    "mean_curvature": "H = 0",
+    "genus": "3 (per unit cell)",
+    "space_group": "I4_1 32",
+    "discovered_by": "Alan Schoen (1970)"
+  },
+  "glsl": "float map(vec3 p) {\n    vec3 q = p * 2.5;\n    return (abs(dot(sin(q), cos(q.zxy))) - 0.22) / 2.5;\n}",
+  "camera": {
+    "position": [
+      0.0,
+      0.5,
+      3.2
+    ],
+    "target": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "fov": 45
+  },
+  "parameters": {
+    "scale": 2.5,
+    "thickness": 0.22
+  }
+}
