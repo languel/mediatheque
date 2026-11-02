@@ -59,7 +59,18 @@
     selectionStatus: document.getElementById("selection-status"),
     btnSelectFiltered: document.getElementById("btn-select-filtered"),
     btnClearSelection: document.getElementById("btn-clear-selection"),
+    btnCopyAgent: document.getElementById("btn-copy-agent"),
+    btnCopySelectionUrl: document.getElementById("btn-copy-selection-url"),
+    btnAgentDialog: document.getElementById("btn-agent-dialog"),
     btnDownloadZip: document.getElementById("btn-download-zip"),
+    agentDialog: document.getElementById("agent-dialog"),
+    agentDialogClose: document.getElementById("agent-dialog-close"),
+    agentDialogDismiss: document.getElementById("agent-dialog-dismiss"),
+    agentCustomInstruction: document.getElementById("agent-custom-instruction"),
+    agentPresetSelect: document.getElementById("agent-preset-select"),
+    agentPromptOutput: document.getElementById("agent-prompt-output"),
+    agentBtnCopyPrompt: document.getElementById("agent-btn-copy-prompt"),
+    agentBtnCopyUrl: document.getElementById("agent-btn-copy-url"),
     sortSelect: document.getElementById("sort-select"),
     mediaGrid: document.getElementById("media-grid"),
     viewGallery: document.getElementById("view-gallery"),
@@ -104,6 +115,74 @@
     const a = document.createElement("a");
     a.href = resolveAssetUrl(relPath);
     return a.href;
+  }
+
+  function getCombinedUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    const hash = window.location.hash || "";
+    const qIdx = hash.indexOf("?");
+    if (qIdx !== -1) {
+      const hashParams = new URLSearchParams(hash.slice(qIdx + 1));
+      for (const [k, v] of hashParams.entries()) {
+        if (!params.has(k)) {
+          params.set(k, v);
+        }
+      }
+    }
+    return params;
+  }
+
+  function getShareableSelectionUrl() {
+    const origin = window.location.origin;
+    const pathname = window.location.pathname;
+    const url = new URL(pathname, origin);
+
+    if (state.selectedIds.size > 0) {
+      url.searchParams.set("sel", Array.from(state.selectedIds).join(","));
+      url.searchParams.set("view", "selection");
+    }
+    url.hash = "#/";
+    return url.toString();
+  }
+
+  function syncUrlSelection() {
+    const origin = window.location.origin;
+    const pathname = window.location.pathname;
+    const url = new URL(pathname, origin);
+
+    const existingParams = new URLSearchParams(window.location.search);
+    for (const [k, v] of existingParams.entries()) {
+      if (k !== "sel" && k !== "view" && k !== "selected" && k !== "items") {
+        url.searchParams.set(k, v);
+      }
+    }
+
+    if (state.selectedIds.size > 0) {
+      url.searchParams.set("sel", Array.from(state.selectedIds).join(","));
+      if (state.showSelectionOnly) {
+        url.searchParams.set("view", "selection");
+      } else {
+        url.searchParams.delete("view");
+      }
+    } else {
+      url.searchParams.delete("sel");
+      url.searchParams.delete("view");
+    }
+
+    const hash = window.location.hash || "#/";
+    const hashClean = hash.split("?")[0] || "#/";
+    url.hash = hashClean;
+
+    const newUrl = url.pathname + (url.search ? url.search : "") + (url.hash || "#/");
+    const currentUrl = window.location.pathname + window.location.search + window.location.hash;
+
+    if (newUrl !== currentUrl) {
+      try {
+        window.history.replaceState(null, "", newUrl);
+      } catch (e) {
+        // Fallback for sandboxed iframes
+      }
+    }
   }
 
   function showToast(msg) {
@@ -514,6 +593,31 @@
       els.reviewBadge.hidden = false;
     }
 
+    // Check URL parameters for selection and view filters
+    const urlParams = getCombinedUrlParams();
+    const selParam = urlParams.get("sel") || urlParams.get("selected") || urlParams.get("items");
+    if (selParam) {
+      const incomingIds = selParam
+        .split(",")
+        .map((s) => decodeURIComponent(s.trim()))
+        .filter(Boolean);
+      if (incomingIds.length > 0) {
+        state.selectedIds.clear();
+        for (const id of incomingIds) {
+          state.selectedIds.add(id);
+        }
+        saveStoredSet("mediatheque_selected_ids", state.selectedIds);
+      }
+      const viewParam = urlParams.get("view");
+      if (viewParam === "selection" || viewParam === "selected" || viewParam !== "all") {
+        state.showSelectionOnly = true;
+        localStorage.setItem("mediatheque_show_selection", "true");
+      } else if (viewParam === "all") {
+        state.showSelectionOnly = false;
+        localStorage.setItem("mediatheque_show_selection", "false");
+      }
+    }
+
     updateShowChipsUI();
     updateKindChipsUI();
     updateSelectionUI();
@@ -687,14 +791,24 @@
   }
 
   function updateSelectionUI() {
+    const count = state.selectedIds.size;
     if (els.selectionStatus) {
-      const count = state.selectedIds.size;
       els.selectionStatus.textContent = `${count} selected`;
-      if (els.btnClearSelection) {
-        els.btnClearSelection.hidden = count === 0;
-      }
+    }
+    if (els.btnClearSelection) {
+      els.btnClearSelection.hidden = count === 0;
+    }
+    if (els.btnCopyAgent) {
+      els.btnCopyAgent.hidden = count === 0;
+    }
+    if (els.btnCopySelectionUrl) {
+      els.btnCopySelectionUrl.hidden = count === 0;
+    }
+    if (els.btnAgentDialog) {
+      els.btnAgentDialog.hidden = count === 0;
     }
     updateShowChipsUI();
+    syncUrlSelection();
   }
 
   function updateShowChipsUI() {
@@ -756,7 +870,176 @@
     state.showSelectionOnly = !state.showSelectionOnly;
     localStorage.setItem("mediatheque_show_selection", state.showSelectionOnly ? "true" : "false");
     updateShowChipsUI();
+    syncUrlSelection();
     renderGallery();
+  }
+
+  function getSelectedOrFilteredEntries() {
+    if (state.selectedIds.size > 0) {
+      return state.catalog.filter((e) => state.selectedIds.has(e.id));
+    }
+    return getFilteredEntries();
+  }
+
+  function buildAgentPrompt(preset, picked, customInstruction) {
+    if (!picked || picked.length === 0) {
+      return "No items selected.";
+    }
+
+    const count = picked.length;
+    const selectionUrl = getShareableSelectionUrl();
+    const allMocap = picked.every(
+      (e) => e.kind === "mocap" || Boolean(e.bvh) || (e.tags && e.tags.includes("mocap"))
+    );
+    const allImage = picked.every((e) => e.kind === "image");
+    const noun = allMocap ? "animations" : allImage ? "images" : "items";
+
+    if (preset === "paths") {
+      const lines = [
+        `# Mediathèque Selection (${count} ${noun})`,
+        `# Selection URL: ${selectionUrl}`,
+        "",
+        "# ID\tType/Kind\tWorkspace Relative Path\tPrimary Asset Download URL\tBVH URL (if present)",
+      ];
+      picked.forEach((e) => {
+        const pUrl = resolveAbsoluteUrl(e.media);
+        const bvhUrl = e.bvh ? resolveAbsoluteUrl(e.bvh) : "";
+        const localDir = e.type === "clip" ? `clips/${e.id}/` : `items/${e.id}/`;
+        lines.push(`${e.id}\t${e.kind || e.type}\t${localDir}\t${pUrl}\t${bvhUrl}`);
+      });
+      return lines.join("\n");
+    }
+
+    if (preset === "json") {
+      const manifest = picked.map((e) => ({
+        id: e.id,
+        title: e.title,
+        kind: e.kind || e.type,
+        type: e.type,
+        tags: e.tags || [],
+        primary_media: resolveAbsoluteUrl(e.media),
+        bvh_motion: e.bvh ? resolveAbsoluteUrl(e.bvh) : null,
+        poster: e.poster ? resolveAbsoluteUrl(e.poster) : null,
+        thumb: e.thumb ? resolveAbsoluteUrl(e.thumb) : null,
+        item_json: resolveAbsoluteUrl(e.type === "clip" ? `clips/${e.id}/clip.json` : `items/${e.id}/item.json`),
+        local_path: e.type === "clip" ? `clips/${e.id}/` : `items/${e.id}/`,
+        rights: e.rights ? e.rights.status : "unknown",
+      }));
+      return JSON.stringify({ selection_url: selectionUrl, count, items: manifest }, null, 2);
+    }
+
+    if (preset === "code") {
+      let codePrompt =
+        customInstruction ||
+        `Create a responsive viewer and asset loader for these ${count} ${noun} from Mediathèque:`;
+      codePrompt += `\n\nSelection Link: ${selectionUrl}\n\n`;
+      codePrompt += `### Selected Assets (${count})\n\n`;
+      picked.forEach((e, idx) => {
+        codePrompt += `${idx + 1}. **${e.title || e.id}** (\`${e.id}\`)\n`;
+        codePrompt += `   - Kind: ${e.kind || e.type}\n`;
+        codePrompt += `   - Primary URL: ${resolveAbsoluteUrl(e.media)}\n`;
+        if (e.bvh) codePrompt += `   - BVH Motion: ${resolveAbsoluteUrl(e.bvh)}\n`;
+        codePrompt += `   - Local workspace path: \`${e.type === "clip" ? `clips/${e.id}/` : `items/${e.id}/`}\`\n\n`;
+      });
+      return codePrompt;
+    }
+
+    // Default preset: "download"
+    const defaultInstruction = allMocap
+      ? `Please download all these ${count} animations and add them to my project:`
+      : `Please download and process the following ${count} selected ${noun} from Mediathèque:`;
+
+    const instruction = customInstruction || defaultInstruction;
+
+    let out = `${instruction}\n\n`;
+    out += `Selection Link: ${selectionUrl}\n\n`;
+    out += `### Selected ${noun.charAt(0).toUpperCase() + noun.slice(1)} (${count})\n\n`;
+
+    picked.forEach((e, idx) => {
+      const mediaUrl = resolveAbsoluteUrl(e.media);
+      const bvhUrl = e.bvh ? resolveAbsoluteUrl(e.bvh) : "";
+      const jsonUrl = resolveAbsoluteUrl(
+        e.type === "clip" ? `clips/${e.id}/clip.json` : `items/${e.id}/item.json`
+      );
+      const localDir = e.type === "clip" ? `clips/${e.id}/` : `items/${e.id}/`;
+
+      out += `${idx + 1}. **${e.title || e.id}** (\`${e.id}\`)\n`;
+      out += `   - Kind: ${e.kind || e.type}\n`;
+      out += `   - Primary Media: ${mediaUrl}\n`;
+      if (bvhUrl) {
+        out += `   - Motion BVH: ${bvhUrl}\n`;
+      }
+      out += `   - Metadata Record: ${jsonUrl}\n`;
+      out += `   - Workspace Local Path: \`${localDir}\`\n\n`;
+    });
+
+    out += `### Automated Download (Bash / curl)\n`;
+    out += `\`\`\`bash\n`;
+    out += `# In your project directory, run:\n`;
+    out += `mkdir -p mediatheque_downloads\n`;
+
+    picked.forEach((e) => {
+      const mediaUrl = resolveAbsoluteUrl(e.media);
+      const ext = e.media && e.media.includes(".") ? e.media.split(".").pop().split("?")[0] : "bin";
+      out += `curl -fLo "mediatheque_downloads/${e.id}.${ext}" "${mediaUrl}"\n`;
+      if (e.bvh) {
+        const bvhUrl = resolveAbsoluteUrl(e.bvh);
+        out += `curl -fLo "mediatheque_downloads/${e.id}.bvh" "${bvhUrl}"\n`;
+      }
+    });
+
+    out += `\`\`\`\n`;
+
+    return out;
+  }
+
+  function copySelectionForAgent() {
+    const picked = getSelectedOrFilteredEntries();
+    if (picked.length === 0) {
+      showToast("No items selected");
+      return;
+    }
+    const customInst = els.agentCustomInstruction ? els.agentCustomInstruction.value.trim() : "";
+    const text = buildAgentPrompt("download", picked, customInst);
+    copyText(text, `agent prompt for ${picked.length} item(s)`);
+  }
+
+  function copyShareableSelectionUrl() {
+    const url = getShareableSelectionUrl();
+    copyText(url, "selection link");
+  }
+
+  function openAgentDialog() {
+    if (!els.agentDialog) return;
+    const picked = getSelectedOrFilteredEntries();
+    if (picked.length === 0) {
+      showToast("No items selected");
+      return;
+    }
+    updateAgentDialogContent();
+    if (typeof els.agentDialog.showModal === "function") {
+      els.agentDialog.showModal();
+    } else {
+      els.agentDialog.setAttribute("open", "");
+    }
+  }
+
+  function closeAgentDialog() {
+    if (!els.agentDialog) return;
+    if (typeof els.agentDialog.close === "function") {
+      els.agentDialog.close();
+    } else {
+      els.agentDialog.removeAttribute("open");
+    }
+  }
+
+  function updateAgentDialogContent() {
+    if (!els.agentPromptOutput) return;
+    const picked = getSelectedOrFilteredEntries();
+    const preset = els.agentPresetSelect ? els.agentPresetSelect.value : "download";
+    const customInst = els.agentCustomInstruction ? els.agentCustomInstruction.value.trim() : "";
+    const prompt = buildAgentPrompt(preset, picked, customInst);
+    els.agentPromptOutput.value = prompt;
   }
 
   function renderGallery() {
@@ -3672,35 +3955,50 @@
 
   // Router
   function handleRoute() {
-    const params = new URLSearchParams(window.location.search);
-    const queryId = params.get("id");
-    const hash = window.location.hash || "#/";
+    const urlParams = getCombinedUrlParams();
+    const queryId = urlParams.get("id");
+    let hash = window.location.hash || "#/";
 
-    if (queryId && (!hash || hash === "#/")) {
+    const qIdx = hash.indexOf("?");
+    let hashClean = qIdx !== -1 ? hash.slice(0, qIdx) : hash;
+    if (!hashClean) hashClean = "#/";
+
+    if (queryId && (!hashClean || hashClean === "#/")) {
       showSection("detail");
       renderDetailView(queryId);
       return;
     }
 
-    if (hash === "#/review" || hash === "#review") {
+    if (hashClean === "#/review" || hashClean === "#review") {
       showSection("review");
       renderReviewQueue();
       return;
     }
 
-    if (hash.startsWith("#/") && hash.length > 2) {
-      let targetId = decodeURIComponent(hash.slice(2));
+    if (hashClean === "#/selection" || hashClean === "#selection") {
+      state.showSelectionOnly = true;
+      updateShowChipsUI();
+      syncUrlSelection();
+      showSection("gallery");
+      renderGallery();
+      return;
+    }
+
+    if (hashClean.startsWith("#/") && hashClean.length > 2) {
+      let targetId = decodeURIComponent(hashClean.slice(2));
       if (targetId.startsWith("item/")) {
         targetId = targetId.slice(5);
       }
-      if (state.isZenMode) {
-        showSection("gallery");
-        openFullWindowPreview(targetId);
+      if (targetId && targetId !== "selection") {
+        if (state.isZenMode) {
+          showSection("gallery");
+          openFullWindowPreview(targetId);
+          return;
+        }
+        showSection("detail");
+        renderDetailView(targetId);
         return;
       }
-      showSection("detail");
-      renderDetailView(targetId);
-      return;
     }
 
     if (els.zenPreviewModal && !els.zenPreviewModal.hidden) {
@@ -3733,6 +4031,7 @@
   // Event listeners
   function bindGlobalEvents() {
     window.addEventListener("hashchange", handleRoute);
+    window.addEventListener("popstate", handleRoute);
 
     if (els.searchInput) {
       els.searchInput.addEventListener("input", () => {
@@ -4254,6 +4553,52 @@
     }
     if (els.btnDownloadZip) {
       els.btnDownloadZip.addEventListener("click", downloadSelectionZip);
+    }
+    if (els.btnCopyAgent) {
+      els.btnCopyAgent.addEventListener("click", copySelectionForAgent);
+    }
+    if (els.btnCopySelectionUrl) {
+      els.btnCopySelectionUrl.addEventListener("click", copyShareableSelectionUrl);
+    }
+    if (els.btnAgentDialog) {
+      els.btnAgentDialog.addEventListener("click", openAgentDialog);
+    }
+    if (els.agentDialogClose) {
+      els.agentDialogClose.addEventListener("click", closeAgentDialog);
+    }
+    if (els.agentDialogDismiss) {
+      els.agentDialogDismiss.addEventListener("click", closeAgentDialog);
+    }
+    if (els.agentDialog) {
+      els.agentDialog.addEventListener("click", (e) => {
+        const rect = els.agentDialog.getBoundingClientRect();
+        const isInDialog =
+          rect.top <= e.clientY &&
+          e.clientY <= rect.top + rect.height &&
+          rect.left <= e.clientX &&
+          e.clientX <= rect.left + rect.width;
+        if (!isInDialog) {
+          closeAgentDialog();
+        }
+      });
+    }
+    if (els.agentCustomInstruction) {
+      els.agentCustomInstruction.addEventListener("input", updateAgentDialogContent);
+    }
+    if (els.agentPresetSelect) {
+      els.agentPresetSelect.addEventListener("change", updateAgentDialogContent);
+    }
+    if (els.agentBtnCopyPrompt) {
+      els.agentBtnCopyPrompt.addEventListener("click", () => {
+        if (els.agentPromptOutput) {
+          copyText(els.agentPromptOutput.value, "agent prompt");
+        }
+      });
+    }
+    if (els.agentBtnCopyUrl) {
+      els.agentBtnCopyUrl.addEventListener("click", () => {
+        copyText(getShareableSelectionUrl(), "selection link");
+      });
     }
   }
 

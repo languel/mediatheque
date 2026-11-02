@@ -10,7 +10,7 @@
     />
     <title>Mediathèque — Teaching Media Archive</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/styles.css?v=zen14" />
+    <link rel="stylesheet" href="css/styles.css?v=zen15" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
@@ -174,6 +174,34 @@
             <span id="selection-status" class="selection-status">0 selected</span>
             <button type="button" class="btn-small" id="btn-select-filtered">Select visible</button>
             <button type="button" class="btn-small" id="btn-clear-selection" hidden>Clear</button>
+            <button
+              type="button"
+              class="btn-small btn-copy-agent"
+              id="btn-copy-agent"
+              hidden
+              title="Copy instructions, direct asset URLs, and paths for AI agent (Antigravity, Claude, ChatGPT, Cursor)"
+            >
+              🤖 Copy for Agent
+            </button>
+            <button
+              type="button"
+              class="btn-small"
+              id="btn-copy-selection-url"
+              hidden
+              title="Copy shareable link to this selection"
+            >
+              🔗 Copy Link
+            </button>
+            <button
+              type="button"
+              class="btn-small"
+              id="btn-agent-dialog"
+              hidden
+              title="Agent options &amp; custom instruction templates"
+              aria-label="Agent options"
+            >
+              ⚙️
+            </button>
             <button type="button" class="btn-small btn-small--primary" id="btn-download-zip">
               Download ZIP + CREDITS.md
             </button>
@@ -256,6 +284,59 @@
       <span class="zen-hover-bar__meta" id="zen-hover-meta"></span>
     </div>
 
+    <!-- AGENT SHARE & PROMPT DIALOG -->
+    <dialog id="agent-dialog" class="about-dialog agent-dialog">
+      <div class="about-dialog__header">
+        <h2 class="about-dialog__title">
+          <span class="site-icon site-icon--agent" aria-hidden="true">🤖</span>
+          <span>Share Selection with AI Agent</span>
+        </h2>
+        <button type="button" class="about-dialog__close" id="agent-dialog-close" aria-label="Close dialog">✕</button>
+      </div>
+      <div class="about-dialog__body agent-dialog__body">
+        <p style="font-size:0.9rem; color:var(--text); margin-top:0; margin-bottom:0.75rem;">
+          Generate structured instructions, direct asset download URLs, and workspace file paths formatted for an AI coding assistant (Antigravity, Claude, ChatGPT, Cursor).
+        </p>
+
+        <div class="agent-dialog__field">
+          <label class="agent-dialog__label" for="agent-custom-instruction">Agent Instruction:</label>
+          <input
+            type="text"
+            id="agent-custom-instruction"
+            class="agent-custom-instruction-input"
+            value="Download all these animations to my project"
+            placeholder="e.g. download all these animations, create Three.js viewer, etc."
+          />
+        </div>
+
+        <div class="agent-dialog__field" style="margin-top:0.6rem;">
+          <label class="agent-dialog__label" for="agent-preset-select">Format Template:</label>
+          <select id="agent-preset-select" class="sort-select" style="width:100%; max-width:100%;">
+            <option value="download">Comprehensive prompt + curl download script</option>
+            <option value="code">Three.js / Web Loader prompt</option>
+            <option value="paths">Plain file paths and URLs</option>
+            <option value="json">JSON manifest array</option>
+          </select>
+        </div>
+
+        <div style="margin-top:0.75rem;">
+          <textarea id="agent-prompt-output" class="agent-prompt-textarea" rows="12" spellcheck="false"></textarea>
+        </div>
+
+        <div class="agent-dialog__footer">
+          <button type="button" class="btn-small btn-small--primary" id="agent-btn-copy-prompt">
+            📋 Copy Prompt
+          </button>
+          <button type="button" class="btn-small" id="agent-btn-copy-url">
+            🔗 Copy Link
+          </button>
+          <button type="button" class="btn-small" id="agent-dialog-dismiss">
+            Done
+          </button>
+        </div>
+      </div>
+    </dialog>
+
     <!-- ABOUT DIALOG (PORTFOLIO-EXAMPLE INSPIRED) -->
     <dialog id="about-dialog" class="about-dialog">
       <div class="about-dialog__header">
@@ -320,6 +401,6 @@
     </dialog>
 
     <script src="js/zip.js" defer></script>
-    <script src="js/main.js?v=zen14" defer></script>
+    <script src="js/main.js?v=zen15" defer></script>
   </body>
 </html>

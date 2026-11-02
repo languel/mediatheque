@@ -462,6 +462,7 @@ kbd {
   align-items: center;
   gap: 0.45rem;
   margin-left: auto;
+  flex-wrap: wrap;
 }
 
 .selection-status {
@@ -2107,4 +2108,81 @@ body.zen-mode .full-window-preview.topbar-hover .carousel-rail,
   font-size: 0.8rem;
   color: #e2e8f0;
 }
+
+/* AI Agent Share & Selection Export */
+.btn-copy-agent {
+  background: var(--surface-raised);
+  border-color: var(--line-strong);
+  color: var(--text);
+  font-weight: 500;
+}
+
+.btn-copy-agent:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.agent-dialog {
+  max-width: 720px;
+  width: 92vw;
+}
+
+.agent-dialog__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.agent-dialog__label {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+.agent-custom-instruction-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.45rem 0.65rem;
+  background: var(--surface-raised);
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+}
+
+.agent-custom-instruction-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.agent-prompt-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  line-height: 1.45;
+  background: var(--surface-raised);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.75rem;
+  resize: vertical;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.agent-prompt-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.agent-dialog__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+  flex-wrap: wrap;
+}
+
 
