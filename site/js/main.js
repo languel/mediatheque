@@ -407,8 +407,10 @@
       els.zenMediaStage.innerHTML = `
         <model-viewer
           src="${escapeHtml(origUrl)}"
-          auto-rotate
+          autoplay
           camera-controls
+          camera-target="0m 0.95m 0m"
+          camera-orbit="0deg 80deg 3.2m"
           shadow-intensity="1"
         ></model-viewer>
       `;
@@ -593,13 +595,18 @@
         return false;
       }
 
-      // Non-exclusive kind filter (video, animation, image, audio, model, splat, vector, text)
-      if (
-        state.kindFilters.size > 0 &&
-        !state.kindFilters.has("all") &&
-        !state.kindFilters.has(entry.kind)
-      ) {
-        return false;
+      // Non-exclusive kind filter (video, animation, image, audio, mocap, model, splat, vector, text)
+      if (state.kindFilters.size > 0 && !state.kindFilters.has("all")) {
+        const isMocap = entry.kind === "mocap" || (entry.tags && entry.tags.includes("mocap")) || Boolean(entry.bvh);
+        let matchesKind = false;
+        if (state.kindFilters.has("mocap") && isMocap) {
+          matchesKind = true;
+        } else if (state.kindFilters.has("model") && entry.kind === "model") {
+          matchesKind = true;
+        } else if (state.kindFilters.has(entry.kind)) {
+          matchesKind = true;
+        }
+        if (!matchesKind) return false;
       }
 
       if (state.rightsFilter !== "all") {
@@ -805,7 +812,7 @@
             <div class="media-card__badges">
               <div class="badge-group">
                 ${isClip ? `<span class="card-badge card-badge--clip">Clip ${String(entry.n).padStart(2, "0")}</span>` : ""}
-                ${entry.kind === "sdf" ? `<span class="card-badge card-badge--sdf">SDF / Math</span>` : `<span class="card-badge">${escapeHtml(entry.kind)}</span>`}
+                ${entry.bvh || (entry.tags && entry.tags.includes("mocap")) ? `<span class="card-badge card-badge--mocap">Mocap</span>` : entry.kind === "sdf" ? `<span class="card-badge card-badge--sdf">SDF / Math</span>` : `<span class="card-badge">${escapeHtml(entry.kind)}</span>`}
                 ${entry.math_type ? `<span class="card-badge">${escapeHtml(entry.math_type)}</span>` : ""}
                 ${entry.aspect_ratio ? `<span class="card-badge">${escapeHtml(entry.aspect_ratio)}</span>` : ""}
                 ${dur ? `<span class="card-badge">${escapeHtml(dur)}</span>` : ""}
@@ -1230,7 +1237,12 @@
 
     let threeSnippet = commentHeader;
     if (item.kind === "model") {
-      threeSnippet += `import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";\n\nconst loader = new GLTFLoader();\nloader.load("${streamUrl}", (gltf) => {\n  scene.add(gltf.scene);\n});`;
+      if (item.bvh) {
+        const bvhUrl = resolveAbsoluteUrl(item.bvh);
+        threeSnippet += `import * as THREE from "three";\nimport { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";\nimport { BVHLoader } from "three/addons/loaders/BVHLoader.js";\n\n// 1. Load Rigged Animated Character (.glb)\nconst gltfLoader = new GLTFLoader();\ngltfLoader.load("${streamUrl}", (gltf) => {\n  const model = gltf.scene;\n  scene.add(model);\n  const mixer = new THREE.AnimationMixer(model);\n  gltf.animations.forEach((clip) => mixer.clipAction(clip).play());\n});\n\n// 2. Or load Raw Skeletal Motion Capture (.bvh)\nconst bvhLoader = new BVHLoader();\nbvhLoader.load("${bvhUrl}", (result) => {\n  const skeletonHelper = new THREE.SkeletonHelper(result.skeleton.bones[0]);\n  scene.add(result.skeleton.bones[0]);\n  scene.add(skeletonHelper);\n  const mixer = new THREE.AnimationMixer(result.skeleton.bones[0]);\n  mixer.clipAction(result.clip).play();\n});`;
+      } else {
+        threeSnippet += `import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";\n\nconst loader = new GLTFLoader();\nloader.load("${streamUrl}", (gltf) => {\n  scene.add(gltf.scene);\n});`;
+      }
     } else if (item.kind === "splat") {
       threeSnippet += `import { SplatMesh } from "@sparkjsdev/spark";\n\nconst splat = new SplatMesh({ url: "${streamUrl}" });\nscene.add(splat);`;
     } else if (item.kind === "sdf") {
@@ -1710,6 +1722,8 @@
       `;
     } else if (item.kind === "model") {
       const glbSrc = resolveAssetUrl(mediaRel);
+      const bvhRel = item.bvh || (item.files && item.files.bvh && `items/${item.id}/${item.files.bvh.path}`);
+      const bvhSrc = bvhRel ? resolveAssetUrl(bvhRel) : null;
       viewerHtml = `
         <div class="viewer-stage">
           <model-viewer
@@ -1718,7 +1732,9 @@
             poster="${escapeHtml(resolveAssetUrl(posterRel))}"
             alt="${escapeHtml(item.title)}"
             camera-controls
-            auto-rotate
+            autoplay
+            camera-target="0m 0.95m 0m"
+            camera-orbit="0deg 80deg 3.2m"
             shadow-intensity="0.8"
           ></model-viewer>
         </div>
@@ -1726,7 +1742,8 @@
       controlsHtml = `
         <div class="viewer-controls">
           <div class="viewer-controls__group">
-            <span>3D GLB · Drag to orbit, scroll to zoom</span>
+            <span>${bvhSrc ? "3D Mocap Model · Orbit & Zoom · Skeletal Animation" : "3D GLB · Drag to orbit, scroll to zoom"}</span>
+            ${bvhSrc ? `<a href="${escapeHtml(bvhSrc)}" download class="btn-small">⬇ Download BVH Mocap</a>` : ""}
             <button type="button" class="btn-small" id="btn-open-fullwindow" data-entry-id="${escapeHtml(item.id)}" data-tooltip="Open full-window preview with carousel (F)">⛶ Full Window</button>
           </div>
           <span>${item.triangles ? `${item.triangles.toLocaleString()} triangles` : ""}</span>

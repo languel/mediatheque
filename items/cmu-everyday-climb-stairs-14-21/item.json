@@ -1,0 +1,125 @@
+{
+  "id": "cmu-everyday-climb-stairs-14-21",
+  "title": "Climb 3 Stairs & Step Down (CMU Mocap 14_21)",
+  "kind": "model",
+  "status": "published",
+  "summary": "Alternating foot step elevation ascending three stairs and stepping down to floor level.",
+  "description": "Stepping mechanics study isolating upward knee drive, heel strike on tread, weight lift, and eccentric landing.",
+  "tags": [
+    "person",
+    "single",
+    "fullbody",
+    "three-quarter",
+    "movement",
+    "walk",
+    "character",
+    "rigged",
+    "animated",
+    "mocap",
+    "everyday",
+    "bvh",
+    "short",
+    "contemporary"
+  ],
+  "keywords": [
+    "stairs",
+    "climbing",
+    "elevation",
+    "steps",
+    "locomotion",
+    "everyday",
+    "CMU mocap"
+  ],
+  "collections": [
+    "mocap",
+    "3d"
+  ],
+  "demos": [
+    "3d-viewer",
+    "mocap",
+    "bvh-loader",
+    "rigging"
+  ],
+  "creators": [
+    {
+      "name": "Carnegie Mellon University Graphics Lab",
+      "role": "creator"
+    }
+  ],
+  "date": "2003",
+  "source": {
+    "url": "http://mocap.cs.cmu.edu/",
+    "origin": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "retrieved": "2026-11-01",
+    "via": "https://github.com/una-dinosauria/cmu-mocap"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CMU-Mocap-Open",
+    "license_url": "http://mocap.cs.cmu.edu/",
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "notes": "Biovision Hierarchy (.bvh) optical motion capture recording and rigged 3D character mesh (.glb)."
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 1889364,
+      "sha256": "f24c1842ca6ddf1e54677e664a35b88f810643fef9d062af40c80c7e1b8143bf"
+    },
+    "bvh": {
+      "path": "motion.bvh",
+      "type": "application/x-bvh",
+      "bytes": 913526,
+      "sha256": "d2d16c7e8b6cc0699ff23a5df150f45a91d3fa4c0a040ecd13aa6213903ac63a"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 14666,
+      "sha256": "99ab0ff1db4ca7179df8049533dc3b422873726674f98a39f84485d2f3a24fb0",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 13872,
+      "sha256": "8762cc0e915b1e4dafd44bcf2c4c9febe84b85e2ee019af6ec30de523b43b7fc",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/master/data/014/14_21.bvh",
+      "date": "2026-11-02",
+      "sha256": "d2d16c7e8b6cc0699ff23a5df150f45a91d3fa4c0a040ecd13aa6213903ac63a"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "Blender 5.3",
+      "args": "bvh import + anatomical bone mesh generation + glTF 2.0 animation bake",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Blender Workbench",
+      "args": "960x720 studio lighting render",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-02"
+    }
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02"
+}

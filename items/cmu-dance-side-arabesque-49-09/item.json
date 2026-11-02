@@ -1,0 +1,123 @@
+{
+  "id": "cmu-dance-side-arabesque-49-09",
+  "title": "Modern Dance Side Arabesque & High Arms (CMU Mocap 49_09)",
+  "kind": "model",
+  "status": "published",
+  "summary": "Contemporary lyrical dance extension with arms held high and lateral leg lift.",
+  "description": "Contemporary dance balance exploring lyrical weight suspension and dynamic arm lines.",
+  "tags": [
+    "person",
+    "single",
+    "fullbody",
+    "three-quarter",
+    "movement",
+    "dance",
+    "pose",
+    "character",
+    "rigged",
+    "animated",
+    "mocap",
+    "bvh",
+    "short",
+    "contemporary"
+  ],
+  "keywords": [
+    "modern dance",
+    "side arabesque",
+    "contemporary",
+    "lyrical",
+    "CMU mocap"
+  ],
+  "collections": [
+    "mocap",
+    "3d"
+  ],
+  "demos": [
+    "3d-viewer",
+    "mocap",
+    "bvh-loader",
+    "rigging"
+  ],
+  "creators": [
+    {
+      "name": "Carnegie Mellon University Graphics Lab",
+      "role": "creator"
+    }
+  ],
+  "date": "2003",
+  "source": {
+    "url": "http://mocap.cs.cmu.edu/",
+    "origin": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "retrieved": "2026-11-01",
+    "via": "https://github.com/una-dinosauria/cmu-mocap"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CMU-Mocap-Open",
+    "license_url": "http://mocap.cs.cmu.edu/",
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "notes": "Biovision Hierarchy (.bvh) optical motion capture recording and rigged 3D character mesh (.glb)."
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 2193848,
+      "sha256": "88ea95037aaf80338235b6de86b50238bea3196507ee537ab3a45e697794d26a"
+    },
+    "bvh": {
+      "path": "motion.bvh",
+      "type": "application/x-bvh",
+      "bytes": 1455139,
+      "sha256": "e4b5a409e4ccbacd3e33c69ec1e758de5d53bca01b155a18597e099b5bb691dc"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 16856,
+      "sha256": "4bd83388501d4c0148624e04aaf2ca17e7b86ade91008f99fa4d1ca19cba8d31",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 17754,
+      "sha256": "c0ffc2675785a15890060ff8118d37884372c7ccd8fe29bd95a6892b6dbcca3c",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/master/data/049/49_09.bvh",
+      "date": "2026-11-02",
+      "sha256": "e4b5a409e4ccbacd3e33c69ec1e758de5d53bca01b155a18597e099b5bb691dc"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "Blender 5.3",
+      "args": "bvh import + anatomical bone mesh generation + glTF 2.0 animation bake",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Blender Workbench",
+      "args": "960x720 studio lighting render",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-02"
+    }
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02"
+}

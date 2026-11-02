@@ -480,6 +480,2270 @@
     "added": "2026-11-01"
   },
   {
+    "id": "cmu-ballet-arabesque-05-03",
+    "type": "item",
+    "title": "Arabesque Penchée & Folding Arms (CMU Mocap 05_03)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Sustained sideways arabesque penchée with fluid transitional folding arm carriage.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "dance",
+      "pose",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "ballet",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "arabesque",
+      "ballet",
+      "penchée",
+      "extension",
+      "CMU mocap",
+      "dance",
+      "balance"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-ballet-arabesque-05-03/thumb.webp",
+    "poster": "items/cmu-ballet-arabesque-05-03/poster.webp",
+    "media": "items/cmu-ballet-arabesque-05-03/media.glb",
+    "video_media": "items/cmu-ballet-arabesque-05-03/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-ballet-arabesque-05-03/motion.bvh",
+    "bytes": 1538304,
+    "url": "https://languel.github.io/mediatheque/items/cmu-ballet-arabesque-05-03/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-ballet-attitude-cambre-05-18",
+    "type": "item",
+    "title": "Attitude Derrière & Cambré Back Bend (CMU Mocap 05_18)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Classical attitude balance with deep arched cambré spinal extension.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "dance",
+      "pose",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "ballet",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "attitude",
+      "cambre",
+      "back bend",
+      "ballet",
+      "extension",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-ballet-attitude-cambre-05-18/thumb.webp",
+    "poster": "items/cmu-ballet-attitude-cambre-05-18/poster.webp",
+    "media": "items/cmu-ballet-attitude-cambre-05-18/media.glb",
+    "video_media": "items/cmu-ballet-attitude-cambre-05-18/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-ballet-attitude-cambre-05-18/motion.bvh",
+    "bytes": 2163200,
+    "url": "https://languel.github.io/mediatheque/items/cmu-ballet-attitude-cambre-05-18/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-ballet-coupe-jete-05-16",
+    "type": "item",
+    "title": "Coupé Dessous & Jeté en Tournant (CMU Mocap 05_16)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Quick under-cutting foot change and dynamic turning jump.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "dance",
+      "jump",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "ballet",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "coupe",
+      "jete",
+      "turning leap",
+      "allegro",
+      "ballet",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-ballet-coupe-jete-05-16/thumb.webp",
+    "poster": "items/cmu-ballet-coupe-jete-05-16/poster.webp",
+    "media": "items/cmu-ballet-coupe-jete-05-16/media.glb",
+    "video_media": "items/cmu-ballet-coupe-jete-05-16/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-ballet-coupe-jete-05-16/motion.bvh",
+    "bytes": 1578656,
+    "url": "https://languel.github.io/mediatheque/items/cmu-ballet-coupe-jete-05-16/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-ballet-en-dehors-05-11",
+    "type": "item",
+    "title": "Sideways Steps & En Dehors Pirouette (CMU Mocap 05_11)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Lateral footwork transition leading into an accelerated outward en dehors pirouette.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "dance",
+      "pose",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "ballet",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "en dehors",
+      "pirouette",
+      "turn",
+      "ballet",
+      "dance",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-ballet-en-dehors-05-11/thumb.webp",
+    "poster": "items/cmu-ballet-en-dehors-05-11/poster.webp",
+    "media": "items/cmu-ballet-en-dehors-05-11/media.glb",
+    "video_media": "items/cmu-ballet-en-dehors-05-11/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-ballet-en-dehors-05-11/motion.bvh",
+    "bytes": 1608500,
+    "url": "https://languel.github.io/mediatheque/items/cmu-ballet-en-dehors-05-11/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-ballet-glissade-05-09",
+    "type": "item",
+    "title": "Glissade Devant & Glissade Derrière (CMU Mocap 05_09)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Smooth traveling gliding steps articulating low floor brush, foot extension, and attitude.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "dance",
+      "walk",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "ballet",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "glissade",
+      "devant",
+      "derriere",
+      "footwork",
+      "ballet",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-ballet-glissade-05-09/thumb.webp",
+    "poster": "items/cmu-ballet-glissade-05-09/poster.webp",
+    "media": "items/cmu-ballet-glissade-05-09/media.glb",
+    "video_media": "items/cmu-ballet-glissade-05-09/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-ballet-glissade-05-09/motion.bvh",
+    "bytes": 1855712,
+    "url": "https://languel.github.io/mediatheque/items/cmu-ballet-glissade-05-09/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-ballet-grand-jete-05-17",
+    "type": "item",
+    "title": "Coupé Dessous & Grand Jeté en Tournant (CMU Mocap 05_17)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Grand allegro virtuoso turning leap with full horizontal leg split in flight.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "dance",
+      "jump",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "ballet",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "grand jete",
+      "split leap",
+      "grand allegro",
+      "ballet",
+      "elevation",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-ballet-grand-jete-05-17/thumb.webp",
+    "poster": "items/cmu-ballet-grand-jete-05-17/poster.webp",
+    "media": "items/cmu-ballet-grand-jete-05-17/media.glb",
+    "video_media": "items/cmu-ballet-grand-jete-05-17/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-ballet-grand-jete-05-17/motion.bvh",
+    "bytes": 1811332,
+    "url": "https://languel.github.io/mediatheque/items/cmu-ballet-grand-jete-05-17/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-ballet-jete-attitude-05-07",
+    "type": "item",
+    "title": "Small Jetés, Attitude & Shifted-Axis Pirouette (CMU Mocap 05_07)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Rapid ballet allegro with small jetés, attitude balance, and off-axis pirouette turn.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "dance",
+      "jump",
+      "pose",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "ballet",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "jete",
+      "attitude",
+      "shifted pirouette",
+      "allegro",
+      "ballet",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-ballet-jete-attitude-05-07/thumb.webp",
+    "poster": "items/cmu-ballet-jete-attitude-05-07/poster.webp",
+    "media": "items/cmu-ballet-jete-attitude-05-07/media.glb",
+    "video_media": "items/cmu-ballet-jete-attitude-05-07/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-ballet-jete-attitude-05-07/motion.bvh",
+    "bytes": 1877368,
+    "url": "https://languel.github.io/mediatheque/items/cmu-ballet-jete-attitude-05-07/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-ballet-jete-coupe-05-05",
+    "type": "item",
+    "title": "Quasi-Cou-de-Pied & Jeté en Tournant (CMU Mocap 05_05)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Classical ballet high-elevation turning leap with quasi-cou-de-pied leg elevation.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "dance",
+      "jump",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "ballet",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "jete",
+      "coupe",
+      "turning leap",
+      "ballet",
+      "elevation",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-ballet-jete-coupe-05-05/thumb.webp",
+    "poster": "items/cmu-ballet-jete-coupe-05-05/poster.webp",
+    "media": "items/cmu-ballet-jete-coupe-05-05/media.glb",
+    "video_media": "items/cmu-ballet-jete-coupe-05-05/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-ballet-jete-coupe-05-05/motion.bvh",
+    "bytes": 1753956,
+    "url": "https://languel.github.io/mediatheque/items/cmu-ballet-jete-coupe-05-05/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-ballet-pirouette-05-02",
+    "type": "item",
+    "title": "Classical Pirouette & Port de Bras (CMU Mocap 05_02)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Classical ballet single & double en dehors pirouette with expressive port de bras arm carriage.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "dance",
+      "pose",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "ballet",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "ballet",
+      "pirouette",
+      "port de bras",
+      "CMU mocap",
+      "dance",
+      "turns",
+      "classical",
+      "3D animation"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-ballet-pirouette-05-02/thumb.webp",
+    "poster": "items/cmu-ballet-pirouette-05-02/poster.webp",
+    "media": "items/cmu-ballet-pirouette-05-02/media.glb",
+    "video_media": "items/cmu-ballet-pirouette-05-02/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-ballet-pirouette-05-02/motion.bvh",
+    "bytes": 1847168,
+    "url": "https://languel.github.io/mediatheque/items/cmu-ballet-pirouette-05-02/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-ballet-pointe-tendue-05-12",
+    "type": "item",
+    "title": "Pointe Tendue à Terre & Torso Spiral (CMU Mocap 05_12)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Classical foot articulation stretched along the floor with expressive upper-body rotation.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "dance",
+      "pose",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "ballet",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "tendu",
+      "pointe tendue",
+      "torso spiral",
+      "ballet",
+      "port de bras",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-ballet-pointe-tendue-05-12/thumb.webp",
+    "poster": "items/cmu-ballet-pointe-tendue-05-12/poster.webp",
+    "media": "items/cmu-ballet-pointe-tendue-05-12/media.glb",
+    "video_media": "items/cmu-ballet-pointe-tendue-05-12/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-ballet-pointe-tendue-05-12/motion.bvh",
+    "bytes": 1950808,
+    "url": "https://languel.github.io/mediatheque/items/cmu-ballet-pointe-tendue-05-12/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-ballet-retire-balance-05-14",
+    "type": "item",
+    "title": "Retiré Derrière & Sustained Balance (CMU Mocap 05_14)",
+    "kind": "model",
+    "status": "published",
+    "summary": "High retiré knee lift behind the supporting leg transitioning into sustained attitude poise.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "dance",
+      "pose",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "ballet",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "retire",
+      "balance",
+      "attitude",
+      "equilibrium",
+      "ballet",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-ballet-retire-balance-05-14/thumb.webp",
+    "poster": "items/cmu-ballet-retire-balance-05-14/poster.webp",
+    "media": "items/cmu-ballet-retire-balance-05-14/media.glb",
+    "video_media": "items/cmu-ballet-retire-balance-05-14/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-ballet-retire-balance-05-14/motion.bvh",
+    "bytes": 1631940,
+    "url": "https://languel.github.io/mediatheque/items/cmu-ballet-retire-balance-05-14/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-ballet-rond-de-jambe-05-08",
+    "type": "item",
+    "title": "Rond de Jambe en l'Air & Turning Jeté (CMU Mocap 05_08)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Classical ballet circular leg articulation in the air followed by an explosive turning leap.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "dance",
+      "jump",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "ballet",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "rond de jambe",
+      "jete",
+      "elevation",
+      "ballet",
+      "dance",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-ballet-rond-de-jambe-05-08/thumb.webp",
+    "poster": "items/cmu-ballet-rond-de-jambe-05-08/poster.webp",
+    "media": "items/cmu-ballet-rond-de-jambe-05-08/media.glb",
+    "video_media": "items/cmu-ballet-rond-de-jambe-05-08/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-ballet-rond-de-jambe-05-08/motion.bvh",
+    "bytes": 1667052,
+    "url": "https://languel.github.io/mediatheque/items/cmu-ballet-rond-de-jambe-05-08/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-dance-arching-arms-49-12",
+    "type": "item",
+    "title": "Contemporary Arching Arms & Forward Lean (CMU Mocap 49_12)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Expressive contemporary torso suspension, leaning forward with sweeping arched arms.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "dance",
+      "pose",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "arching arms",
+      "forward lean",
+      "contemporary dance",
+      "suspension",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-dance-arching-arms-49-12/thumb.webp",
+    "poster": "items/cmu-dance-arching-arms-49-12/poster.webp",
+    "media": "items/cmu-dance-arching-arms-49-12/media.glb",
+    "video_media": "items/cmu-dance-arching-arms-49-12/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-dance-arching-arms-49-12/motion.bvh",
+    "bytes": 1841712,
+    "url": "https://languel.github.io/mediatheque/items/cmu-dance-arching-arms-49-12/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-dance-balance-tilt-49-22",
+    "type": "item",
+    "title": "Contemporary Off-Axis Tilt & Deep Lunge (CMU Mocap 49_22)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Dramatic modern dance balance leaning back on bent leg with elbow held high.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "dance",
+      "pose",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "tilt",
+      "lunge",
+      "off-axis",
+      "balance",
+      "modern dance",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-dance-balance-tilt-49-22/thumb.webp",
+    "poster": "items/cmu-dance-balance-tilt-49-22/poster.webp",
+    "media": "items/cmu-dance-balance-tilt-49-22/media.glb",
+    "video_media": "items/cmu-dance-balance-tilt-49-22/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-dance-balance-tilt-49-22/motion.bvh",
+    "bytes": 1912188,
+    "url": "https://languel.github.io/mediatheque/items/cmu-dance-balance-tilt-49-22/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-dance-floor-curl-49-10",
+    "type": "item",
+    "title": "Modern Dance Floor Transition & Inward Curl (CMU Mocap 49_10)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Fluid contemporary folding in from side arabesque, curling toward floor level.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "dance",
+      "pose",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "floorwork",
+      "curl",
+      "contraction",
+      "modern dance",
+      "contemporary",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-dance-floor-curl-49-10/thumb.webp",
+    "poster": "items/cmu-dance-floor-curl-49-10/poster.webp",
+    "media": "items/cmu-dance-floor-curl-49-10/media.glb",
+    "video_media": "items/cmu-dance-floor-curl-49-10/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-dance-floor-curl-49-10/motion.bvh",
+    "bytes": 1972972,
+    "url": "https://languel.github.io/mediatheque/items/cmu-dance-floor-curl-49-10/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-dance-side-arabesque-49-09",
+    "type": "item",
+    "title": "Modern Dance Side Arabesque & High Arms (CMU Mocap 49_09)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Contemporary lyrical dance extension with arms held high and lateral leg lift.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "dance",
+      "pose",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "modern dance",
+      "side arabesque",
+      "contemporary",
+      "lyrical",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-dance-side-arabesque-49-09/thumb.webp",
+    "poster": "items/cmu-dance-side-arabesque-49-09/poster.webp",
+    "media": "items/cmu-dance-side-arabesque-49-09/media.glb",
+    "video_media": "items/cmu-dance-side-arabesque-49-09/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-dance-side-arabesque-49-09/motion.bvh",
+    "bytes": 2193848,
+    "url": "https://languel.github.io/mediatheque/items/cmu-dance-side-arabesque-49-09/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-everyday-athletic-run-09-01",
+    "type": "item",
+    "title": "Forward Athletic Running Stride (CMU Mocap 09_01)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Dynamic athletic running gait with clear flight phase, knee lift, and propulsion.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "run",
+      "sport",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "everyday",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "running",
+      "jog",
+      "stride",
+      "locomotion",
+      "athletics",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-everyday-athletic-run-09-01/thumb.webp",
+    "poster": "items/cmu-everyday-athletic-run-09-01/poster.webp",
+    "media": "items/cmu-everyday-athletic-run-09-01/media.glb",
+    "video_media": "items/cmu-everyday-athletic-run-09-01/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-everyday-athletic-run-09-01/motion.bvh",
+    "bytes": 1405804,
+    "url": "https://languel.github.io/mediatheque/items/cmu-everyday-athletic-run-09-01/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-everyday-chin-rest-13-04",
+    "type": "item",
+    "title": "Sit on Low Step & Chin-in-Hand Rest (CMU Mocap 13_04)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Casual relaxed sitting on a step stool with elbow on knee and chin resting in hand.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "pose",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "everyday",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "seated",
+      "chin rest",
+      "thinking",
+      "casual",
+      "step",
+      "everyday",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-everyday-chin-rest-13-04/thumb.webp",
+    "poster": "items/cmu-everyday-chin-rest-13-04/poster.webp",
+    "media": "items/cmu-everyday-chin-rest-13-04/media.glb",
+    "video_media": "items/cmu-everyday-chin-rest-13-04/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-everyday-chin-rest-13-04/motion.bvh",
+    "bytes": 3476528,
+    "url": "https://languel.github.io/mediatheque/items/cmu-everyday-chin-rest-13-04/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-everyday-climb-stairs-14-21",
+    "type": "item",
+    "title": "Climb 3 Stairs & Step Down (CMU Mocap 14_21)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Alternating foot step elevation ascending three stairs and stepping down to floor level.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "walk",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "everyday",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "stairs",
+      "climbing",
+      "elevation",
+      "steps",
+      "locomotion",
+      "everyday",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-everyday-climb-stairs-14-21/thumb.webp",
+    "poster": "items/cmu-everyday-climb-stairs-14-21/poster.webp",
+    "media": "items/cmu-everyday-climb-stairs-14-21/media.glb",
+    "video_media": "items/cmu-everyday-climb-stairs-14-21/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-everyday-climb-stairs-14-21/motion.bvh",
+    "bytes": 1889364,
+    "url": "https://languel.github.io/mediatheque/items/cmu-everyday-climb-stairs-14-21/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-everyday-coffee-mug-137-26",
+    "type": "item",
+    "title": "Pick Up Coffee Mug from Table (CMU Mocap 137_26)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Natural everyday arm reach, precision handle grip, lifting coffee mug, and placing it down.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "gesture",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "everyday",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "coffee mug",
+      "table",
+      "pick up",
+      "grasp",
+      "everyday",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-everyday-coffee-mug-137-26/thumb.webp",
+    "poster": "items/cmu-everyday-coffee-mug-137-26/poster.webp",
+    "media": "items/cmu-everyday-coffee-mug-137-26/media.glb",
+    "video_media": "items/cmu-everyday-coffee-mug-137-26/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-everyday-coffee-mug-137-26/motion.bvh",
+    "bytes": 2049592,
+    "url": "https://languel.github.io/mediatheque/items/cmu-everyday-coffee-mug-137-26/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-everyday-direct-traffic-13-26",
+    "type": "item",
+    "title": "Direct Traffic, Point & Wave (CMU Mocap 13_26)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Vigorous communicative arm gestures directing flow of traffic, pointing, and waving.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "gesture",
+      "work",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "everyday",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "traffic",
+      "pointing",
+      "waving",
+      "signaling",
+      "gesture",
+      "everyday",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-everyday-direct-traffic-13-26/thumb.webp",
+    "poster": "items/cmu-everyday-direct-traffic-13-26/poster.webp",
+    "media": "items/cmu-everyday-direct-traffic-13-26/media.glb",
+    "video_media": "items/cmu-everyday-direct-traffic-13-26/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-everyday-direct-traffic-13-26/motion.bvh",
+    "bytes": 2700920,
+    "url": "https://languel.github.io/mediatheque/items/cmu-everyday-direct-traffic-13-26/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-everyday-drink-soda-13-07",
+    "type": "item",
+    "title": "Unscrew Bottle Cap & Drink (CMU Mocap 13_07)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Bimanual hand coordination unscrewing a bottle cap, tilting head back to drink, and lowering bottle.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "gesture",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "everyday",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "drinking",
+      "bottle",
+      "unscrew",
+      "beverage",
+      "everyday",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-everyday-drink-soda-13-07/thumb.webp",
+    "poster": "items/cmu-everyday-drink-soda-13-07/poster.webp",
+    "media": "items/cmu-everyday-drink-soda-13-07/media.glb",
+    "video_media": "items/cmu-everyday-drink-soda-13-07/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-everyday-drink-soda-13-07/motion.bvh",
+    "bytes": 1925192,
+    "url": "https://languel.github.io/mediatheque/items/cmu-everyday-drink-soda-13-07/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-everyday-floor-pickup-137-27",
+    "type": "item",
+    "title": "Bend Down to Pick Up Object from Floor (CMU Mocap 137_27)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Deep hip and knee bend reaching down to pick up an item from the floor and standing tall.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "pose",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "everyday",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "bend",
+      "pick up",
+      "floor",
+      "squat",
+      "everyday",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-everyday-floor-pickup-137-27/thumb.webp",
+    "poster": "items/cmu-everyday-floor-pickup-137-27/poster.webp",
+    "media": "items/cmu-everyday-floor-pickup-137-27/media.glb",
+    "video_media": "items/cmu-everyday-floor-pickup-137-27/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-everyday-floor-pickup-137-27/motion.bvh",
+    "bytes": 1864852,
+    "url": "https://languel.github.io/mediatheque/items/cmu-everyday-floor-pickup-137-27/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-everyday-natural-walk-02-01",
+    "type": "item",
+    "title": "Natural Human Walking Gait (CMU Mocap 02_01)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Baseline bipedal human walking locomotion with natural arm carriage and stride rhythm.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "walk",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "everyday",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "walking",
+      "gait",
+      "locomotion",
+      "bipedal",
+      "stride",
+      "everyday",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-everyday-natural-walk-02-01/thumb.webp",
+    "poster": "items/cmu-everyday-natural-walk-02-01/poster.webp",
+    "media": "items/cmu-everyday-natural-walk-02-01/media.glb",
+    "video_media": "items/cmu-everyday-natural-walk-02-01/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-everyday-natural-walk-02-01/motion.bvh",
+    "bytes": 1498056,
+    "url": "https://languel.github.io/mediatheque/items/cmu-everyday-natural-walk-02-01/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-everyday-reach-tiptoe-13-10",
+    "type": "item",
+    "title": "Reach Overhead High & Tiptoe Grab (CMU Mocap 13_10)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Reaching upward to top shelf height with plantar extension onto tiptoes and grasping motion.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "jump",
+      "gesture",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "everyday",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "reach",
+      "tiptoe",
+      "overhead",
+      "grasp",
+      "shelf",
+      "everyday",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-everyday-reach-tiptoe-13-10/thumb.webp",
+    "poster": "items/cmu-everyday-reach-tiptoe-13-10/poster.webp",
+    "media": "items/cmu-everyday-reach-tiptoe-13-10/media.glb",
+    "video_media": "items/cmu-everyday-reach-tiptoe-13-10/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-everyday-reach-tiptoe-13-10/motion.bvh",
+    "bytes": 2417776,
+    "url": "https://languel.github.io/mediatheque/items/cmu-everyday-reach-tiptoe-13-10/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-everyday-sit-stand-13-01",
+    "type": "item",
+    "title": "Sit on High Stool & Stand Up (CMU Mocap 13_01)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Controlled transition from standing to seated height on a stool and standing back up.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "pose",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "everyday",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "sitting",
+      "standing",
+      "stool",
+      "transition",
+      "everyday",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-everyday-sit-stand-13-01/thumb.webp",
+    "poster": "items/cmu-everyday-sit-stand-13-01/poster.webp",
+    "media": "items/cmu-everyday-sit-stand-13-01/media.glb",
+    "video_media": "items/cmu-everyday-sit-stand-13-01/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-everyday-sit-stand-13-01/motion.bvh",
+    "bytes": 2380584,
+    "url": "https://languel.github.io/mediatheque/items/cmu-everyday-sit-stand-13-01/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-everyday-sweep-broom-13-23",
+    "type": "item",
+    "title": "Sweep Floor with Broom (CMU Mocap 13_23)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Rhythmic domestic floor sweeping with bilateral arm coordination and subtle weight shifting.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "work",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "everyday",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "sweeping",
+      "broom",
+      "cleaning",
+      "chore",
+      "domestic",
+      "everyday",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-everyday-sweep-broom-13-23/thumb.webp",
+    "poster": "items/cmu-everyday-sweep-broom-13-23/poster.webp",
+    "media": "items/cmu-everyday-sweep-broom-13-23/media.glb",
+    "video_media": "items/cmu-everyday-sweep-broom-13-23/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-everyday-sweep-broom-13-23/motion.bvh",
+    "bytes": 3143980,
+    "url": "https://languel.github.io/mediatheque/items/cmu-everyday-sweep-broom-13-23/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "cmu-everyday-waiting-idle-139-02",
+    "type": "item",
+    "title": "Casual Standing Weight Shift (CMU Mocap 139_02)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Natural idle standing with subtle weight shifts between feet and relaxed arm posture.",
+    "tags": [
+      "person",
+      "single",
+      "fullbody",
+      "three-quarter",
+      "movement",
+      "pose",
+      "character",
+      "rigged",
+      "animated",
+      "mocap",
+      "everyday",
+      "bvh",
+      "short",
+      "contemporary"
+    ],
+    "keywords": [
+      "idle",
+      "weight shift",
+      "standing",
+      "waiting",
+      "breathing",
+      "everyday",
+      "CMU mocap"
+    ],
+    "collections": [
+      "mocap",
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "mocap",
+      "bvh-loader",
+      "rigging"
+    ],
+    "date": "2003",
+    "creators": [
+      "Carnegie Mellon University Graphics Lab"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carnegie Mellon University Graphics Lab",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CMU-Mocap-Open",
+      "license_url": "http://mocap.cs.cmu.edu/"
+    },
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "source_url": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "thumb": "items/cmu-everyday-waiting-idle-139-02/thumb.webp",
+    "poster": "items/cmu-everyday-waiting-idle-139-02/poster.webp",
+    "media": "items/cmu-everyday-waiting-idle-139-02/media.glb",
+    "video_media": "items/cmu-everyday-waiting-idle-139-02/media.glb",
+    "proxy": null,
+    "original": null,
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": "items/cmu-everyday-waiting-idle-139-02/motion.bvh",
+    "bytes": 1763968,
+    "url": "https://languel.github.io/mediatheque/items/cmu-everyday-waiting-idle-139-02/media.glb",
+    "added": "2026-11-02"
+  },
+  {
     "id": "cockatoo-muybrige",
     "type": "item",
     "title": "Cockatoo Flying — Animal Locomotion Plate 758 (Muybridge, 1887)",

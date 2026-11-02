@@ -1,0 +1,126 @@
+{
+  "id": "cmu-everyday-direct-traffic-13-26",
+  "title": "Direct Traffic, Point & Wave (CMU Mocap 13_26)",
+  "kind": "model",
+  "status": "published",
+  "summary": "Vigorous communicative arm gestures directing flow of traffic, pointing, and waving.",
+  "description": "Clear kinesic signaling recording dynamic shoulder abductions, authoritative pointing vectors, and beckoning arm waves.",
+  "tags": [
+    "person",
+    "single",
+    "fullbody",
+    "three-quarter",
+    "movement",
+    "gesture",
+    "work",
+    "character",
+    "rigged",
+    "animated",
+    "mocap",
+    "everyday",
+    "bvh",
+    "short",
+    "contemporary"
+  ],
+  "keywords": [
+    "traffic",
+    "pointing",
+    "waving",
+    "signaling",
+    "gesture",
+    "everyday",
+    "CMU mocap"
+  ],
+  "collections": [
+    "mocap",
+    "3d"
+  ],
+  "demos": [
+    "3d-viewer",
+    "mocap",
+    "bvh-loader",
+    "rigging"
+  ],
+  "creators": [
+    {
+      "name": "Carnegie Mellon University Graphics Lab",
+      "role": "creator"
+    }
+  ],
+  "date": "2003",
+  "source": {
+    "url": "http://mocap.cs.cmu.edu/",
+    "origin": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "retrieved": "2026-11-01",
+    "via": "https://github.com/una-dinosauria/cmu-mocap"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CMU-Mocap-Open",
+    "license_url": "http://mocap.cs.cmu.edu/",
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "notes": "Biovision Hierarchy (.bvh) optical motion capture recording and rigged 3D character mesh (.glb)."
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 2700920,
+      "sha256": "33cd0efd760599f861f4d5eeaeb7fe776d30e07f86661894aadd8597b0c7a35a"
+    },
+    "bvh": {
+      "path": "motion.bvh",
+      "type": "application/x-bvh",
+      "bytes": 2288964,
+      "sha256": "73ac49cfdb65ac0c85a4a931c2c408720ec7e125f2753a68d64e5f0322c3cab4"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 16496,
+      "sha256": "128decf70908de541500762ff50a018e4b0b15d7ae4450d6bede2b749dfd8df3",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 16248,
+      "sha256": "6225aade3fad50f2c6e5e2cff0973b78c06260b15fcb01dc434f7095d1f937b6",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/master/data/013/13_26.bvh",
+      "date": "2026-11-02",
+      "sha256": "73ac49cfdb65ac0c85a4a931c2c408720ec7e125f2753a68d64e5f0322c3cab4"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "Blender 5.3",
+      "args": "bvh import + anatomical bone mesh generation + glTF 2.0 animation bake",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Blender Workbench",
+      "args": "960x720 studio lighting render",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-02"
+    }
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02"
+}

@@ -1,0 +1,124 @@
+{
+  "id": "cmu-everyday-coffee-mug-137-26",
+  "title": "Pick Up Coffee Mug from Table (CMU Mocap 137_26)",
+  "kind": "model",
+  "status": "published",
+  "summary": "Natural everyday arm reach, precision handle grip, lifting coffee mug, and placing it down.",
+  "description": "Detailed tabletop interaction showing forward reach trajectory, delicate hand positioning, lifting to chest height, and controlled placement.",
+  "tags": [
+    "person",
+    "single",
+    "fullbody",
+    "three-quarter",
+    "movement",
+    "gesture",
+    "character",
+    "rigged",
+    "animated",
+    "mocap",
+    "everyday",
+    "bvh",
+    "short",
+    "contemporary"
+  ],
+  "keywords": [
+    "coffee mug",
+    "table",
+    "pick up",
+    "grasp",
+    "everyday",
+    "CMU mocap"
+  ],
+  "collections": [
+    "mocap",
+    "3d"
+  ],
+  "demos": [
+    "3d-viewer",
+    "mocap",
+    "bvh-loader",
+    "rigging"
+  ],
+  "creators": [
+    {
+      "name": "Carnegie Mellon University Graphics Lab",
+      "role": "creator"
+    }
+  ],
+  "date": "2003",
+  "source": {
+    "url": "http://mocap.cs.cmu.edu/",
+    "origin": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "retrieved": "2026-11-01",
+    "via": "https://github.com/una-dinosauria/cmu-mocap"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CMU-Mocap-Open",
+    "license_url": "http://mocap.cs.cmu.edu/",
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "notes": "Biovision Hierarchy (.bvh) optical motion capture recording and rigged 3D character mesh (.glb)."
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 2049592,
+      "sha256": "fe30e73261487f2c6b9d89c38769781b46d98ff7e3e6b4172699f08d00ee6019"
+    },
+    "bvh": {
+      "path": "motion.bvh",
+      "type": "application/x-bvh",
+      "bytes": 1187452,
+      "sha256": "c18c0f8277a2a5ad162593e018a83c5d57158c0b77438292f7abe90f3ce8a500"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 13068,
+      "sha256": "b8ffaf3947b9868873e90fc5a92c0434546d3af9ec9cf2d5c94d7a5fb0560734",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 11512,
+      "sha256": "f8dc0bc0ce0a7c0c0a872bbef1c874a008a8ecf3db8cfdc48a71c2c664f9b26b",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/master/data/137/137_26.bvh",
+      "date": "2026-11-02",
+      "sha256": "c18c0f8277a2a5ad162593e018a83c5d57158c0b77438292f7abe90f3ce8a500"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "Blender 5.3",
+      "args": "bvh import + anatomical bone mesh generation + glTF 2.0 animation bake",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Blender Workbench",
+      "args": "960x720 studio lighting render",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-02"
+    }
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02"
+}

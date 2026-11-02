@@ -1,0 +1,126 @@
+{
+  "id": "cmu-ballet-jete-attitude-05-07",
+  "title": "Small Jetés, Attitude & Shifted-Axis Pirouette (CMU Mocap 05_07)",
+  "kind": "model",
+  "status": "published",
+  "summary": "Rapid ballet allegro with small jetés, attitude balance, and off-axis pirouette turn.",
+  "description": "Complex choreographic sequence combining buoyant allegro footwork, attitude position, and shifted-axis turning balance.",
+  "tags": [
+    "person",
+    "single",
+    "fullbody",
+    "three-quarter",
+    "movement",
+    "dance",
+    "jump",
+    "pose",
+    "character",
+    "rigged",
+    "animated",
+    "mocap",
+    "ballet",
+    "bvh",
+    "short",
+    "contemporary"
+  ],
+  "keywords": [
+    "jete",
+    "attitude",
+    "shifted pirouette",
+    "allegro",
+    "ballet",
+    "CMU mocap"
+  ],
+  "collections": [
+    "mocap",
+    "3d"
+  ],
+  "demos": [
+    "3d-viewer",
+    "mocap",
+    "bvh-loader",
+    "rigging"
+  ],
+  "creators": [
+    {
+      "name": "Carnegie Mellon University Graphics Lab",
+      "role": "creator"
+    }
+  ],
+  "date": "2003",
+  "source": {
+    "url": "http://mocap.cs.cmu.edu/",
+    "origin": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "retrieved": "2026-11-01",
+    "via": "https://github.com/una-dinosauria/cmu-mocap"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CMU-Mocap-Open",
+    "license_url": "http://mocap.cs.cmu.edu/",
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "notes": "Biovision Hierarchy (.bvh) optical motion capture recording and rigged 3D character mesh (.glb)."
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 1877368,
+      "sha256": "c3497fe92010d005c1485fa5f230fc1c8cfc6c4088653ea9ed54fc7d6092f84d"
+    },
+    "bvh": {
+      "path": "motion.bvh",
+      "type": "application/x-bvh",
+      "bytes": 907669,
+      "sha256": "429be7f444178f818903a9f1bbf42f7738a704d667d043ead8a028aa8b5aa6a6"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 12048,
+      "sha256": "7035ef2e4e889a01b4272cddd47f1578b2e7ee89a92ff63e5cf8e6c7a0b87b40",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 11502,
+      "sha256": "d7361fa8510764192c3d0191a836fed86d53b2400126af44f34725c57c2d604f",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/master/data/005/05_07.bvh",
+      "date": "2026-11-02",
+      "sha256": "429be7f444178f818903a9f1bbf42f7738a704d667d043ead8a028aa8b5aa6a6"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "Blender 5.3",
+      "args": "bvh import + anatomical bone mesh generation + glTF 2.0 animation bake",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Blender Workbench",
+      "args": "960x720 studio lighting render",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-02"
+    }
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02"
+}

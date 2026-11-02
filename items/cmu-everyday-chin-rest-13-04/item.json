@@ -1,0 +1,125 @@
+{
+  "id": "cmu-everyday-chin-rest-13-04",
+  "title": "Sit on Low Step & Chin-in-Hand Rest (CMU Mocap 13_04)",
+  "kind": "model",
+  "status": "published",
+  "summary": "Casual relaxed sitting on a step stool with elbow on knee and chin resting in hand.",
+  "description": "Contemplative everyday posture capturing asymmetric seated relaxation, head support, and subtle fidgeting.",
+  "tags": [
+    "person",
+    "single",
+    "fullbody",
+    "three-quarter",
+    "movement",
+    "pose",
+    "character",
+    "rigged",
+    "animated",
+    "mocap",
+    "everyday",
+    "bvh",
+    "short",
+    "contemporary"
+  ],
+  "keywords": [
+    "seated",
+    "chin rest",
+    "thinking",
+    "casual",
+    "step",
+    "everyday",
+    "CMU mocap"
+  ],
+  "collections": [
+    "mocap",
+    "3d"
+  ],
+  "demos": [
+    "3d-viewer",
+    "mocap",
+    "bvh-loader",
+    "rigging"
+  ],
+  "creators": [
+    {
+      "name": "Carnegie Mellon University Graphics Lab",
+      "role": "creator"
+    }
+  ],
+  "date": "2003",
+  "source": {
+    "url": "http://mocap.cs.cmu.edu/",
+    "origin": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "retrieved": "2026-11-01",
+    "via": "https://github.com/una-dinosauria/cmu-mocap"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CMU-Mocap-Open",
+    "license_url": "http://mocap.cs.cmu.edu/",
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "notes": "Biovision Hierarchy (.bvh) optical motion capture recording and rigged 3D character mesh (.glb)."
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 3476528,
+      "sha256": "28917b5040aed539b9c435e238482b5b4922f97b895ed2a57d7c480cd24c0048"
+    },
+    "bvh": {
+      "path": "motion.bvh",
+      "type": "application/x-bvh",
+      "bytes": 3598126,
+      "sha256": "e3170b370d5615604448ed7b5caa2e9f3733a323d71ae383fe5f8f9ad6d4c8b1"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 13452,
+      "sha256": "c4a2079aa6ca07736a7267d007adbcd2be814b81e92cb1d4c8fd0ed7474102b5",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 12292,
+      "sha256": "e486cb4f6a411722711be3d2f35564ff1a5ebf120c2c1cbc8e5ec1ea018d37a1",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/master/data/013/13_04.bvh",
+      "date": "2026-11-02",
+      "sha256": "e3170b370d5615604448ed7b5caa2e9f3733a323d71ae383fe5f8f9ad6d4c8b1"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "Blender 5.3",
+      "args": "bvh import + anatomical bone mesh generation + glTF 2.0 animation bake",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Blender Workbench",
+      "args": "960x720 studio lighting render",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-02"
+    }
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02"
+}

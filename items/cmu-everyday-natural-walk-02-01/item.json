@@ -1,0 +1,125 @@
+{
+  "id": "cmu-everyday-natural-walk-02-01",
+  "title": "Natural Human Walking Gait (CMU Mocap 02_01)",
+  "kind": "model",
+  "status": "published",
+  "summary": "Baseline bipedal human walking locomotion with natural arm carriage and stride rhythm.",
+  "description": "Standard unconstrained forward walking gait recorded in the CMU optical mocap facility, showing heel strike, stance phase, and arm counterbalance.",
+  "tags": [
+    "person",
+    "single",
+    "fullbody",
+    "three-quarter",
+    "movement",
+    "walk",
+    "character",
+    "rigged",
+    "animated",
+    "mocap",
+    "everyday",
+    "bvh",
+    "short",
+    "contemporary"
+  ],
+  "keywords": [
+    "walking",
+    "gait",
+    "locomotion",
+    "bipedal",
+    "stride",
+    "everyday",
+    "CMU mocap"
+  ],
+  "collections": [
+    "mocap",
+    "3d"
+  ],
+  "demos": [
+    "3d-viewer",
+    "mocap",
+    "bvh-loader",
+    "rigging"
+  ],
+  "creators": [
+    {
+      "name": "Carnegie Mellon University Graphics Lab",
+      "role": "creator"
+    }
+  ],
+  "date": "2003",
+  "source": {
+    "url": "http://mocap.cs.cmu.edu/",
+    "origin": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "retrieved": "2026-11-01",
+    "via": "https://github.com/una-dinosauria/cmu-mocap"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CMU-Mocap-Open",
+    "license_url": "http://mocap.cs.cmu.edu/",
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "notes": "Biovision Hierarchy (.bvh) optical motion capture recording and rigged 3D character mesh (.glb)."
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 1498056,
+      "sha256": "cad1537b0bf2aa342a81b4cccab48064aafc22f76baa887b4aa3f7ab37be82c9"
+    },
+    "bvh": {
+      "path": "motion.bvh",
+      "type": "application/x-bvh",
+      "bytes": 260091,
+      "sha256": "cf56db43157acc3d200b3d4215523f54d354a8926bea67e1f6c8031bd335ba7e"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 13730,
+      "sha256": "89cd4a118ce0e430f72552de5b3b163f4c2a04558be3e566046ebd2748886098",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 12850,
+      "sha256": "671dcc438606e81242760925a8d6523ebb328e6f703cf2eb48f185e3de4021f4",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/master/data/002/02_01.bvh",
+      "date": "2026-11-02",
+      "sha256": "cf56db43157acc3d200b3d4215523f54d354a8926bea67e1f6c8031bd335ba7e"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "Blender 5.3",
+      "args": "bvh import + anatomical bone mesh generation + glTF 2.0 animation bake",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Blender Workbench",
+      "args": "960x720 studio lighting render",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-02"
+    }
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02"
+}

@@ -1,0 +1,125 @@
+{
+  "id": "cmu-ballet-attitude-cambre-05-18",
+  "title": "Attitude Derrière & Cambré Back Bend (CMU Mocap 05_18)",
+  "kind": "model",
+  "status": "published",
+  "summary": "Classical attitude balance with deep arched cambré spinal extension.",
+  "description": "Sculptural dance pose showcasing high attitude leg hold with supported thoracic spine back bend.",
+  "tags": [
+    "person",
+    "single",
+    "fullbody",
+    "three-quarter",
+    "movement",
+    "dance",
+    "pose",
+    "character",
+    "rigged",
+    "animated",
+    "mocap",
+    "ballet",
+    "bvh",
+    "short",
+    "contemporary"
+  ],
+  "keywords": [
+    "attitude",
+    "cambre",
+    "back bend",
+    "ballet",
+    "extension",
+    "CMU mocap"
+  ],
+  "collections": [
+    "mocap",
+    "3d"
+  ],
+  "demos": [
+    "3d-viewer",
+    "mocap",
+    "bvh-loader",
+    "rigging"
+  ],
+  "creators": [
+    {
+      "name": "Carnegie Mellon University Graphics Lab",
+      "role": "creator"
+    }
+  ],
+  "date": "2003",
+  "source": {
+    "url": "http://mocap.cs.cmu.edu/",
+    "origin": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "retrieved": "2026-11-01",
+    "via": "https://github.com/una-dinosauria/cmu-mocap"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CMU-Mocap-Open",
+    "license_url": "http://mocap.cs.cmu.edu/",
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "notes": "Biovision Hierarchy (.bvh) optical motion capture recording and rigged 3D character mesh (.glb)."
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 2163200,
+      "sha256": "d00a978bd9451d6b16384098295737a82b90c483f326ce5900ab2c500de8a4c9"
+    },
+    "bvh": {
+      "path": "motion.bvh",
+      "type": "application/x-bvh",
+      "bytes": 1395493,
+      "sha256": "70d1ed45aa696f2fd6ca5a02ea1ba7517fdd86ccf816e2757d055360de3c3cbf"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 14682,
+      "sha256": "1f8c9f532c43025ac3e61f35d69a0bfeb1739b75e7749e2d1ac93c0a051ad07a",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 13702,
+      "sha256": "b5509fc3a09264a5392c1bda2da3bd6a135367030bdfa533e2a8a5f8dbb5471c",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/master/data/005/05_18.bvh",
+      "date": "2026-11-02",
+      "sha256": "70d1ed45aa696f2fd6ca5a02ea1ba7517fdd86ccf816e2757d055360de3c3cbf"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "Blender 5.3",
+      "args": "bvh import + anatomical bone mesh generation + glTF 2.0 animation bake",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Blender Workbench",
+      "args": "960x720 studio lighting render",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-02"
+    }
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02"
+}

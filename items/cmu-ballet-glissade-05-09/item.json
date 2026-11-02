@@ -1,0 +1,125 @@
+{
+  "id": "cmu-ballet-glissade-05-09",
+  "title": "Glissade Devant & Glissade Derrière (CMU Mocap 05_09)",
+  "kind": "model",
+  "status": "published",
+  "summary": "Smooth traveling gliding steps articulating low floor brush, foot extension, and attitude.",
+  "description": "Fundamental ballet traveling step demonstrating horizontal propulsion, toe articulation, and smooth weight transfer.",
+  "tags": [
+    "person",
+    "single",
+    "fullbody",
+    "three-quarter",
+    "movement",
+    "dance",
+    "walk",
+    "character",
+    "rigged",
+    "animated",
+    "mocap",
+    "ballet",
+    "bvh",
+    "short",
+    "contemporary"
+  ],
+  "keywords": [
+    "glissade",
+    "devant",
+    "derriere",
+    "footwork",
+    "ballet",
+    "CMU mocap"
+  ],
+  "collections": [
+    "mocap",
+    "3d"
+  ],
+  "demos": [
+    "3d-viewer",
+    "mocap",
+    "bvh-loader",
+    "rigging"
+  ],
+  "creators": [
+    {
+      "name": "Carnegie Mellon University Graphics Lab",
+      "role": "creator"
+    }
+  ],
+  "date": "2003",
+  "source": {
+    "url": "http://mocap.cs.cmu.edu/",
+    "origin": "http://mocap.cs.cmu.edu/",
+    "archive": "CMU Motion Capture Database",
+    "retrieved": "2026-11-01",
+    "via": "https://github.com/una-dinosauria/cmu-mocap"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CMU-Mocap-Open",
+    "license_url": "http://mocap.cs.cmu.edu/",
+    "credit": "Carnegie Mellon University Graphics Lab Motion Capture Database. Supported by NSF EIA-0196217. Free for artistic, research, and educational use.",
+    "notes": "Biovision Hierarchy (.bvh) optical motion capture recording and rigged 3D character mesh (.glb)."
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 1855712,
+      "sha256": "6b032dd964b066b74affb62c4f2110381d2ff4823175360a2dd0d3cbd0169ae0"
+    },
+    "bvh": {
+      "path": "motion.bvh",
+      "type": "application/x-bvh",
+      "bytes": 870391,
+      "sha256": "830f15c9b2aba81eb63caef8342a6c5a40b828aef79722c3221c73da6b18a305"
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 13140,
+      "sha256": "372851ab4a09d3e0aacf9d28b0d76bb74fc7459be166f219f4c5e53b4d7a6092",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 12152,
+      "sha256": "b591af3261a8bcee3947275620e054c5bd06fca2ce6abb74152c3c0074f93ea1",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://raw.githubusercontent.com/una-dinosauria/cmu-mocap/master/data/005/05_09.bvh",
+      "date": "2026-11-02",
+      "sha256": "830f15c9b2aba81eb63caef8342a6c5a40b828aef79722c3221c73da6b18a305"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "Blender 5.3",
+      "args": "bvh import + anatomical bone mesh generation + glTF 2.0 animation bake",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Blender Workbench",
+      "args": "960x720 studio lighting render",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-02"
+    }
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02"
+}
