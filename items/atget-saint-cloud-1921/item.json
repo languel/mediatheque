@@ -1,0 +1,119 @@
+{
+  "id": "atget-saint-cloud-1921",
+  "title": "Saint-Cloud, Grand Bassin (Eugène Atget, 1921)",
+  "kind": "image",
+  "status": "published",
+  "summary": "Misty French park landscape across a calm reflective water basin flanked by classical stone urns and weeping trees.",
+  "description": "Eugène Atget's evocative morning view across the Grand Bassin at Parc de Saint-Cloud, west of Paris. Atget, who called his photographs 'documents pour artistes', documented the fading grandeur of historical Parisian parks and châteaux. The quiet expanse of water, misty distant trees, and weathered classical garden urns reflect the soft, diffused silver tones characteristic of his albumen prints. A serene, classical park and water garden backdrop.",
+  "tags": [
+    "landscape",
+    "wide",
+    "still",
+    "tinted",
+    "low-light",
+    "photo",
+    "print",
+    "archival",
+    "landscape-format"
+  ],
+  "keywords": [
+    "Eugène Atget",
+    "Saint-Cloud",
+    "Grand Bassin",
+    "Paris",
+    "park",
+    "garden",
+    "urns",
+    "reflection",
+    "lake",
+    "mist",
+    "backdrop",
+    "Metropolitan Museum of Art"
+  ],
+  "collections": [
+    "photo"
+  ],
+  "demos": [
+    "img2img",
+    "style-transfer",
+    "depth",
+    "color"
+  ],
+  "creators": [
+    {
+      "name": "Eugène Atget",
+      "role": "photographer"
+    }
+  ],
+  "date": "1921",
+  "source": {
+    "url": "https://www.metmuseum.org/art/collection/search/283319",
+    "origin": "https://www.metmuseum.org/",
+    "archive": "The Metropolitan Museum of Art",
+    "retrieved": "2026-11-01"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US-expired",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US",
+    "credit": "Eugène Atget, Saint-Cloud, 1921. The Metropolitan Museum of Art, Gilman Collection. Public domain.",
+    "notes": "Albumen silver print."
+  },
+  "files": {
+    "media": {
+      "path": "media.webp",
+      "type": "image/webp",
+      "bytes": 818810,
+      "sha256": "ab422cb4913ba51f954b68f4730d15353bff70f17fda606d59068e3adcad5e57",
+      "width": 2560,
+      "height": 2084
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 688874,
+      "sha256": "ecbcb42e41e0c3d49170070a6530b50bb7c25ffe90966a39c4ac1f7814510868",
+      "width": 2560,
+      "height": 2084
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 32460,
+      "sha256": "dc4b5e033153f1c5a1773945a4e9c98be4e34903acd68f56c0f949e4a524488a",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Saint-Cloud_MET_DP124604.jpg",
+      "date": "2026-11-01",
+      "sha256": "a7ee88630b0902c55f37df1fb06bbf8fcd076fad37956d26bd7bdf6c90b6bb29"
+    },
+    {
+      "step": "derived",
+      "file": "media.webp",
+      "tool": "Pillow",
+      "args": "scale to max 2560 (2560x2084) webp quality=90",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "webp quality=88",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-01"
+    }
+  ],
+  "added": "2026-11-01",
+  "updated": "2026-11-01"
+}

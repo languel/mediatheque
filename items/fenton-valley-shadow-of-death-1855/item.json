@@ -1,0 +1,117 @@
+{
+  "id": "fenton-valley-shadow-of-death-1855",
+  "title": "The Valley of the Shadow of Death (Roger Fenton, 1855)",
+  "kind": "image",
+  "status": "published",
+  "summary": "Stark Crimean ravine strewn with cannonballs beneath rolling barren hills outside Sevastopol.",
+  "description": "Roger Fenton's celebrated 1855 salted paper print of the barren ravine near Sevastopol, christened 'The Valley of Death' by British soldiers due to the constant Russian artillery barrage during the Siege of Sevastopol. Fenton traveled with a horse-drawn photographic van containing wet collodion darkroom chemicals. The quiet, eerie landscape scattered with round shot beneath a desolate sky makes this one of the most haunting and influential war landscape backdrops in photographic history.",
+  "tags": [
+    "landscape",
+    "wide",
+    "still",
+    "high-contrast",
+    "photo",
+    "print",
+    "archival",
+    "landscape-format"
+  ],
+  "keywords": [
+    "Roger Fenton",
+    "Valley of the Shadow of Death",
+    "Crimea",
+    "cannonballs",
+    "ravine",
+    "desolation",
+    "war",
+    "hills",
+    "wasteland",
+    "backdrop",
+    "Metropolitan Museum of Art"
+  ],
+  "collections": [
+    "photo"
+  ],
+  "demos": [
+    "img2img",
+    "style-transfer",
+    "depth",
+    "color"
+  ],
+  "creators": [
+    {
+      "name": "Roger Fenton",
+      "role": "photographer"
+    }
+  ],
+  "date": "1855",
+  "source": {
+    "url": "https://www.metmuseum.org/art/collection/search/283177",
+    "origin": "https://www.metmuseum.org/",
+    "archive": "The Metropolitan Museum of Art",
+    "retrieved": "2026-11-01"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US-expired",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US",
+    "credit": "Roger Fenton, The Valley of the Shadow of Death, 1855. The Metropolitan Museum of Art, Gilman Collection. Public domain.",
+    "notes": "Salted paper print from glass negative."
+  },
+  "files": {
+    "media": {
+      "path": "media.webp",
+      "type": "image/webp",
+      "bytes": 1165006,
+      "sha256": "ae80e7f1e312c83b855a6e504b8a50f349c9ba29fd71dd74bcbbe9838306d749",
+      "width": 2560,
+      "height": 1961
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 1044460,
+      "sha256": "7276aee7047541980aeb99c27e5ee4192563d7b5bf72c3fcf1ab78e6b28e0f90",
+      "width": 2560,
+      "height": 1961
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 44576,
+      "sha256": "985ee700527c0d15e563c79e44a46a6d609f0083ff115a837b9dd4a331c2632f",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Valley_of_the_shadow_of_death.jpg",
+      "date": "2026-11-01",
+      "sha256": "fb69bfe44b4632c10cbfb4a3d75a38df9ecd81c638c2d4bd94ad20cadcc31511"
+    },
+    {
+      "step": "derived",
+      "file": "media.webp",
+      "tool": "Pillow",
+      "args": "scale to max 2560 (2560x1961) webp quality=90",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "webp quality=88",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-01"
+    }
+  ],
+  "added": "2026-11-01",
+  "updated": "2026-11-01"
+}

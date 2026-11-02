@@ -1,0 +1,117 @@
+{
+  "id": "watkins-sentinel-dome-1865",
+  "title": "View from the Sentinel Dome, Yosemite (Carleton Watkins, 1865–66)",
+  "kind": "image",
+  "status": "published",
+  "summary": "Mammoth-plate panorama across the high granite peaks, waterfalls, and ancient pines of Yosemite Valley.",
+  "description": "Carleton Watkins's mammoth-plate albumen print made from a 18x22-inch glass plate negative hauled by mule train to the summit of Sentinel Dome in the high Sierra Nevada. The panoramic view encompasses Nevada Falls, Vernal Falls, Half Dome, and wind-sculpted Jeffrey pines. Watkins's breathtaking Yosemite photographs directly influenced Abraham Lincoln and Congress to pass the 1864 Yosemite Grant Act, creating the first protected public wild parkland. A grand mountainous scenic backdrop.",
+  "tags": [
+    "landscape",
+    "wide",
+    "still",
+    "high-contrast",
+    "photo",
+    "print",
+    "archival",
+    "landscape-format"
+  ],
+  "keywords": [
+    "Carleton Watkins",
+    "Yosemite",
+    "Sentinel Dome",
+    "Half Dome",
+    "Nevada Falls",
+    "Sierra Nevada",
+    "mountains",
+    "panorama",
+    "wilderness",
+    "backdrop",
+    "Metropolitan Museum of Art"
+  ],
+  "collections": [
+    "photo"
+  ],
+  "demos": [
+    "img2img",
+    "style-transfer",
+    "depth",
+    "color"
+  ],
+  "creators": [
+    {
+      "name": "Carleton Watkins",
+      "role": "photographer"
+    }
+  ],
+  "date": "1865",
+  "source": {
+    "url": "https://www.metmuseum.org/art/collection/search/266858",
+    "origin": "https://www.metmuseum.org/",
+    "archive": "The Metropolitan Museum of Art",
+    "retrieved": "2026-11-01"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US-expired",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US",
+    "credit": "Carleton Watkins, View from the Sentinel Dome, Yosemite, 1865–66. The Metropolitan Museum of Art. Public domain.",
+    "notes": "Mammoth-plate albumen silver print."
+  },
+  "files": {
+    "media": {
+      "path": "media.webp",
+      "type": "image/webp",
+      "bytes": 1230762,
+      "sha256": "637131a7d769bb61cb421b26976c8d3a500da955b984525878b4c05e2c914f8d",
+      "width": 2560,
+      "height": 1988
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 1081520,
+      "sha256": "07f7f53433f94fe3b0de1c7d088812205f0ed85841edf2a10152fc08e31344c1",
+      "width": 2560,
+      "height": 1988
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 40518,
+      "sha256": "05fc19fb5e449500575807f0439d7984e01e8c5f81e114715cce35f9022c83c5",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://upload.wikimedia.org/wikipedia/commons/e/e0/View_from_the_Sentinel_Dome%2C_Yosemite_MET_DT6342.jpg",
+      "date": "2026-11-01",
+      "sha256": "8c3500aa31669f5c3c46fe91dea9dd757f2f54edae1d38c887c71360b3c754d4"
+    },
+    {
+      "step": "derived",
+      "file": "media.webp",
+      "tool": "Pillow",
+      "args": "scale to max 2560 (2560x1988) webp quality=90",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "webp quality=88",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-01"
+    }
+  ],
+  "added": "2026-11-01",
+  "updated": "2026-11-01"
+}

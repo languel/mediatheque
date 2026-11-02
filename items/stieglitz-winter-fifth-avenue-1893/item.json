@@ -1,0 +1,119 @@
+{
+  "id": "stieglitz-winter-fifth-avenue-1893",
+  "title": "Winter – Fifth Avenue (Alfred Stieglitz, 1893)",
+  "kind": "image",
+  "status": "published",
+  "summary": "Horse-drawn coach plowing through swirling snowbanks during a fierce Manhattan blizzard on Fifth Avenue.",
+  "description": "Alfred Stieglitz's quintessential winter street scene, captured with a hand-held 4x5 detective camera during a raging snowstorm at Fifth Avenue and 35th Street in New York City. Stieglitz waited three hours in freezing conditions for the coach and team of horses to surge forward through billowing drifts. The photograph marked a revolutionary turning point from stiff studio setups to dynamic, atmospheric instantaneity in American photography. An atmospheric blizzard and turn-of-the-century urban street backdrop.",
+  "tags": [
+    "cityscape",
+    "wide",
+    "still",
+    "bw",
+    "low-light",
+    "grain",
+    "photo",
+    "print",
+    "archival",
+    "portrait"
+  ],
+  "keywords": [
+    "Alfred Stieglitz",
+    "Winter Fifth Avenue",
+    "blizzard",
+    "snow",
+    "Manhattan",
+    "horses",
+    "carriage",
+    "street",
+    "cityscape",
+    "backdrop",
+    "Metropolitan Museum of Art"
+  ],
+  "collections": [
+    "photo"
+  ],
+  "demos": [
+    "img2img",
+    "style-transfer",
+    "depth",
+    "color"
+  ],
+  "creators": [
+    {
+      "name": "Alfred Stieglitz",
+      "role": "photographer"
+    }
+  ],
+  "date": "1893",
+  "source": {
+    "url": "https://www.metmuseum.org/art/collection/search/267868",
+    "origin": "https://www.metmuseum.org/",
+    "archive": "The Metropolitan Museum of Art",
+    "retrieved": "2026-11-01"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US-expired",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US",
+    "credit": "Alfred Stieglitz, Winter – Fifth Avenue, 1893 (printed 1905). The Metropolitan Museum of Art, Alfred Stieglitz Collection. Public domain.",
+    "notes": "Photogravure on paper."
+  },
+  "files": {
+    "media": {
+      "path": "media.webp",
+      "type": "image/webp",
+      "bytes": 1035564,
+      "sha256": "feafdf2938631a5a6ac3a4ac7958c042ce70bcbb6211975074e70a684c607db6",
+      "width": 2076,
+      "height": 2560
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 922200,
+      "sha256": "371b7472880a1d92810b89bf00db2d3913b3b2ccb1036e8c2e619b1c5586c508",
+      "width": 2076,
+      "height": 2560
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 18466,
+      "sha256": "b97f6ec00c356ddc117391d65b8983c9e8467b081208cc9bd03f23366fb37e88",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://upload.wikimedia.org/wikipedia/commons/2/20/Winter_-_Fifth_Avenue_MET_DP234514.jpg",
+      "date": "2026-11-01",
+      "sha256": "a413a515e622b504309baae76b7c552fa753a11f6e3428ebb39581d4f828aa7d"
+    },
+    {
+      "step": "derived",
+      "file": "media.webp",
+      "tool": "Pillow",
+      "args": "scale to max 2560 (2076x2560) webp quality=90",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "webp quality=88",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-01"
+    }
+  ],
+  "added": "2026-11-01",
+  "updated": "2026-11-01"
+}

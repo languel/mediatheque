@@ -1,0 +1,116 @@
+{
+  "id": "baldus-pont-du-gard-1861",
+  "title": "The Pont du Gard (Édouard Baldus, c. 1861)",
+  "kind": "image",
+  "status": "published",
+  "summary": "Monumental Roman aqueduct spanning the Gardon river valley in southern France, bathed in Mediterranean light.",
+  "description": "Édouard Baldus's grand architectural and landscape study of the three-tiered Roman aqueduct Pont du Gard in Vers-Pont-du-Gard, southern France. Baldus, a founding member of the Société française de photographie, was commissioned to document France's historical monuments and public engineering works. The composition pairs the monumental stone arches of antiquity with the rugged river valley, gravel banks, and Mediterranean vegetation. A timeless river valley and classical masonry backdrop.",
+  "tags": [
+    "landscape",
+    "architecture",
+    "wide",
+    "still",
+    "photo",
+    "print",
+    "archival",
+    "landscape-format"
+  ],
+  "keywords": [
+    "Édouard Baldus",
+    "Pont du Gard",
+    "Roman aqueduct",
+    "France",
+    "Gardon",
+    "river",
+    "architecture",
+    "landscape",
+    "backdrop",
+    "Metropolitan Museum of Art"
+  ],
+  "collections": [
+    "photo"
+  ],
+  "demos": [
+    "img2img",
+    "style-transfer",
+    "depth",
+    "color"
+  ],
+  "creators": [
+    {
+      "name": "Édouard Baldus",
+      "role": "photographer"
+    }
+  ],
+  "date": "1861",
+  "source": {
+    "url": "https://www.metmuseum.org/art/collection/search/286280",
+    "origin": "https://www.metmuseum.org/",
+    "archive": "The Metropolitan Museum of Art",
+    "retrieved": "2026-11-01"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US-expired",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US",
+    "credit": "Édouard Baldus, Pont du Gard, c. 1861. The Metropolitan Museum of Art, Gilman Collection. Public domain.",
+    "notes": "Albumen silver print from paper/glass negative."
+  },
+  "files": {
+    "media": {
+      "path": "media.webp",
+      "type": "image/webp",
+      "bytes": 511872,
+      "sha256": "4a386e74565f376b057c4a10b66d433b7788121c7d109afa4d7c3cbeddaedfe6",
+      "width": 2560,
+      "height": 1735
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 441548,
+      "sha256": "f859ec8be440e71818c0573485627c51e9fcfca5d6315cdbfe4f5f84646d93d8",
+      "width": 2560,
+      "height": 1735
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 28594,
+      "sha256": "bf1396948aee6ac4594b1884f10af16202894e28a0c189808dcc7ce8118c07dc",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://upload.wikimedia.org/wikipedia/commons/3/38/Pont_du_Gard_MET_DP137992.jpg",
+      "date": "2026-11-01",
+      "sha256": "0080912eec0c53cc54bdcd432b1dd9bc7d8ece240b08af0f87d99a6b66bcd3ac"
+    },
+    {
+      "step": "derived",
+      "file": "media.webp",
+      "tool": "Pillow",
+      "args": "scale to max 2560 (2560x1735) webp quality=90",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "webp quality=88",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-01"
+    }
+  ],
+  "added": "2026-11-01",
+  "updated": "2026-11-01"
+}

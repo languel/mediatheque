@@ -28,7 +28,7 @@
     },
     "framing": {
       "label": "Framing",
-      "kinds": ["video", "animation", "image"],
+      "kinds": ["video", "animation", "image", "model"],
       "tags": {
         "fullbody": "Head-to-toe full figure visible",
         "upper-body": "Waist or chest up medium/portrait shot",
@@ -53,7 +53,7 @@
     },
     "action": {
       "label": "Action",
-      "kinds": ["video", "animation", "image"],
+      "kinds": ["video", "animation", "image", "model"],
       "tags": {
         "movement": "Clear bodily or mechanical motion",
         "dance": "Choreographed or expressive dance movement",
@@ -71,7 +71,7 @@
     },
     "motion": {
       "label": "Motion & camera",
-      "kinds": ["video", "animation"],
+      "kinds": ["video", "animation", "model"],
       "tags": {
         "slow": "Slow, measured pace",
         "fast": "Rapid, high-velocity motion",
@@ -212,6 +212,10 @@
         "character": "Humanoid or creature character mesh",
         "rigged": "Includes skeleton / skinning weights",
         "animated": "Contains keyframe or skeletal animation clips",
+        "mocap": "Motion capture recording or skeletal kinematics",
+        "ballet": "Classical ballet vocabulary and technique",
+        "everyday": "Daily functional task, domestic activity, or gesture",
+        "bvh": "Biovision Hierarchy skeletal motion capture format",
         "prop": "Single object, furniture, or artifact mesh",
         "scene": "Multi-object environment or interior room",
         "architecture": "Building, gallery, or structural space",
@@ -315,6 +319,8 @@
     "plotter": "Vector path manipulation and pen-plotter output",
     "generative-text": "Markov chains, cut-up poetry, and LLM text prompts",
     "photogrammetry": "3D reconstruction and spatial capture inspection",
-    "rigging": "Skeletal animation and procedural character motion"
+    "rigging": "Skeletal animation and procedural character motion",
+    "mocap": "Interactive 3D motion capture playback, joint kinematics, and retargeting",
+    "bvh-loader": "Biovision Hierarchy (.bvh) mocap parsing and skeleton animation"
   }
 }

@@ -1,0 +1,117 @@
+{
+  "id": "le-gray-the-great-wave-1857",
+  "title": "The Great Wave, Sète (Gustave Le Gray, 1857)",
+  "kind": "image",
+  "status": "published",
+  "summary": "Pioneering combination-print seascape capturing a rolling Mediterranean wave and dramatic sunlit cloudscape.",
+  "description": "Gustave Le Gray's masterpiece 'La Vague' (The Great Wave), photographed on the Mediterranean coast at Sète in 1857. To overcome the collodion emulsion's inability to register both bright sky and dark sea in a single exposure, Le Gray printed two negatives together on a single albumen sheet: one timed for the luminous break of the cresting wave, and one exposed for the dramatic backlit clouds. Regarded as the summit of 19th-century marine photography. An iconic coastal seascape backdrop.",
+  "tags": [
+    "landscape",
+    "wide",
+    "still",
+    "high-contrast",
+    "photo",
+    "print",
+    "archival",
+    "landscape-format"
+  ],
+  "keywords": [
+    "Gustave Le Gray",
+    "The Great Wave",
+    "La Vague",
+    "Sète",
+    "seascape",
+    "ocean",
+    "surf",
+    "clouds",
+    "Mediterranean",
+    "backdrop",
+    "Metropolitan Museum of Art"
+  ],
+  "collections": [
+    "photo"
+  ],
+  "demos": [
+    "img2img",
+    "style-transfer",
+    "depth",
+    "color"
+  ],
+  "creators": [
+    {
+      "name": "Gustave Le Gray",
+      "role": "photographer"
+    }
+  ],
+  "date": "1857",
+  "source": {
+    "url": "https://www.metmuseum.org/art/collection/search/283218",
+    "origin": "https://www.metmuseum.org/",
+    "archive": "The Metropolitan Museum of Art",
+    "retrieved": "2026-11-01"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US-expired",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US",
+    "credit": "Gustave Le Gray, The Great Wave, Sète, 1857. The Metropolitan Museum of Art, Gilman Collection. Public domain.",
+    "notes": "Albumen silver print from two glass negatives."
+  },
+  "files": {
+    "media": {
+      "path": "media.webp",
+      "type": "image/webp",
+      "bytes": 791134,
+      "sha256": "e8edb119f4a2f86c463b5e9f894c6b4df911f5498c91f311a1c60dd93c69060d",
+      "width": 2560,
+      "height": 2084
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 648170,
+      "sha256": "d4d5fe7fbf02057bbe97c187eb14663376a409ebf4e4b825ea2392c9959bc3d5",
+      "width": 2560,
+      "height": 2084
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 29480,
+      "sha256": "8425ede0f11920e30a1ed8396fb789da914b4b15496bd79fbfcaeb220e6ae14e",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://upload.wikimedia.org/wikipedia/commons/6/6a/-The_Great_Wave%2C_S%C3%A8te-_MET_DT1167.jpg",
+      "date": "2026-11-01",
+      "sha256": "127b8e55ca2917555fea84bd3e9fc272e27c6b69b594f9dae7552fc97cb40559"
+    },
+    {
+      "step": "derived",
+      "file": "media.webp",
+      "tool": "Pillow",
+      "args": "scale to max 2560 (2560x2084) webp quality=90",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "webp quality=88",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-01"
+    }
+  ],
+  "added": "2026-11-01",
+  "updated": "2026-11-01"
+}

@@ -1,0 +1,119 @@
+{
+  "id": "steichen-the-flatiron-1904",
+  "title": "The Flatiron (Edward Steichen, 1904)",
+  "kind": "image",
+  "status": "published",
+  "summary": "Pictorialist twilight view of Daniel Burnham's Flatiron Building reflecting in wet Madison Square pavement.",
+  "description": "Edward Steichen's iconic nocturnal cityscape of Manhattan's Flatiron Building soaring into the twilight above Madison Square. Steichen created several variant impressions with green, blue, and amber gum bichromate over platinum, blending the sleek geometry of modern American steel-frame skyscraper construction with Whistler-inspired Japanese woodblock composition. Bare branches, wet cobblestones, and the glowing lanterns of horse-drawn cabs create an indelible atmospheric city backdrop.",
+  "tags": [
+    "cityscape",
+    "architecture",
+    "wide",
+    "still",
+    "tinted",
+    "low-light",
+    "photo",
+    "print",
+    "archival",
+    "portrait"
+  ],
+  "keywords": [
+    "Edward Steichen",
+    "The Flatiron",
+    "Manhattan",
+    "New York",
+    "skyscraper",
+    "Madison Square",
+    "twilight",
+    "nocturne",
+    "cityscape",
+    "backdrop",
+    "Metropolitan Museum of Art"
+  ],
+  "collections": [
+    "photo"
+  ],
+  "demos": [
+    "img2img",
+    "style-transfer",
+    "depth",
+    "color"
+  ],
+  "creators": [
+    {
+      "name": "Edward Steichen",
+      "role": "photographer"
+    }
+  ],
+  "date": "1904",
+  "source": {
+    "url": "https://www.metmuseum.org/art/collection/search/267837",
+    "origin": "https://www.metmuseum.org/",
+    "archive": "The Metropolitan Museum of Art",
+    "retrieved": "2026-11-01"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US-expired",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US",
+    "credit": "Edward Steichen, The Flatiron, 1904. The Metropolitan Museum of Art, Alfred Stieglitz Collection. Public domain.",
+    "notes": "Gum bichromate over platinum print."
+  },
+  "files": {
+    "media": {
+      "path": "media.webp",
+      "type": "image/webp",
+      "bytes": 656316,
+      "sha256": "bead619ec670291f81df9586f1ad3ecbca6a59ac1e5cf3ab1b92dc730020f977",
+      "width": 1500,
+      "height": 1901
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 577842,
+      "sha256": "75046ad8d37e3663d08e67d1145f61706c07d5de6048c70ffccff2a867e9a4a6",
+      "width": 1500,
+      "height": 1901
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 26852,
+      "sha256": "e89689eb28c4ecc6f2676cf9d00a556d8e59dd2cb8ddee8f1ad9b41d1c32f280",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Steichen_flatiron.jpg",
+      "date": "2026-11-01",
+      "sha256": "e6b8b5e2f727df5b3794edf75676ebddd8790ecb24bdb7359208fddfa839d477"
+    },
+    {
+      "step": "derived",
+      "file": "media.webp",
+      "tool": "Pillow",
+      "args": "scale to max 2560 (1500x1901) webp quality=90",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "webp quality=88",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-01"
+    }
+  ],
+  "added": "2026-11-01",
+  "updated": "2026-11-01"
+}

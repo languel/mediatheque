@@ -105,7 +105,8 @@
         "poster": { "type": "object" },
         "original": { "type": "object" },
         "sheet": { "type": "object" },
-        "frames": { "type": "object" }
+        "frames": { "type": "object" },
+        "bvh": { "type": "object" }
       }
     },
     "clips": {

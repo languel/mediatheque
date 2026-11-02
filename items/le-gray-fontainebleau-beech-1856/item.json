@@ -1,0 +1,117 @@
+{
+  "id": "le-gray-fontainebleau-beech-1856",
+  "title": "Beech Tree, Forest of Fontainebleau (Gustave Le Gray, c. 1856)",
+  "kind": "image",
+  "status": "published",
+  "summary": "Gnarled roots and dappled canopy of an ancient beech deep inside the primeval Forest of Fontainebleau.",
+  "description": "Gustave Le Gray's woodland study of an ancient beech tree in the Forest of Fontainebleau, south of Paris. Using his patented dry-waxed paper negative process, Le Gray captured the intricate texture of mossy bark, sprawling root systems, and gentle light filtering through dense leafy canopy. The Forest of Fontainebleau was the sacred sanctuary of the Barbizon school of landscape painters, whom Le Gray knew and influenced. A lush, enchanted primeval forest nature backdrop.",
+  "tags": [
+    "landscape",
+    "wide",
+    "still",
+    "tinted",
+    "photo",
+    "print",
+    "archival",
+    "landscape-format"
+  ],
+  "keywords": [
+    "Gustave Le Gray",
+    "Beech Tree",
+    "Fontainebleau",
+    "forest",
+    "roots",
+    "trees",
+    "woodland",
+    "Barbizon",
+    "landscape",
+    "backdrop",
+    "National Gallery of Art"
+  ],
+  "collections": [
+    "photo"
+  ],
+  "demos": [
+    "img2img",
+    "style-transfer",
+    "depth",
+    "color"
+  ],
+  "creators": [
+    {
+      "name": "Gustave Le Gray",
+      "role": "photographer"
+    }
+  ],
+  "date": "1856",
+  "source": {
+    "url": "https://www.nga.gov/collection/art-object-page.92223.html",
+    "origin": "https://www.nga.gov/",
+    "archive": "National Gallery of Art / The Metropolitan Museum of Art",
+    "retrieved": "2026-11-01"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US-expired",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US",
+    "credit": "Gustave Le Gray, Beech Tree, Forest of Fontainebleau, c. 1856. Public domain.",
+    "notes": "Albumen silver print from waxed paper negative."
+  },
+  "files": {
+    "media": {
+      "path": "media.webp",
+      "type": "image/webp",
+      "bytes": 1011344,
+      "sha256": "1f52aa5d348dfa293e11312cda16433596bd72262396a7c6c00577c1b3fcaa54",
+      "width": 2560,
+      "height": 1978
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 904456,
+      "sha256": "956e50fe8528c7f0b8378a625a05ce1f7e652f0c3e8b83963bbc6358a79dfb36",
+      "width": 2560,
+      "height": 1978
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 50108,
+      "sha256": "4036a938c6a49e6a2487c70a89c6a00ec655b23bf4446ca2fcbe174f150fcead",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Gustave_Le_Gray%2C_Beech_Tree%2C_Forest_of_Fontainebleau%2C_c._1856%2C_NGA_92223.jpg",
+      "date": "2026-11-01",
+      "sha256": "931bf767cbe97f33abb3a472c0393d74c33b9cb667584c9853829a58739008c7"
+    },
+    {
+      "step": "derived",
+      "file": "media.webp",
+      "tool": "Pillow",
+      "args": "scale to max 2560 (2560x1978) webp quality=90",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "webp quality=88",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-01"
+    }
+  ],
+  "added": "2026-11-01",
+  "updated": "2026-11-01"
+}

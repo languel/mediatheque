@@ -74,6 +74,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 265032,
     "url": "https://languel.github.io/mediatheque/items/andre-breton/media.webp",
     "added": "2026-10-18"
@@ -159,6 +160,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 2490029,
     "url": "https://languel.github.io/mediatheque/items/anim-goeland-marey/original.gif",
     "added": "2026-10-18"
@@ -243,6 +245,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 1369033,
     "url": "https://languel.github.io/mediatheque/items/animdemeny-je-vous-aime-planche/original.gif",
     "added": "2026-10-18"
@@ -314,9 +317,167 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 6361228,
     "url": "https://languel.github.io/mediatheque/items/arcf9-1-poly/media.glb",
     "added": "2026-10-18"
+  },
+  {
+    "id": "atget-saint-cloud-1921",
+    "type": "item",
+    "title": "Saint-Cloud, Grand Bassin (Eugène Atget, 1921)",
+    "kind": "image",
+    "status": "published",
+    "summary": "Misty French park landscape across a calm reflective water basin flanked by classical stone urns and weeping trees.",
+    "tags": [
+      "landscape",
+      "wide",
+      "still",
+      "tinted",
+      "low-light",
+      "photo",
+      "print",
+      "archival",
+      "landscape-format"
+    ],
+    "keywords": [
+      "Eugène Atget",
+      "Saint-Cloud",
+      "Grand Bassin",
+      "Paris",
+      "park",
+      "garden",
+      "urns",
+      "reflection",
+      "lake",
+      "mist",
+      "backdrop",
+      "Metropolitan Museum of Art"
+    ],
+    "collections": [
+      "photo"
+    ],
+    "demos": [
+      "img2img",
+      "style-transfer",
+      "depth",
+      "color"
+    ],
+    "date": "1921",
+    "creators": [
+      "Eugène Atget"
+    ],
+    "creator_roles": [
+      {
+        "name": "Eugène Atget",
+        "role": "photographer"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "PD-US-expired",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US"
+    },
+    "credit": "Eugène Atget, Saint-Cloud, 1921. The Metropolitan Museum of Art, Gilman Collection. Public domain.",
+    "source_url": "https://www.metmuseum.org/art/collection/search/283319",
+    "archive": "The Metropolitan Museum of Art",
+    "thumb": "items/atget-saint-cloud-1921/thumb.webp",
+    "poster": "items/atget-saint-cloud-1921/poster.webp",
+    "media": "items/atget-saint-cloud-1921/media.webp",
+    "video_media": "items/atget-saint-cloud-1921/media.webp",
+    "proxy": null,
+    "original": null,
+    "width": 2560,
+    "height": 2084,
+    "aspect_ratio": "5:4",
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 818810,
+    "url": "https://languel.github.io/mediatheque/items/atget-saint-cloud-1921/media.webp",
+    "added": "2026-11-01"
+  },
+  {
+    "id": "baldus-pont-du-gard-1861",
+    "type": "item",
+    "title": "The Pont du Gard (Édouard Baldus, c. 1861)",
+    "kind": "image",
+    "status": "published",
+    "summary": "Monumental Roman aqueduct spanning the Gardon river valley in southern France, bathed in Mediterranean light.",
+    "tags": [
+      "landscape",
+      "architecture",
+      "wide",
+      "still",
+      "photo",
+      "print",
+      "archival",
+      "landscape-format"
+    ],
+    "keywords": [
+      "Édouard Baldus",
+      "Pont du Gard",
+      "Roman aqueduct",
+      "France",
+      "Gardon",
+      "river",
+      "architecture",
+      "landscape",
+      "backdrop",
+      "Metropolitan Museum of Art"
+    ],
+    "collections": [
+      "photo"
+    ],
+    "demos": [
+      "img2img",
+      "style-transfer",
+      "depth",
+      "color"
+    ],
+    "date": "1861",
+    "creators": [
+      "Édouard Baldus"
+    ],
+    "creator_roles": [
+      {
+        "name": "Édouard Baldus",
+        "role": "photographer"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "PD-US-expired",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US"
+    },
+    "credit": "Édouard Baldus, Pont du Gard, c. 1861. The Metropolitan Museum of Art, Gilman Collection. Public domain.",
+    "source_url": "https://www.metmuseum.org/art/collection/search/286280",
+    "archive": "The Metropolitan Museum of Art",
+    "thumb": "items/baldus-pont-du-gard-1861/thumb.webp",
+    "poster": "items/baldus-pont-du-gard-1861/poster.webp",
+    "media": "items/baldus-pont-du-gard-1861/media.webp",
+    "video_media": "items/baldus-pont-du-gard-1861/media.webp",
+    "proxy": null,
+    "original": null,
+    "width": 2560,
+    "height": 1735,
+    "aspect_ratio": "3:2",
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 511872,
+    "url": "https://languel.github.io/mediatheque/items/baldus-pont-du-gard-1861/media.webp",
+    "added": "2026-11-01"
   },
   {
     "id": "cockatoo-muybrige",
@@ -396,6 +557,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 1904102,
     "url": "https://languel.github.io/mediatheque/items/cockatoo-muybrige/original.gif",
     "added": "2026-10-18",
@@ -478,6 +640,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 43761740,
     "url": "https://languel.github.io/mediatheque/items/danse-serpentine-lumiere-1897/media.webm",
     "added": "2026-10-18",
@@ -686,6 +849,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 364158,
     "url": "https://languel.github.io/mediatheque/items/eadweard-muybridge-animal-locomotion-woman-dancing-fancy-1887-plate-187/original.gif",
     "added": "2026-10-18",
@@ -737,6 +901,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 741098,
     "url": "https://languel.github.io/mediatheque/items/edison-may-irwin-kiss-1896/media.webm",
     "added": "2026-10-20"
@@ -806,9 +971,166 @@
     "splats": null,
     "formula": "x = u - u³/3 + uv², y = -v + v³/3 - vu², z = u² - v²",
     "math_type": "parametric",
+    "bvh": null,
     "bytes": 941,
     "url": "https://languel.github.io/mediatheque/items/enneper-minimal-surface/media.json",
     "added": "2026-10-24"
+  },
+  {
+    "id": "fenton-valley-shadow-of-death-1855",
+    "type": "item",
+    "title": "The Valley of the Shadow of Death (Roger Fenton, 1855)",
+    "kind": "image",
+    "status": "published",
+    "summary": "Stark Crimean ravine strewn with cannonballs beneath rolling barren hills outside Sevastopol.",
+    "tags": [
+      "landscape",
+      "wide",
+      "still",
+      "high-contrast",
+      "photo",
+      "print",
+      "archival",
+      "landscape-format"
+    ],
+    "keywords": [
+      "Roger Fenton",
+      "Valley of the Shadow of Death",
+      "Crimea",
+      "cannonballs",
+      "ravine",
+      "desolation",
+      "war",
+      "hills",
+      "wasteland",
+      "backdrop",
+      "Metropolitan Museum of Art"
+    ],
+    "collections": [
+      "photo"
+    ],
+    "demos": [
+      "img2img",
+      "style-transfer",
+      "depth",
+      "color"
+    ],
+    "date": "1855",
+    "creators": [
+      "Roger Fenton"
+    ],
+    "creator_roles": [
+      {
+        "name": "Roger Fenton",
+        "role": "photographer"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "PD-US-expired",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US"
+    },
+    "credit": "Roger Fenton, The Valley of the Shadow of Death, 1855. The Metropolitan Museum of Art, Gilman Collection. Public domain.",
+    "source_url": "https://www.metmuseum.org/art/collection/search/283177",
+    "archive": "The Metropolitan Museum of Art",
+    "thumb": "items/fenton-valley-shadow-of-death-1855/thumb.webp",
+    "poster": "items/fenton-valley-shadow-of-death-1855/poster.webp",
+    "media": "items/fenton-valley-shadow-of-death-1855/media.webp",
+    "video_media": "items/fenton-valley-shadow-of-death-1855/media.webp",
+    "proxy": null,
+    "original": null,
+    "width": 2560,
+    "height": 1961,
+    "aspect_ratio": "1.31:1",
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 1165006,
+    "url": "https://languel.github.io/mediatheque/items/fenton-valley-shadow-of-death-1855/media.webp",
+    "added": "2026-11-01"
+  },
+  {
+    "id": "frith-great-pyramid-sphinx-1858",
+    "type": "item",
+    "title": "The Great Pyramid and the Sphinx, Egypt (Francis Frith, 1858)",
+    "kind": "image",
+    "status": "published",
+    "summary": "Sublime 19th-century view of the Great Sphinx and Pyramid of Khufu rising from the desert sands of Giza.",
+    "tags": [
+      "landscape",
+      "wide",
+      "still",
+      "high-contrast",
+      "photo",
+      "print",
+      "archival",
+      "landscape-format"
+    ],
+    "keywords": [
+      "Francis Frith",
+      "Pyramids",
+      "Sphinx",
+      "Giza",
+      "Egypt",
+      "desert",
+      "sand",
+      "antiquity",
+      "monument",
+      "backdrop",
+      "Metropolitan Museum of Art"
+    ],
+    "collections": [
+      "photo"
+    ],
+    "demos": [
+      "img2img",
+      "style-transfer",
+      "depth",
+      "color"
+    ],
+    "date": "1858",
+    "creators": [
+      "Francis Frith"
+    ],
+    "creator_roles": [
+      {
+        "name": "Francis Frith",
+        "role": "photographer"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "PD-US-expired",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US"
+    },
+    "credit": "Francis Frith, The Great Pyramid and the Sphinx, Egypt, 1858. The Metropolitan Museum of Art. Public domain.",
+    "source_url": "https://www.metmuseum.org/art/collection/search/283256",
+    "archive": "The Metropolitan Museum of Art",
+    "thumb": "items/frith-great-pyramid-sphinx-1858/thumb.webp",
+    "poster": "items/frith-great-pyramid-sphinx-1858/poster.webp",
+    "media": "items/frith-great-pyramid-sphinx-1858/media.webp",
+    "video_media": "items/frith-great-pyramid-sphinx-1858/media.webp",
+    "proxy": null,
+    "original": null,
+    "width": 2560,
+    "height": 2009,
+    "aspect_ratio": "5:4",
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 1585198,
+    "url": "https://languel.github.io/mediatheque/items/frith-great-pyramid-sphinx-1858/media.webp",
+    "added": "2026-11-01"
   },
   {
     "id": "gyroid-minimal-surface",
@@ -880,6 +1202,7 @@
     "splats": null,
     "formula": "sin(x)cos(y) + sin(y)cos(z) + sin(z)cos(x) = 0",
     "math_type": "sdf",
+    "bvh": null,
     "bytes": 808,
     "url": "https://languel.github.io/mediatheque/items/gyroid-minimal-surface/media.json",
     "added": "2026-10-24"
@@ -969,6 +1292,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 779764,
     "url": "https://languel.github.io/mediatheque/items/hapci-fr/original.gif",
     "added": "2026-10-18"
@@ -1046,6 +1370,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 18694,
     "url": "https://languel.github.io/mediatheque/items/hugo-ball/media.webp",
     "added": "2026-10-18"
@@ -1117,6 +1442,7 @@
     "splats": null,
     "formula": "r(u, v) = ((r + cos(u/2)sin(v) - sin(u/2)sin(2v))cos(u), ...)",
     "math_type": "parametric",
+    "bvh": null,
     "bytes": 1339,
     "url": "https://languel.github.io/mediatheque/items/klein-bottle-immersion/media.json",
     "added": "2026-10-24"
@@ -1199,6 +1525,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 17490281,
     "url": "https://languel.github.io/mediatheque/items/la-sortie-de-l-usine-lumiere-a-lyon-i-1895/media.webm",
     "added": "2026-10-18",
@@ -1407,6 +1734,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 1772564,
     "url": "https://languel.github.io/mediatheque/items/lancement-du-disque-par-l-athlete-americain-mccraken-1900/media.webm",
     "added": "2026-10-18"
@@ -1498,9 +1826,166 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 1986272,
     "url": "https://languel.github.io/mediatheque/items/lancement-du-poids-par-l-athlete-americain-mccraken-1900/media.webm",
     "added": "2026-10-18"
+  },
+  {
+    "id": "le-gray-fontainebleau-beech-1856",
+    "type": "item",
+    "title": "Beech Tree, Forest of Fontainebleau (Gustave Le Gray, c. 1856)",
+    "kind": "image",
+    "status": "published",
+    "summary": "Gnarled roots and dappled canopy of an ancient beech deep inside the primeval Forest of Fontainebleau.",
+    "tags": [
+      "landscape",
+      "wide",
+      "still",
+      "tinted",
+      "photo",
+      "print",
+      "archival",
+      "landscape-format"
+    ],
+    "keywords": [
+      "Gustave Le Gray",
+      "Beech Tree",
+      "Fontainebleau",
+      "forest",
+      "roots",
+      "trees",
+      "woodland",
+      "Barbizon",
+      "landscape",
+      "backdrop",
+      "National Gallery of Art"
+    ],
+    "collections": [
+      "photo"
+    ],
+    "demos": [
+      "img2img",
+      "style-transfer",
+      "depth",
+      "color"
+    ],
+    "date": "1856",
+    "creators": [
+      "Gustave Le Gray"
+    ],
+    "creator_roles": [
+      {
+        "name": "Gustave Le Gray",
+        "role": "photographer"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "PD-US-expired",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US"
+    },
+    "credit": "Gustave Le Gray, Beech Tree, Forest of Fontainebleau, c. 1856. Public domain.",
+    "source_url": "https://www.nga.gov/collection/art-object-page.92223.html",
+    "archive": "National Gallery of Art / The Metropolitan Museum of Art",
+    "thumb": "items/le-gray-fontainebleau-beech-1856/thumb.webp",
+    "poster": "items/le-gray-fontainebleau-beech-1856/poster.webp",
+    "media": "items/le-gray-fontainebleau-beech-1856/media.webp",
+    "video_media": "items/le-gray-fontainebleau-beech-1856/media.webp",
+    "proxy": null,
+    "original": null,
+    "width": 2560,
+    "height": 1978,
+    "aspect_ratio": "1.29:1",
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 1011344,
+    "url": "https://languel.github.io/mediatheque/items/le-gray-fontainebleau-beech-1856/media.webp",
+    "added": "2026-11-01"
+  },
+  {
+    "id": "le-gray-the-great-wave-1857",
+    "type": "item",
+    "title": "The Great Wave, Sète (Gustave Le Gray, 1857)",
+    "kind": "image",
+    "status": "published",
+    "summary": "Pioneering combination-print seascape capturing a rolling Mediterranean wave and dramatic sunlit cloudscape.",
+    "tags": [
+      "landscape",
+      "wide",
+      "still",
+      "high-contrast",
+      "photo",
+      "print",
+      "archival",
+      "landscape-format"
+    ],
+    "keywords": [
+      "Gustave Le Gray",
+      "The Great Wave",
+      "La Vague",
+      "Sète",
+      "seascape",
+      "ocean",
+      "surf",
+      "clouds",
+      "Mediterranean",
+      "backdrop",
+      "Metropolitan Museum of Art"
+    ],
+    "collections": [
+      "photo"
+    ],
+    "demos": [
+      "img2img",
+      "style-transfer",
+      "depth",
+      "color"
+    ],
+    "date": "1857",
+    "creators": [
+      "Gustave Le Gray"
+    ],
+    "creator_roles": [
+      {
+        "name": "Gustave Le Gray",
+        "role": "photographer"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "PD-US-expired",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US"
+    },
+    "credit": "Gustave Le Gray, The Great Wave, Sète, 1857. The Metropolitan Museum of Art, Gilman Collection. Public domain.",
+    "source_url": "https://www.metmuseum.org/art/collection/search/283218",
+    "archive": "The Metropolitan Museum of Art",
+    "thumb": "items/le-gray-the-great-wave-1857/thumb.webp",
+    "poster": "items/le-gray-the-great-wave-1857/poster.webp",
+    "media": "items/le-gray-the-great-wave-1857/media.webp",
+    "video_media": "items/le-gray-the-great-wave-1857/media.webp",
+    "proxy": null,
+    "original": null,
+    "width": 2560,
+    "height": 2084,
+    "aspect_ratio": "5:4",
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 791134,
+    "url": "https://languel.github.io/mediatheque/items/le-gray-the-great-wave-1857/media.webp",
+    "added": "2026-11-01"
   },
   {
     "id": "louie-fuller",
@@ -1580,6 +2065,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 1741245,
     "url": "https://languel.github.io/mediatheque/items/louie-fuller/original.gif",
     "added": "2026-10-18",
@@ -1628,6 +2114,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 4756758,
     "url": "https://languel.github.io/mediatheque/items/lumiere-arrivee-train-la-ciotat-1895/media.webm",
     "added": "2026-10-20"
@@ -1699,6 +2186,7 @@
     "splats": null,
     "formula": "v ↦ v⁸ + c (spherical coordinate hypercomplex iteration)",
     "math_type": "sdf",
+    "bvh": null,
     "bytes": 1256,
     "url": "https://languel.github.io/mediatheque/items/mandelbulb-3d-fractal/media.json",
     "added": "2026-10-24"
@@ -1749,6 +2237,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 1555713,
     "url": "https://languel.github.io/mediatheque/items/marey-alvin-kraenzlein-haies-1900/media.webm",
     "added": "2026-10-20"
@@ -1801,6 +2290,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 303919,
     "url": "https://languel.github.io/mediatheque/items/marey-homme-marchant-1883/original.gif",
     "added": "2026-10-20"
@@ -1849,6 +2339,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 35629820,
     "url": "https://languel.github.io/mediatheque/items/melies-homme-tete-caoutchouc-1901/media.webm",
     "added": "2026-10-20"
@@ -1920,6 +2411,7 @@
     "splats": null,
     "formula": "d_{n+1} = max(d_n, -cross_subtraction(p_n))",
     "math_type": "sdf",
+    "bvh": null,
     "bytes": 1166,
     "url": "https://languel.github.io/mediatheque/items/menger-sponge-fractal/media.json",
     "added": "2026-10-24"
@@ -1993,6 +2485,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 4400396,
     "url": "https://languel.github.io/mediatheque/items/mh-4-gallery/media.glb",
     "added": "2026-10-18"
@@ -2044,6 +2537,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 2116988,
     "url": "https://languel.github.io/mediatheque/items/muybridge-athletes-boxing-1887/original.gif",
     "added": "2026-10-20"
@@ -2094,6 +2588,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 1949543,
     "url": "https://languel.github.io/mediatheque/items/muybridge-athletes-fencing-1887/original.gif",
     "added": "2026-10-20"
@@ -2147,6 +2642,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 227042,
     "url": "https://languel.github.io/mediatheque/items/muybridge-buffalo-galloping-1887/original.gif",
     "added": "2026-10-20"
@@ -2235,6 +2731,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 2799913,
     "url": "https://languel.github.io/mediatheque/items/muybridge-human-male-walking-animated/original.gif",
     "added": "2026-10-18",
@@ -2320,6 +2817,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 568203,
     "url": "https://languel.github.io/mediatheque/items/muybridge-race-horse-animated/original.gif",
     "added": "2026-10-18",
@@ -2372,6 +2870,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 1686624,
     "url": "https://languel.github.io/mediatheque/items/muybridge-sallie-gardner-1878/original.gif",
     "added": "2026-10-20"
@@ -2454,11 +2953,90 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 1388131,
     "url": "https://languel.github.io/mediatheque/items/nburling-public/original.gif",
     "added": "2026-10-18",
     "plate": "189",
     "sequence": "Animal Locomotion (1887)"
+  },
+  {
+    "id": "osullivan-canyon-de-chelly-1873",
+    "type": "item",
+    "title": "Ancient Ruins in the Cañon de Chelle, N.M. (Timothy O'Sullivan, 1873)",
+    "kind": "image",
+    "status": "published",
+    "summary": "Sheer vertical canyon cliffs towering 500 feet over ancestral cliff dwellings in Canyon de Chelly.",
+    "tags": [
+      "landscape",
+      "wide",
+      "still",
+      "high-contrast",
+      "photo",
+      "print",
+      "archival",
+      "portrait"
+    ],
+    "keywords": [
+      "Timothy O'Sullivan",
+      "Canyon de Chelly",
+      "Wheeler Survey",
+      "cliffs",
+      "ruins",
+      "sandstone",
+      "canyon",
+      "geology",
+      "American West",
+      "backdrop",
+      "Metropolitan Museum of Art"
+    ],
+    "collections": [
+      "photo"
+    ],
+    "demos": [
+      "img2img",
+      "style-transfer",
+      "depth",
+      "color"
+    ],
+    "date": "1873",
+    "creators": [
+      "Timothy O'Sullivan"
+    ],
+    "creator_roles": [
+      {
+        "name": "Timothy O'Sullivan",
+        "role": "photographer"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "PD-US-expired",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US"
+    },
+    "credit": "Timothy O'Sullivan, Ancient Ruins in the Cañon de Chelle, N.M., 1873. The Metropolitan Museum of Art, Gilman Collection. Public domain.",
+    "source_url": "https://www.metmuseum.org/art/collection/search/283216",
+    "archive": "The Metropolitan Museum of Art",
+    "thumb": "items/osullivan-canyon-de-chelly-1873/thumb.webp",
+    "poster": "items/osullivan-canyon-de-chelly-1873/poster.webp",
+    "media": "items/osullivan-canyon-de-chelly-1873/media.webp",
+    "video_media": "items/osullivan-canyon-de-chelly-1873/media.webp",
+    "proxy": null,
+    "original": null,
+    "width": 1867,
+    "height": 2560,
+    "aspect_ratio": "1:1.37",
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 1090734,
+    "url": "https://languel.github.io/mediatheque/items/osullivan-canyon-de-chelly-1873/media.webp",
+    "added": "2026-11-01"
   },
   {
     "id": "sandow-1894",
@@ -2543,6 +3121,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 14532918,
     "url": "https://languel.github.io/mediatheque/items/sandow-1894/media.webm",
     "added": "2026-10-18",
@@ -2819,6 +3398,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 3721685,
     "url": "https://languel.github.io/mediatheque/items/saute-d-un-athlete-sweeney-par-dessus-une-barre-1900/media.webm",
     "added": "2026-10-18"
@@ -2889,9 +3469,249 @@
     "splats": 500000,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 7717114,
     "url": "https://languel.github.io/mediatheque/items/snowy-dystopian-eastern-european-city/media.spz",
     "added": "2026-10-18"
+  },
+  {
+    "id": "steichen-the-flatiron-1904",
+    "type": "item",
+    "title": "The Flatiron (Edward Steichen, 1904)",
+    "kind": "image",
+    "status": "published",
+    "summary": "Pictorialist twilight view of Daniel Burnham's Flatiron Building reflecting in wet Madison Square pavement.",
+    "tags": [
+      "cityscape",
+      "architecture",
+      "wide",
+      "still",
+      "tinted",
+      "low-light",
+      "photo",
+      "print",
+      "archival",
+      "portrait"
+    ],
+    "keywords": [
+      "Edward Steichen",
+      "The Flatiron",
+      "Manhattan",
+      "New York",
+      "skyscraper",
+      "Madison Square",
+      "twilight",
+      "nocturne",
+      "cityscape",
+      "backdrop",
+      "Metropolitan Museum of Art"
+    ],
+    "collections": [
+      "photo"
+    ],
+    "demos": [
+      "img2img",
+      "style-transfer",
+      "depth",
+      "color"
+    ],
+    "date": "1904",
+    "creators": [
+      "Edward Steichen"
+    ],
+    "creator_roles": [
+      {
+        "name": "Edward Steichen",
+        "role": "photographer"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "PD-US-expired",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US"
+    },
+    "credit": "Edward Steichen, The Flatiron, 1904. The Metropolitan Museum of Art, Alfred Stieglitz Collection. Public domain.",
+    "source_url": "https://www.metmuseum.org/art/collection/search/267837",
+    "archive": "The Metropolitan Museum of Art",
+    "thumb": "items/steichen-the-flatiron-1904/thumb.webp",
+    "poster": "items/steichen-the-flatiron-1904/poster.webp",
+    "media": "items/steichen-the-flatiron-1904/media.webp",
+    "video_media": "items/steichen-the-flatiron-1904/media.webp",
+    "proxy": null,
+    "original": null,
+    "width": 1500,
+    "height": 1901,
+    "aspect_ratio": "4:5",
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 656316,
+    "url": "https://languel.github.io/mediatheque/items/steichen-the-flatiron-1904/media.webp",
+    "added": "2026-11-01"
+  },
+  {
+    "id": "stieglitz-winter-fifth-avenue-1893",
+    "type": "item",
+    "title": "Winter – Fifth Avenue (Alfred Stieglitz, 1893)",
+    "kind": "image",
+    "status": "published",
+    "summary": "Horse-drawn coach plowing through swirling snowbanks during a fierce Manhattan blizzard on Fifth Avenue.",
+    "tags": [
+      "cityscape",
+      "wide",
+      "still",
+      "bw",
+      "low-light",
+      "grain",
+      "photo",
+      "print",
+      "archival",
+      "portrait"
+    ],
+    "keywords": [
+      "Alfred Stieglitz",
+      "Winter Fifth Avenue",
+      "blizzard",
+      "snow",
+      "Manhattan",
+      "horses",
+      "carriage",
+      "street",
+      "cityscape",
+      "backdrop",
+      "Metropolitan Museum of Art"
+    ],
+    "collections": [
+      "photo"
+    ],
+    "demos": [
+      "img2img",
+      "style-transfer",
+      "depth",
+      "color"
+    ],
+    "date": "1893",
+    "creators": [
+      "Alfred Stieglitz"
+    ],
+    "creator_roles": [
+      {
+        "name": "Alfred Stieglitz",
+        "role": "photographer"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "PD-US-expired",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US"
+    },
+    "credit": "Alfred Stieglitz, Winter – Fifth Avenue, 1893 (printed 1905). The Metropolitan Museum of Art, Alfred Stieglitz Collection. Public domain.",
+    "source_url": "https://www.metmuseum.org/art/collection/search/267868",
+    "archive": "The Metropolitan Museum of Art",
+    "thumb": "items/stieglitz-winter-fifth-avenue-1893/thumb.webp",
+    "poster": "items/stieglitz-winter-fifth-avenue-1893/poster.webp",
+    "media": "items/stieglitz-winter-fifth-avenue-1893/media.webp",
+    "video_media": "items/stieglitz-winter-fifth-avenue-1893/media.webp",
+    "proxy": null,
+    "original": null,
+    "width": 2076,
+    "height": 2560,
+    "aspect_ratio": "4:5",
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 1035564,
+    "url": "https://languel.github.io/mediatheque/items/stieglitz-winter-fifth-avenue-1893/media.webp",
+    "added": "2026-11-01"
+  },
+  {
+    "id": "the-pond-moonlight-1904",
+    "type": "item",
+    "title": "The Pond—Moonlight (Edward Steichen, 1904)",
+    "kind": "image",
+    "status": "published",
+    "summary": "Pictorialist moonlight landscape across a wooded pond in Mamaroneck, New York, hand-toned in gum bichromate.",
+    "tags": [
+      "landscape",
+      "wide",
+      "still",
+      "tinted",
+      "low-light",
+      "photo",
+      "print",
+      "archival",
+      "landscape-format"
+    ],
+    "keywords": [
+      "Edward Steichen",
+      "The Pond-Moonlight",
+      "Pictorialism",
+      "moonlight",
+      "pond",
+      "trees",
+      "reflection",
+      "nocturne",
+      "landscape",
+      "backdrop",
+      "Metropolitan Museum of Art"
+    ],
+    "collections": [
+      "photo"
+    ],
+    "demos": [
+      "img2img",
+      "style-transfer",
+      "depth",
+      "color"
+    ],
+    "date": "1904",
+    "creators": [
+      "Edward Steichen"
+    ],
+    "creator_roles": [
+      {
+        "name": "Edward Steichen",
+        "role": "photographer"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "PD-US-expired",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US"
+    },
+    "credit": "Edward Steichen, The Pond—Moonlight, 1904 (printed 1906). The Metropolitan Museum of Art, Alfred Stieglitz Collection. Public domain.",
+    "source_url": "https://www.metmuseum.org/art/collection/search/267838",
+    "archive": "The Metropolitan Museum of Art",
+    "thumb": "items/the-pond-moonlight-1904/thumb.webp",
+    "poster": "items/the-pond-moonlight-1904/poster.webp",
+    "media": "items/the-pond-moonlight-1904/media.webp",
+    "video_media": "items/the-pond-moonlight-1904/media.webp",
+    "proxy": null,
+    "original": null,
+    "width": 2560,
+    "height": 2204,
+    "aspect_ratio": "1.16:1",
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 1932810,
+    "url": "https://languel.github.io/mediatheque/items/the-pond-moonlight-1904/media.webp",
+    "added": "2026-11-01"
   },
   {
     "id": "torus-knot-3-5",
@@ -2960,6 +3780,7 @@
     "splats": null,
     "formula": "x = (R + r cos(5φ)) cos(3φ), y = (R + r cos(5φ)) sin(3φ), z = -r sin(5φ)",
     "math_type": "parametric",
+    "bvh": null,
     "bytes": 1268,
     "url": "https://languel.github.io/mediatheque/items/torus-knot-3-5/media.json",
     "added": "2026-10-24"
@@ -3040,9 +3861,166 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 447530,
     "url": "https://languel.github.io/mediatheque/items/tristan-tzara/media.webp",
     "added": "2026-10-18"
+  },
+  {
+    "id": "watkins-cathedral-rock-1861",
+    "type": "item",
+    "title": "Cathedral Rock, Yosemite (Carleton Watkins, 1861)",
+    "kind": "image",
+    "status": "published",
+    "summary": "Monumental granite spires of Cathedral Rock mirrored in the glassy, still waters of the Merced River.",
+    "tags": [
+      "landscape",
+      "wide",
+      "still",
+      "high-contrast",
+      "photo",
+      "print",
+      "archival",
+      "landscape-format"
+    ],
+    "keywords": [
+      "Carleton Watkins",
+      "Cathedral Rock",
+      "Yosemite",
+      "Merced River",
+      "reflection",
+      "granite",
+      "mountains",
+      "trees",
+      "water",
+      "backdrop",
+      "Metropolitan Museum of Art"
+    ],
+    "collections": [
+      "photo"
+    ],
+    "demos": [
+      "img2img",
+      "style-transfer",
+      "depth",
+      "color"
+    ],
+    "date": "1861",
+    "creators": [
+      "Carleton Watkins"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carleton Watkins",
+        "role": "photographer"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "PD-US-expired",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US"
+    },
+    "credit": "Carleton Watkins, Cathedral Rock, Yosemite, 1861. The Metropolitan Museum of Art / Library of Congress. Public domain.",
+    "source_url": "https://www.metmuseum.org/art/collection/search/283199",
+    "archive": "The Metropolitan Museum of Art",
+    "thumb": "items/watkins-cathedral-rock-1861/thumb.webp",
+    "poster": "items/watkins-cathedral-rock-1861/poster.webp",
+    "media": "items/watkins-cathedral-rock-1861/media.webp",
+    "video_media": "items/watkins-cathedral-rock-1861/media.webp",
+    "proxy": null,
+    "original": null,
+    "width": 2560,
+    "height": 2103,
+    "aspect_ratio": "1.22:1",
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 1623152,
+    "url": "https://languel.github.io/mediatheque/items/watkins-cathedral-rock-1861/media.webp",
+    "added": "2026-11-01"
+  },
+  {
+    "id": "watkins-sentinel-dome-1865",
+    "type": "item",
+    "title": "View from the Sentinel Dome, Yosemite (Carleton Watkins, 1865–66)",
+    "kind": "image",
+    "status": "published",
+    "summary": "Mammoth-plate panorama across the high granite peaks, waterfalls, and ancient pines of Yosemite Valley.",
+    "tags": [
+      "landscape",
+      "wide",
+      "still",
+      "high-contrast",
+      "photo",
+      "print",
+      "archival",
+      "landscape-format"
+    ],
+    "keywords": [
+      "Carleton Watkins",
+      "Yosemite",
+      "Sentinel Dome",
+      "Half Dome",
+      "Nevada Falls",
+      "Sierra Nevada",
+      "mountains",
+      "panorama",
+      "wilderness",
+      "backdrop",
+      "Metropolitan Museum of Art"
+    ],
+    "collections": [
+      "photo"
+    ],
+    "demos": [
+      "img2img",
+      "style-transfer",
+      "depth",
+      "color"
+    ],
+    "date": "1865",
+    "creators": [
+      "Carleton Watkins"
+    ],
+    "creator_roles": [
+      {
+        "name": "Carleton Watkins",
+        "role": "photographer"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "PD-US-expired",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US"
+    },
+    "credit": "Carleton Watkins, View from the Sentinel Dome, Yosemite, 1865–66. The Metropolitan Museum of Art. Public domain.",
+    "source_url": "https://www.metmuseum.org/art/collection/search/266858",
+    "archive": "The Metropolitan Museum of Art",
+    "thumb": "items/watkins-sentinel-dome-1865/thumb.webp",
+    "poster": "items/watkins-sentinel-dome-1865/poster.webp",
+    "media": "items/watkins-sentinel-dome-1865/media.webp",
+    "video_media": "items/watkins-sentinel-dome-1865/media.webp",
+    "proxy": null,
+    "original": null,
+    "width": 2560,
+    "height": 1988,
+    "aspect_ratio": "1.29:1",
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 1230762,
+    "url": "https://languel.github.io/mediatheque/items/watkins-sentinel-dome-1865/media.webp",
+    "added": "2026-11-01"
   },
   {
     "id": "woman-in-dress-dancing-1887",
@@ -3125,6 +4103,7 @@
     "splats": null,
     "formula": null,
     "math_type": null,
+    "bvh": null,
     "bytes": 5082726,
     "url": "https://languel.github.io/mediatheque/items/woman-in-dress-dancing-1887/original.gif",
     "added": "2026-10-18",

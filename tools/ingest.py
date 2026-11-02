@@ -101,6 +101,7 @@ MIME_BY_EXT: dict[str, str] = {
     ".gltf": "model/gltf+json",
     ".spz": "application/x-gaussian-splat-spz",
     ".splat": "application/x-gaussian-splat",
+    ".bvh": "application/x-bvh",
     ".ply": "application/x-ply",
     ".svg": "image/svg+xml",
     ".md": "text/markdown",

@@ -1,0 +1,117 @@
+{
+  "id": "watkins-cathedral-rock-1861",
+  "title": "Cathedral Rock, Yosemite (Carleton Watkins, 1861)",
+  "kind": "image",
+  "status": "published",
+  "summary": "Monumental granite spires of Cathedral Rock mirrored in the glassy, still waters of the Merced River.",
+  "description": "Carleton Watkins's pristine 1861 mammoth-plate landscape capturing the towering granite buttresses of Cathedral Rock reflected with glass-like stillness in the Merced River. Watkins used an innovative mammoth camera taking 18x22-inch glass plate negatives and custom stereoscopic lenses. The composition balances the towering rock face with riverside cottonwoods, river stones, and crystalline water reflections. A tranquil mountain river and reflection landscape backdrop.",
+  "tags": [
+    "landscape",
+    "wide",
+    "still",
+    "high-contrast",
+    "photo",
+    "print",
+    "archival",
+    "landscape-format"
+  ],
+  "keywords": [
+    "Carleton Watkins",
+    "Cathedral Rock",
+    "Yosemite",
+    "Merced River",
+    "reflection",
+    "granite",
+    "mountains",
+    "trees",
+    "water",
+    "backdrop",
+    "Metropolitan Museum of Art"
+  ],
+  "collections": [
+    "photo"
+  ],
+  "demos": [
+    "img2img",
+    "style-transfer",
+    "depth",
+    "color"
+  ],
+  "creators": [
+    {
+      "name": "Carleton Watkins",
+      "role": "photographer"
+    }
+  ],
+  "date": "1861",
+  "source": {
+    "url": "https://www.metmuseum.org/art/collection/search/283199",
+    "origin": "https://www.metmuseum.org/",
+    "archive": "The Metropolitan Museum of Art",
+    "retrieved": "2026-11-01"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US-expired",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US",
+    "credit": "Carleton Watkins, Cathedral Rock, Yosemite, 1861. The Metropolitan Museum of Art / Library of Congress. Public domain.",
+    "notes": "Mammoth-plate albumen silver print."
+  },
+  "files": {
+    "media": {
+      "path": "media.webp",
+      "type": "image/webp",
+      "bytes": 1623152,
+      "sha256": "01a53f61eb652a3a40a6e40b30f8687af43dddd4027415a3a05cd150a4151805",
+      "width": 2560,
+      "height": 2103
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 1467232,
+      "sha256": "82bc33d433c37954f0d1b368413a076c274baa6c12fad4c1bd122df5b7530a95",
+      "width": 2560,
+      "height": 2103
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 42760,
+      "sha256": "5ce46534962506c9d6fd784efe15513625506a67ab705f8482bb76eddc2e5a0f",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://upload.wikimedia.org/wikipedia/commons/8/81/Cathedral_Rock%2C_Yosemite_by_Carleton_Watkins%2C_edit.jpg",
+      "date": "2026-11-01",
+      "sha256": "803a61226c1bb027406345e4567e954728df6abc7a5427e845c0998cd3aaa5ba"
+    },
+    {
+      "step": "derived",
+      "file": "media.webp",
+      "tool": "Pillow",
+      "args": "scale to max 2560 (2560x2103) webp quality=90",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "webp quality=88",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-01"
+    }
+  ],
+  "added": "2026-11-01",
+  "updated": "2026-11-01"
+}

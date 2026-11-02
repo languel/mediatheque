@@ -1,0 +1,117 @@
+{
+  "id": "frith-great-pyramid-sphinx-1858",
+  "title": "The Great Pyramid and the Sphinx, Egypt (Francis Frith, 1858)",
+  "kind": "image",
+  "status": "published",
+  "summary": "Sublime 19th-century view of the Great Sphinx and Pyramid of Khufu rising from the desert sands of Giza.",
+  "description": "Francis Frith's iconic 1858 photograph of the Great Sphinx of Giza, partially submerged in sand dunes before the Great Pyramid of Khufu. Frith undertook expeditions up the Nile with an 8x10 wet collodion field camera, battling blinding desert sand, sweltering temperatures inside his darkroom tent, and boiling collodion. His mammoth albumen prints brought the scale and romance of Egyptian antiquity to Victorian audiences. A classic desert monument and ancient landscape backdrop.",
+  "tags": [
+    "landscape",
+    "wide",
+    "still",
+    "high-contrast",
+    "photo",
+    "print",
+    "archival",
+    "landscape-format"
+  ],
+  "keywords": [
+    "Francis Frith",
+    "Pyramids",
+    "Sphinx",
+    "Giza",
+    "Egypt",
+    "desert",
+    "sand",
+    "antiquity",
+    "monument",
+    "backdrop",
+    "Metropolitan Museum of Art"
+  ],
+  "collections": [
+    "photo"
+  ],
+  "demos": [
+    "img2img",
+    "style-transfer",
+    "depth",
+    "color"
+  ],
+  "creators": [
+    {
+      "name": "Francis Frith",
+      "role": "photographer"
+    }
+  ],
+  "date": "1858",
+  "source": {
+    "url": "https://www.metmuseum.org/art/collection/search/283256",
+    "origin": "https://www.metmuseum.org/",
+    "archive": "The Metropolitan Museum of Art",
+    "retrieved": "2026-11-01"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US-expired",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US",
+    "credit": "Francis Frith, The Great Pyramid and the Sphinx, Egypt, 1858. The Metropolitan Museum of Art. Public domain.",
+    "notes": "Albumen silver print from wet collodion negative."
+  },
+  "files": {
+    "media": {
+      "path": "media.webp",
+      "type": "image/webp",
+      "bytes": 1585198,
+      "sha256": "a1cee5ba23219268516f01c5595e9d0ce301959308545f0bf292d7b6c012d912",
+      "width": 2560,
+      "height": 2009
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 1421772,
+      "sha256": "495c75853704664aa337a34e559212370f462a12a524eb04465d827a393e87eb",
+      "width": 2560,
+      "height": 2009
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 47718,
+      "sha256": "87d20f41ed69a7ee641c40f38ac653eb42c9b879b23ce2e76cf65a64b761f920",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Francis_Frith_-_The_Great_Pyramid_and_the_Great_Sphinx%2C_Egypt_-_Google_Art_Project.jpg",
+      "date": "2026-11-01",
+      "sha256": "165538d55609b51d4f6df20535f7db9376c045d436dcb3757bd4787a5d446d7f"
+    },
+    {
+      "step": "derived",
+      "file": "media.webp",
+      "tool": "Pillow",
+      "args": "scale to max 2560 (2560x2009) webp quality=90",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "webp quality=88",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-01"
+    }
+  ],
+  "added": "2026-11-01",
+  "updated": "2026-11-01"
+}

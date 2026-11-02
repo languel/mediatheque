@@ -1,0 +1,117 @@
+{
+  "id": "osullivan-canyon-de-chelly-1873",
+  "title": "Ancient Ruins in the Cañon de Chelle, N.M. (Timothy O'Sullivan, 1873)",
+  "kind": "image",
+  "status": "published",
+  "summary": "Sheer vertical canyon cliffs towering 500 feet over ancestral cliff dwellings in Canyon de Chelly.",
+  "description": "Timothy H. O'Sullivan's landmark photograph taken during the Wheeler Geological Survey in 1873. The composition frames the ancestral Puebloan White House ruins dwarfed by the striated, colossal 500-foot sandstone ramparts of Canyon de Chelly, Arizona (then New Mexico Territory). O'Sullivan placed his survey equipment and staff at the base to establish monumental scale against the sheer rock face. An archetypal American canyon and desert monolith landscape backdrop.",
+  "tags": [
+    "landscape",
+    "wide",
+    "still",
+    "high-contrast",
+    "photo",
+    "print",
+    "archival",
+    "portrait"
+  ],
+  "keywords": [
+    "Timothy O'Sullivan",
+    "Canyon de Chelly",
+    "Wheeler Survey",
+    "cliffs",
+    "ruins",
+    "sandstone",
+    "canyon",
+    "geology",
+    "American West",
+    "backdrop",
+    "Metropolitan Museum of Art"
+  ],
+  "collections": [
+    "photo"
+  ],
+  "demos": [
+    "img2img",
+    "style-transfer",
+    "depth",
+    "color"
+  ],
+  "creators": [
+    {
+      "name": "Timothy O'Sullivan",
+      "role": "photographer"
+    }
+  ],
+  "date": "1873",
+  "source": {
+    "url": "https://www.metmuseum.org/art/collection/search/283216",
+    "origin": "https://www.metmuseum.org/",
+    "archive": "The Metropolitan Museum of Art",
+    "retrieved": "2026-11-01"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US-expired",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US",
+    "credit": "Timothy O'Sullivan, Ancient Ruins in the Cañon de Chelle, N.M., 1873. The Metropolitan Museum of Art, Gilman Collection. Public domain.",
+    "notes": "Albumen silver print from wet collodion glass negative."
+  },
+  "files": {
+    "media": {
+      "path": "media.webp",
+      "type": "image/webp",
+      "bytes": 1090734,
+      "sha256": "257fa613acfd17a2f995b21b17085cac7e47bb4adece0d5a6acda530a22b0595",
+      "width": 1867,
+      "height": 2560
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 972886,
+      "sha256": "be60c7a08f23ce5a5c8160c5641fc5c5fc5b427947544a5e3a1028a9b6847974",
+      "width": 1867,
+      "height": 2560
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 56190,
+      "sha256": "fea7436224995d234ad8cd5b655264160da4aefeeeb9ffb19efb078783a9f8da",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Timothy_O%27Sullivan%2C_Anasazi_ruins_%28the_%22White_House%22%29%2C_Canyon_de_Chelly%2C_Arizona%2C_1873.jpg",
+      "date": "2026-11-01",
+      "sha256": "3adb289ea74f78d2d69f0666370d53b8a68aaaad23ae0f1cd6b90de0f4fda3de"
+    },
+    {
+      "step": "derived",
+      "file": "media.webp",
+      "tool": "Pillow",
+      "args": "scale to max 2560 (1867x2560) webp quality=90",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "webp quality=88",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-01"
+    }
+  ],
+  "added": "2026-11-01",
+  "updated": "2026-11-01"
+}

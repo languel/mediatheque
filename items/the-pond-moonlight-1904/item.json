@@ -1,0 +1,118 @@
+{
+  "id": "the-pond-moonlight-1904",
+  "title": "The Pond—Moonlight (Edward Steichen, 1904)",
+  "kind": "image",
+  "status": "published",
+  "summary": "Pictorialist moonlight landscape across a wooded pond in Mamaroneck, New York, hand-toned in gum bichromate.",
+  "description": "Edward Steichen's seminal 1904 pictorialist photograph of the moon rising above trees reflecting in a tranquil pond in Mamaroneck, New York. Steichen achieved the subtle nocturnal color tones by manually applying multiple coats of light-sensitive gum bichromate over a platinum print. One of the rarest and most celebrated photographs in American art history, held in the Alfred Stieglitz Collection at The Metropolitan Museum of Art. An evocative nocturnal forest backdrop.",
+  "tags": [
+    "landscape",
+    "wide",
+    "still",
+    "tinted",
+    "low-light",
+    "photo",
+    "print",
+    "archival",
+    "landscape-format"
+  ],
+  "keywords": [
+    "Edward Steichen",
+    "The Pond-Moonlight",
+    "Pictorialism",
+    "moonlight",
+    "pond",
+    "trees",
+    "reflection",
+    "nocturne",
+    "landscape",
+    "backdrop",
+    "Metropolitan Museum of Art"
+  ],
+  "collections": [
+    "photo"
+  ],
+  "demos": [
+    "img2img",
+    "style-transfer",
+    "depth",
+    "color"
+  ],
+  "creators": [
+    {
+      "name": "Edward Steichen",
+      "role": "photographer"
+    }
+  ],
+  "date": "1904",
+  "source": {
+    "url": "https://www.metmuseum.org/art/collection/search/267838",
+    "origin": "https://www.metmuseum.org/",
+    "archive": "The Metropolitan Museum of Art",
+    "retrieved": "2026-11-01"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "PD-US-expired",
+    "license_url": "https://commons.wikimedia.org/wiki/Template:PD-US",
+    "credit": "Edward Steichen, The Pond—Moonlight, 1904 (printed 1906). The Metropolitan Museum of Art, Alfred Stieglitz Collection. Public domain.",
+    "notes": "Original gum bichromate over platinum and iron print."
+  },
+  "files": {
+    "media": {
+      "path": "media.webp",
+      "type": "image/webp",
+      "bytes": 1932810,
+      "sha256": "4f67d49a65a2a61f6e34e1eb805b088cd73ec75a0fa0417dcf00280238ade6cf",
+      "width": 2560,
+      "height": 2204
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 1733254,
+      "sha256": "58ba071d8a655603b9e2c2c6535bfa1e10c733004ef113d6b0c1cf51b1badec4",
+      "width": 2560,
+      "height": 2204
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 10520,
+      "sha256": "f78593d7c994bac8fe3dc6f4a0ee6ddfd6cc3a8c553c210d8e083c64bf0145d2",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Edward_Steichen_%28American%29_-_%28Moonlight_-_The_Pond%29_-_Google_Art_Project.jpg",
+      "date": "2026-11-01",
+      "sha256": "8b913ab9d68847a6dbbb23924603e88c4a5cf37c66c301c5d12d09f4a51b5740"
+    },
+    {
+      "step": "derived",
+      "file": "media.webp",
+      "tool": "Pillow",
+      "args": "scale to max 2560 (2560x2204) webp quality=90",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "poster.webp",
+      "tool": "Pillow",
+      "args": "webp quality=88",
+      "date": "2026-11-01"
+    },
+    {
+      "step": "derived",
+      "file": "thumb.webp",
+      "tool": "Pillow",
+      "args": "center-crop 480x480 webp quality=80",
+      "date": "2026-11-01"
+    }
+  ],
+  "added": "2026-11-01",
+  "updated": "2026-11-01"
+}
