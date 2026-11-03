@@ -1,0 +1,124 @@
+{
+  "id": "gltf-box-animated",
+  "title": "Box Animated (Joint Hierarchy Test GLB)",
+  "kind": "model",
+  "status": "published",
+  "summary": "Minimal articulated two-box hierarchy with a rotating joint.",
+  "description": "Ultra-minimal test asset consisting of two connected boxes demonstrating hierarchical joint rotation and keyframed animation playback. Serves as the quintessential baseline test for verifying glTF animation mixers and node transformations without character complexity.",
+  "tags": [
+    "abstract",
+    "animated",
+    "low-poly",
+    "cyclic",
+    "three-quarter",
+    "contemporary",
+    "textured"
+  ],
+  "keywords": [
+    "glTF",
+    "BoxAnimated",
+    "cubes",
+    "joint",
+    "hierarchy",
+    "animation",
+    "rotation",
+    "Khronos",
+    "Three.js",
+    "GLB"
+  ],
+  "collections": [
+    "3d"
+  ],
+  "demos": [
+    "3d-viewer",
+    "rigging",
+    "loop"
+  ],
+  "creators": [
+    {
+      "name": "Cesium",
+      "role": "creator"
+    }
+  ],
+  "date": "2017",
+  "source": {
+    "url": "https://github.khronos.org/glTF-Assets/model/BoxAnimated",
+    "origin": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/BoxAnimated/glTF-Binary/BoxAnimated.glb",
+    "archive": "Khronos glTF Sample Assets",
+    "retrieved": "2026-11-02",
+    "via": "https://github.com/KhronosGroup/glTF-Sample-Assets"
+  },
+  "rights": {
+    "status": "cc",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "credit": "Box Animated model and joint rotation by Cesium (CC BY 4.0).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 11944,
+      "sha256": "ad0d18d9a21df0d7c2bd3890e60ce69d60d39a55d9b82bacea7e77ac9e583839"
+    },
+    "original": {
+      "path": "original.glb",
+      "type": "model/gltf-binary",
+      "bytes": 11944,
+      "sha256": "ad0d18d9a21df0d7c2bd3890e60ce69d60d39a55d9b82bacea7e77ac9e583839",
+      "kept": true
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 13988,
+      "sha256": "f26a5795a1821788ab250c73b24ac2588d4a07b5571f234a36907e317b94d665",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 6646,
+      "sha256": "24100be9b13249eb2459ee2962103eecbc7c3ef9e67d06f93baba5ff145480ae",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://github.khronos.org/glTF-Assets/model/BoxAnimated",
+      "date": "2026-11-02",
+      "sha256": "ad0d18d9a21df0d7c2bd3890e60ce69d60d39a55d9b82bacea7e77ac9e583839"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "copy",
+      "args": "cp gltf-box-animated.glb media.glb",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "analyzed",
+      "tool": "render 1.1",
+      "model": "software-zbuffer+splat+svg+sdf",
+      "date": "2026-11-02"
+    }
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02",
+  "triangles": 254,
+  "bbox": [
+    1.0,
+    1.0,
+    1.0
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "id": "gltf-antique-camera",
+  "title": "Antique Camera (PBR Studio Model GLB)",
+  "kind": "model",
+  "status": "published",
+  "summary": "Vintage studio camera on a wooden tripod with multi-material PBR textures.",
+  "description": "High-fidelity 3D model of an antique camera mounted on an extendable wooden tripod, featuring dark accordion bellows, brass hardware, and glass optics. Excellent for Three.js studio lighting, depth of field, and shadow map demonstrations.",
+  "tags": [
+    "object",
+    "prop",
+    "pbr",
+    "textured",
+    "three-quarter",
+    "contemporary"
+  ],
+  "keywords": [
+    "glTF",
+    "AntiqueCamera",
+    "camera",
+    "tripod",
+    "vintage",
+    "bellows",
+    "brass",
+    "PBR",
+    "Khronos",
+    "Three.js",
+    "GLB"
+  ],
+  "collections": [
+    "3d"
+  ],
+  "demos": [
+    "3d-viewer",
+    "texture",
+    "depth"
+  ],
+  "creators": [
+    {
+      "name": "Maximillan Kamps",
+      "role": "modeler"
+    },
+    {
+      "name": "UX3D",
+      "role": "publisher"
+    }
+  ],
+  "date": "2018",
+  "source": {
+    "url": "https://github.khronos.org/glTF-Assets/model/AntiqueCamera",
+    "origin": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/AntiqueCamera/glTF-Binary/AntiqueCamera.glb",
+    "archive": "Khronos glTF Sample Assets",
+    "retrieved": "2026-11-02",
+    "via": "https://github.com/KhronosGroup/glTF-Sample-Assets"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "credit": "Antique Camera model by Maximillan Kamps / UX3D (CC0 1.0 Universal).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 17540348,
+      "sha256": "ae89695479ad997f09ebea8060a5ad01312ad8fe7ffb92f73b4e895109feecd2"
+    },
+    "original": {
+      "path": "original.glb",
+      "type": "model/gltf-binary",
+      "bytes": 17540348,
+      "sha256": "ae89695479ad997f09ebea8060a5ad01312ad8fe7ffb92f73b4e895109feecd2",
+      "kept": true
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 17042,
+      "sha256": "5a08f844c7c809a3fc912310b77107004b19d1a80a2a14aad84f8cd31957ec3d",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 7380,
+      "sha256": "815d5587c9bd9384b26997086e0f148c831b30dfc6faa5e2becbbc15b0d93f53",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://github.khronos.org/glTF-Assets/model/AntiqueCamera",
+      "date": "2026-11-02",
+      "sha256": "ae89695479ad997f09ebea8060a5ad01312ad8fe7ffb92f73b4e895109feecd2"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "copy",
+      "args": "cp gltf-antique-camera.glb media.glb",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "analyzed",
+      "tool": "render 1.1",
+      "model": "software-zbuffer+splat+svg+sdf",
+      "date": "2026-11-02"
+    }
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02",
+  "triangles": 20066,
+  "bbox": [
+    2.597,
+    7.209,
+    3.395
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "id": "gltf-cesium-man",
+  "title": "Cesium Man (Skinned Walk Cycle GLB)",
+  "kind": "model",
+  "status": "published",
+  "summary": "Skinned humanoid character with a continuous walking cycle animation.",
+  "description": "Fully textured and rigged humanoid character with a seamless walking locomotion cycle. Ideal for Three.js character animation, crowd rendering, pedestrian path following, and third-person camera controls.",
+  "tags": [
+    "person",
+    "character",
+    "rigged",
+    "animated",
+    "textured",
+    "walk",
+    "cyclic",
+    "three-quarter",
+    "contemporary",
+    "low-poly"
+  ],
+  "keywords": [
+    "glTF",
+    "CesiumMan",
+    "humanoid",
+    "walk-cycle",
+    "skinning",
+    "animation",
+    "Khronos",
+    "Three.js",
+    "GLB"
+  ],
+  "collections": [
+    "3d"
+  ],
+  "demos": [
+    "3d-viewer",
+    "rigging",
+    "loop"
+  ],
+  "creators": [
+    {
+      "name": "Cesium",
+      "role": "creator"
+    }
+  ],
+  "date": "2017",
+  "source": {
+    "url": "https://github.khronos.org/glTF-Assets/model/CesiumMan",
+    "origin": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/CesiumMan/glTF-Binary/CesiumMan.glb",
+    "archive": "Khronos glTF Sample Assets",
+    "retrieved": "2026-11-02",
+    "via": "https://github.com/KhronosGroup/glTF-Sample-Assets"
+  },
+  "rights": {
+    "status": "cc",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "credit": "Cesium Man character and walking animation by Cesium (CC BY 4.0).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 438044,
+      "sha256": "b7001eaeea8254bd44773bcd247e78696d94169388fbb2a1800fc69434e777d9"
+    },
+    "original": {
+      "path": "original.glb",
+      "type": "model/gltf-binary",
+      "bytes": 438044,
+      "sha256": "b7001eaeea8254bd44773bcd247e78696d94169388fbb2a1800fc69434e777d9",
+      "kept": true
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 16812,
+      "sha256": "a53b57823a368c0ec7521d78786a18c2cfe2418575c5edaac04b4d4344fefff7",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 8266,
+      "sha256": "c81b7729fcd8dd60c8f4f86cefb77409ca17c1beb5d7a3afc3396649a5655f01",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://github.khronos.org/glTF-Assets/model/CesiumMan",
+      "date": "2026-11-02",
+      "sha256": "b7001eaeea8254bd44773bcd247e78696d94169388fbb2a1800fc69434e777d9"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "copy",
+      "args": "cp gltf-cesium-man.glb media.glb",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "analyzed",
+      "tool": "render 1.1",
+      "model": "software-zbuffer+splat+svg+sdf",
+      "date": "2026-11-02"
+    }
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02",
+  "triangles": 4672,
+  "bbox": [
+    1.138,
+    1.507,
+    0.312
+  ]
+}

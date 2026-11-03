@@ -1,0 +1,125 @@
+{
+  "id": "gltf-boombox",
+  "title": "BoomBox (Retro Stereo PBR Model GLB)",
+  "kind": "model",
+  "status": "published",
+  "summary": "1980s portable cassette boombox with detailed PBR metallic and roughness textures.",
+  "description": "Detailed PBR model of a 1980s portable stereo cassette player featuring metallic grilles, tape mechanism, speakers, dials, and handle. Popular in Three.js and WebGL demos for Web Audio API frequency visualizers and physical material rendering.",
+  "tags": [
+    "object",
+    "prop",
+    "pbr",
+    "textured",
+    "three-quarter",
+    "contemporary",
+    "low-poly"
+  ],
+  "keywords": [
+    "glTF",
+    "BoomBox",
+    "stereo",
+    "cassette",
+    "retro",
+    "audio",
+    "speakers",
+    "PBR",
+    "Khronos",
+    "Three.js",
+    "GLB"
+  ],
+  "collections": [
+    "3d"
+  ],
+  "demos": [
+    "3d-viewer",
+    "texture",
+    "audio-reactive"
+  ],
+  "creators": [
+    {
+      "name": "Microsoft",
+      "role": "creator"
+    }
+  ],
+  "date": "2017",
+  "source": {
+    "url": "https://github.khronos.org/glTF-Assets/model/BoomBox",
+    "origin": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/BoomBox/glTF-Binary/BoomBox.glb",
+    "archive": "Khronos glTF Sample Assets",
+    "retrieved": "2026-11-02",
+    "via": "https://github.com/KhronosGroup/glTF-Sample-Assets"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "credit": "BoomBox model by Microsoft (CC0 1.0 Universal).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 10614184,
+      "sha256": "f8b918445ebdd006768232205a62f5182d2208ca57f84c6ccc084943c0bc8f15"
+    },
+    "original": {
+      "path": "original.glb",
+      "type": "model/gltf-binary",
+      "bytes": 10614184,
+      "sha256": "f8b918445ebdd006768232205a62f5182d2208ca57f84c6ccc084943c0bc8f15",
+      "kept": true
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 20738,
+      "sha256": "de7bdecdbb231dd8c932cfff99989e1c555a3a414bb9043feec1d55eb55eb71f",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 9666,
+      "sha256": "97c00fcd29df371c5c521c416bb38d7b377bbb745992556b531826bad8469245",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://github.khronos.org/glTF-Assets/model/BoomBox",
+      "date": "2026-11-02",
+      "sha256": "f8b918445ebdd006768232205a62f5182d2208ca57f84c6ccc084943c0bc8f15"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "copy",
+      "args": "cp gltf-boombox.glb media.glb",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "analyzed",
+      "tool": "render 1.1",
+      "model": "software-zbuffer+splat+svg+sdf",
+      "date": "2026-11-02"
+    }
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02",
+  "triangles": 6036,
+  "bbox": [
+    0.02,
+    0.02,
+    0.02
+  ]
+}

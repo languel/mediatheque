@@ -1,0 +1,124 @@
+{
+  "id": "gltf-avocado",
+  "title": "Avocado (PBR Surface Scan GLB)",
+  "kind": "model",
+  "status": "published",
+  "summary": "Sliced ripe avocado with textured seed, showing off organic PBR surface response.",
+  "description": "High-resolution photorealistic PBR model of an avocado sliced in half with visible pit, creamy flesh, and coarse pebbled skin. Ideal for Three.js lighting tests, subsurface scattering approximations, and organic non-metallic material inspection.",
+  "tags": [
+    "object",
+    "prop",
+    "pbr",
+    "textured",
+    "three-quarter",
+    "contemporary",
+    "low-poly"
+  ],
+  "keywords": [
+    "glTF",
+    "Avocado",
+    "food",
+    "fruit",
+    "organic",
+    "pit",
+    "PBR",
+    "Khronos",
+    "Three.js",
+    "GLB"
+  ],
+  "collections": [
+    "3d"
+  ],
+  "demos": [
+    "3d-viewer",
+    "texture",
+    "depth"
+  ],
+  "creators": [
+    {
+      "name": "Microsoft",
+      "role": "creator"
+    }
+  ],
+  "date": "2017",
+  "source": {
+    "url": "https://github.khronos.org/glTF-Assets/model/Avocado",
+    "origin": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Avocado/glTF-Binary/Avocado.glb",
+    "archive": "Khronos glTF Sample Assets",
+    "retrieved": "2026-11-02",
+    "via": "https://github.com/KhronosGroup/glTF-Sample-Assets"
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "credit": "Avocado model by Microsoft (CC0 1.0 Universal).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 8110040,
+      "sha256": "ccc9c3ce56423720b09399c2351537207cd5a65f859f9e6e2f30922762f3abd4"
+    },
+    "original": {
+      "path": "original.glb",
+      "type": "model/gltf-binary",
+      "bytes": 8110040,
+      "sha256": "ccc9c3ce56423720b09399c2351537207cd5a65f859f9e6e2f30922762f3abd4",
+      "kept": true
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 9782,
+      "sha256": "2b67d79ebd9755c5870a076b44a42337169f676e8e0f3ec1f171f60fc696cc53",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 4648,
+      "sha256": "332dc3cbe96e1890b5fd063902c92027c3035fbe325eafea32eb59b101402452",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://github.khronos.org/glTF-Assets/model/Avocado",
+      "date": "2026-11-02",
+      "sha256": "ccc9c3ce56423720b09399c2351537207cd5a65f859f9e6e2f30922762f3abd4"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "copy",
+      "args": "cp gltf-avocado.glb media.glb",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "analyzed",
+      "tool": "render 1.1",
+      "model": "software-zbuffer+splat+svg+sdf",
+      "date": "2026-11-02"
+    }
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02",
+  "triangles": 682,
+  "bbox": [
+    0.043,
+    0.063,
+    0.028
+  ]
+}

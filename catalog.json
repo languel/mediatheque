@@ -3397,6 +3397,701 @@
     "added": "2026-11-01"
   },
   {
+    "id": "gltf-antique-camera",
+    "type": "item",
+    "title": "Antique Camera (PBR Studio Model GLB)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Vintage studio camera on a wooden tripod with multi-material PBR textures.",
+    "tags": [
+      "object",
+      "prop",
+      "pbr",
+      "textured",
+      "three-quarter",
+      "contemporary"
+    ],
+    "keywords": [
+      "glTF",
+      "AntiqueCamera",
+      "camera",
+      "tripod",
+      "vintage",
+      "bellows",
+      "brass",
+      "PBR",
+      "Khronos",
+      "Three.js",
+      "GLB"
+    ],
+    "collections": [
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "texture",
+      "depth"
+    ],
+    "date": "2018",
+    "creators": [
+      "Maximillan Kamps",
+      "UX3D"
+    ],
+    "creator_roles": [
+      {
+        "name": "Maximillan Kamps",
+        "role": "modeler"
+      },
+      {
+        "name": "UX3D",
+        "role": "publisher"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "credit": "Antique Camera model by Maximillan Kamps / UX3D (CC0 1.0 Universal).",
+    "source_url": "https://github.khronos.org/glTF-Assets/model/AntiqueCamera",
+    "archive": "Khronos glTF Sample Assets",
+    "thumb": "items/gltf-antique-camera/thumb.webp",
+    "poster": "items/gltf-antique-camera/poster.webp",
+    "media": "items/gltf-antique-camera/media.glb",
+    "video_media": "items/gltf-antique-camera/media.glb",
+    "proxy": null,
+    "original": "items/gltf-antique-camera/original.glb",
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": 20066,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 17540348,
+    "url": "https://languel.github.io/mediatheque/items/gltf-antique-camera/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "gltf-avocado",
+    "type": "item",
+    "title": "Avocado (PBR Surface Scan GLB)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Sliced ripe avocado with textured seed, showing off organic PBR surface response.",
+    "tags": [
+      "object",
+      "prop",
+      "pbr",
+      "textured",
+      "three-quarter",
+      "contemporary",
+      "low-poly"
+    ],
+    "keywords": [
+      "glTF",
+      "Avocado",
+      "food",
+      "fruit",
+      "organic",
+      "pit",
+      "PBR",
+      "Khronos",
+      "Three.js",
+      "GLB"
+    ],
+    "collections": [
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "texture",
+      "depth"
+    ],
+    "date": "2017",
+    "creators": [
+      "Microsoft"
+    ],
+    "creator_roles": [
+      {
+        "name": "Microsoft",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "credit": "Avocado model by Microsoft (CC0 1.0 Universal).",
+    "source_url": "https://github.khronos.org/glTF-Assets/model/Avocado",
+    "archive": "Khronos glTF Sample Assets",
+    "thumb": "items/gltf-avocado/thumb.webp",
+    "poster": "items/gltf-avocado/poster.webp",
+    "media": "items/gltf-avocado/media.glb",
+    "video_media": "items/gltf-avocado/media.glb",
+    "proxy": null,
+    "original": "items/gltf-avocado/original.glb",
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": 682,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 8110040,
+    "url": "https://languel.github.io/mediatheque/items/gltf-avocado/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "gltf-boombox",
+    "type": "item",
+    "title": "BoomBox (Retro Stereo PBR Model GLB)",
+    "kind": "model",
+    "status": "published",
+    "summary": "1980s portable cassette boombox with detailed PBR metallic and roughness textures.",
+    "tags": [
+      "object",
+      "prop",
+      "pbr",
+      "textured",
+      "three-quarter",
+      "contemporary",
+      "low-poly"
+    ],
+    "keywords": [
+      "glTF",
+      "BoomBox",
+      "stereo",
+      "cassette",
+      "retro",
+      "audio",
+      "speakers",
+      "PBR",
+      "Khronos",
+      "Three.js",
+      "GLB"
+    ],
+    "collections": [
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "texture",
+      "audio-reactive"
+    ],
+    "date": "2017",
+    "creators": [
+      "Microsoft"
+    ],
+    "creator_roles": [
+      {
+        "name": "Microsoft",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "credit": "BoomBox model by Microsoft (CC0 1.0 Universal).",
+    "source_url": "https://github.khronos.org/glTF-Assets/model/BoomBox",
+    "archive": "Khronos glTF Sample Assets",
+    "thumb": "items/gltf-boombox/thumb.webp",
+    "poster": "items/gltf-boombox/poster.webp",
+    "media": "items/gltf-boombox/media.glb",
+    "video_media": "items/gltf-boombox/media.glb",
+    "proxy": null,
+    "original": "items/gltf-boombox/original.glb",
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": 6036,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 10614184,
+    "url": "https://languel.github.io/mediatheque/items/gltf-boombox/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "gltf-box-animated",
+    "type": "item",
+    "title": "Box Animated (Joint Hierarchy Test GLB)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Minimal articulated two-box hierarchy with a rotating joint.",
+    "tags": [
+      "abstract",
+      "animated",
+      "low-poly",
+      "cyclic",
+      "three-quarter",
+      "contemporary",
+      "textured"
+    ],
+    "keywords": [
+      "glTF",
+      "BoxAnimated",
+      "cubes",
+      "joint",
+      "hierarchy",
+      "animation",
+      "rotation",
+      "Khronos",
+      "Three.js",
+      "GLB"
+    ],
+    "collections": [
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "rigging",
+      "loop"
+    ],
+    "date": "2017",
+    "creators": [
+      "Cesium"
+    ],
+    "creator_roles": [
+      {
+        "name": "Cesium",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "cc",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "credit": "Box Animated model and joint rotation by Cesium (CC BY 4.0).",
+    "source_url": "https://github.khronos.org/glTF-Assets/model/BoxAnimated",
+    "archive": "Khronos glTF Sample Assets",
+    "thumb": "items/gltf-box-animated/thumb.webp",
+    "poster": "items/gltf-box-animated/poster.webp",
+    "media": "items/gltf-box-animated/media.glb",
+    "video_media": "items/gltf-box-animated/media.glb",
+    "proxy": null,
+    "original": "items/gltf-box-animated/original.glb",
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": 254,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 11944,
+    "url": "https://languel.github.io/mediatheque/items/gltf-box-animated/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "gltf-cesium-man",
+    "type": "item",
+    "title": "Cesium Man (Skinned Walk Cycle GLB)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Skinned humanoid character with a continuous walking cycle animation.",
+    "tags": [
+      "person",
+      "character",
+      "rigged",
+      "animated",
+      "textured",
+      "walk",
+      "cyclic",
+      "three-quarter",
+      "contemporary",
+      "low-poly"
+    ],
+    "keywords": [
+      "glTF",
+      "CesiumMan",
+      "humanoid",
+      "walk-cycle",
+      "skinning",
+      "animation",
+      "Khronos",
+      "Three.js",
+      "GLB"
+    ],
+    "collections": [
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "rigging",
+      "loop"
+    ],
+    "date": "2017",
+    "creators": [
+      "Cesium"
+    ],
+    "creator_roles": [
+      {
+        "name": "Cesium",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "cc",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "credit": "Cesium Man character and walking animation by Cesium (CC BY 4.0).",
+    "source_url": "https://github.khronos.org/glTF-Assets/model/CesiumMan",
+    "archive": "Khronos glTF Sample Assets",
+    "thumb": "items/gltf-cesium-man/thumb.webp",
+    "poster": "items/gltf-cesium-man/poster.webp",
+    "media": "items/gltf-cesium-man/media.glb",
+    "video_media": "items/gltf-cesium-man/media.glb",
+    "proxy": null,
+    "original": "items/gltf-cesium-man/original.glb",
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": 4672,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 438044,
+    "url": "https://languel.github.io/mediatheque/items/gltf-cesium-man/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "gltf-damaged-helmet",
+    "type": "item",
+    "title": "Damaged Helmet (PBR Showcase GLB)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Sci-fi battle helmet showcasing the standard glTF 2.0 PBR metallic-roughness workflow.",
+    "tags": [
+      "object",
+      "prop",
+      "pbr",
+      "textured",
+      "three-quarter",
+      "contemporary"
+    ],
+    "keywords": [
+      "glTF",
+      "DamagedHelmet",
+      "PBR",
+      "metallic-roughness",
+      "normal-map",
+      "emissive",
+      "Khronos",
+      "Three.js",
+      "GLB"
+    ],
+    "collections": [
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "texture",
+      "depth"
+    ],
+    "date": "2018",
+    "creators": [
+      "theblueturtle_",
+      "ctxwing"
+    ],
+    "creator_roles": [
+      {
+        "name": "theblueturtle_",
+        "role": "modeler"
+      },
+      {
+        "name": "ctxwing",
+        "role": "porter"
+      }
+    ],
+    "rights": {
+      "status": "cc",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "credit": "Battle damaged sci-fi helmet model by theblueturtle_, rebuilt and converted to glTF 2.0 PBR by ctxwing (CC BY 4.0).",
+    "source_url": "https://github.khronos.org/glTF-Assets/model/DamagedHelmet",
+    "archive": "Khronos glTF Sample Assets",
+    "thumb": "items/gltf-damaged-helmet/thumb.webp",
+    "poster": "items/gltf-damaged-helmet/poster.webp",
+    "media": "items/gltf-damaged-helmet/media.glb",
+    "video_media": "items/gltf-damaged-helmet/media.glb",
+    "proxy": null,
+    "original": "items/gltf-damaged-helmet/original.glb",
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": 15452,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 3773916,
+    "url": "https://languel.github.io/mediatheque/items/gltf-damaged-helmet/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "gltf-duck",
+    "type": "item",
+    "title": "Rubber Duck (3D Graphics Mascot GLB)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Historic textured rubber duck mascot model from the COLLADA and glTF test suites.",
+    "tags": [
+      "animal",
+      "prop",
+      "low-poly",
+      "textured",
+      "three-quarter",
+      "contemporary"
+    ],
+    "keywords": [
+      "glTF",
+      "Duck",
+      "mascot",
+      "rubber-duck",
+      "COLLADA",
+      "SCEA",
+      "Khronos",
+      "Three.js",
+      "GLB"
+    ],
+    "collections": [
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "texture"
+    ],
+    "date": "2006",
+    "creators": [
+      "Sony Computer Entertainment America"
+    ],
+    "creator_roles": [
+      {
+        "name": "Sony Computer Entertainment America",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "licensed",
+      "license": "SCEA-1.0",
+      "license_url": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/LICENSES/SCEA.txt"
+    },
+    "credit": "Duck model by Sony Computer Entertainment America (SCEA Shared Source License 1.0).",
+    "source_url": "https://github.khronos.org/glTF-Assets/model/Duck",
+    "archive": "Khronos glTF Sample Assets",
+    "thumb": "items/gltf-duck/thumb.webp",
+    "poster": "items/gltf-duck/poster.webp",
+    "media": "items/gltf-duck/media.glb",
+    "video_media": "items/gltf-duck/media.glb",
+    "proxy": null,
+    "original": "items/gltf-duck/original.glb",
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": 4212,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 120484,
+    "url": "https://languel.github.io/mediatheque/items/gltf-duck/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "gltf-fox",
+    "type": "item",
+    "title": "Fox (Animated Character GLB)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Low-poly stylized fox character with 3 animation cycles (Survey, Walk, Run).",
+    "tags": [
+      "animal",
+      "character",
+      "rigged",
+      "animated",
+      "low-poly",
+      "textured",
+      "three-quarter",
+      "cyclic",
+      "walk",
+      "run",
+      "contemporary"
+    ],
+    "keywords": [
+      "glTF",
+      "Fox",
+      "low-poly",
+      "character",
+      "skeletal-animation",
+      "Khronos",
+      "Three.js",
+      "GLB"
+    ],
+    "collections": [
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "rigging",
+      "loop"
+    ],
+    "date": "2014",
+    "creators": [
+      "PixelMannen",
+      "tomkranis",
+      "Asobo Studio"
+    ],
+    "creator_roles": [
+      {
+        "name": "PixelMannen",
+        "role": "modeler"
+      },
+      {
+        "name": "tomkranis",
+        "role": "animator"
+      },
+      {
+        "name": "Asobo Studio",
+        "role": "porter"
+      }
+    ],
+    "rights": {
+      "status": "cc",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "credit": "Fox model by PixelMannen (CC0), rigging and animation by tomkranis (CC BY 4.0), converted to glTF by Asobo Studio and scurest.",
+    "source_url": "https://github.khronos.org/glTF-Assets/model/Fox",
+    "archive": "Khronos glTF Sample Assets",
+    "thumb": "items/gltf-fox/thumb.webp",
+    "poster": "items/gltf-fox/poster.webp",
+    "media": "items/gltf-fox/media.glb",
+    "video_media": "items/gltf-fox/media.glb",
+    "proxy": null,
+    "original": "items/gltf-fox/original.glb",
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": 576,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 162852,
+    "url": "https://languel.github.io/mediatheque/items/gltf-fox/media.glb",
+    "added": "2026-11-02"
+  },
+  {
+    "id": "gltf-rigged-figure",
+    "type": "item",
+    "title": "Rigged Figure (Boxhead Skeleton GLB)",
+    "kind": "model",
+    "status": "published",
+    "summary": "Canonical boxhead rigged character mesh with bone hierarchy and vertex skinning.",
+    "tags": [
+      "person",
+      "character",
+      "rigged",
+      "low-poly",
+      "three-quarter",
+      "pose",
+      "contemporary",
+      "textured"
+    ],
+    "keywords": [
+      "glTF",
+      "RiggedFigure",
+      "boxhead",
+      "skeleton",
+      "skinning",
+      "bones",
+      "joints",
+      "Khronos",
+      "Three.js",
+      "GLB"
+    ],
+    "collections": [
+      "3d"
+    ],
+    "demos": [
+      "3d-viewer",
+      "rigging"
+    ],
+    "date": "2017",
+    "creators": [
+      "Cesium"
+    ],
+    "creator_roles": [
+      {
+        "name": "Cesium",
+        "role": "creator"
+      }
+    ],
+    "rights": {
+      "status": "cc",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    "credit": "Rigged Figure character and skeletal skinning by Cesium (CC BY 4.0).",
+    "source_url": "https://github.khronos.org/glTF-Assets/model/RiggedFigure",
+    "archive": "Khronos glTF Sample Assets",
+    "thumb": "items/gltf-rigged-figure/thumb.webp",
+    "poster": "items/gltf-rigged-figure/poster.webp",
+    "media": "items/gltf-rigged-figure/media.glb",
+    "video_media": "items/gltf-rigged-figure/media.glb",
+    "proxy": null,
+    "original": "items/gltf-rigged-figure/original.glb",
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": 256,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 50116,
+    "url": "https://languel.github.io/mediatheque/items/gltf-rigged-figure/media.glb",
+    "added": "2026-11-02"
+  },
+  {
     "id": "gyroid-minimal-surface",
     "type": "item",
     "title": "Gyroid Minimal Surface (Trigonometric SDF)",

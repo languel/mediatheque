@@ -1,0 +1,124 @@
+{
+  "id": "gltf-rigged-figure",
+  "title": "Rigged Figure (Boxhead Skeleton GLB)",
+  "kind": "model",
+  "status": "published",
+  "summary": "Canonical boxhead rigged character mesh with bone hierarchy and vertex skinning.",
+  "description": "Canonical glTF sample asset featuring a boxhead humanoid mesh bound to an internal skeletal hierarchy with vertex skinning weights. Widely used for testing skinning shaders, Three.js SkeletonHelper visualization, bone rotation manipulation, and inverse kinematics (IK).",
+  "tags": [
+    "person",
+    "character",
+    "rigged",
+    "low-poly",
+    "three-quarter",
+    "pose",
+    "contemporary",
+    "textured"
+  ],
+  "keywords": [
+    "glTF",
+    "RiggedFigure",
+    "boxhead",
+    "skeleton",
+    "skinning",
+    "bones",
+    "joints",
+    "Khronos",
+    "Three.js",
+    "GLB"
+  ],
+  "collections": [
+    "3d"
+  ],
+  "demos": [
+    "3d-viewer",
+    "rigging"
+  ],
+  "creators": [
+    {
+      "name": "Cesium",
+      "role": "creator"
+    }
+  ],
+  "date": "2017",
+  "source": {
+    "url": "https://github.khronos.org/glTF-Assets/model/RiggedFigure",
+    "origin": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/RiggedFigure/glTF-Binary/RiggedFigure.glb",
+    "archive": "Khronos glTF Sample Assets",
+    "retrieved": "2026-11-02",
+    "via": "https://github.com/KhronosGroup/glTF-Sample-Assets"
+  },
+  "rights": {
+    "status": "cc",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "credit": "Rigged Figure character and skeletal skinning by Cesium (CC BY 4.0).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 50116,
+      "sha256": "d6be85417d3e256861ee733eea6916093a7af7c79c16366181fd8abcaeb38cf5"
+    },
+    "original": {
+      "path": "original.glb",
+      "type": "model/gltf-binary",
+      "bytes": 50116,
+      "sha256": "d6be85417d3e256861ee733eea6916093a7af7c79c16366181fd8abcaeb38cf5",
+      "kept": true
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 7718,
+      "sha256": "2cff0c82e2122afc4f8ad4b055eb7d29e31c08adbf4e7652b78794aa9defdf4c",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 4124,
+      "sha256": "c7668b5cbba3a0c60b9f249e61e87ffcf8a103f115e7f6fefc9c05278e23a4b6",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://github.khronos.org/glTF-Assets/model/RiggedFigure",
+      "date": "2026-11-02",
+      "sha256": "d6be85417d3e256861ee733eea6916093a7af7c79c16366181fd8abcaeb38cf5"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "copy",
+      "args": "cp gltf-rigged-figure.glb media.glb",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "analyzed",
+      "tool": "render 1.1",
+      "model": "software-zbuffer+splat+svg+sdf",
+      "date": "2026-11-02"
+    }
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02",
+  "triangles": 256,
+  "bbox": [
+    1.179,
+    1.45,
+    0.326
+  ]
+}

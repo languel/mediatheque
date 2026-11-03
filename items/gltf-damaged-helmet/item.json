@@ -1,0 +1,126 @@
+{
+  "id": "gltf-damaged-helmet",
+  "title": "Damaged Helmet (PBR Showcase GLB)",
+  "kind": "model",
+  "status": "published",
+  "summary": "Sci-fi battle helmet showcasing the standard glTF 2.0 PBR metallic-roughness workflow.",
+  "description": "Canonical glTF 2.0 PBR test asset featuring battle-damaged surface wear, metallic scratches, roughness variations, normal maps, ambient occlusion, and emissive lighting. Ideal for Three.js environment map (IBL), tone mapping, and lighting demos.",
+  "tags": [
+    "object",
+    "prop",
+    "pbr",
+    "textured",
+    "three-quarter",
+    "contemporary"
+  ],
+  "keywords": [
+    "glTF",
+    "DamagedHelmet",
+    "PBR",
+    "metallic-roughness",
+    "normal-map",
+    "emissive",
+    "Khronos",
+    "Three.js",
+    "GLB"
+  ],
+  "collections": [
+    "3d"
+  ],
+  "demos": [
+    "3d-viewer",
+    "texture",
+    "depth"
+  ],
+  "creators": [
+    {
+      "name": "theblueturtle_",
+      "role": "modeler"
+    },
+    {
+      "name": "ctxwing",
+      "role": "porter"
+    }
+  ],
+  "date": "2018",
+  "source": {
+    "url": "https://github.khronos.org/glTF-Assets/model/DamagedHelmet",
+    "origin": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/DamagedHelmet/glTF-Binary/DamagedHelmet.glb",
+    "archive": "Khronos glTF Sample Assets",
+    "retrieved": "2026-11-02",
+    "via": "https://github.com/KhronosGroup/glTF-Sample-Assets"
+  },
+  "rights": {
+    "status": "cc",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "credit": "Battle damaged sci-fi helmet model by theblueturtle_, rebuilt and converted to glTF 2.0 PBR by ctxwing (CC BY 4.0).",
+    "notes": "Original asset by theblueturtle_ under CC BY-NC 4.0, glTF 2.0 conversion by ctxwing under CC BY 4.0."
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 3773916,
+      "sha256": "a1e3b04de97b11de564ce6e53b95f02954a297f0008183ac63a4f5974f6b32d8"
+    },
+    "original": {
+      "path": "original.glb",
+      "type": "model/gltf-binary",
+      "bytes": 3773916,
+      "sha256": "a1e3b04de97b11de564ce6e53b95f02954a297f0008183ac63a4f5974f6b32d8",
+      "kept": true
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 33686,
+      "sha256": "54a883edee87aaeffefbee197efb4796cf22c86b2c25ba3c3689b9d6ebb2ab5d",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 15806,
+      "sha256": "e3e2a36bf72a9efa070e3296c6b1cb8efedddb080915df992bb92d04532b2fdd",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://github.khronos.org/glTF-Assets/model/DamagedHelmet",
+      "date": "2026-11-02",
+      "sha256": "a1e3b04de97b11de564ce6e53b95f02954a297f0008183ac63a4f5974f6b32d8"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "copy",
+      "args": "cp gltf-damaged-helmet.glb media.glb",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "analyzed",
+      "tool": "render 1.1",
+      "model": "software-zbuffer+splat+svg+sdf",
+      "date": "2026-11-02"
+    }
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02",
+  "triangles": 15452,
+  "bbox": [
+    1.89,
+    1.802,
+    2.0
+  ]
+}

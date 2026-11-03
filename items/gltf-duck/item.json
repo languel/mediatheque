@@ -1,0 +1,121 @@
+{
+  "id": "gltf-duck",
+  "title": "Rubber Duck (3D Graphics Mascot GLB)",
+  "kind": "model",
+  "status": "published",
+  "summary": "Historic textured rubber duck mascot model from the COLLADA and glTF test suites.",
+  "description": "Iconic low-poly rubber duck model with UV-mapped diffuse texture, originally created by Sony Computer Entertainment America as a landmark interchange benchmark. Universally used as an introductory asset in 3D graphics tutorials, Three.js loaders, and material tests.",
+  "tags": [
+    "animal",
+    "prop",
+    "low-poly",
+    "textured",
+    "three-quarter",
+    "contemporary"
+  ],
+  "keywords": [
+    "glTF",
+    "Duck",
+    "mascot",
+    "rubber-duck",
+    "COLLADA",
+    "SCEA",
+    "Khronos",
+    "Three.js",
+    "GLB"
+  ],
+  "collections": [
+    "3d"
+  ],
+  "demos": [
+    "3d-viewer",
+    "texture"
+  ],
+  "creators": [
+    {
+      "name": "Sony Computer Entertainment America",
+      "role": "creator"
+    }
+  ],
+  "date": "2006",
+  "source": {
+    "url": "https://github.khronos.org/glTF-Assets/model/Duck",
+    "origin": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Duck/glTF-Binary/Duck.glb",
+    "archive": "Khronos glTF Sample Assets",
+    "retrieved": "2026-11-02",
+    "via": "https://github.com/KhronosGroup/glTF-Sample-Assets"
+  },
+  "rights": {
+    "status": "licensed",
+    "license": "SCEA-1.0",
+    "license_url": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/LICENSES/SCEA.txt",
+    "credit": "Duck model by Sony Computer Entertainment America (SCEA Shared Source License 1.0).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 120484,
+      "sha256": "65bf938f54d6073e619e76e007820bbf980cdc3dc0daec0d94830ffc4ae54ab5"
+    },
+    "original": {
+      "path": "original.glb",
+      "type": "model/gltf-binary",
+      "bytes": 120484,
+      "sha256": "65bf938f54d6073e619e76e007820bbf980cdc3dc0daec0d94830ffc4ae54ab5",
+      "kept": true
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 23228,
+      "sha256": "8f02e4449fc96f05dfaf258cedfb0e39fe5279f662283e2627b4b20000c45a73",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 11590,
+      "sha256": "8b8aa14cb5d87db455857657e62805116e0bbeb036afc668fc5d868636d3453e",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://github.khronos.org/glTF-Assets/model/Duck",
+      "date": "2026-11-02",
+      "sha256": "65bf938f54d6073e619e76e007820bbf980cdc3dc0daec0d94830ffc4ae54ab5"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "copy",
+      "args": "cp gltf-duck.glb media.glb",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "analyzed",
+      "tool": "render 1.1",
+      "model": "software-zbuffer+splat+svg+sdf",
+      "date": "2026-11-02"
+    }
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02",
+  "triangles": 4212,
+  "bbox": [
+    1.655,
+    1.54,
+    1.153
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "id": "gltf-fox",
+  "title": "Fox (Animated Character GLB)",
+  "kind": "model",
+  "status": "published",
+  "summary": "Low-poly stylized fox character with 3 animation cycles (Survey, Walk, Run).",
+  "description": "Classic low-poly fox model demonstrating skeletal animation with three distinct cycles: Survey (idle inspection), Walk, and Run. Widely used in Three.js and WebGL tutorials for animation blending and character controllers.",
+  "tags": [
+    "animal",
+    "character",
+    "rigged",
+    "animated",
+    "low-poly",
+    "textured",
+    "three-quarter",
+    "cyclic",
+    "walk",
+    "run",
+    "contemporary"
+  ],
+  "keywords": [
+    "glTF",
+    "Fox",
+    "low-poly",
+    "character",
+    "skeletal-animation",
+    "Khronos",
+    "Three.js",
+    "GLB"
+  ],
+  "collections": [
+    "3d"
+  ],
+  "demos": [
+    "3d-viewer",
+    "rigging",
+    "loop"
+  ],
+  "creators": [
+    {
+      "name": "PixelMannen",
+      "role": "modeler"
+    },
+    {
+      "name": "tomkranis",
+      "role": "animator"
+    },
+    {
+      "name": "Asobo Studio",
+      "role": "porter"
+    }
+  ],
+  "date": "2014",
+  "source": {
+    "url": "https://github.khronos.org/glTF-Assets/model/Fox",
+    "origin": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Fox/glTF-Binary/Fox.glb",
+    "archive": "Khronos glTF Sample Assets",
+    "retrieved": "2026-11-02",
+    "via": "https://github.com/KhronosGroup/glTF-Sample-Assets"
+  },
+  "rights": {
+    "status": "cc",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "credit": "Fox model by PixelMannen (CC0), rigging and animation by tomkranis (CC BY 4.0), converted to glTF by Asobo Studio and scurest.",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.glb",
+      "type": "model/gltf-binary",
+      "bytes": 162852,
+      "sha256": "d97044e701822bac5a62696459b27d7b375aada5de8574ed4362edbba94771f7"
+    },
+    "original": {
+      "path": "original.glb",
+      "type": "model/gltf-binary",
+      "bytes": 162852,
+      "sha256": "d97044e701822bac5a62696459b27d7b375aada5de8574ed4362edbba94771f7",
+      "kept": true
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 9554,
+      "sha256": "9e6cd49f238c9262f3c3722591cbd18d0e8bd4f1bdd6b51b9d0149de297a2d6b",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 4682,
+      "sha256": "f025568367b75580304b632778095d5e4cd6aa92f436f9725ce6beda38531ea9",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://github.khronos.org/glTF-Assets/model/Fox",
+      "date": "2026-11-02",
+      "sha256": "d97044e701822bac5a62696459b27d7b375aada5de8574ed4362edbba94771f7"
+    },
+    {
+      "step": "derived",
+      "file": "media.glb",
+      "tool": "copy",
+      "args": "cp gltf-fox.glb media.glb",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-11-02"
+    },
+    {
+      "step": "analyzed",
+      "tool": "render 1.1",
+      "model": "software-zbuffer+splat+svg+sdf",
+      "date": "2026-11-02"
+    }
+  ],
+  "added": "2026-11-02",
+  "updated": "2026-11-02",
+  "triangles": 576,
+  "bbox": [
+    25.185,
+    79.029,
+    154.72
+  ]
+}
