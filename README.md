@@ -21,6 +21,8 @@ A personal, public archive of teaching media — early film, chronophotography, 
    .venv/bin/python tools/check.py
    ```
 
+> **Note on Gaussian Splats (`.spz`)**: The gallery renders `.spz` items interactively with Spark.js (`@sparkjsdev/spark` 2.4.0). `tools/analyzers/probe.py` and `tools/analyzers/render.py` support both gzip-compressed SPZ v2/v3 and ZSTD-compressed SPZ v4 (`NGSP` header; requires Python 3.14+ `compression.zstd` when rendering SPZ v4 previews locally).
+
 ### 2. Clips & GIF Sprite Sheets
 
 - **Propose and cut clips** for a video or audio item:

@@ -4335,6 +4335,77 @@
     "added": "2026-10-18"
   },
   {
+    "id": "jengahenge2",
+    "type": "item",
+    "title": "Jengahenge Ring Structure (Gaussian Splat .spz)",
+    "kind": "splat",
+    "status": "published",
+    "summary": "75,319-point 3D Gaussian Splat (.spz v4) capture of a circular Jenga-block Stonehenge-style wooden ring structure.",
+    "tags": [
+      "object",
+      "three-quarter",
+      "360",
+      "contemporary",
+      "own-capture"
+    ],
+    "keywords": [
+      "Gaussian splat",
+      "SPZ",
+      "Jengahenge",
+      "Jenga",
+      "3DGS",
+      "photogrammetry",
+      "sculpture"
+    ],
+    "collections": [
+      "spatial"
+    ],
+    "demos": [
+      "splat-viewer",
+      "photogrammetry",
+      "3d-viewer",
+      "depth"
+    ],
+    "date": "2026-11-10",
+    "creators": [
+      "languel"
+    ],
+    "creator_roles": [
+      {
+        "name": "languel",
+        "role": "capture"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "credit": "Jengahenge 3D Gaussian Splat (.spz), Mediathèque Spatial Collection, 2026 (CC0 1.0).",
+    "source_url": "https://languel.github.io/mediatheque/items/jengahenge2/media.spz",
+    "archive": "Mediathèque Spatial Collection",
+    "thumb": "items/jengahenge2/thumb.webp",
+    "poster": "items/jengahenge2/poster.webp",
+    "media": "items/jengahenge2/media.spz",
+    "video_media": "items/jengahenge2/media.spz",
+    "proxy": null,
+    "original": "items/jengahenge2/original.spz",
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": 75319,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 1624342,
+    "url": "https://languel.github.io/mediatheque/items/jengahenge2/media.spz",
+    "added": "2026-11-10"
+  },
+  {
     "id": "klein-bottle-immersion",
     "type": "item",
     "title": "Klein Bottle Figure-8 Immersion",
@@ -6592,6 +6663,128 @@
     "bytes": 1035564,
     "url": "https://languel.github.io/mediatheque/items/stieglitz-winter-fifth-avenue-1893/media.webp",
     "added": "2026-11-01"
+  },
+  {
+    "id": "street-view-mh",
+    "type": "item",
+    "title": "Myrtle Hall Exterior",
+    "kind": "image",
+    "status": "published",
+    "summary": "Panoramic street-level view outside Memorial Hall on Pratt Institute campus.",
+    "tags": [
+      "cityscape",
+      "color",
+      "panorama",
+      "landscape-format",
+      "contemporary",
+      "equirect"
+    ],
+    "keywords": [
+      "Street View",
+      "Memorial Hall",
+      "Pratt Institute",
+      "Brooklyn",
+      "panorama"
+    ],
+    "collections": [
+      "panorama"
+    ],
+    "demos": [
+      "projection",
+      "depth"
+    ],
+    "date": "2026",
+    "creators": [],
+    "creator_roles": [],
+    "rights": {
+      "status": "cc",
+      "license": "CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "credit": "languel",
+    "source_url": "https://languel.github.io/mediatheque/items/street-view-mh/media.webp",
+    "archive": "Mediathèque Panorama Collection",
+    "thumb": "items/street-view-mh/thumb.webp",
+    "poster": "items/street-view-mh/poster.webp",
+    "media": "items/street-view-mh/media.webp",
+    "video_media": "items/street-view-mh/media.webp",
+    "proxy": null,
+    "original": "items/street-view-mh/original.jpg",
+    "width": 4096,
+    "height": 2048,
+    "aspect_ratio": "2:1",
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 920288,
+    "url": "https://languel.github.io/mediatheque/items/street-view-mh/media.webp",
+    "added": "2026-10-18"
+  },
+  {
+    "id": "streetview-pratt-cannon",
+    "type": "item",
+    "title": "Street View — Pratt Campus Cannon Lawn",
+    "kind": "image",
+    "status": "published",
+    "summary": "Panoramic capture of the Pratt Institute main lawn and historic cannon.",
+    "tags": [
+      "landscape",
+      "cityscape",
+      "color",
+      "panorama",
+      "landscape-format",
+      "contemporary",
+      "equirect"
+    ],
+    "keywords": [
+      "Pratt Institute",
+      "cannon",
+      "campus",
+      "panorama"
+    ],
+    "collections": [
+      "panorama"
+    ],
+    "demos": [
+      "projection",
+      "depth"
+    ],
+    "date": "2026",
+    "creators": [],
+    "creator_roles": [],
+    "rights": {
+      "status": "fair-use-teaching",
+      "license": "Fair-Use-Teaching",
+      "license_url": null
+    },
+    "credit": "Google Street View capture of Pratt Institute Campus Cannon Lawn (teaching reference).",
+    "source_url": "https://languel.github.io/mediatheque/items/streetview-pratt-cannon/media.webp",
+    "archive": "Mediathèque Panorama Collection",
+    "thumb": "items/streetview-pratt-cannon/thumb.webp",
+    "poster": "items/streetview-pratt-cannon/poster.webp",
+    "media": "items/streetview-pratt-cannon/media.webp",
+    "video_media": "items/streetview-pratt-cannon/media.webp",
+    "proxy": null,
+    "original": "items/streetview-pratt-cannon/original.png",
+    "width": 1664,
+    "height": 832,
+    "aspect_ratio": "2:1",
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": null,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 611186,
+    "url": "https://languel.github.io/mediatheque/items/streetview-pratt-cannon/media.webp",
+    "added": "2026-10-18"
   },
   {
     "id": "the-pond-moonlight-1904",

@@ -2,7 +2,7 @@
   "id": "street-view-mh",
   "title": "Myrtle Hall Exterior",
   "kind": "image",
-  "status": "draft",
+  "status": "published",
   "summary": "Panoramic street-level view outside Memorial Hall on Pratt Institute campus.",
   "description": "",
   "tags": [
@@ -23,19 +23,25 @@
   "collections": [
     "panorama"
   ],
-  "demos": [],
+  "demos": [
+    "projection",
+    "depth"
+  ],
   "creators": [],
   "date": "2026",
   "source": {
-    "archive": "",
-    "url": "",
-    "origin": ""
+    "archive": "Mediathèque Panorama Collection",
+    "url": "https://languel.github.io/mediatheque/items/street-view-mh/media.webp",
+    "origin": "Google Street View — Myrtle Ave / Memorial Hall exterior, Pratt Institute, Brooklyn, NY",
+    "retrieved": "2026-10-18",
+    "via": null
   },
   "rights": {
     "status": "cc",
     "license": "CC0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
     "credit": "languel",
-    "notes": "Google Street View screenshot; kept in draft pending own-capture replacement."
+    "notes": ""
   },
   "files": {
     "media": {
@@ -101,6 +107,6 @@
     }
   ],
   "added": "2026-10-18",
-  "updated": "2026-10-20",
+  "updated": "2026-11-10",
   "plate": null
 }

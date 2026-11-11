@@ -150,27 +150,57 @@ def render_glb_preview(glb_path: Path, poster_path: Path, thumb_path: Path) -> N
     _save_square_thumb(im, thumb_path, 480)
 
 
-def render_splat_preview(splat_path: Path, poster_path: Path, thumb_path: Path) -> None:
-    ext = splat_path.suffix.lower()
-    if ext == ".spz":
-        with gzip.open(splat_path, "rb") as f:
-            data = f.read()
-        magic, _version, n, _sh_deg, frac_bits, _flags, _ = struct.unpack_from("<IIIbbbb", data, 0)
+def _decode_spz_for_preview(splat_path: Path) -> tuple[np.ndarray, np.ndarray, np.ndarray, int] | None:
+    raw = splat_path.read_bytes()
+    if raw[:2] == b"\x1f\x8b":
+        data = gzip.decompress(raw)
+        magic, version, n, _sh_deg, frac_bits, _flags, _ = struct.unpack_from("<IIIBBBB", data, 0)
         if magic != 0x5053474E or n == 0:
-            _save_fallback_card("SPLAT", splat_path.stem, poster_path, thumb_path)
-            return
+            return None
         pos_bytes = np.frombuffer(data, dtype=np.uint8, count=n * 9, offset=16).reshape(n, 3, 3)
-        pos_i32 = (
-            pos_bytes[:, :, 0].astype(np.int32)
-            | (pos_bytes[:, :, 1].astype(np.int32) << 8)
-            | (pos_bytes[:, :, 2].astype(np.int32) << 16)
-        )
-        pos_i32 = np.where(pos_i32 >= 0x800000, pos_i32 - 0x1000000, pos_i32)
-        pos = pos_i32.astype(np.float32) / float(1 << frac_bits)
         alphas = np.frombuffer(data, dtype=np.uint8, count=n, offset=16 + n * 9).astype(np.float32) / 255.0
         colors_raw = np.frombuffer(data, dtype=np.uint8, count=n * 3, offset=16 + n * 10).reshape(n, 3).astype(np.float32)
-        # Convert SPZ quantized SH0 color to RGB [0, 255]
-        colors = np.clip(((colors_raw / 255.0 - 0.5) / 0.15) * 0.2820948 + 0.5, 0.0, 1.0) * 255.0
+    elif raw[:4] == b"NGSP" and len(raw) >= 32:
+        magic, version, n, _sh_deg, frac_bits, _flags, res = struct.unpack_from("<IIIBBBB", raw, 0)
+        if magic != 0x5053474E or n == 0 or version < 4:
+            return None
+        from compression import zstd
+
+        toc_offset, _ext_offset = struct.unpack_from("<QQ", raw, 16)
+        n_streams = res or 6
+        cursor = toc_offset + n_streams * 16
+        streams: list[bytes] = []
+        for i in range(n_streams):
+            comp_sz, _uncomp_sz = struct.unpack_from("<QQ", raw, toc_offset + i * 16)
+            if i < 3:
+                streams.append(zstd.decompress(raw[cursor : cursor + comp_sz]))
+            cursor += comp_sz
+        pos_bytes = np.frombuffer(streams[0], dtype=np.uint8, count=n * 9).reshape(n, 3, 3)
+        alphas = np.frombuffer(streams[1], dtype=np.uint8, count=n).astype(np.float32) / 255.0
+        colors_raw = np.frombuffer(streams[2], dtype=np.uint8, count=n * 3).reshape(n, 3).astype(np.float32)
+    else:
+        return None
+
+    pos_i32 = (
+        pos_bytes[:, :, 0].astype(np.int32)
+        | (pos_bytes[:, :, 1].astype(np.int32) << 8)
+        | (pos_bytes[:, :, 2].astype(np.int32) << 16)
+    )
+    pos_i32 = np.where(pos_i32 >= 0x800000, pos_i32 - 0x1000000, pos_i32)
+    pos = pos_i32.astype(np.float32) / float(1 << frac_bits)
+    colors = np.clip(((colors_raw / 255.0 - 0.5) / 0.15) * 0.2820948 + 0.5, 0.0, 1.0) * 255.0
+    return pos, colors, alphas, version
+
+
+def render_splat_preview(splat_path: Path, poster_path: Path, thumb_path: Path) -> None:
+    ext = splat_path.suffix.lower()
+    spz_version = 0
+    if ext == ".spz":
+        decoded = _decode_spz_for_preview(splat_path)
+        if decoded is None:
+            _save_fallback_card("SPLAT", splat_path.stem, poster_path, thumb_path)
+            return
+        pos, colors, alphas, spz_version = decoded
     elif ext == ".splat":
         raw = np.fromfile(splat_path, dtype=np.uint8)
         n = len(raw) // 32
@@ -209,6 +239,8 @@ def render_splat_preview(splat_path: Path, poster_path: Path, thumb_path: Path) 
 
     center = np.median(pos, axis=0)
     pos = pos - center
+    if spz_version >= 4:
+        pos[:, 1] = -pos[:, 1]
     span = float(np.percentile(np.abs(pos), 92)) * 2.0 or 1.0
     pos = pos / span
 
@@ -227,7 +259,7 @@ def render_splat_preview(splat_path: Path, poster_path: Path, thumb_path: Path) 
 
     W, H = 960, 720
     canvas = np.full((H, W, 3), 18.0, dtype=np.float32)
-    scale = min(W, H) * 0.95
+    scale = min(W, H) * (0.76 if spz_version >= 4 else 0.95)
     px = (W * 0.5 + p_rot[:, 0] * scale).astype(np.int32)
     # SPZ/COLMAP often has Y down or Y up; check orientation via sky brightness
     py = (H * 0.5 - p_rot[:, 1] * scale).astype(np.int32)

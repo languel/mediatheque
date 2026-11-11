@@ -215,12 +215,19 @@ def _inspect_pil_image(im: Image.Image) -> tuple[str | None, bool]:
 def _probe_splat_count(path: Path) -> int | None:
     ext = path.suffix.lower()
     if ext == ".spz":
-        with gzip.open(path, "rb") as f:
-            hdr = f.read(16)
-            if len(hdr) >= 12:
-                magic, _version, num_points = struct.unpack("<III", hdr[:12])
-                if magic == 0x5053474E:
-                    return int(num_points)
+        with path.open("rb") as raw_f:
+            prefix = raw_f.read(16)
+        if prefix[:4] == b"NGSP" and len(prefix) >= 12:
+            magic, _version, num_points = struct.unpack("<III", prefix[:12])
+            if magic == 0x5053474E:
+                return int(num_points)
+        if prefix[:2] == b"\x1f\x8b":
+            with gzip.open(path, "rb") as f:
+                hdr = f.read(16)
+                if len(hdr) >= 12:
+                    magic, _version, num_points = struct.unpack("<III", hdr[:12])
+                    if magic == 0x5053474E:
+                        return int(num_points)
     elif ext == ".splat":
         return path.stat().st_size // 32
     elif ext == ".ply":

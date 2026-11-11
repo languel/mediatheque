@@ -3392,10 +3392,14 @@
         const bb = splatMesh.getBoundingBox();
         const center = new THREE.Vector3().addVectors(bb.min, bb.max).multiplyScalar(0.5);
         const size = new THREE.Vector3().subVectors(bb.max, bb.min);
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const dist = Math.max(15, Math.min(100, maxDim * 0.45));
+        const maxDim = Math.max(size.x, size.y, size.z) || 1;
+        const dist = Math.max(0.8, Math.min(100, maxDim > 20 ? maxDim * 0.45 : maxDim * 1.15));
+        camera.near = Math.max(0.01, maxDim * 0.002);
+        camera.far = Math.max(2000, maxDim * 20);
+        camera.updateProjectionMatrix();
         camera.position.set(center.x, center.y + maxDim * 0.06, center.z + dist);
         controls.target.copy(center);
+        controls.minDistance = Math.max(0.1, maxDim * 0.08);
         controls.update();
       } catch (_e) {}
 

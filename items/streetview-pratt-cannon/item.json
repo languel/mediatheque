@@ -2,7 +2,7 @@
   "id": "streetview-pratt-cannon",
   "title": "Street View — Pratt Campus Cannon Lawn",
   "kind": "image",
-  "status": "draft",
+  "status": "published",
   "summary": "Panoramic capture of the Pratt Institute main lawn and historic cannon.",
   "description": "",
   "tags": [
@@ -30,18 +30,18 @@
   "creators": [],
   "date": "2026",
   "source": {
-    "url": null,
-    "origin": null,
-    "archive": null,
+    "url": "https://languel.github.io/mediatheque/items/streetview-pratt-cannon/media.webp",
+    "origin": "Google Street View — Pratt Institute main lawn and historic cannon, Brooklyn, NY",
+    "archive": "Mediathèque Panorama Collection",
     "retrieved": "2026-10-18",
     "via": null
   },
   "rights": {
-    "status": "unknown",
-    "license": null,
+    "status": "fair-use-teaching",
+    "license": "Fair-Use-Teaching",
     "license_url": null,
-    "credit": "",
-    "notes": "Google Street View screenshot; kept in draft pending own-capture replacement."
+    "credit": "Google Street View capture of Pratt Institute Campus Cannon Lawn (teaching reference).",
+    "notes": ""
   },
   "files": {
     "media": {
@@ -107,5 +107,5 @@
     }
   ],
   "added": "2026-10-18",
-  "updated": "2026-10-20"
+  "updated": "2026-11-10"
 }

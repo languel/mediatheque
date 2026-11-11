@@ -303,7 +303,7 @@ and their results are cached by file hash, so a re-run is free.
 | `detector` (YOLO / Florence / OWL) | video, image | objects, `animal`, `vehicle`, bounding boxes |
 | `vlm` (a local VLM such as Qwen-VL, or an API model) | video (sampled frames), image, 3D/splat (rendered views), svg (raster) | title, summary, description, visual tags, clip names, a contact-sheet caption |
 | `audio` (CLAP/PANNs/YAMNet, beat tracker, key detection, Whisper) | audio, video sound | sound type tags, `bpm`, `key`, onsets, `speech` + transcript into `notes.md` |
-| `render` (headless three.js / Spark) | model, splat | turntable thumbnails used by `vlm` |
+| `render` (software z-buffer + SPZ v2/v4 + SVG/SDF rasterizer) | model, splat, vector, text, sdf | turntable/preview posters (`poster.webp`) and thumbnails (`thumb.webp`) |
 | `text` (LLM) | text | summary, `language`, form tags |
 
 Rules: analyzer output is a **proposal**, written to `item.json` under `proposed`

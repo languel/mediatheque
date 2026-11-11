@@ -1,0 +1,115 @@
+{
+  "id": "jengahenge2",
+  "title": "Jengahenge Ring Structure (Gaussian Splat .spz)",
+  "kind": "splat",
+  "status": "published",
+  "summary": "75,319-point 3D Gaussian Splat (.spz v4) capture of a circular Jenga-block Stonehenge-style wooden ring structure.",
+  "description": "Niantic SPZ v4 3D Gaussian Splat scan (75,319 splats, SH degree 3, 12-bit fixed-point positions) of a miniature circular colonnade built from stacked wooden Jenga blocks.",
+  "tags": [
+    "object",
+    "three-quarter",
+    "360",
+    "contemporary",
+    "own-capture"
+  ],
+  "keywords": [
+    "Gaussian splat",
+    "SPZ",
+    "Jengahenge",
+    "Jenga",
+    "3DGS",
+    "photogrammetry",
+    "sculpture"
+  ],
+  "collections": [
+    "spatial"
+  ],
+  "demos": [
+    "splat-viewer",
+    "photogrammetry",
+    "3d-viewer",
+    "depth"
+  ],
+  "creators": [
+    {
+      "name": "languel",
+      "role": "capture"
+    }
+  ],
+  "date": "2026-11-10",
+  "source": {
+    "url": "https://languel.github.io/mediatheque/items/jengahenge2/media.spz",
+    "origin": null,
+    "archive": "Mediathèque Spatial Collection",
+    "retrieved": "2026-11-10",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "credit": "Jengahenge 3D Gaussian Splat (.spz), Mediathèque Spatial Collection, 2026 (CC0 1.0).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.spz",
+      "type": "application/x-gaussian-splat-spz",
+      "bytes": 1624342,
+      "sha256": "8bd790895cf9ea7a8fe889d04b2f1ebc7923edc298150e2100903ad3a6bef295"
+    },
+    "original": {
+      "path": "original.spz",
+      "type": "application/x-gaussian-splat-spz",
+      "bytes": 1624342,
+      "sha256": "8bd790895cf9ea7a8fe889d04b2f1ebc7923edc298150e2100903ad3a6bef295",
+      "kept": true
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 79090,
+      "sha256": "81cc246d019551f96795e1d2569deb8d3d003a3daf9f407007c916d7029c9464",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 33222,
+      "sha256": "42ca5612c84a7c60326e9900aa241a6f218a783ba558bb91a2e3ef49b7bcc43a",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "jengahenge2.spz",
+      "date": "2026-11-10",
+      "sha256": "8bd790895cf9ea7a8fe889d04b2f1ebc7923edc298150e2100903ad3a6bef295"
+    },
+    {
+      "step": "derived",
+      "file": "media.spz",
+      "tool": "copy",
+      "args": "cp jengahenge2.spz media.spz",
+      "date": "2026-11-10"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-11-10"
+    },
+    {
+      "step": "analyzed",
+      "tool": "render 1.1",
+      "model": "software-zbuffer+splat+svg+sdf",
+      "date": "2026-11-10"
+    }
+  ],
+  "added": "2026-11-10",
+  "updated": "2026-11-10",
+  "splats": 75319
+}
