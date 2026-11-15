@@ -2043,7 +2043,7 @@
       controlsHtml = `
         <div class="viewer-controls">
           <div class="viewer-controls__group">
-            <span>Interactive 3D Gaussian Splat (.spz) · Drag to orbit, wheel to zoom</span>
+            <span>Interactive 3D Gaussian Splat (.spz) · Drag to orbit, wheel to zoom · WASD + Q/E to fly (Shift: fast)</span>
             <button type="button" class="btn-small" id="btn-open-fullwindow" data-entry-id="${escapeHtml(item.id)}" data-tooltip="Open full-window preview with carousel (F)">⛶ Full Window</button>
           </div>
           <span id="splat-status">${
@@ -3292,6 +3292,77 @@
     });
   }
 
+  // Shared WASD + Q/E fly-around controller that cooperates with Three.js OrbitControls
+  function attachWasdFlyControls(THREE, camera, controls, domElement, initialSpeed = 3.0) {
+    const keys = new Set();
+    let speed = initialSpeed;
+    const forward = new THREE.Vector3();
+    const right = new THREE.Vector3();
+    const up = new THREE.Vector3();
+    const move = new THREE.Vector3();
+
+    const isBlocked = (e) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return true;
+      const el = document.activeElement;
+      if (!el) return false;
+      const tag = el.tagName;
+      return tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || el.isContentEditable;
+    };
+
+    const onKeyDown = (e) => {
+      if (!domElement.isConnected || isBlocked(e)) return;
+      const code = e.code;
+      if (
+        code === "KeyW" || code === "KeyA" || code === "KeyS" || code === "KeyD" ||
+        code === "KeyQ" || code === "KeyE" || code === "ShiftLeft" || code === "ShiftRight"
+      ) {
+        keys.add(code);
+      }
+    };
+
+    const onKeyUp = (e) => {
+      keys.delete(e.code);
+    };
+
+    const onBlur = () => {
+      keys.clear();
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("keyup", onKeyUp);
+    window.addEventListener("blur", onBlur);
+
+    return {
+      setSpeed(nextSpeed) {
+        if (Number.isFinite(nextSpeed) && nextSpeed > 0) speed = nextSpeed;
+      },
+      update(dt) {
+        if (!keys.size || dt <= 0) return false;
+        const step = speed * Math.min(dt, 0.1) * (keys.has("ShiftLeft") || keys.has("ShiftRight") ? 3.0 : 1.0);
+        camera.getWorldDirection(forward);
+        up.copy(camera.up).normalize();
+        right.crossVectors(forward, up).normalize();
+        move.set(0, 0, 0);
+        if (keys.has("KeyW")) move.addScaledVector(forward, step);
+        if (keys.has("KeyS")) move.addScaledVector(forward, -step);
+        if (keys.has("KeyD")) move.addScaledVector(right, step);
+        if (keys.has("KeyA")) move.addScaledVector(right, -step);
+        if (keys.has("KeyE")) move.addScaledVector(up, step);
+        if (keys.has("KeyQ")) move.addScaledVector(up, -step);
+        if (move.lengthSq() === 0) return false;
+        camera.position.add(move);
+        controls.target.add(move);
+        return true;
+      },
+      dispose() {
+        keys.clear();
+        window.removeEventListener("keydown", onKeyDown);
+        window.removeEventListener("keyup", onKeyUp);
+        window.removeEventListener("blur", onBlur);
+      },
+    };
+  }
+
   // Interactive 3D Gaussian Splat (.spz / 3DGS) viewer powered by Spark.js (@sparkjsdev/spark)
   async function initSparkSplatViewer(container, url, statusEl) {
     if (!container) return;
@@ -3302,10 +3373,23 @@
       activeSparkInstance = null;
     }
 
+    const abortController = new AbortController();
+    let disposed = false;
+
     try {
-      const THREE = await import("three");
-      const { SparkRenderer, SplatMesh } = await import("@sparkjsdev/spark");
-      const { OrbitControls } = await import("three/addons/controls/OrbitControls.js");
+      const [THREE, sparkMod, trackballMod, resp] = await Promise.all([
+        import("three"),
+        import("@sparkjsdev/spark"),
+        import("three/addons/controls/TrackballControls.js"),
+        fetch(url, { signal: abortController.signal }),
+      ]);
+      if (disposed) return;
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      const fileBytes = new Uint8Array(await resp.arrayBuffer());
+      if (disposed) return;
+
+      const { SparkRenderer, SplatMesh } = sparkMod;
+      const { TrackballControls } = trackballMod;
 
       const width = container.clientWidth || 800;
       const height = container.clientHeight || 520;
@@ -3314,25 +3398,41 @@
       const camera = new THREE.PerspectiveCamera(55, width / height, 0.1, 2000);
       camera.position.set(0, 5, 25);
 
-      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
+      const renderer = new THREE.WebGLRenderer({
+        antialias: false,
+        alpha: false,
+        powerPreference: "high-performance",
+      });
+      renderer.setClearColor(0x151515, 1);
       renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.25));
       container.appendChild(renderer.domElement);
 
-      const controls = new OrbitControls(camera, renderer.domElement);
-      controls.enableDamping = true;
-      controls.dampingFactor = 0.08;
-      controls.rotateSpeed = 0.8;
-      controls.zoomSpeed = 1.0;
+      const controls = new TrackballControls(camera, renderer.domElement);
+      controls.staticMoving = false;
+      controls.dynamicDampingFactor = 0.12;
+      controls.rotateSpeed = 2.4;
+      controls.zoomSpeed = 1.1;
       controls.panSpeed = 0.8;
 
-      const spark = new SparkRenderer({ renderer });
+      const fly = attachWasdFlyControls(THREE, camera, controls, renderer.domElement, 4.0);
+
+      const spark = new SparkRenderer({ renderer, maxStdDev: Math.sqrt(5) });
       scene.add(spark);
 
-      const splatMesh = new SplatMesh({ url });
+      const splatMesh = new SplatMesh({ fileBytes });
+      // SPZ v4+ uses Y-down (OpenCV/COLMAP RDF); flip 180 deg around X for Three.js Y-up
+      if (
+        fileBytes.length >= 8 &&
+        fileBytes[0] === 0x4e && fileBytes[1] === 0x47 && fileBytes[2] === 0x53 && fileBytes[3] === 0x50
+      ) {
+        const spzVer = (fileBytes[4] | (fileBytes[5] << 8) | (fileBytes[6] << 16) | (fileBytes[7] << 24)) >>> 0;
+        if (spzVer >= 4) {
+          splatMesh.rotation.x = Math.PI;
+        }
+      }
       scene.add(splatMesh);
 
-      let disposed = false;
       let animId = null;
 
       const ro = new ResizeObserver((entries) => {
@@ -3343,14 +3443,19 @@
             camera.aspect = cr.width / cr.height;
             camera.updateProjectionMatrix();
             renderer.setSize(cr.width, cr.height);
+            controls.handleResize();
           }
         }
       });
       ro.observe(container);
 
-      const animate = () => {
+      let lastTime = performance.now();
+      const animate = (now = performance.now()) => {
         if (disposed) return;
         animId = requestAnimationFrame(animate);
+        const dt = (now - lastTime) * 0.001;
+        lastTime = now;
+        fly.update(dt);
         controls.update();
         renderer.render(scene, camera);
       };
@@ -3360,8 +3465,12 @@
         dispose() {
           if (disposed) return;
           disposed = true;
+          abortController.abort();
           if (animId) cancelAnimationFrame(animId);
           ro.disconnect();
+          try {
+            fly.dispose();
+          } catch (e) {}
           try {
             controls.dispose();
           } catch (e) {}
@@ -3401,6 +3510,7 @@
         controls.target.copy(center);
         controls.minDistance = Math.max(0.1, maxDim * 0.08);
         controls.update();
+        fly.setSpeed(Math.max(0.5, Math.min(40, maxDim * 0.45)));
       } catch (_e) {}
 
       if (statusEl) {
@@ -3446,7 +3556,7 @@
       }
 
       const THREE = await import("three");
-      const { OrbitControls } = await import("three/addons/controls/OrbitControls.js");
+      const { TrackballControls } = await import("three/addons/controls/TrackballControls.js");
 
       const width = container.clientWidth || 800;
       const height = container.clientHeight || 520;
@@ -3470,15 +3580,17 @@
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       container.appendChild(renderer.domElement);
 
-      const controls = new OrbitControls(camera, renderer.domElement);
-      controls.enableDamping = true;
-      controls.dampingFactor = 0.08;
-      controls.rotateSpeed = 0.8;
-      controls.zoomSpeed = 1.0;
+      const controls = new TrackballControls(camera, renderer.domElement);
+      controls.staticMoving = false;
+      controls.dynamicDampingFactor = 0.12;
+      controls.rotateSpeed = 2.4;
+      controls.zoomSpeed = 1.1;
       controls.panSpeed = 0.8;
       controls.target.copy(targetVec);
-      controls.autoRotate = false;
-      controls.autoRotateSpeed = 1.2;
+      let autoRotate = false;
+      const autoRotateAxis = new THREE.Vector3(0, 1, 0);
+
+      const fly = attachWasdFlyControls(THREE, camera, controls, renderer.domElement, 2.5);
 
       let disposed = false;
       let animId = null;
@@ -3728,6 +3840,7 @@
             camera.aspect = cr.width / cr.height;
             camera.updateProjectionMatrix();
             renderer.setSize(cr.width, cr.height);
+            controls.handleResize();
             if (uniforms) {
               uniforms.uResolution.value.set(cr.width, cr.height);
             }
@@ -3737,9 +3850,16 @@
       ro.observe(container);
 
       const startTime = performance.now();
-      const animate = () => {
+      let lastTime = startTime;
+      const animate = (now = performance.now()) => {
         if (disposed) return;
         animId = requestAnimationFrame(animate);
+        const dt = (now - lastTime) * 0.001;
+        lastTime = now;
+        fly.update(dt);
+        if (autoRotate && dt > 0) {
+          camera.position.sub(controls.target).applyAxisAngle(autoRotateAxis, dt * 0.4).add(controls.target);
+        }
         controls.update();
 
         if (mathType === "sdf" && uniforms) {
@@ -3789,9 +3909,9 @@
 
       if (options.autorotateBtn) {
         options.autorotateBtn.addEventListener("click", () => {
-          controls.autoRotate = !controls.autoRotate;
-          options.autorotateBtn.textContent = `Auto-Rotate: ${controls.autoRotate ? "On" : "Off"}`;
-          options.autorotateBtn.classList.toggle("btn-small--primary", controls.autoRotate);
+          autoRotate = !autoRotate;
+          options.autorotateBtn.textContent = `Auto-Rotate: ${autoRotate ? "On" : "Off"}`;
+          options.autorotateBtn.classList.toggle("btn-small--primary", autoRotate);
         });
       }
 
@@ -3805,6 +3925,9 @@
           disposed = true;
           if (animId) cancelAnimationFrame(animId);
           ro.disconnect();
+          try {
+            fly.dispose();
+          } catch (e) {}
           try {
             controls.dispose();
           } catch (e) {}
