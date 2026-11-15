@@ -1,0 +1,116 @@
+{
+  "id": "ddagallery-empty-dark",
+  "title": "DDA Gallery Empty Dark (Gaussian Splat .spz)",
+  "kind": "splat",
+  "status": "published",
+  "summary": "230,992-point 3D Gaussian Splat (.spz) capture of an empty, darkened gallery room.",
+  "description": "3D Gaussian Splat (.spz) interior capture (230,992 splats) of the darkened DDA Gallery space with architectural framing and central bench.",
+  "tags": [
+    "interior",
+    "room",
+    "three-quarter",
+    "360",
+    "contemporary",
+    "own-capture"
+  ],
+  "keywords": [
+    "Gaussian splat",
+    "SPZ",
+    "DDA Gallery",
+    "gallery",
+    "interior",
+    "3DGS",
+    "photogrammetry"
+  ],
+  "collections": [
+    "spatial"
+  ],
+  "demos": [
+    "splat-viewer",
+    "photogrammetry",
+    "3d-viewer",
+    "depth"
+  ],
+  "creators": [
+    {
+      "name": "languel",
+      "role": "capture"
+    }
+  ],
+  "date": "2026-11-15",
+  "source": {
+    "url": "https://languel.github.io/mediatheque/items/ddagallery-empty-dark/media.spz",
+    "origin": null,
+    "archive": "Mediathèque Spatial Collection",
+    "retrieved": "2026-11-15",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "credit": "DDA Gallery Empty Dark 3D Gaussian Splat (.spz), @languel, 2026 (CC0 1.0).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.spz",
+      "type": "application/x-gaussian-splat-spz",
+      "bytes": 4093736,
+      "sha256": "6a420dfde730b930f61354c62295f951f9980eb2bc0c92e5b84f19aff80ea834"
+    },
+    "original": {
+      "path": "original.spz",
+      "type": "application/x-gaussian-splat-spz",
+      "bytes": 4093736,
+      "sha256": "6a420dfde730b930f61354c62295f951f9980eb2bc0c92e5b84f19aff80ea834",
+      "kept": true
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 56800,
+      "sha256": "96f28f13c93f780b1a39121e9dcc89977631ec560b2b892ad4d0c96d95d7ebba",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 24308,
+      "sha256": "8a9104137d8ee677ac4c253e88e686f5a0ade64fad66e4822fc47607971148c5",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://superspl.at/editor-standalone",
+      "date": "2026-11-15",
+      "sha256": "6a420dfde730b930f61354c62295f951f9980eb2bc0c92e5b84f19aff80ea834"
+    },
+    {
+      "step": "derived",
+      "file": "media.spz",
+      "tool": "copy",
+      "args": "cp ddagallery-empty-dark.spz media.spz",
+      "date": "2026-11-15"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-11-15"
+    },
+    {
+      "step": "analyzed",
+      "tool": "render 1.1",
+      "model": "software-zbuffer+splat+svg+sdf",
+      "date": "2026-11-15"
+    }
+  ],
+  "added": "2026-11-15",
+  "updated": "2026-11-15",
+  "splats": 230992
+}

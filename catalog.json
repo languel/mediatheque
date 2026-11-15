@@ -3037,6 +3037,78 @@
     "added": "2026-10-18"
   },
   {
+    "id": "ddagallery-empty-dark",
+    "type": "item",
+    "title": "DDA Gallery Empty Dark (Gaussian Splat .spz)",
+    "kind": "splat",
+    "status": "published",
+    "summary": "230,992-point 3D Gaussian Splat (.spz) capture of an empty, darkened gallery room.",
+    "tags": [
+      "interior",
+      "room",
+      "three-quarter",
+      "360",
+      "contemporary",
+      "own-capture"
+    ],
+    "keywords": [
+      "Gaussian splat",
+      "SPZ",
+      "DDA Gallery",
+      "gallery",
+      "interior",
+      "3DGS",
+      "photogrammetry"
+    ],
+    "collections": [
+      "spatial"
+    ],
+    "demos": [
+      "splat-viewer",
+      "photogrammetry",
+      "3d-viewer",
+      "depth"
+    ],
+    "date": "2026-11-15",
+    "creators": [
+      "languel"
+    ],
+    "creator_roles": [
+      {
+        "name": "languel",
+        "role": "capture"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "credit": "DDA Gallery Empty Dark 3D Gaussian Splat (.spz), @languel, 2026 (CC0 1.0).",
+    "source_url": "https://languel.github.io/mediatheque/items/ddagallery-empty-dark/media.spz",
+    "archive": "Mediathèque Spatial Collection",
+    "thumb": "items/ddagallery-empty-dark/thumb.webp",
+    "poster": "items/ddagallery-empty-dark/poster.webp",
+    "media": "items/ddagallery-empty-dark/media.spz",
+    "video_media": "items/ddagallery-empty-dark/media.spz",
+    "proxy": null,
+    "original": "items/ddagallery-empty-dark/original.spz",
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": 230992,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 4093736,
+    "url": "https://languel.github.io/mediatheque/items/ddagallery-empty-dark/media.spz",
+    "added": "2026-11-15"
+  },
+  {
     "id": "eadweard-muybridge-animal-locomotion-woman-dancing-fancy-1887-plate-187",
     "type": "item",
     "title": "Woman Dancing (Fancy) — Plate 187 (Muybridge, 1887)",
@@ -6069,6 +6141,77 @@
     "added": "2026-11-01"
   },
   {
+    "id": "sandhole",
+    "type": "item",
+    "title": "Sand Hole (Gaussian Splat .spz)",
+    "kind": "splat",
+    "status": "published",
+    "summary": "756,240-point 3D Gaussian Splat (.spz) capture of a sand hole terrain depression.",
+    "tags": [
+      "landscape",
+      "outdoor",
+      "three-quarter",
+      "360",
+      "contemporary",
+      "own-capture"
+    ],
+    "keywords": [
+      "Gaussian splat",
+      "SPZ",
+      "sand",
+      "terrain",
+      "3DGS",
+      "photogrammetry"
+    ],
+    "collections": [
+      "spatial"
+    ],
+    "demos": [
+      "splat-viewer",
+      "photogrammetry",
+      "3d-viewer",
+      "depth"
+    ],
+    "date": "2026-11-15",
+    "creators": [
+      "languel"
+    ],
+    "creator_roles": [
+      {
+        "name": "languel",
+        "role": "capture"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "credit": "Sand Hole 3D Gaussian Splat (.spz), @languel, 2026 (CC0 1.0).",
+    "source_url": "https://languel.github.io/mediatheque/items/sandhole/media.spz",
+    "archive": "Mediathèque Spatial Collection",
+    "thumb": "items/sandhole/thumb.webp",
+    "poster": "items/sandhole/poster.webp",
+    "media": "items/sandhole/media.spz",
+    "video_media": "items/sandhole/media.spz",
+    "proxy": null,
+    "original": "items/sandhole/original.spz",
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": 756240,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 16108519,
+    "url": "https://languel.github.io/mediatheque/items/sandhole/media.spz",
+    "added": "2026-11-15"
+  },
+  {
     "id": "sandow-1894",
     "type": "item",
     "title": "Sandow (Edison Kinetoscope, 1894)",
@@ -6434,6 +6577,150 @@
     "added": "2026-10-18"
   },
   {
+    "id": "snowclearing",
+    "type": "item",
+    "title": "Snow Clearing (Gaussian Splat .spz)",
+    "kind": "splat",
+    "status": "published",
+    "summary": "963,797-point 3D Gaussian Splat (.spz) capture of a snow-covered outdoor clearing.",
+    "tags": [
+      "landscape",
+      "outdoor",
+      "three-quarter",
+      "360",
+      "contemporary",
+      "own-capture"
+    ],
+    "keywords": [
+      "Gaussian splat",
+      "SPZ",
+      "snow",
+      "clearing",
+      "landscape",
+      "3DGS",
+      "photogrammetry"
+    ],
+    "collections": [
+      "spatial"
+    ],
+    "demos": [
+      "splat-viewer",
+      "photogrammetry",
+      "3d-viewer",
+      "depth"
+    ],
+    "date": "2026-11-15",
+    "creators": [
+      "languel"
+    ],
+    "creator_roles": [
+      {
+        "name": "languel",
+        "role": "capture"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "credit": "Snow Clearing 3D Gaussian Splat (.spz), @languel, 2026 (CC0 1.0).",
+    "source_url": "https://languel.github.io/mediatheque/items/snowclearing/media.spz",
+    "archive": "Mediathèque Spatial Collection",
+    "thumb": "items/snowclearing/thumb.webp",
+    "poster": "items/snowclearing/poster.webp",
+    "media": "items/snowclearing/media.spz",
+    "video_media": "items/snowclearing/media.spz",
+    "proxy": null,
+    "original": "items/snowclearing/original.spz",
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": 963797,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 17041658,
+    "url": "https://languel.github.io/mediatheque/items/snowclearing/media.spz",
+    "added": "2026-11-15"
+  },
+  {
+    "id": "snowgrass",
+    "type": "item",
+    "title": "Snow Grass (Gaussian Splat .spz)",
+    "kind": "splat",
+    "status": "published",
+    "summary": "601,015-point 3D Gaussian Splat (.spz) capture of snow-dusted grass terrain.",
+    "tags": [
+      "landscape",
+      "outdoor",
+      "three-quarter",
+      "360",
+      "contemporary",
+      "own-capture"
+    ],
+    "keywords": [
+      "Gaussian splat",
+      "SPZ",
+      "snow",
+      "grass",
+      "terrain",
+      "3DGS",
+      "photogrammetry"
+    ],
+    "collections": [
+      "spatial"
+    ],
+    "demos": [
+      "splat-viewer",
+      "photogrammetry",
+      "3d-viewer",
+      "depth"
+    ],
+    "date": "2026-11-15",
+    "creators": [
+      "languel"
+    ],
+    "creator_roles": [
+      {
+        "name": "languel",
+        "role": "capture"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "credit": "Snow Grass 3D Gaussian Splat (.spz), @languel, 2026 (CC0 1.0).",
+    "source_url": "https://languel.github.io/mediatheque/items/snowgrass/media.spz",
+    "archive": "Mediathèque Spatial Collection",
+    "thumb": "items/snowgrass/thumb.webp",
+    "poster": "items/snowgrass/poster.webp",
+    "media": "items/snowgrass/media.spz",
+    "video_media": "items/snowgrass/media.spz",
+    "proxy": null,
+    "original": "items/snowgrass/original.spz",
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": 601015,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 12174391,
+    "url": "https://languel.github.io/mediatheque/items/snowgrass/media.spz",
+    "added": "2026-11-15"
+  },
+  {
     "id": "snowy-dystopian-eastern-european-city",
     "type": "item",
     "title": "Snowy Concrete Courtyard Pavilion (Gaussian Splat .spz)",
@@ -6503,6 +6790,78 @@
     "bytes": 7717114,
     "url": "https://languel.github.io/mediatheque/items/snowy-dystopian-eastern-european-city/media.spz",
     "added": "2026-10-18"
+  },
+  {
+    "id": "spatialcomproom",
+    "type": "item",
+    "title": "Spatial Comp Room (Gaussian Splat .spz)",
+    "kind": "splat",
+    "status": "published",
+    "summary": "309,343-point 3D Gaussian Splat (.spz) capture of an indoor spatial computing room.",
+    "tags": [
+      "interior",
+      "room",
+      "three-quarter",
+      "360",
+      "contemporary",
+      "own-capture"
+    ],
+    "keywords": [
+      "Gaussian splat",
+      "SPZ",
+      "Spatial Comp",
+      "room",
+      "interior",
+      "3DGS",
+      "photogrammetry"
+    ],
+    "collections": [
+      "spatial"
+    ],
+    "demos": [
+      "splat-viewer",
+      "photogrammetry",
+      "3d-viewer",
+      "depth"
+    ],
+    "date": "2026-11-15",
+    "creators": [
+      "languel"
+    ],
+    "creator_roles": [
+      {
+        "name": "languel",
+        "role": "capture"
+      }
+    ],
+    "rights": {
+      "status": "public-domain",
+      "license": "CC0-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "credit": "Spatial Comp Room 3D Gaussian Splat (.spz), @languel, 2026 (CC0 1.0).",
+    "source_url": "https://languel.github.io/mediatheque/items/spatialcomproom/media.spz",
+    "archive": "Mediathèque Spatial Collection",
+    "thumb": "items/spatialcomproom/thumb.webp",
+    "poster": "items/spatialcomproom/poster.webp",
+    "media": "items/spatialcomproom/media.spz",
+    "video_media": "items/spatialcomproom/media.spz",
+    "proxy": null,
+    "original": "items/spatialcomproom/original.spz",
+    "width": null,
+    "height": null,
+    "aspect_ratio": null,
+    "duration": null,
+    "fps": null,
+    "frames": null,
+    "triangles": null,
+    "splats": 309343,
+    "formula": null,
+    "math_type": null,
+    "bvh": null,
+    "bytes": 5401326,
+    "url": "https://languel.github.io/mediatheque/items/spatialcomproom/media.spz",
+    "added": "2026-11-15"
   },
   {
     "id": "steichen-the-flatiron-1904",

@@ -1,0 +1,116 @@
+{
+  "id": "snowgrass",
+  "title": "Snow Grass (Gaussian Splat .spz)",
+  "kind": "splat",
+  "status": "published",
+  "summary": "601,015-point 3D Gaussian Splat (.spz) capture of snow-dusted grass terrain.",
+  "description": "3D Gaussian Splat (.spz) outdoor ground capture (601,015 splats) of snow-covered grass.",
+  "tags": [
+    "landscape",
+    "outdoor",
+    "three-quarter",
+    "360",
+    "contemporary",
+    "own-capture"
+  ],
+  "keywords": [
+    "Gaussian splat",
+    "SPZ",
+    "snow",
+    "grass",
+    "terrain",
+    "3DGS",
+    "photogrammetry"
+  ],
+  "collections": [
+    "spatial"
+  ],
+  "demos": [
+    "splat-viewer",
+    "photogrammetry",
+    "3d-viewer",
+    "depth"
+  ],
+  "creators": [
+    {
+      "name": "languel",
+      "role": "capture"
+    }
+  ],
+  "date": "2026-11-15",
+  "source": {
+    "url": "https://languel.github.io/mediatheque/items/snowgrass/media.spz",
+    "origin": null,
+    "archive": "Mediathèque Spatial Collection",
+    "retrieved": "2026-11-15",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "credit": "Snow Grass 3D Gaussian Splat (.spz), @languel, 2026 (CC0 1.0).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.spz",
+      "type": "application/x-gaussian-splat-spz",
+      "bytes": 12174391,
+      "sha256": "3ee7cef6474243f42fb9378c8126ff45cb72e28b5cfdb6905d8c07e48f37b697"
+    },
+    "original": {
+      "path": "original.spz",
+      "type": "application/x-gaussian-splat-spz",
+      "bytes": 12174391,
+      "sha256": "3ee7cef6474243f42fb9378c8126ff45cb72e28b5cfdb6905d8c07e48f37b697",
+      "kept": true
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 50912,
+      "sha256": "ff5b816952a3a7c468474492d55aa997cfcf910ce746078092720f153e696b62",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 20904,
+      "sha256": "49b28bb4cbde70417362b0c0cc927f774dd562cc47aed95dfbb3211a3dae8a9a",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://superspl.at/editor-standalone",
+      "date": "2026-11-15",
+      "sha256": "3ee7cef6474243f42fb9378c8126ff45cb72e28b5cfdb6905d8c07e48f37b697"
+    },
+    {
+      "step": "derived",
+      "file": "media.spz",
+      "tool": "copy",
+      "args": "cp snowgrass.spz media.spz",
+      "date": "2026-11-15"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-11-15"
+    },
+    {
+      "step": "analyzed",
+      "tool": "render 1.1",
+      "model": "software-zbuffer+splat+svg+sdf",
+      "date": "2026-11-15"
+    }
+  ],
+  "added": "2026-11-15",
+  "updated": "2026-11-15",
+  "splats": 601015
+}

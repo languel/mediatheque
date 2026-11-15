@@ -1,0 +1,115 @@
+{
+  "id": "sandhole",
+  "title": "Sand Hole (Gaussian Splat .spz)",
+  "kind": "splat",
+  "status": "published",
+  "summary": "756,240-point 3D Gaussian Splat (.spz) capture of a sand hole terrain depression.",
+  "description": "3D Gaussian Splat (.spz) outdoor terrain capture (756,240 splats) of a dug sand hole and surrounding sandy ground.",
+  "tags": [
+    "landscape",
+    "outdoor",
+    "three-quarter",
+    "360",
+    "contemporary",
+    "own-capture"
+  ],
+  "keywords": [
+    "Gaussian splat",
+    "SPZ",
+    "sand",
+    "terrain",
+    "3DGS",
+    "photogrammetry"
+  ],
+  "collections": [
+    "spatial"
+  ],
+  "demos": [
+    "splat-viewer",
+    "photogrammetry",
+    "3d-viewer",
+    "depth"
+  ],
+  "creators": [
+    {
+      "name": "languel",
+      "role": "capture"
+    }
+  ],
+  "date": "2026-11-15",
+  "source": {
+    "url": "https://languel.github.io/mediatheque/items/sandhole/media.spz",
+    "origin": null,
+    "archive": "Mediathèque Spatial Collection",
+    "retrieved": "2026-11-15",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "credit": "Sand Hole 3D Gaussian Splat (.spz), @languel, 2026 (CC0 1.0).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.spz",
+      "type": "application/x-gaussian-splat-spz",
+      "bytes": 16108519,
+      "sha256": "5c5c25686e4f1d54e0d52fa94988c8ad7fc8ca2fd1b415a2887b6ee9fe519110"
+    },
+    "original": {
+      "path": "original.spz",
+      "type": "application/x-gaussian-splat-spz",
+      "bytes": 16108519,
+      "sha256": "5c5c25686e4f1d54e0d52fa94988c8ad7fc8ca2fd1b415a2887b6ee9fe519110",
+      "kept": true
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 53000,
+      "sha256": "69ad4d1909c047771f96b492730671271a4056578c51ee6f33218f706cfa651c",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 21892,
+      "sha256": "f2799ef121022101a5404cbc3de165c2c6138f1f047f3972429b37207b229278",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://superspl.at/editor-standalone",
+      "date": "2026-11-15",
+      "sha256": "5c5c25686e4f1d54e0d52fa94988c8ad7fc8ca2fd1b415a2887b6ee9fe519110"
+    },
+    {
+      "step": "derived",
+      "file": "media.spz",
+      "tool": "copy",
+      "args": "cp sandhole.spz media.spz",
+      "date": "2026-11-15"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-11-15"
+    },
+    {
+      "step": "analyzed",
+      "tool": "render 1.1",
+      "model": "software-zbuffer+splat+svg+sdf",
+      "date": "2026-11-15"
+    }
+  ],
+  "added": "2026-11-15",
+  "updated": "2026-11-15",
+  "splats": 756240
+}

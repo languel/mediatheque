@@ -1,0 +1,116 @@
+{
+  "id": "spatialcomproom",
+  "title": "Spatial Comp Room (Gaussian Splat .spz)",
+  "kind": "splat",
+  "status": "published",
+  "summary": "309,343-point 3D Gaussian Splat (.spz) capture of an indoor spatial computing room.",
+  "description": "3D Gaussian Splat (.spz) interior capture (309,343 splats) of the Spatial Comp studio room with overhead lighting grid and open floor.",
+  "tags": [
+    "interior",
+    "room",
+    "three-quarter",
+    "360",
+    "contemporary",
+    "own-capture"
+  ],
+  "keywords": [
+    "Gaussian splat",
+    "SPZ",
+    "Spatial Comp",
+    "room",
+    "interior",
+    "3DGS",
+    "photogrammetry"
+  ],
+  "collections": [
+    "spatial"
+  ],
+  "demos": [
+    "splat-viewer",
+    "photogrammetry",
+    "3d-viewer",
+    "depth"
+  ],
+  "creators": [
+    {
+      "name": "languel",
+      "role": "capture"
+    }
+  ],
+  "date": "2026-11-15",
+  "source": {
+    "url": "https://languel.github.io/mediatheque/items/spatialcomproom/media.spz",
+    "origin": null,
+    "archive": "Mediathèque Spatial Collection",
+    "retrieved": "2026-11-15",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "credit": "Spatial Comp Room 3D Gaussian Splat (.spz), @languel, 2026 (CC0 1.0).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.spz",
+      "type": "application/x-gaussian-splat-spz",
+      "bytes": 5401326,
+      "sha256": "31023a0e432ec090681a70a3a3360a81fc39aa1f08c789decab112379025ab89"
+    },
+    "original": {
+      "path": "original.spz",
+      "type": "application/x-gaussian-splat-spz",
+      "bytes": 5401326,
+      "sha256": "31023a0e432ec090681a70a3a3360a81fc39aa1f08c789decab112379025ab89",
+      "kept": true
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 51136,
+      "sha256": "9d6370b6237093c29f14f4cced5de890008b9c8fb085ffdb02899dfd16241784",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 21822,
+      "sha256": "67ad96e1d05fcd148c530e8ae3946aed02c871d3ba22269e3c611fd6206c5065",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://superspl.at/editor-standalone",
+      "date": "2026-11-15",
+      "sha256": "31023a0e432ec090681a70a3a3360a81fc39aa1f08c789decab112379025ab89"
+    },
+    {
+      "step": "derived",
+      "file": "media.spz",
+      "tool": "copy",
+      "args": "cp spatialcomproom.spz media.spz",
+      "date": "2026-11-15"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-11-15"
+    },
+    {
+      "step": "analyzed",
+      "tool": "render 1.1",
+      "model": "software-zbuffer+splat+svg+sdf",
+      "date": "2026-11-15"
+    }
+  ],
+  "added": "2026-11-15",
+  "updated": "2026-11-15",
+  "splats": 309343
+}

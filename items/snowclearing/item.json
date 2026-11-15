@@ -1,0 +1,116 @@
+{
+  "id": "snowclearing",
+  "title": "Snow Clearing (Gaussian Splat .spz)",
+  "kind": "splat",
+  "status": "published",
+  "summary": "963,797-point 3D Gaussian Splat (.spz) capture of a snow-covered outdoor clearing.",
+  "description": "3D Gaussian Splat (.spz) outdoor scene capture (963,797 splats) of a snowy clearing.",
+  "tags": [
+    "landscape",
+    "outdoor",
+    "three-quarter",
+    "360",
+    "contemporary",
+    "own-capture"
+  ],
+  "keywords": [
+    "Gaussian splat",
+    "SPZ",
+    "snow",
+    "clearing",
+    "landscape",
+    "3DGS",
+    "photogrammetry"
+  ],
+  "collections": [
+    "spatial"
+  ],
+  "demos": [
+    "splat-viewer",
+    "photogrammetry",
+    "3d-viewer",
+    "depth"
+  ],
+  "creators": [
+    {
+      "name": "languel",
+      "role": "capture"
+    }
+  ],
+  "date": "2026-11-15",
+  "source": {
+    "url": "https://languel.github.io/mediatheque/items/snowclearing/media.spz",
+    "origin": null,
+    "archive": "Mediathèque Spatial Collection",
+    "retrieved": "2026-11-15",
+    "via": null
+  },
+  "rights": {
+    "status": "public-domain",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "credit": "Snow Clearing 3D Gaussian Splat (.spz), @languel, 2026 (CC0 1.0).",
+    "notes": ""
+  },
+  "files": {
+    "media": {
+      "path": "media.spz",
+      "type": "application/x-gaussian-splat-spz",
+      "bytes": 17041658,
+      "sha256": "c7a7dd5de4784e120940efdf3db44318d6da1c2f5963813c32014dd2db9accbc"
+    },
+    "original": {
+      "path": "original.spz",
+      "type": "application/x-gaussian-splat-spz",
+      "bytes": 17041658,
+      "sha256": "c7a7dd5de4784e120940efdf3db44318d6da1c2f5963813c32014dd2db9accbc",
+      "kept": true
+    },
+    "poster": {
+      "path": "poster.webp",
+      "type": "image/webp",
+      "bytes": 118532,
+      "sha256": "1227eb5dc96ee97724b1781e1716363956e0989ae81e5638141a36d9d79a41f3",
+      "width": 960,
+      "height": 720
+    },
+    "thumb": {
+      "path": "thumb.webp",
+      "type": "image/webp",
+      "bytes": 49116,
+      "sha256": "d93f9d05898aad533834e37fc243fc50fe5d0f58157edba659cf1461d95ddc32",
+      "width": 480,
+      "height": 480
+    }
+  },
+  "provenance": [
+    {
+      "step": "obtained",
+      "from": "https://superspl.at/editor-standalone",
+      "date": "2026-11-15",
+      "sha256": "c7a7dd5de4784e120940efdf3db44318d6da1c2f5963813c32014dd2db9accbc"
+    },
+    {
+      "step": "derived",
+      "file": "media.spz",
+      "tool": "copy",
+      "args": "cp snowclearing.spz media.spz",
+      "date": "2026-11-15"
+    },
+    {
+      "step": "analyzed",
+      "tool": "probe 1.0",
+      "model": "ffprobe+pillow+trimesh",
+      "date": "2026-11-15"
+    },
+    {
+      "step": "analyzed",
+      "tool": "render 1.1",
+      "model": "software-zbuffer+splat+svg+sdf",
+      "date": "2026-11-15"
+    }
+  ],
+  "added": "2026-11-15",
+  "updated": "2026-11-15",
+  "splats": 963797
+}
