@@ -2043,7 +2043,10 @@
       controlsHtml = `
         <div class="viewer-controls">
           <div class="viewer-controls__group">
-            <span>Interactive 3D Gaussian Splat (.spz) · Drag to orbit, wheel to zoom · WASD + Q/E to fly (Shift: fast)</span>
+            <button type="button" class="btn-small btn-small--primary" id="btn-splat-mode" data-tooltip="Toggle Orbit vs Fly mode (V)">Mode: Orbit</button>
+            <button type="button" class="btn-small" id="btn-splat-frame-all" data-tooltip="Frame entire splat from current angle (0)">Frame All</button>
+            <button type="button" class="btn-small" id="btn-splat-reset-camera" data-tooltip="Reset camera (Double-click or R)">Reset View</button>
+            <span>Drag to orbit/look · WASD + Q/E to move (Shift: fast)</span>
             <button type="button" class="btn-small" id="btn-open-fullwindow" data-entry-id="${escapeHtml(item.id)}" data-tooltip="Open full-window preview with carousel (F)">⛶ Full Window</button>
           </div>
           <span id="splat-status">${
@@ -2063,7 +2066,9 @@
         <div class="viewer-controls">
           <div class="viewer-controls__group">
             <button type="button" class="btn-small btn-small--primary" id="btn-sdf-shading" data-tooltip="Cycle shading between Studio PBR, Surface Normals, and Wireframe">Shading: Studio PBR</button>
-            <button type="button" class="btn-small" id="btn-sdf-reset-camera" data-tooltip="Reset camera position and orbit target">Reset View</button>
+            <button type="button" class="btn-small btn-small--primary" id="btn-sdf-mode" data-tooltip="Toggle Orbit vs Fly mode (V)">Mode: Orbit</button>
+            <button type="button" class="btn-small" id="btn-sdf-frame-all" data-tooltip="Frame entire surface from current angle (0)">Frame All</button>
+            <button type="button" class="btn-small" id="btn-sdf-reset-camera" data-tooltip="Reset camera (Double-click or R)">Reset View</button>
             <button type="button" class="btn-small" id="btn-sdf-autorotate" data-tooltip="Toggle turntable auto-rotation">Auto-Rotate: Off</button>
             <button type="button" class="btn-small" id="btn-open-fullwindow" data-entry-id="${escapeHtml(item.id)}" data-tooltip="Open full-window preview with carousel (F)">⛶ Full Window</button>
           </div>
@@ -3235,7 +3240,11 @@
     if (splatViewerContainer) {
       const splatPath = item.files && item.files.media ? item.files.media.path : "media.spz";
       const splatUrl = resolveAssetUrl(`items/${item.id}/${splatPath}`);
-      initSparkSplatViewer(splatViewerContainer, splatUrl, document.getElementById("splat-status"));
+      initSparkSplatViewer(splatViewerContainer, splatUrl, document.getElementById("splat-status"), {
+        modeBtn: document.getElementById("btn-splat-mode"),
+        frameAllBtn: document.getElementById("btn-splat-frame-all"),
+        resetBtn: document.getElementById("btn-splat-reset-camera"),
+      });
     }
 
     // Interactive Three.js SDF / Mathematical Surface viewer
@@ -3243,6 +3252,8 @@
     if (sdfViewerContainer) {
       initThreeSdfViewer(sdfViewerContainer, item, document.getElementById("sdf-status"), {
         shadingBtn: document.getElementById("btn-sdf-shading"),
+        modeBtn: document.getElementById("btn-sdf-mode"),
+        frameAllBtn: document.getElementById("btn-sdf-frame-all"),
         resetBtn: document.getElementById("btn-sdf-reset-camera"),
         autorotateBtn: document.getElementById("btn-sdf-autorotate"),
       });
@@ -3292,14 +3303,84 @@
     });
   }
 
-  // Shared WASD + Q/E fly-around controller that cooperates with Three.js OrbitControls
-  function attachWasdFlyControls(THREE, camera, controls, domElement, initialSpeed = 3.0) {
+  // Shared Orbit (Trackball) + Fly (mouselook + WASD) camera rig with Frame All & Reset View
+  function attachCameraRig(THREE, camera, controls, domElement, options = {}) {
     const keys = new Set();
-    let speed = initialSpeed;
+    let baseSpeed = options.speed || 1.2;
+    let speed = baseSpeed;
+    let mode = "orbit"; // "orbit" | "fly"
+    let yaw = 0;
+    let pitch = 0;
+    let looking = false;
+    let activePointerId = null;
+    let lastX = 0;
+    let lastY = 0;
+
+    const homePos = camera.position.clone();
+    const homeTarget = controls.target.clone();
+    const homeUp = new THREE.Vector3(0, 1, 0);
+    const boundsCenter = homeTarget.clone();
+    let fitDistance = Math.max(0.5, homePos.distanceTo(homeTarget) || 3.0);
+
     const forward = new THREE.Vector3();
     const right = new THREE.Vector3();
     const up = new THREE.Vector3();
     const move = new THREE.Vector3();
+    const euler = new THREE.Euler(0, 0, 0, "YXZ");
+
+    const syncEulerFromCamera = () => {
+      euler.setFromQuaternion(camera.quaternion, "YXZ");
+      yaw = euler.y;
+      pitch = Math.max(-1.55, Math.min(1.55, euler.x));
+    };
+
+    const updateModeUi = () => {
+      if (options.modeBtn) {
+        options.modeBtn.textContent = mode === "fly" ? "Mode: Fly" : "Mode: Orbit";
+        options.modeBtn.classList.toggle("btn-small--primary", mode === "fly");
+      }
+      domElement.style.cursor = mode === "fly" ? "grab" : "";
+    };
+
+    const setMode = (nextMode) => {
+      if (nextMode === mode) return;
+      mode = nextMode;
+      if (mode === "fly") {
+        syncEulerFromCamera();
+        controls.enabled = false;
+      } else {
+        looking = false;
+        activePointerId = null;
+        camera.getWorldDirection(forward);
+        const orbitDist = Math.max(0.25, camera.position.distanceTo(controls.target) || fitDistance);
+        controls.target.copy(camera.position).addScaledVector(forward, orbitDist);
+        camera.up.set(0, 1, 0);
+        camera.lookAt(controls.target);
+        controls.enabled = true;
+        controls.update();
+      }
+      updateModeUi();
+    };
+
+    const resetView = () => {
+      camera.position.copy(homePos);
+      camera.up.copy(homeUp);
+      controls.target.copy(homeTarget);
+      camera.lookAt(homeTarget);
+      syncEulerFromCamera();
+      controls.update();
+    };
+
+    const frameAll = () => {
+      camera.getWorldDirection(forward);
+      if (forward.lengthSq() < 1e-6) forward.set(0, 0, -1);
+      forward.normalize();
+      controls.target.copy(boundsCenter);
+      camera.position.copy(boundsCenter).addScaledVector(forward, -fitDistance);
+      camera.lookAt(boundsCenter);
+      syncEulerFromCamera();
+      controls.update();
+    };
 
     const isBlocked = (e) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return true;
@@ -3312,6 +3393,21 @@
     const onKeyDown = (e) => {
       if (!domElement.isConnected || isBlocked(e)) return;
       const code = e.code;
+      if (code === "KeyV" && !e.repeat) {
+        e.preventDefault();
+        setMode(mode === "orbit" ? "fly" : "orbit");
+        return;
+      }
+      if (code === "KeyR" && !e.repeat) {
+        e.preventDefault();
+        resetView();
+        return;
+      }
+      if (code === "Digit0" && !e.repeat) {
+        e.preventDefault();
+        frameAll();
+        return;
+      }
       if (
         code === "KeyW" || code === "KeyA" || code === "KeyS" || code === "KeyD" ||
         code === "KeyQ" || code === "KeyE" || code === "ShiftLeft" || code === "ShiftRight"
@@ -3326,45 +3422,129 @@
 
     const onBlur = () => {
       keys.clear();
+      looking = false;
+      activePointerId = null;
     };
+
+    const onPointerDown = (e) => {
+      if (mode !== "fly" || e.button !== 0) return;
+      looking = true;
+      activePointerId = e.pointerId;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      domElement.style.cursor = "grabbing";
+      try {
+        domElement.setPointerCapture(e.pointerId);
+      } catch (_e) {}
+    };
+
+    const onPointerMove = (e) => {
+      if (mode !== "fly" || !looking || e.pointerId !== activePointerId) return;
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      yaw -= dx * 0.0032;
+      pitch = Math.max(-1.55, Math.min(1.55, pitch - dy * 0.0032));
+      euler.set(pitch, yaw, 0, "YXZ");
+      camera.quaternion.setFromEuler(euler);
+    };
+
+    const onPointerUp = (e) => {
+      if (e.pointerId !== activePointerId) return;
+      looking = false;
+      activePointerId = null;
+      if (mode === "fly") domElement.style.cursor = "grab";
+    };
+
+    const onWheel = (e) => {
+      if (mode !== "fly") return;
+      e.preventDefault();
+      const factor = e.deltaY < 0 ? 1.12 : 1 / 1.12;
+      speed = Math.max(baseSpeed * 0.1, Math.min(baseSpeed * 6, speed * factor));
+    };
+
+    const onDblClick = (e) => {
+      e.preventDefault();
+      resetView();
+    };
+
+    const onModeBtnClick = () => setMode(mode === "orbit" ? "fly" : "orbit");
+    const onResetBtnClick = () => resetView();
+    const onFrameAllBtnClick = () => frameAll();
 
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("keyup", onKeyUp);
     window.addEventListener("blur", onBlur);
+    domElement.addEventListener("pointerdown", onPointerDown);
+    domElement.addEventListener("pointermove", onPointerMove);
+    domElement.addEventListener("pointerup", onPointerUp);
+    domElement.addEventListener("pointercancel", onPointerUp);
+    domElement.addEventListener("wheel", onWheel, { passive: false });
+    domElement.addEventListener("dblclick", onDblClick);
+    if (options.modeBtn) options.modeBtn.addEventListener("click", onModeBtnClick);
+    if (options.resetBtn) options.resetBtn.addEventListener("click", onResetBtnClick);
+    if (options.frameAllBtn) options.frameAllBtn.addEventListener("click", onFrameAllBtnClick);
+    updateModeUi();
 
     return {
       setSpeed(nextSpeed) {
-        if (Number.isFinite(nextSpeed) && nextSpeed > 0) speed = nextSpeed;
+        if (Number.isFinite(nextSpeed) && nextSpeed > 0) {
+          baseSpeed = nextSpeed;
+          speed = nextSpeed;
+        }
       },
+      setHome(pos, target, fitDist) {
+        homePos.copy(pos);
+        homeTarget.copy(target);
+        boundsCenter.copy(target);
+        if (Number.isFinite(fitDist) && fitDist > 0) fitDistance = fitDist;
+        syncEulerFromCamera();
+      },
+      resetView,
+      frameAll,
       update(dt) {
-        if (!keys.size || dt <= 0) return false;
-        const step = speed * Math.min(dt, 0.1) * (keys.has("ShiftLeft") || keys.has("ShiftRight") ? 3.0 : 1.0);
-        camera.getWorldDirection(forward);
-        up.copy(camera.up).normalize();
-        right.crossVectors(forward, up).normalize();
-        move.set(0, 0, 0);
-        if (keys.has("KeyW")) move.addScaledVector(forward, step);
-        if (keys.has("KeyS")) move.addScaledVector(forward, -step);
-        if (keys.has("KeyD")) move.addScaledVector(right, step);
-        if (keys.has("KeyA")) move.addScaledVector(right, -step);
-        if (keys.has("KeyE")) move.addScaledVector(up, step);
-        if (keys.has("KeyQ")) move.addScaledVector(up, -step);
-        if (move.lengthSq() === 0) return false;
-        camera.position.add(move);
-        controls.target.add(move);
-        return true;
+        if (keys.size && dt > 0) {
+          const step = speed * Math.min(dt, 0.1) * (keys.has("ShiftLeft") || keys.has("ShiftRight") ? 3.0 : 1.0);
+          camera.getWorldDirection(forward);
+          up.copy(camera.up).normalize();
+          right.crossVectors(forward, up).normalize();
+          move.set(0, 0, 0);
+          if (keys.has("KeyW")) move.addScaledVector(forward, step);
+          if (keys.has("KeyS")) move.addScaledVector(forward, -step);
+          if (keys.has("KeyD")) move.addScaledVector(right, step);
+          if (keys.has("KeyA")) move.addScaledVector(right, -step);
+          if (keys.has("KeyE")) move.addScaledVector(up, step);
+          if (keys.has("KeyQ")) move.addScaledVector(up, -step);
+          if (move.lengthSq() > 0) {
+            camera.position.add(move);
+            controls.target.add(move);
+          }
+        }
+        if (mode === "orbit") {
+          controls.update();
+        }
       },
       dispose() {
         keys.clear();
         window.removeEventListener("keydown", onKeyDown);
         window.removeEventListener("keyup", onKeyUp);
         window.removeEventListener("blur", onBlur);
+        domElement.removeEventListener("pointerdown", onPointerDown);
+        domElement.removeEventListener("pointermove", onPointerMove);
+        domElement.removeEventListener("pointerup", onPointerUp);
+        domElement.removeEventListener("pointercancel", onPointerUp);
+        domElement.removeEventListener("wheel", onWheel);
+        domElement.removeEventListener("dblclick", onDblClick);
+        if (options.modeBtn) options.modeBtn.removeEventListener("click", onModeBtnClick);
+        if (options.resetBtn) options.resetBtn.removeEventListener("click", onResetBtnClick);
+        if (options.frameAllBtn) options.frameAllBtn.removeEventListener("click", onFrameAllBtnClick);
       },
     };
   }
 
   // Interactive 3D Gaussian Splat (.spz / 3DGS) viewer powered by Spark.js (@sparkjsdev/spark)
-  async function initSparkSplatViewer(container, url, statusEl) {
+  async function initSparkSplatViewer(container, url, statusEl, options = {}) {
     if (!container) return;
     if (activeSparkInstance) {
       try {
@@ -3410,12 +3590,17 @@
 
       const controls = new TrackballControls(camera, renderer.domElement);
       controls.staticMoving = false;
-      controls.dynamicDampingFactor = 0.12;
-      controls.rotateSpeed = 2.4;
-      controls.zoomSpeed = 1.1;
-      controls.panSpeed = 0.8;
+      controls.dynamicDampingFactor = 0.14;
+      controls.rotateSpeed = 1.4;
+      controls.zoomSpeed = 0.7;
+      controls.panSpeed = 0.5;
 
-      const fly = attachWasdFlyControls(THREE, camera, controls, renderer.domElement, 4.0);
+      const rig = attachCameraRig(THREE, camera, controls, renderer.domElement, {
+        speed: 1.5,
+        modeBtn: options.modeBtn,
+        resetBtn: options.resetBtn,
+        frameAllBtn: options.frameAllBtn,
+      });
 
       const spark = new SparkRenderer({ renderer, maxStdDev: Math.sqrt(5) });
       scene.add(spark);
@@ -3455,8 +3640,7 @@
         animId = requestAnimationFrame(animate);
         const dt = (now - lastTime) * 0.001;
         lastTime = now;
-        fly.update(dt);
-        controls.update();
+        rig.update(dt);
         renderer.render(scene, camera);
       };
       animate();
@@ -3469,7 +3653,7 @@
           if (animId) cancelAnimationFrame(animId);
           ro.disconnect();
           try {
-            fly.dispose();
+            rig.dispose();
           } catch (e) {}
           try {
             controls.dispose();
@@ -3510,7 +3694,8 @@
         controls.target.copy(center);
         controls.minDistance = Math.max(0.1, maxDim * 0.08);
         controls.update();
-        fly.setSpeed(Math.max(0.5, Math.min(40, maxDim * 0.45)));
+        rig.setHome(camera.position, center, dist);
+        rig.setSpeed(Math.max(0.25, Math.min(12, maxDim * 0.16)));
       } catch (_e) {}
 
       if (statusEl) {
@@ -3582,13 +3767,20 @@
 
       const controls = new TrackballControls(camera, renderer.domElement);
       controls.staticMoving = false;
-      controls.dynamicDampingFactor = 0.12;
-      controls.rotateSpeed = 2.4;
-      controls.zoomSpeed = 1.1;
-      controls.panSpeed = 0.8;
+      controls.dynamicDampingFactor = 0.14;
+      controls.rotateSpeed = 1.4;
+      controls.zoomSpeed = 0.7;
+      controls.panSpeed = 0.5;
       controls.target.copy(targetVec);
       let autoRotate = false;
       const autoRotateAxis = new THREE.Vector3(0, 1, 0);
+
+      const rig = attachCameraRig(THREE, camera, controls, renderer.domElement, {
+        speed: 1.1,
+        modeBtn: options.modeBtn,
+        resetBtn: options.resetBtn,
+        frameAllBtn: options.frameAllBtn,
+      });
 
       const fly = attachWasdFlyControls(THREE, camera, controls, renderer.domElement, 2.5);
 
@@ -3856,11 +4048,10 @@
         animId = requestAnimationFrame(animate);
         const dt = (now - lastTime) * 0.001;
         lastTime = now;
-        fly.update(dt);
         if (autoRotate && dt > 0) {
           camera.position.sub(controls.target).applyAxisAngle(autoRotateAxis, dt * 0.4).add(controls.target);
         }
-        controls.update();
+        rig.update(dt);
 
         if (mathType === "sdf" && uniforms) {
           camera.updateMatrixWorld();
@@ -3898,15 +4089,6 @@
         });
       }
 
-      if (options.resetBtn) {
-        options.resetBtn.addEventListener("click", () => {
-          camera.position.set(camPos[0], camPos[1], camPos[2]);
-          controls.target.copy(targetVec);
-          camera.lookAt(targetVec);
-          controls.update();
-        });
-      }
-
       if (options.autorotateBtn) {
         options.autorotateBtn.addEventListener("click", () => {
           autoRotate = !autoRotate;
@@ -3926,7 +4108,7 @@
           if (animId) cancelAnimationFrame(animId);
           ro.disconnect();
           try {
-            fly.dispose();
+            rig.dispose();
           } catch (e) {}
           try {
             controls.dispose();
